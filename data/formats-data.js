@@ -4839,6 +4839,7 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	infernapemega: {
+		requiredItem: "Infernite",
 		isNonstandard: "CAP",
 		tier: "CAP",
 	},
