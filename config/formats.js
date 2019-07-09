@@ -6,10 +6,10 @@
 /**@type {(FormatsData | {section: string, column?: number})[]} */
 let Formats = [
 
-	// US/UM Singles
+	// Draft League
 	///////////////////////////////////////////////////////////////////
 	{
-		section: "US/UM Singles",
+		section: "Draft League",
 	},
 	{
 		name: "[Gen 7] Draft League",
@@ -18,6 +18,13 @@ let Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Power Construct'],
 	},
+	
+	// US/UM Singles
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "US/UM Singles",
+	},
+	
 	{
 		name: "[Gen 7] Random Battle",
 		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
