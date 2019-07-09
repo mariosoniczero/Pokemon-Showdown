@@ -2,6 +2,20 @@
 
 /**@type {{[k: string]: ItemData}} */
 let BattleItems = {
+	"infernite": {
+		id: "infernite",
+		name: "Infernite",
+		spritenum: 575,
+		megaStone: "Infernape-Mega",
+		megaEvolves: "Infernape",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1001,
+		gen: 6,
+		desc: "If held by an Infernape, this item allows it to Mega Evolve in battle.",
+	},
 	"abomasite": {
 		id: "abomasite",
 		name: "Abomasite",
