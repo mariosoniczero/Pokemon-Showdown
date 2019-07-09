@@ -12,7 +12,7 @@ let Formats = [
 		section: "US/UM Singles",
 	},
 	{
-		name: "[Gen 7] OU",
+		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
