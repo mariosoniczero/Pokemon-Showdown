@@ -2,9 +2,22 @@
 
 /**@type {{[k: string]: ItemData}} */
 let BattleItems = {
-	"infernite": {
-		id: "infernite",
-		name: "Infernite",
+	"typhlosionite": {
+		id: "typhlosionite",
+		name: "Typhlosionite",
+		spritenum: 575,
+		megaStone: "Typhlosion-Mega",
+		megaEvolves: "Typhlosion",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1001,
+		gen: 6,
+		desc: "If held by an Typhlosion, this item allows it to Mega Evolve in battle.",
+	"infernapite": {
+		id: "infernapite",
+		name: "Infernapite",
 		spritenum: 575,
 		megaStone: "Infernape-Mega",
 		megaEvolves: "Infernape",
