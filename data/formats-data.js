@@ -4839,6 +4839,7 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	infernapemega: {
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	piplup: {
