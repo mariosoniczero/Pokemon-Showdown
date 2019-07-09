@@ -2,6 +2,62 @@
 
 /**@type {{[k: string]: ItemData}} */
 let BattleItems = {
+	"meganite": {
+		id: "meganite",
+		name: "Meganite",
+		spritenum: 575,
+		megaStone: "Meganium-Mega",
+		megaEvolves: "Meganium",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1006,
+		gen: 6,
+		desc: "If held by a Meganium, this item allows it to Mega Evolve in battle.",
+	},
+	"torterrite": {
+		id: "torterrite",
+		name: "Torterrite",
+		spritenum: 575,
+		megaStone: "Torterra-Mega",
+		megaEvolves: "Torterra",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1005,
+		gen: 6,
+		desc: "If held by a Torterra, this item allows it to Mega Evolve in battle.",
+	},
+	"feraligatite": {
+		id: "feraligatite",
+		name: "Feraligatite",
+		spritenum: 575,
+		megaStone: "Feraligatr-Mega",
+		megaEvolves: "Feraligatr",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1004,
+		gen: 6,
+		desc: "If held by an Typhlosion, this item allows it to Mega Evolve in battle.",
+	},
+	"empoleonite": {
+		id: "empoleonite",
+		name: "Empoleonite",
+		spritenum: 575,
+		megaStone: "Empoleon-Mega",
+		megaEvolves: "Empoleon",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1003,
+		gen: 6,
+		desc: "If held by an Empoleon, this item allows it to Mega Evolve in battle.",
+	},
 	"typhlosionite": {
 		id: "typhlosionite",
 		name: "Typhlosionite",
@@ -14,7 +70,7 @@ let BattleItems = {
 		},
 		num: 1002,
 		gen: 6,
-		desc: "If held by an Typhlosion, this item allows it to Mega Evolve in battle.",
+		desc: "If held by a Typhlosion, this item allows it to Mega Evolve in battle.",
 	},
 	"infernapite": {
 		id: "infernapite",
