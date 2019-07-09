@@ -12,7 +12,7 @@ let BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 1001,
+		num: 1002,
 		gen: 6,
 		desc: "If held by an Typhlosion, this item allows it to Mega Evolve in battle.",
 	"infernapite": {
