@@ -4838,6 +4838,9 @@ let BattleFormatsData = {
 		tier: "UU",
 		doublesTier: "(DUU)",
 	},
+	infernapemega: {
+		tier: "CAP",
+	},
 	piplup: {
 		randomBattleMoves: ["stealthrock", "hydropump", "scald", "icebeam", "hiddenpowerelectric", "hiddenpowerfire", "yawn", "defog"],
 		eventPokemon: [
