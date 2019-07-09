@@ -6411,6 +6411,7 @@ let BattlePokedex = {
 		prevo: "monferno",
 		evoLevel: 36,
 		eggGroups: ["Field", "Human-Like"],
+		otherFormes: ["infernapemega"]
 	},
 	infernapemega: {
 		num: 392,
