@@ -5,6 +5,19 @@
 
 /**@type {(FormatsData | {section: string, column?: number})[]} */
 let Formats = [
+	
+	// Draft League
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "Draft League",
+	}
+	{
+		name: "[Gen 7] GPL Tier",
+	   
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+	   banlist: ['Power Construct'],
+	},
 
 	// US/UM Singles
 	///////////////////////////////////////////////////////////////////
