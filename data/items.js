@@ -15,6 +15,7 @@ let BattleItems = {
 		num: 1002,
 		gen: 6,
 		desc: "If held by an Typhlosion, this item allows it to Mega Evolve in battle.",
+	},
 	"infernapite": {
 		id: "infernapite",
 		name: "Infernapite",
