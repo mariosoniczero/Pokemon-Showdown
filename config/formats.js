@@ -12,6 +12,13 @@ let Formats = [
 		section: "US/UM Singles",
 	},
 	{
+		name: "[Gen 7] OU",
+
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Power Construct'],
+	},
+	{
 		name: "[Gen 7] Random Battle",
 		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
 		threads: [
