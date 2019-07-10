@@ -4838,11 +4838,6 @@ let BattleFormatsData = {
 		tier: "UU",
 		doublesTier: "(DUU)",
 	},
-	infernapemega: {
-		requiredItem: "Infernite",
-		isNonstandard: "CAP",
-		tier: "CAP",
-	},
 	piplup: {
 		randomBattleMoves: ["stealthrock", "hydropump", "scald", "icebeam", "hiddenpowerelectric", "hiddenpowerfire", "yawn", "defog"],
 		eventPokemon: [
