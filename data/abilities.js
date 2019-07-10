@@ -40,6 +40,21 @@ Ratings and how they work:
 
 /**@type {{[k: string]: AbilityData}} */
 let BattleAbilities = {
+	"thunderstorm": {
+		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain.",
+		onStart(source) {
+			for (const action of this.queue) {
+				if (action.choice === 'runPrimal' && action.pokemon === source && source.template.speciesid === 'kyogre') return;
+				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
+			}
+			this.field.setWeather('raindance');
+			this.field.setTerrain('electricterrain');
+		},
+		id: "thunderstorm",
+		name: "Thunderstorm",
+		rating: 4,
+		num: 1001,
+	},
 	"noability": {
 		shortDesc: "Does nothing.",
 		id: "noability",
