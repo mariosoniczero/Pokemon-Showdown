@@ -2,6 +2,76 @@
 
 /**@type {{[k: string]: ItemData}} */
 let BattleItems = {
+	"chipinite": {
+		id: "chipinite",
+		name: "chipinite",
+		spritenum: 575,
+		megaStone: "Scolipede-Mega",
+		megaEvolves: "Scolipede",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1029,
+		gen: 6,
+		desc: "If held by a Scolipede, this item allows it to Mega Evolve in battle.",
+	},
+	"froginite": {
+		id: "froginite",
+		name: "froginite",
+		spritenum: 575,
+		megaStone: "Toxicroak-Mega",
+		megaEvolves: "Toxicroak",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1028,
+		gen: 6,
+		desc: "If held by a Toxicroak, this item allows it to Mega Evolve in battle.",
+	},
+	"shoqinite": {
+		id: "shoqinite",
+		name: "shoqinite",
+		spritenum: 575,
+		megaStone: "Lanturn-Mega",
+		megaEvolves: "Lanturn",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1027,
+		gen: 6,
+		desc: "If held by a Lanturn, this item allows it to Mega Evolve in battle.",
+	},
+	"dottite": {
+		id: "dottite",
+		name: "dottite",
+		spritenum: 575,
+		megaStone: "Granbull-Mega",
+		megaEvolves: "Granbull",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1026,
+		gen: 6,
+		desc: "If held by a Granbull, this item allows it to Mega Evolve in battle.",
+	},
+	"granbelite": {
+		id: "granbelite",
+		name: "granbelite",
+		spritenum: 575,
+		megaStone: "Butterfree-Mega",
+		megaEvolves: "Butterfree",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1025,
+		gen: 6,
+		desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.",
+	},
 	"avaluggite": {
 		id: "avaluggite",
 		name: "avaluggite",
