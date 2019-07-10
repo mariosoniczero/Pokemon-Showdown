@@ -11,6 +11,11 @@ var child_process = require('child_process');
 var fs = require('fs');
 var path = require('path');
 
+var http = require("http");
+setInterval(function() {
+    http.get("http://<your app name>.herokuapp.com");
+}, 9000000); // every 5 minutes (9000000)
+
 function shell(cmd) {
 	child_process.execSync(cmd, {stdio: 'inherit', cwd: __dirname});
 }
