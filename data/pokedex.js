@@ -6822,7 +6822,7 @@ let BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Electric", "Dark"],
-		baseStats: {hp: 80, atk: 170, def: 94, spa: 95, spd: 94, spe: 90},
+		baseStats: {hp: 80, atk: 160, def: 94, spa: 105, spd: 94, spe: 90},
 		abilities: {0: "Strong Jaw"},
 		heightm: 1.4,
 		weightkg: 42,
