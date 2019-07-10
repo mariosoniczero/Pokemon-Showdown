@@ -4979,7 +4979,7 @@ let BattlePokedex = {
 		baseSpecies: "Exploud",
 		forme: "Mega",
 		formeLetter: "M",
-		types: ["Exploud"],
+		types: ["Normal"],
 		baseStats: {hp: 104, atk: 96, def: 73, spa: 161, spd: 83, spe: 73},
 		abilities: {0: "Scrappy"},
 		heightm: 1.5,
