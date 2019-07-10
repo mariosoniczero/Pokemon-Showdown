@@ -1650,7 +1650,7 @@ let BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Fire", "Fairy"],
-		baseStats: {hp: 65, atk: 120, def: 105, spa: 80, spd: 105, spe: 105},
+		baseStats: {hp: 65, atk: 120, def: 105, spa: 80, spd: 105, spe: 125},
 		abilities: {0: "Pixilate"},
 		heightm: 1.7,
 		weightkg: 95,
