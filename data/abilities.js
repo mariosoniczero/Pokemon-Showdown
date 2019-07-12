@@ -40,6 +40,29 @@ Ratings and how they work:
 
 /**@type {{[k: string]: AbilityData}} */
 let BattleAbilities = {
+	"terrify": {
+		desc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+		shortDesc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opponents by 1 stage.",
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Terrify', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({spa: -1}, target, pokemon);
+				}
+			}
+		},
+		id: "terrify",
+		name: "Terrify",
+		rating: 3.5,
+		num: 1002,
+	},
 	"thunderstorm": {
 		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain.",
 		onStart(source) {

@@ -2,9 +2,93 @@
 
 /**@type {{[k: string]: ItemData}} */
 let BattleItems = {
+	"staraptorite": {
+		id: "staraptorite",
+		name: "Staraptorite",
+		spritenum: 575,
+		megaStone: "Staraptor-Mega",
+		megaEvolves: "Staraptor",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1035,
+		gen: 6,
+		desc: "If held by a Staraptor, this item allows it to Mega Evolve in battle.",
+	},
+	"kecleonte": {
+		id: "kecleonite",
+		name: "Kecleonite",
+		spritenum: 575,
+		megaStone: "Kecleon-Mega",
+		megaEvolves: "Kecleon",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1034,
+		gen: 6,
+		desc: "If held by a Kecleon, this item allows it to Mega Evolve in battle.",
+	},
+	"clawitzite": {
+		id: "clawitzite",
+		name: "Clawitzite",
+		spritenum: 575,
+		megaStone: "Clawitzer-Mega",
+		megaEvolves: "Clawitzer",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1033,
+		gen: 6,
+		desc: "If held by a Clawitzer, this item allows it to Mega Evolve in battle.",
+	},
+	"delcattite": {
+		id: "delcattite",
+		name: "Delcattite",
+		spritenum: 575,
+		megaStone: "Delcatty-Mega",
+		megaEvolves: "Delcatty",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1032,
+		gen: 6,
+		desc: "If held by a Delcatty, this item allows it to Mega Evolve in battle.",
+	},
+	"roseradite": {
+		id: "roseradite",
+		name: "Roseradite",
+		spritenum: 575,
+		megaStone: "Roserade-Mega",
+		megaEvolves: "Roserade",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1031,
+		gen: 6,
+		desc: "If held by a Roserade, this item allows it to Mega Evolve in battle.",
+	},
+	"tyrantrumite": {
+		id: "tyrantrumite",
+		name: "Tyrantrumite",
+		spritenum: 575,
+		megaStone: "Tyrantrum-Mega",
+		megaEvolves: "Tyrantrum",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1030,
+		gen: 6,
+		desc: "If held by a Tyrantrum, this item allows it to Mega Evolve in battle.",
+	},
 	"chipinite": {
 		id: "chipinite",
-		name: "chipinite",
+		name: "Chipinite",
 		spritenum: 575,
 		megaStone: "Scolipede-Mega",
 		megaEvolves: "Scolipede",
@@ -18,7 +102,7 @@ let BattleItems = {
 	},
 	"froginite": {
 		id: "froginite",
-		name: "froginite",
+		name: "Froginite",
 		spritenum: 575,
 		megaStone: "Toxicroak-Mega",
 		megaEvolves: "Toxicroak",
@@ -32,7 +116,7 @@ let BattleItems = {
 	},
 	"shoqinite": {
 		id: "shoqinite",
-		name: "shoqinite",
+		name: "Shoqinite",
 		spritenum: 575,
 		megaStone: "Lanturn-Mega",
 		megaEvolves: "Lanturn",
@@ -46,7 +130,7 @@ let BattleItems = {
 	},
 	"dottite": {
 		id: "dottite",
-		name: "dottite",
+		name: "Dottite",
 		spritenum: 575,
 		megaStone: "Granbull-Mega",
 		megaEvolves: "Granbull",
@@ -60,7 +144,7 @@ let BattleItems = {
 	},
 	"granbelite": {
 		id: "granbelite",
-		name: "granbelite",
+		name: "Granbelite",
 		spritenum: 575,
 		megaStone: "Butterfree-Mega",
 		megaEvolves: "Butterfree",
@@ -74,7 +158,7 @@ let BattleItems = {
 	},
 	"avaluggite": {
 		id: "avaluggite",
-		name: "avaluggite",
+		name: "Avaluggite",
 		spritenum: 575,
 		megaStone: "Avalugg-Mega",
 		megaEvolves: "Avalugg",
@@ -88,7 +172,7 @@ let BattleItems = {
 	},
 	"scolipedite": {
 		id: "scolipedite",
-		name: "scolipedite",
+		name: "Scolipedite",
 		spritenum: 575,
 		megaStone: "Scolipede-Mega",
 		megaEvolves: "Scolipede",
@@ -102,7 +186,7 @@ let BattleItems = {
 	},
 	"bronzongite": {
 		id: "bronzongite",
-		name: "bronzongite",
+		name: "Bronzongite",
 		spritenum: 575,
 		megaStone: "Bronzong-Mega",
 		megaEvolves: "Bronzong",
@@ -116,7 +200,7 @@ let BattleItems = {
 	},
 	"toxicroakite": {
 		id: "toxicroakite",
-		name: "toxicroakite",
+		name: "Toxicroakite",
 		spritenum: 575,
 		megaStone: "Toxicroak-Mega",
 		megaEvolves: "Toxicroak",
@@ -130,7 +214,7 @@ let BattleItems = {
 	},
 	"golurkite": {
 		id: "golurkite",
-		name: "golurkite",
+		name: "Golurkite",
 		spritenum: 575,
 		megaStone: "Golurk-Mega",
 		megaEvolves: "Golurk",
@@ -144,7 +228,7 @@ let BattleItems = {
 	},
 	"lanturnite": {
 		id: "lanturnite",
-		name: "lanturnite",
+		name: "Lanturnite",
 		spritenum: 575,
 		megaStone: "Lanturn-Mega",
 		megaEvolves: "Lanturn",
@@ -158,7 +242,7 @@ let BattleItems = {
 	},
 	"exploudite": {
 		id: "exploudite",
-		name: "exploudite",
+		name: "Exploudite",
 		spritenum: 575,
 		megaStone: "Exploud-Mega",
 		megaEvolves: "Exploud",
@@ -172,7 +256,7 @@ let BattleItems = {
 	},
 	"whimsicottite": {
 		id: "whimsicottite",
-		name: "whimsicottite",
+		name: "Whimsicottite",
 		spritenum: 575,
 		megaStone: "Whimsicott-Mega",
 		megaEvolves: "Whimsicott",
@@ -186,7 +270,7 @@ let BattleItems = {
 	},
 	"rapidashite": {
 		id: "rapidashite",
-		name: "rapidashite",
+		name: "Rapidashite",
 		spritenum: 575,
 		megaStone: "Rapidash-Mega",
 		megaEvolves: "Rapidash",
@@ -200,7 +284,7 @@ let BattleItems = {
 	},
 	"vespiquenite": {
 		id: "vespiquenite",
-		name: "vespiquenite",
+		name: "Vespiquenite",
 		spritenum: 575,
 		megaStone: "Vespiquen-Mega",
 		megaEvolves: "Vespiquen",
