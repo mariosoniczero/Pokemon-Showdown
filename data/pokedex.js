@@ -5079,7 +5079,7 @@ let BattlePokedex = {
 		baseStats: {hp: 70, atk: 55, def: 105, spa: 115, spd: 95, spe: 60},
 		abilities: {0: "Pressure"},
 		heightm: 1.1,
-		weightkg: 32,6,
+		weightkg: 32.6,
 		color: "Purple",
 		eggGroups: ["Field", "Fairy"],
 	},
