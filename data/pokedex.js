@@ -3288,7 +3288,7 @@ let BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Psychic", "Flying"],
-		baseStats: {hp: 65, atk: 85, def: 115, spa: 95, spd: 115, spe: 95},
+		baseStats: {hp: 65, atk: 80, def: 115, spa: 100, spd: 115, spe: 95},
 		abilities: {0: "Magic Bounce"},
 		heightm: 1.5,
 		weightkg: 15,
