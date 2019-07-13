@@ -2,6 +2,20 @@
 
 /**@type {{[k: string]: ItemData}} */
 let BattleItems = {
+	"bellossomite": {
+		id: "bellossomite",
+		name: "Bellossomite",
+		spritenum: 575,
+		megaStone: "Bellossom-Mega",
+		megaEvolves: "Bellossom",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1035,
+		gen: 6,
+		desc: "If held by a Bellossom, this item allows it to Mega Evolve in battle.",
+	},
 	"staraptorite": {
 		id: "staraptorite",
 		name: "Staraptorite",
@@ -16,7 +30,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Staraptor, this item allows it to Mega Evolve in battle.",
 	},
-	"kecleonte": {
+	"kecleonite": {
 		id: "kecleonite",
 		name: "Kecleonite",
 		spritenum: 575,
@@ -423,8 +437,8 @@ let BattleItems = {
 		desc: "If held by a Froslass, this item allows it to Mega Evolve in battle.",
 	},
 	"meganiumite": {
-		id: "meganite",
-		name: "Meganite",
+		id: "meganiumite",
+		name: "Meganiumite",
 		spritenum: 575,
 		megaStone: "Meganium-Mega",
 		megaEvolves: "Meganium",
