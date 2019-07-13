@@ -3755,6 +3755,7 @@ let BattlePokedex = {
 		evoLevel: 23,
 		eggGroups: ["Field", "Fairy"],
 	},
+	/*
 	granbullmega: {
 		num: 210,
 		species: "Granbull-Mega",
@@ -3770,6 +3771,7 @@ let BattlePokedex = {
 		color: "Purple",
 		eggGroups: ["Field", "Fairy"],
 	},
+	*/
 	qwilfish: {
 		num: 211,
 		species: "Qwilfish",
@@ -4987,6 +4989,7 @@ let BattlePokedex = {
 		evoLevel: 40,
 		eggGroups: ["Monster", "Field"],
 	},
+	/*
 	exploudmega: {
 		num: 295,
 		species: "Exploud-Mega",
@@ -5001,6 +5004,7 @@ let BattlePokedex = {
 		color: "Blue",
 		eggGroups: ["Monster", "Field"],
 	},
+	*/
 	makuhita: {
 		num: 296,
 		species: "Makuhita",
@@ -7086,6 +7090,7 @@ let BattlePokedex = {
 		evoLevel: 21,
 		eggGroups: ["Bug"],
 	},
+	/*
 	vespiquenmega: {
 		num: 416,
 		species: "Vespiquen-Mega",
@@ -7101,6 +7106,7 @@ let BattlePokedex = {
 		color: "Yellow",
 		eggGroups: ["Bug"],
 	},
+	*/
 	pachirisu: {
 		num: 417,
 		species: "Pachirisu",
@@ -7672,6 +7678,7 @@ let BattlePokedex = {
 		evoLevel: 37,
 		eggGroups: ["Human-Like"],
 	},
+	/*
 	toxicroakmega: {
 		num: 454,
 		species: "Toxicroak-Mega",
@@ -7686,6 +7693,7 @@ let BattlePokedex = {
 		color: "Blue",
 		eggGroups: ["Human-Like"],
 	},
+	*/
 	carnivine: {
 		num: 455,
 		species: "Carnivine",
@@ -9309,6 +9317,7 @@ let BattlePokedex = {
 		evoLevel: 30,
 		eggGroups: ["Bug"],
 	},
+	/*
 	scolipedemega: {
 		num: 545,
 		species: "Scolipede-Mega",
@@ -9323,6 +9332,7 @@ let BattlePokedex = {
 		color: "Red",
 		eggGroups: ["Bug"],
 	},
+	*/
 	cottonee: {
 		num: 546,
 		species: "Cottonee",
@@ -9349,6 +9359,7 @@ let BattlePokedex = {
 		evoItem: "Sun Stone",
 		eggGroups: ["Fairy", "Grass"],
 	},
+	/*
 	whimsicottmega: {
 		num: 547,
 		species: "Whimsicott-Mega",
@@ -9363,6 +9374,7 @@ let BattlePokedex = {
 		color: "Green",
 		eggGroups: ["Fairy", "Grass"],
 	},
+	*/
 	petilil: {
 		num: 548,
 		species: "Petilil",
@@ -11568,6 +11580,7 @@ let BattlePokedex = {
 		evoLevel: 37,
 		eggGroups: ["Water 1", "Water 3"],
 	},
+	/*
 	clawitzermega: {
 		num: 693,
 		species: "Clawitzer-Mega",
@@ -11582,6 +11595,7 @@ let BattlePokedex = {
 		color: "Blue",
 		eggGroups: ["Water 1", "Water 3"],
 	},
+	*/
 	helioptile: {
 		num: 694,
 		species: "Helioptile",
@@ -12289,6 +12303,7 @@ let BattlePokedex = {
 		evoLevel: 28,
 		eggGroups: ["Flying"],
 	},
+	/*
 	toucannonmega: {
 		num: 733,
 		species: "Toucannon-Mega",
@@ -12303,6 +12318,7 @@ let BattlePokedex = {
 		color: "Black",
 		eggGroups: ["Flying"],
 	},
+	*/
 	yungoos: {
 		num: 734,
 		species: "Yungoos",

@@ -44,6 +44,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Kecleon, this item allows it to Mega Evolve in battle.",
 	},
+	/*
 	"clawitzite": {
 		id: "clawitzite",
 		name: "Clawitzite",
@@ -58,6 +59,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Clawitzer, this item allows it to Mega Evolve in battle.",
 	},
+	*/
 	"delcattite": {
 		id: "delcattite",
 		name: "Delcattite",
@@ -100,6 +102,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Tyrantrum, this item allows it to Mega Evolve in battle.",
 	},
+	/*
 	"chipinite": {
 		id: "chipinite",
 		name: "Chipinite",
@@ -128,6 +131,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Toxicroak, this item allows it to Mega Evolve in battle.",
 	},
+	*/
 	"shoqinite": {
 		id: "shoqinite",
 		name: "Shoqinite",
@@ -142,6 +146,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Lanturn, this item allows it to Mega Evolve in battle.",
 	},
+	/*
 	"dottite": {
 		id: "dottite",
 		name: "Dottite",
@@ -156,6 +161,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Granbull, this item allows it to Mega Evolve in battle.",
 	},
+	*/
 	"granbelite": {
 		id: "granbelite",
 		name: "Granbelite",
@@ -184,6 +190,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by an Avalugg, this item allows it to Mega Evolve in battle.",
 	},
+	/*
 	"scolipedite": {
 		id: "scolipedite",
 		name: "Scolipedite",
@@ -198,6 +205,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Scolipede, this item allows it to Mega Evolve in battle.",
 	},
+	*/
 	"bronzongite": {
 		id: "bronzongite",
 		name: "Bronzongite",
@@ -212,6 +220,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Bronzong, this item allows it to Mega Evolve in battle.",
 	},
+	/*
 	"toxicroakite": {
 		id: "toxicroakite",
 		name: "Toxicroakite",
@@ -226,6 +235,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Toxicroak, this item allows it to Mega Evolve in battle.",
 	},
+	*/
 	"golurkite": {
 		id: "golurkite",
 		name: "Golurkite",
@@ -254,6 +264,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Lanturn, this item allows it to Mega Evolve in battle.",
 	},
+	/*
 	"exploudite": {
 		id: "exploudite",
 		name: "Exploudite",
@@ -282,6 +293,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Whimsicott, this item allows it to Mega Evolve in battle.",
 	},
+	*/
 	"rapidashite": {
 		id: "rapidashite",
 		name: "Rapidashite",
@@ -296,6 +308,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Rapidash, this item allows it to Mega Evolve in battle.",
 	},
+	/*
 	"vespiquenite": {
 		id: "vespiquenite",
 		name: "Vespiquenite",
@@ -324,6 +337,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Toucannon, this item allows it to Mega Evolve in battle.",
 	},
+	*/
 	"weezingite": {
 		id: "weezingite",
 		name: "Weezingite",
@@ -366,6 +380,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Xatu, this item allows it to Mega Evolve in battle.",
 	},
+	/*
 	"granbullite": {
 		id: "granbullite",
 		name: "Granbullite",
@@ -380,6 +395,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Granbull, this item allows it to Mega Evolve in battle.",
 	},
+	*/
 	"luxrite": {
 		id: "luxrite",
 		name: "Luxrite",
