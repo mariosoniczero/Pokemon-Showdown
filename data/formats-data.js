@@ -2,7 +2,78 @@
 
 /**@type {{[k: string]: TemplateFormatsData}} */
 let BattleFormatsData = {
-	
+	avaluggmega: {
+		requiredItem: "Avaluggite",
+	},
+	butterfreemega: {
+		requiredItem: "Butterfrite",
+	},
+	bronzongmega: {
+		requiredItem: "Bronzongite",
+	},
+	bellossommega: {
+		requiredItem: "Bellossomite",
+	},
+	staraptormega: {
+		requiredItem: "Staraptorite",
+	},
+	kecleonmega: {
+		requiredItem: "Kecleonite",
+	},
+	delcattymega: {
+		requiredItem: "Delcattite",
+	},
+	roserademega: {
+		requiredItem: "Roseradite",
+	},
+	tyrantrummega: {
+		requiredItem: "Tyrantrumite",
+	},
+	golurkmega: {
+		requiredItem: "Golurkite",
+	},
+	lanturnmega: {
+		requiredItem: "Lanturnite",
+	},
+	rapidashmega: {
+		requiredItem: "Rapidashite",
+	},
+	weezingmega: {
+		requiredItem: "Weezingite",
+	},
+	arbokmega: {
+		requiredItem: "Arbokite",
+	},
+	xatumega: {
+		requiredItem: "Xatunite",
+	},
+	luxraymega: {
+		requiredItem: "Luxrite",
+	},
+	flygonmega: {
+		requiredItem: "Flygonite",
+	},
+	froslassmega: {
+		requiredItem: "Froslassite",
+	},
+	meganiummega: {
+		requiredItem: "Meganiumite",
+	},
+	feraligatrmega: {
+		requiredItem: "Feraligatite",
+	},
+	typhlosionmega: {
+		requiredItem: "Typhlosionite",
+	},
+	torterramega: {
+		requiredItem: "Torterrite",
+	},
+	empoleonmega: {
+		requiredItem: "Empoleonite",
+	},
+	infernapemega: {
+		requiredItem: "Infernapite",
+	},
 	bulbasaur: {
 		randomBattleMoves: ["sleeppowder", "gigadrain", "hiddenpowerfire", "hiddenpowerice", "sludgebomb", "powerwhip", "leechseed", "synthesis"],
 		randomDoubleBattleMoves: ["sleeppowder", "gigadrain", "hiddenpowerfire", "hiddenpowerice", "sludgebomb", "powerwhip", "protect"],
