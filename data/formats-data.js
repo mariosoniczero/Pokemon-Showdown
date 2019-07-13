@@ -4,75 +4,123 @@
 let BattleFormatsData = {
 	avaluggmega: {
 		requiredItem: "Avaluggite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	butterfreemega: {
 		requiredItem: "Butterfrite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	bronzongmega: {
 		requiredItem: "Bronzongite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	bellossommega: {
 		requiredItem: "Bellossomite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	staraptormega: {
 		requiredItem: "Staraptorite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	kecleonmega: {
 		requiredItem: "Kecleonite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	delcattymega: {
 		requiredItem: "Delcattite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	roserademega: {
 		requiredItem: "Roseradite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	tyrantrummega: {
 		requiredItem: "Tyrantrumite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	golurkmega: {
 		requiredItem: "Golurkite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	lanturnmega: {
 		requiredItem: "Lanturnite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	rapidashmega: {
 		requiredItem: "Rapidashite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	weezingmega: {
 		requiredItem: "Weezingite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	arbokmega: {
 		requiredItem: "Arbokite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	xatumega: {
 		requiredItem: "Xatunite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	luxraymega: {
 		requiredItem: "Luxrite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	flygonmega: {
 		requiredItem: "Flygonite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	froslassmega: {
 		requiredItem: "Froslassite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	meganiummega: {
 		requiredItem: "Meganiumite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	feraligatrmega: {
 		requiredItem: "Feraligatite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	typhlosionmega: {
 		requiredItem: "Typhlosionite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	torterramega: {
 		requiredItem: "Torterrite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	empoleonmega: {
 		requiredItem: "Empoleonite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	infernapemega: {
 		requiredItem: "Infernapite",
+		isNonstandard: "CAP",
+		tier: "CAP",
 	},
 	bulbasaur: {
 		randomBattleMoves: ["sleeppowder", "gigadrain", "hiddenpowerfire", "hiddenpowerice", "sludgebomb", "powerwhip", "leechseed", "synthesis"],

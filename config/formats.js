@@ -15,7 +15,7 @@ let Formats = [
 		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',
-		ruleset: ['Pokemon', 'Team Preview', 'Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Allow CAP'],
 
 		banlist: ['Power Construct'],
 	},
