@@ -3370,7 +3370,7 @@ let BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Grass", "Fire"],
-		baseStats: {hp: 80, atk: 120, def: 100, spa: 110, spd: 105, spe: 80},
+		baseStats: {hp: 75, atk: 120, def: 100, spa: 110, spd: 105, spe: 80},
 		abilities: {0: "Conflagrate"},
 		heightm: 0.4,
 		weightkg: 5.8,
