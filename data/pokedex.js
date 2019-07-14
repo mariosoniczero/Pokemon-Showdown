@@ -6667,7 +6667,7 @@ let BattlePokedex = {
 		formeLetter: "M",
 		types: ["Fire", "Fighting"],
 		genderRatio: {M: 0.875, F: 0.125},
-		baseStats: {hp: 80, atk: 134, def: 86, spa: 134, spd: 86, spe: 118},
+		baseStats: {hp: 76, atk: 134, def: 86, spa: 134, spd: 86, spe: 118},
 		abilities: {0: "Infiltrator"},
 		heightm: 1.2,
 		weightkg: 55,
