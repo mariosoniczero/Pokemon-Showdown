@@ -2950,7 +2950,7 @@ let BattlePokedex = {
 		formeLetter: "M",
 		types: ["Fire", "Electric"],
 		genderRatio: {M: 0.875, F: 0.125},
-		baseStats: {hp: 80, atk: 124, def: 88, spa: 129, spd: 95, spe: 120},
+		baseStats: {hp: 78, atk: 124, def: 88, spa: 129, spd: 95, spe: 120},
 		abilities: {0: "Reckless"},
 		heightm: 1.7,
 		weightkg: 79.5,
