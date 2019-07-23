@@ -40,6 +40,27 @@ Ratings and how they work:
 
 /**@type {{[k: string]: AbilityData}} */
 let BattleAbilities = {
+	"terraformer": {
+		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Ground-type attack.",
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ground') {
+				this.debug('Terraformer boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ground') {
+				this.debug('Terraformer boost');
+				return this.chainModify(1.5);
+			}
+		},
+		id: "terraformer",
+		name: "Terraformer",
+		rating: 3,
+		num: 1004,
+	},
 	"conflagrate": {
 		desc: "This Pokemon's Normal-type moves become Fire-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 		shortDesc: "This Pokemon's Normal-type moves become Fire type and have 1.2x power.",
