@@ -40,6 +40,20 @@ Ratings and how they work:
 
 /**@type {{[k: string]: AbilityData}} */
 let BattleAbilities = {
+	"spectralbattery": {
+		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
+		onChargeMove(pokemon, target, move) {
+			this.add('-ability', pokemon, 'Spectral Battery');
+			this.debug('spectral battery - remove charge turn for ' + move.id);
+			this.attrLastMove('[still]');
+			this.addMove('-anim', pokemon, move.name, target);
+			return false; // skip charge turn
+		},
+		id: "spectralbattery",
+		name: "Spectral Battery",
+		rating: 3,
+		num: 1005,
+	},
 	"terraformer": {
 		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Ground-type attack.",
 		onModifyAtkPriority: 5,
