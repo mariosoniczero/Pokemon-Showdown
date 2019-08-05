@@ -3119,6 +3119,20 @@ let BattlePokedex = {
 		evoLevel: 22,
 		eggGroups: ["Bug"],
 	},
+	ariadosmega: {
+		num: 168,
+		species: "Ariados-Mega",
+		baseSpecies: "Ariados",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Bug", "Dark"],
+		baseStats: {hp: 70, atk: 140, def: 70, spa: 30, spd: 70, spe: 120},
+		abilities: {0: "Hemotoxin"},
+		heightm: 1.1,
+		weightkg: 33.5,
+		color: "Red",
+		eggGroups: ["Bug"],
+	},
 	crobat: {
 		num: 169,
 		species: "Crobat",
@@ -3281,7 +3295,7 @@ let BattlePokedex = {
 		evoLevel: 25,
 		eggGroups: ["Flying"],
 	},
-	xatumega: {
+	/*xatumega: {
 		num: 178,
 		species: "Xatu-Mega",
 		baseSpecies: "Xatu",
@@ -3294,7 +3308,7 @@ let BattlePokedex = {
 		weightkg: 15,
 		color: "Green",
 		eggGroups: ["Flying"],
-	},
+	},*/
 	mareep: {
 		num: 179,
 		species: "Mareep",
@@ -10359,6 +10373,20 @@ let BattlePokedex = {
 		color: "Red",
 		eggGroups: ["Monster", "Dragon"],
 	},
+	druddigonmega: {
+		num: 621,
+		species: "Druddigon-Mega",
+		baseSpecies: "Druddigon",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Dragon", "Steel"],
+		baseStats: {hp: 77, atk: 160, def: 125, spa: 50, spd: 125, spe: 48},
+		abilities: {0: "Defiant"},
+		heightm: 1.6,
+		weightkg: 139,
+		color: "Red",
+		eggGroups: ["Monster", "Dragon"],
+	},
 	golett: {
 		num: 622,
 		species: "Golett",
@@ -11649,7 +11677,7 @@ let BattlePokedex = {
 		evoLevel: 39,
 		eggGroups: ["Monster", "Dragon"],
 	},
-	tyrantrummega: {
+	/*tyrantrummega: {
 		num: 697,
 		species: "Tyrantrum-Mega",
 		baseSpecies: "Tyrantrum",
@@ -11663,7 +11691,7 @@ let BattlePokedex = {
 		weightkg: 270,
 		color: "Red",
 		eggGroups: ["Monster", "Dragon"],
-	},
+	},*/
 	amaura: {
 		num: 698,
 		species: "Amaura",

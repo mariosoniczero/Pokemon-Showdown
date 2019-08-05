@@ -40,6 +40,27 @@ Ratings and how they work:
 
 /**@type {{[k: string]: AbilityData}} */
 let BattleAbilities = {
+	"hemotoxin": {
+		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Poison-type attack.",
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Poison') {
+				this.debug('Hemotoxin boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Poison') {
+				this.debug('Hemotoxin boost');
+				return this.chainModify(1.5);
+			}
+		},
+		id: "hemotoxin",
+		name: "Hemotoxin",
+		rating: 3,
+		num: 1006,
+	},
 	"spectralbattery": {
 		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
 		onChargeMove(pokemon, target, move) {
