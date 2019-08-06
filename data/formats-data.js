@@ -2,6 +2,16 @@
 
 /**@type {{[k: string]: TemplateFormatsData}} */
 let BattleFormatsData = {
+	druddigonmega: {
+		requiredItem: "Druddigonite",
+		isNonstandard: "CAP",
+		tier: "CAP",
+	},
+	ariadosmega: {
+		requiredItem: "Ariadosite",
+		isNonstandard: "CAP",
+		tier: "CAP",
+	},
 	avaluggmega: {
 		requiredItem: "Avaluggite",
 		isNonstandard: "CAP",
@@ -42,11 +52,11 @@ let BattleFormatsData = {
 		isNonstandard: "CAP",
 		tier: "CAP",
 	},
-	tyrantrummega: {
+	/*tyrantrummega: {
 		requiredItem: "Tyrantrumite",
 		isNonstandard: "CAP",
 		tier: "CAP",
-	},
+	},*/
 	golurkmega: {
 		requiredItem: "Golurkite",
 		isNonstandard: "CAP",
@@ -72,11 +82,11 @@ let BattleFormatsData = {
 		isNonstandard: "CAP",
 		tier: "CAP",
 	},
-	xatumega: {
+	/*xatumega: {
 		requiredItem: "Xatunite",
 		isNonstandard: "CAP",
 		tier: "CAP",
-	},
+	},*/
 	luxraymega: {
 		requiredItem: "Luxrite",
 		isNonstandard: "CAP",

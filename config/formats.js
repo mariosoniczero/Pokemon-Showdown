@@ -6,10 +6,18 @@
 /**@type {(FormatsData | {section: string, column?: number})[]} */
 let Formats = [
 
-	// Draft League
+	// Custom
 	///////////////////////////////////////////////////////////////////
 	{
-		section: "Draft League",
+		section: "Custom",
+	},
+	{
+		name: "[Gen 7] Custom Mega Ladder",
+
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Allow CAP'],
+
+		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Shadow Tag', 'Baton Pass'],
 	},
 	{
 		name: "[Gen 7] Draft League",
@@ -17,7 +25,7 @@ let Formats = [
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Allow CAP'],
 
-		banlist: ['Power Construct'],
+		banlist: ['Power Construct', 'Bellossom + Strength Sap'],
 	},
 	
 	// US/UM Singles

@@ -2,6 +2,34 @@
 
 /**@type {{[k: string]: ItemData}} */
 let BattleItems = {
+	"druddigonite": {
+		id: "druddigonite",
+		name: "Druddigonite",
+		spritenum: 575,
+		megaStone: "Druddigon-Mega",
+		megaEvolves: "Druddigon",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1037,
+		gen: 6,
+		desc: "If held by a Druddigon, this item allows it to Mega Evolve in battle.",
+	},
+	"ariadosite": {
+		id: "ariadosite",
+		name: "Ariadosite",
+		spritenum: 575,
+		megaStone: "Ariados-Mega",
+		megaEvolves: "Ariados",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1036,
+		gen: 6,
+		desc: "If held by an Ariados, this item allows it to Mega Evolve in battle.",
+	},
 	"bellossomite": {
 		id: "bellossomite",
 		name: "Bellossomite",
@@ -88,7 +116,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Roserade, this item allows it to Mega Evolve in battle.",
 	},
-	"tyrantrumite": {
+	/*"tyrantrumite": {
 		id: "tyrantrumite",
 		name: "Tyrantrumite",
 		spritenum: 575,
@@ -101,7 +129,7 @@ let BattleItems = {
 		num: 1030,
 		gen: 6,
 		desc: "If held by a Tyrantrum, this item allows it to Mega Evolve in battle.",
-	},
+	},*/
 	/*
 	"chipinite": {
 		id: "chipinite",
@@ -366,7 +394,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by an Arbok, this item allows it to Mega Evolve in battle.",
 	},
-	"xatunite": {
+	/*"xatunite": {
 		id: "xatunite",
 		name: "Xatunite",
 		spritenum: 575,
@@ -379,7 +407,7 @@ let BattleItems = {
 		num: 1011,
 		gen: 6,
 		desc: "If held by a Xatu, this item allows it to Mega Evolve in battle.",
-	},
+	},*/
 	/*
 	"granbullite": {
 		id: "granbullite",
