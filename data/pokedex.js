@@ -2890,7 +2890,7 @@ let BattlePokedex = {
 		formeLetter: "M",
 		types: ["Grass", "Fairy"],
 		genderRatio: {M: 0.875, F: 0.125},
-		baseStats: {hp: 80, atk: 97, def: 130, spa: 118, spd: 130, spe: 80},
+		baseStats: {hp: 80, atk: 87, def: 130, spa: 118, spd: 130, spe: 80},
 		abilities: {0: "Misty Surge"},
 		heightm: 1.8,
 		weightkg: 100.5,
