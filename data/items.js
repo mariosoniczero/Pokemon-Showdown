@@ -2,6 +2,48 @@
 
 /**@type {{[k: string]: ItemData}} */
 let BattleItems = {
+	"flygonitey": {
+		id: "flygonitey",
+		name: "Flygonite Y",
+		spritenum: 575,
+		megaStone: "Flygon-Mega-Y",
+		megaEvolves: "Flygon",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1037,
+		gen: 6,
+		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
+	},
+	"flygonitex": {
+		id: "flygonitex",
+		name: "Flygonite X",
+		spritenum: 575,
+		megaStone: "Flygon-Mega-X",
+		megaEvolves: "Flygon",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1037,
+		gen: 6,
+		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
+	},
+	"miltankite": {
+		id: "miltankite",
+		name: "Miltankite",
+		spritenum: 575,
+		megaStone: "Miltank-Mega",
+		megaEvolves: "Miltank",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1037,
+		gen: 6,
+		desc: "If held by a Miltank, this item allows it to Mega Evolve in battle.",
+	},
 	"druddigonite": {
 		id: "druddigonite",
 		name: "Druddigonite",
@@ -174,7 +216,6 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Lanturn, this item allows it to Mega Evolve in battle.",
 	},
-	/*
 	"dottite": {
 		id: "dottite",
 		name: "Dottite",
@@ -189,7 +230,6 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Granbull, this item allows it to Mega Evolve in battle.",
 	},
-	*/
 	"granbelite": {
 		id: "granbelite",
 		name: "Granbelite",
@@ -408,7 +448,6 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Xatu, this item allows it to Mega Evolve in battle.",
 	},*/
-	/*
 	"granbullite": {
 		id: "granbullite",
 		name: "Granbullite",
@@ -423,7 +462,6 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Granbull, this item allows it to Mega Evolve in battle.",
 	},
-	*/
 	"luxrite": {
 		id: "luxrite",
 		name: "Luxrite",
