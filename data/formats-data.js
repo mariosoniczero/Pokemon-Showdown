@@ -2,6 +2,26 @@
 
 /**@type {{[k: string]: TemplateFormatsData}} */
 let BattleFormatsData = {
+	flygonmegay: {
+		requiredItem: "Flygonite Y",
+		isNonstandard: "CAP",
+		tier: "CAP",
+	},
+	flygonmegax: {
+		requiredItem: "Flygonite X",
+		isNonstandard: "CAP",
+		tier: "CAP",
+	},
+	miltankmega: {
+		requiredItem: "Miltankite",
+		isNonstandard: "CAP",
+		tier: "CAP",
+	},
+	granbullmega: {
+		requiredItem: "Granbullite",
+		isNonstandard: "CAP",
+		tier: "CAP",
+	},
 	druddigonmega: {
 		requiredItem: "Druddigonite",
 		isNonstandard: "CAP",
