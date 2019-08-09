@@ -40,7 +40,7 @@ Ratings and how they work:
 
 /**@type {{[k: string]: AbilityData}} */
 let BattleAbilities = {
-	"infecate": {
+	"infectate": {
 		desc: "This Pokemon's Normal-type moves become Bug-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 		shortDesc: "This Pokemon's Normal-type moves become Bug type and have 1.2x power.",
 		onModifyMovePriority: -1,
@@ -54,8 +54,8 @@ let BattleAbilities = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
-		id: "conflagrate",
-		name: "Conflagrate",
+		id: "infectate",
+		name: "Infectate",
 		rating: 4,
 		num: 1007,
 	},
