@@ -490,7 +490,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.",
 	},
-	"flygonite": {
+	/*"flygonite": {
 		id: "flygonite",
 		name: "Flygonite",
 		spritenum: 575,
@@ -503,7 +503,7 @@ let BattleItems = {
 		num: 1008,
 		gen: 6,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
-	},
+	},*/
 	"froslassite": {
 		id: "froslassite",
 		name: "Froslassite",
