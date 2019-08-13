@@ -2,6 +2,20 @@
 
 /**@type {{[k: string]: ItemData}} */
 let BattleItems = {
+	"krookodilite": {
+		id: "krookodilite",
+		name: "Krookodilite",
+		spritenum: 575,
+		megaStone: "Krookodile-Mega",
+		megaEvolves: "Krookodile",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1041,
+		gen: 6,
+		desc: "If held by a Krookodile, this item allows it to Mega Evolve in battle.",
+	},
 	"flygonitey": {
 		id: "flygonitey",
 		name: "Flygonite Y",
@@ -12,7 +26,7 @@ let BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 1037,
+		num: 1040,
 		gen: 6,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
 	},
@@ -26,7 +40,7 @@ let BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 1037,
+		num: 1039,
 		gen: 6,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
 	},
@@ -40,7 +54,7 @@ let BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 1037,
+		num: 1038,
 		gen: 6,
 		desc: "If held by a Miltank, this item allows it to Mega Evolve in battle.",
 	},
@@ -58,7 +72,7 @@ let BattleItems = {
 		gen: 6,
 		desc: "If held by a Druddigon, this item allows it to Mega Evolve in battle.",
 	},
-	"ariadosite": {
+	/*"ariadosite": {
 		id: "ariadosite",
 		name: "Ariadosite",
 		spritenum: 575,
@@ -71,7 +85,7 @@ let BattleItems = {
 		num: 1036,
 		gen: 6,
 		desc: "If held by an Ariados, this item allows it to Mega Evolve in battle.",
-	},
+	},*/
 	"bellossomite": {
 		id: "bellossomite",
 		name: "Bellossomite",

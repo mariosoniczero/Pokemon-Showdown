@@ -3119,7 +3119,7 @@ let BattlePokedex = {
 		evoLevel: 22,
 		eggGroups: ["Bug"],
 	},
-	ariadosmega: {
+	/*ariadosmega: {
 		num: 168,
 		species: "Ariados-Mega",
 		baseSpecies: "Ariados",
@@ -3132,7 +3132,7 @@ let BattlePokedex = {
 		weightkg: 33.5,
 		color: "Red",
 		eggGroups: ["Bug"],
-	},
+	},*/
 	crobat: {
 		num: 169,
 		species: "Crobat",
@@ -9508,6 +9508,20 @@ let BattlePokedex = {
 		color: "Red",
 		prevo: "krokorok",
 		evoLevel: 40,
+		eggGroups: ["Field"],
+	},
+	krookodilemega: {
+		num: 553,
+		species: "Krookodile-Mega",
+		baseSpecies: "Krookodile",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Ground", "Dark"],
+		baseStats: {hp: 95, atk: 142, def: 105, spa: 75, spd: 95, spe: 107},
+		abilities: {0: "Frisk"},
+		heightm: 1.5,
+		weightkg: 96.3,
+		color: "Red",
 		eggGroups: ["Field"],
 	},
 	darumaka: {
