@@ -2,6 +2,11 @@
 
 /**@type {{[k: string]: TemplateFormatsData}} */
 let BattleFormatsData = {
+	krookodilemega: {
+		requiredItem: "Krookodilite",
+		isNonstandard: "CAP",
+		tier: "CAP",
+	},
 	flygonmegay: {
 		requiredItem: "Flygonite Y",
 		isNonstandard: "CAP",
@@ -27,11 +32,11 @@ let BattleFormatsData = {
 		isNonstandard: "CAP",
 		tier: "CAP",
 	},
-	ariadosmega: {
+	/*ariadosmega: {
 		requiredItem: "Ariadosite",
 		isNonstandard: "CAP",
 		tier: "CAP",
-	},
+	},*/
 	avaluggmega: {
 		requiredItem: "Avaluggite",
 		isNonstandard: "CAP",
