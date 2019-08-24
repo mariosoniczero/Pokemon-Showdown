@@ -237,7 +237,7 @@ let BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Bug", "Psychic"],
-		baseStats: {hp: 80, atk: 10, def: 80, spa: 150, spd: 40, spe: 145},
+		baseStats: {hp: 60, atk: 20, def: 80, spa: 150, spd: 40, spe: 145},
 		abilities: {0: "Tinted Lens"},
 		heightm: 1.1,
 		weightkg: 32,
