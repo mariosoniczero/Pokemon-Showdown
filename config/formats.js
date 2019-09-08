@@ -12,18 +12,26 @@ let Formats = [
 		section: "Custom",
 	},
 	{
-		name: "[Gen 7] Custom Mega Ladder",
+		name: "[Gen 7] Custom Mega OU",
 
 		mod: 'gen7',
-		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Allow CAP'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Allow GPL', 'Baton Pass Clause'],
 
-		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Shadow Tag', 'Baton Pass'],
+		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Shadow Tag'],
+	},
+	{
+		name: "[Gen 7] Custom Mega UU",
+
+		mod: 'gen7',
+		ruleset: ['[Gen 7] Custom Mega OU'],
+
+		banlist: ['OU', 'UUBL', 'Drizzle', 'Drought', 'Kommonium Z', 'Mewnium Z', 'Infernapite', 'Roseradite', 'Flygonite Y', 'Lanturnite', 'Rapidashite'],
 	},
 	{
 		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',
-		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Allow CAP'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Allow GPL'],
 
 		banlist: ['Power Construct', 'Bellossom + Strength Sap'],
 	},

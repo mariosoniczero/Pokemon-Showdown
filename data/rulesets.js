@@ -121,6 +121,7 @@ let BattleFormats = {
 			let problems = [];
 			let totalEV = 0;
 			let allowCAP = !!(format && this.getRuleTable(format).has('allowcap'));
+			let allowGPL = !!(format && this.getRuleTable(format).has('allowgpl'));
 
 			if (set.species === set.name) delete set.name;
 			if (template.gen > this.gen) {
@@ -157,21 +158,24 @@ let BattleFormats = {
 			if (set.level && set.level > 100) {
 				problems.push((set.name || set.species) + ' is higher than level 100.');
 			}
-
-			if (!allowCAP || !template.tier.startsWith('CAP')) {
-				if (template.isNonstandard && template.num > -5000) {
-					problems.push(set.species + ' does not exist.');
+			
+			if (!allowGPL) {
+				if (!allowCAP || !template.tier.startsWith('CAP')) {
+					if (template.isNonstandard && template.num > -5000) {
+						problems.push(allowGPL);
+						problems.push(set.species + ' does not exist.');
+					}
 				}
 			}
 
-			if (!allowCAP && ability.isNonstandard) {
+			if ((!allowCAP || !allowGPL) && ability.isNonstandard) {
 				problems.push(ability.name + ' does not exist.');
 			}
 
 			if (item.isNonstandard) {
 				if (item.isNonstandard === 'Past' || item.isNonstandard === 'Future') {
 					problems.push(item.name + ' does not exist in this generation.');
-				} else if (!allowCAP) {
+				} else if (!allowCAP || !allowGPL) {
 					problems.push(item.name + ' does not exist.');
 				}
 			}
@@ -853,6 +857,12 @@ let BattleFormats = {
 		effectType: 'ValidatorRule',
 		name: 'Allow CAP',
 		desc: "Allows the use of Pok&eacute;mon, abilities, moves, and items made by the Create-A-Pok&eacute;mon project",
+		// Implemented in the 'pokemon' ruleset
+	},
+	allowgpl: {
+		effectType: 'ValidatorRule',
+		name: 'Allow GPL',
+		desc: "Allows the use of Pok&eacute;mon, abilities, moves, and items made by the GPL Custom Mega project",
 		// Implemented in the 'pokemon' ruleset
 	},
 	allowtradeback: {
