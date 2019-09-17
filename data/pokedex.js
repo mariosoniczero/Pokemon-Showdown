@@ -3178,7 +3178,7 @@ let BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Water", "Electric"],
-		baseStats: {hp: 125, atk: 38, def: 108, spa: 96, spd: 126, spe: 67},
+		baseStats: {hp: 125, atk: 58, def: 98, spa: 96, spd: 116, spe: 67},
 		abilities: {0: "Thunderstorm"},
 		heightm: 1.2,
 		weightkg: 22.5,

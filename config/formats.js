@@ -23,7 +23,7 @@ let Formats = [
 		name: "[Gen 7] Custom Mega UU",
 
 		mod: 'gen7',
-		ruleset: ['[Gen 7] Custom Mega OU'],
+		ruleset: ['[Gen 7] Custom Mega OU', 'Allow GPL'],
 
 		banlist: ['OU', 'UUBL', 'Drizzle', 'Drought', 'Kommonium Z', 'Mewnium Z', 'Infernapite', 'Roseradite', 'Flygonite Y', 'Lanturnite', 'Rapidashite'],
 	},
