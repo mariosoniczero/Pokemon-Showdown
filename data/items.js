@@ -812,6 +812,7 @@ let BattleItems = {
 		zMoveUser: ["Raichu-Alola"],
 		num: 803,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by an Alolan Raichu with Thunderbolt, it can use Stoked Sparksurfer.",
 	},
 	"altarianite": {
@@ -1527,7 +1528,8 @@ let BattleItems = {
 			pokemon.addVolatile('choicelock');
 		},
 		onModifyAtkPriority: 1,
-		onModifyAtk(atk) {
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
 			return this.chainModify(1.5);
 		},
 		isChoice: true,
@@ -1551,7 +1553,8 @@ let BattleItems = {
 		onModifyMove(move, pokemon) {
 			pokemon.addVolatile('choicelock');
 		},
-		onModifySpe(spe) {
+		onModifySpe(spe, pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
 			return this.chainModify(1.5);
 		},
 		isChoice: true,
@@ -1576,7 +1579,8 @@ let BattleItems = {
 			pokemon.addVolatile('choicelock');
 		},
 		onModifySpAPriority: 1,
-		onModifySpA(spa) {
+		onModifySpA(spa, pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
 			return this.chainModify(1.5);
 		},
 		isChoice: true,
@@ -1818,6 +1822,7 @@ let BattleItems = {
 		zMoveUser: ["Decidueye"],
 		num: 798,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by a Decidueye with Spirit Shackle, it can use Sinister Arrow Raid.",
 	},
 	"deepseascale": {
@@ -2133,6 +2138,7 @@ let BattleItems = {
 		zMoveUser: ["Eevee"],
 		num: 805,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by an Eevee with Last Resort, it can use Extreme Evoboost.",
 	},
 	"ejectbutton": {
@@ -3395,6 +3401,7 @@ let BattleItems = {
 		zMoveUser: ["Incineroar"],
 		num: 799,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by an Incineroar with Darkest Lariat, it can use Malicious Moonsault.",
 	},
 	"insectplate": {
@@ -3625,6 +3632,7 @@ let BattleItems = {
 		zMoveUser: ["Kommo-o", "Kommo-o-Totem"],
 		num: 926,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by a Kommo-o with Clanging Scales, it can use Clangorous Soulblaze.",
 	},
 	"laggingtail": {
@@ -4015,6 +4023,7 @@ let BattleItems = {
 		zMoveUser: ["Lycanroc", "Lycanroc-Midnight", "Lycanroc-Dusk"],
 		num: 925,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by a Lycanroc forme with Stone Edge, it can use Splintered Stormshards.",
 	},
 	"machobrace": {
@@ -4162,6 +4171,7 @@ let BattleItems = {
 		zMoveUser: ["Marshadow"],
 		num: 802,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by Marshadow with Spectral Thief, it can use Soul-Stealing 7-Star Strike.",
 	},
 	"masterball": {
@@ -4363,6 +4373,7 @@ let BattleItems = {
 		zMoveUser: ["Mew"],
 		num: 806,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by a Mew with Psychic, it can use Genesis Supernova.",
 	},
 	"mewtwonitex": {
@@ -4435,6 +4446,7 @@ let BattleItems = {
 		zMoveFrom: "Play Rough",
 		zMoveUser: ["Mimikyu", "Mimikyu-Busted", "Mimikyu-Totem", "Mimikyu-Busted-Totem"],
 		num: 924,
+		isNonstandard: "Past",
 		gen: 7,
 		desc: "If held by a Mimikyu with Play Rough, it can use Let's Snuggle Forever.",
 	},
@@ -4894,6 +4906,7 @@ let BattleItems = {
 		zMoveUser: ["Pikachu"],
 		num: 794,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by a Pikachu with Volt Tackle, it can use Catastropika.",
 	},
 	"pikashuniumz": {
@@ -4905,6 +4918,7 @@ let BattleItems = {
 		zMoveFrom: "Thunderbolt",
 		zMoveUser: ["Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner"],
 		num: 836,
+		isNonstandard: "Past",
 		gen: 7,
 		desc: "If held by cap Pikachu with Thunderbolt, it can use 10,000,000 Volt Thunderbolt.",
 	},
@@ -5188,6 +5202,7 @@ let BattleItems = {
 		zMoveUser: ["Primarina"],
 		num: 800,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by a Primarina with Sparkling Aria, it can use Oceanic Operetta.",
 	},
 	"prismscale": {
@@ -6204,6 +6219,7 @@ let BattleItems = {
 		zMoveUser: ["Snorlax"],
 		num: 804,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by a Snorlax with Giga Impact, it can use Pulverizing Pancake.",
 	},
 	"snowball": {
@@ -6621,6 +6637,7 @@ let BattleItems = {
 		zMoveUser: ["Tapu Koko", "Tapu Lele", "Tapu Bulu", "Tapu Fini"],
 		num: 801,
 		gen: 7,
+		isNonstandard: "Past",
 		desc: "If held by a Tapu with Nature's Madness, it can use Guardian of Alola.",
 	},
 	"tartapple": {

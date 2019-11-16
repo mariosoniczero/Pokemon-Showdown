@@ -3350,7 +3350,7 @@ let BattleFormatsData = {
 		encounters: [
 			{"generation": 6, "level": 13, "maxEggMoves": 1},
 		],
-		tier: "Lombre",
+		tier: "New",
 	},
 	ludicolo: {
 		randomBattleMoves: ["focusblast", "gigadrain", "hydropump", "icebeam", "raindance", "scald"],
@@ -7476,13 +7476,16 @@ let BattleFormatsData = {
 		tier: "Unreleased",
 	},
 	grookey: {
+		unreleasedHidden: true,
 		tier: "LC",
 	},
 	thwackey: {
+		unreleasedHidden: true,
 		tier: "NFE",
 	},
 	rillaboom: {
 		randomBattleMoves: ["drumbeating", "highhorsepower", "knockoff", "superpower", "swordsdance", "uturn", "woodhammer"],
+		unreleasedHidden: true,
 		tier: "New",
 		doublesTier: "New",
 	},
@@ -7519,12 +7522,10 @@ let BattleFormatsData = {
 	},
 	greedent: {
 		randomBattleMoves: ["bodyslam", "crunch", "earthquake", "seedbomb", "superpower", "swordsdance", "wildcharge"],
-		unreleasedHidden: true,
 		tier: "New",
 		doublesTier: "New",
 	},
 	rookidee: {
-		unreleasedHidden: true,
 		tier: "LC",
 	},
 	corvisquire: {
