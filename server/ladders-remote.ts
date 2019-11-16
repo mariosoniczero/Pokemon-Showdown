@@ -9,14 +9,14 @@
  *
  * Matchmaking is currently still implemented in rooms.js.
  *
- * @license MIT license
+ * @license MIT
  */
 
 'use strict';
 
 export class LadderStore {
 	formatid: string;
-	static formatsListPrefix = '';
+	static readonly formatsListPrefix = '';
 
 	constructor(formatid: string) {
 		this.formatid = formatid;
@@ -27,7 +27,7 @@ export class LadderStore {
 	 * ladder toplist, to be displayed directly in the ladder tab of the
 	 * client.
 	 */
-	async getTop(): Promise<[string, string] | null> {
+	async getTop(prefix?: string): Promise<[string, string] | null> {
 		return null;
 	}
 
@@ -50,7 +50,7 @@ export class LadderStore {
 		}
 		if (isNaN(mmr)) return 1000;
 
-		if (user && user.userid === userid) {
+		if (user && user.id === userid) {
 			user.mmrCache[formatid] = mmr;
 		}
 		return mmr;

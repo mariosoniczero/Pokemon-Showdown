@@ -45,7 +45,7 @@ class TeamValidatorAsync {
 /** @type {typeof import('../lib/process-manager').QueryProcessManager} */
 const QueryProcessManager = require(/** @type {any} */('../.lib-dist/process-manager')).QueryProcessManager;
 
-/** @type {QueryProcessManager} */
+/** @type {import('../lib/process-manager').QueryProcessManager} */
 // @ts-ignore
 const PM = new QueryProcessManager(module, async message => {
 	let {formatid, removeNicknames, team} = message;
@@ -103,7 +103,7 @@ if (!PM.isParentProcess) {
 
 	global.Dex = require(/** @type {any} */ ('../.sim-dist/dex')).Dex.includeData();
 	global.toID = Dex.getId;
-	global.Chat = require('./chat');
+	global.Chat = require(/** @type {any} */('../.server-dist/chat')).Chat;
 
 	/** @type {typeof import('../lib/repl').Repl} */
 	const Repl = require(/** @type {any} */('../.lib-dist/repl')).Repl;

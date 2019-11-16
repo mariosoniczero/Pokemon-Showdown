@@ -42,6 +42,8 @@ export class Tools {
 			text = text.id;
 		} else if (text && text.userid) {
 			text = text.userid;
+		} else if (text && text.roomid) {
+			text = text.roomid;
 		}
 		if (typeof text !== 'string' && typeof text !== 'number') return '';
 		return ('' + text).toLowerCase().replace(/[^a-z0-9]+/g, '') as ID;
@@ -118,9 +120,6 @@ export class BasicEffect implements EffectData {
 	status?: ID;
 	/** The weather that the effect may cause. */
 	weather?: ID;
-	/** HP that the effect may drain. */
-	drain?: [number, number];
-	flags: AnyObject;
 	sourceEffect: string;
 
 	constructor(data: AnyObject, ...moreData: (AnyObject | null)[]) {
@@ -143,8 +142,6 @@ export class BasicEffect implements EffectData {
 		this.affectsFainted = !!data.affectsFainted;
 		this.status = data.status as ID || undefined;
 		this.weather = data.weather as ID || undefined;
-		this.drain = data.drain || undefined;
-		this.flags = data.flags || {};
 		this.sourceEffect = data.sourceEffect || '';
 	}
 
@@ -163,28 +160,41 @@ export type ComplexTeamBan = ComplexBan;
  * - '-[thing]' or '-[category]:[thing]' ban a thing
  * - '+[thing]' or '+[category]:[thing]' allow a thing (override a ban)
  * [category] is one of: item, move, ability, species, basespecies
+ *
+ * The value is the name of the parent rule (blank for the active format).
  */
-export class RuleTable extends Map {
+export class RuleTable extends Map<string, string> {
 	complexBans: ComplexBan[];
 	complexTeamBans: ComplexTeamBan[];
 	// tslint:disable-next-line:ban-types
 	checkLearnset: [Function, string] | null;
+	timer: [Partial<GameTimerSettings>, string] | null;
 
 	constructor() {
 		super();
 		this.complexBans = [];
 		this.complexTeamBans = [];
 		this.checkLearnset = null;
+		this.timer = null;
 	}
 
-	check(thing: string, setHas: {[id: string]: true} | null = null): string {
+	isBanned(thing: string) {
+		if (this.has(`+${thing}`)) return false;
+		return this.has(`-${thing}`);
+	}
+
+	check(thing: string, setHas: {[id: string]: true} | null = null) {
+		if (this.has(`+${thing}`)) return '';
 		if (setHas) setHas[thing] = true;
 		return this.getReason(`-${thing}`);
 	}
 
-	getReason(key: string): string {
+	getReason(key: string): string | null {
 		const source = this.get(key);
-		if (source === undefined) return '';
+		if (source === undefined) return null;
+		if (key === '-nonexistent' || key.startsWith('obtainable')) {
+			return 'not obtainable';
+		}
 		return source ? `banned by ${source}` : `banned`;
 	}
 
@@ -263,11 +273,6 @@ export class Format extends BasicEffect implements Readonly<BasicEffect & Format
 	readonly teamLength?: {battle?: number, validate?: [number, number]};
 	/** An optional function that runs at the start of a battle. */
 	readonly onBegin?: (this: Battle) => void;
-	/**
-	 * If no team is selected, this format can generate a random team
-	 * for the player.
-	 */
-	readonly canUseRandomTeam: boolean;
 	/** Pokemon must be obtained from Gen 6 or later. */
 	readonly requirePentagon: boolean;
 	/** Pokemon must be obtained from Gen 7 or later. */
@@ -320,7 +325,6 @@ export class Format extends BasicEffect implements Readonly<BasicEffect & Format
 		this.ruleTable = null;
 		this.teamLength = data.teamLength || undefined;
 		this.onBegin = data.onBegin || undefined;
-		this.canUseRandomTeam = !!data.canUseRandomTeam;
 		this.requirePentagon = !!data.requirePentagon;
 		this.requirePlus = !!data.requirePlus;
 		this.maxLevel = data.maxLevel || 100;
@@ -406,6 +410,8 @@ export class Item extends BasicEffect implements Readonly<BasicEffect & ItemData
 	readonly onPlate?: string;
 	/** Is this item a Gem? */
 	readonly isGem: boolean;
+	/** Is this item a Pokeball? */
+	readonly isPokeball: boolean;
 
 	constructor(data: AnyObject, ...moreData: (AnyObject | null)[]) {
 		super(data, ...moreData);
@@ -426,6 +432,7 @@ export class Item extends BasicEffect implements Readonly<BasicEffect & ItemData
 		this.ignoreKlutz = !!data.ignoreKlutz;
 		this.onPlate = data.onPlate || undefined;
 		this.isGem = !!data.isGem;
+		this.isPokeball = !!data.isPokeball;
 
 		if (!this.gen) {
 			if (this.num >= 689) {
@@ -468,7 +475,9 @@ export class Ability extends BasicEffect implements Readonly<BasicEffect & Abili
 		this.rating = data.rating!;
 
 		if (!this.gen) {
-			if (this.num >= 192) {
+			if (this.num >= 234) {
+				this.gen = 8;
+			} else if (this.num >= 192) {
 				this.gen = 7;
 			} else if (this.num >= 165) {
 				this.gen = 6;
@@ -536,19 +545,11 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	/** Added type (used in OMs). */
 	readonly addedType?: string;
 	/** Pre-evolution. '' if nothing evolves into this Pokemon. */
-	readonly prevo: string;
-	/**
-	 * Singles Tier. The Pokemon's location in the Smogon tier system.
-	 * Do not use for LC bans.
-	 */
-	readonly tier: string;
-	/**
-	 * Doubles Tier. The Pokemon's location in the Smogon doubles tier system.
-	 * Do not use for LC bans.
-	 */
-	readonly doublesTier: string;
+	readonly prevo: ID;
 	/** Evolutions. Array because many Pokemon have multiple evolutions. */
-	readonly evos: string[];
+	readonly evos: ID[];
+	readonly evoType?: 'trade' | 'useItem' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold';
+	readonly evoMove?: string;
 	/** Evolution level. falsy if doesn't evolve. */
 	readonly evoLevel?: number;
 	/** Is NFE? True if this Pokemon can evolve (Mega evolution doesn't count). */
@@ -562,18 +563,14 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	readonly gender: GenderName;
 	/** Gender ratio. Should add up to 1 unless genderless. */
 	readonly genderRatio: {M: number, F: number};
-	/** Required item. Do not use this directly; see requiredItems. */
-	readonly requiredItem?: string;
-	/**
-	 * Required items. Items required to be in this forme, e.g. a mega
-	 * stone, or Griseous Orb. Array because Arceus formes can hold
-	 * either a Plate or a Z-Crystal.
-	 */
-	readonly requiredItems?: string[];
 	/** Base stats. */
 	readonly baseStats: StatsTable;
-	/** Weight (in kg). */
+	/** Max HP. Overrides usual HP calculations (for Shedinja). */
+	readonly maxHP?: number;
+	/** Weight (in kg). Not valid for OMs; use weighthg / 10 instead. */
 	readonly weightkg: number;
+	/** Weight (in integer multiples of 0.1kg). */
+	readonly weighthg: number;
 	/** Height (in m). */
 	readonly heightm: number;
 	/** Color. */
@@ -585,8 +582,27 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	 * This is mainly relevant to Gen 5.
 	 */
 	readonly maleOnlyHidden: boolean;
-	/** Max HP. Used in the battle engine. */
-	readonly maxHP?: number;
+	/** True if a pokemon is mega. */
+	readonly isMega?: boolean;
+	/** True if a pokemon is primal. */
+	readonly isPrimal?: boolean;
+	/** Name of its Gigantamax move, if a pokemon is gigantamax. */
+	readonly isGigantamax?: string;
+	/** True if a pokemon is a forme that is only accessible in battle. */
+	readonly battleOnly?: boolean;
+	/** Required item. Do not use this directly; see requiredItems. */
+	readonly requiredItem?: string;
+	/** Required move. Move required to use this forme in-battle. */
+	readonly requiredMove?: string;
+	/** Required ability. Ability required to use this forme in-battle. */
+	readonly requiredAbility?: string;
+	/**
+	 * Required items. Items required to be in this forme, e.g. a mega
+	 * stone, or Griseous Orb. Array because Arceus formes can hold
+	 * either a Plate or a Z-Crystal.
+	 */
+	readonly requiredItems?: string[];
+
 	/**
 	 * Keeps track of exactly how a pokemon might learn a move, in the
 	 * form moveid:sources[].
@@ -596,12 +612,22 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	readonly eventOnly: boolean;
 	/** List of event data for each event. */
 	readonly eventPokemon?: EventInfo[] ;
-	/** True if a pokemon is mega. */
-	readonly isMega?: boolean;
-	/** True if a pokemon is primal. */
-	readonly isPrimal?: boolean;
-	/** True if a pokemon is a forme that is only accessible in battle. */
-	readonly battleOnly?: boolean;
+
+	/**
+	 * Singles Tier. The Pokemon's location in the Smogon tier system.
+	 * Do not use for LC bans (usage tier will override LC Uber).
+	 */
+	readonly tier: string;
+	/**
+	 * Doubles Tier. The Pokemon's location in the Smogon doubles tier system.
+	 * Do not use for LC bans (usage tier will override LC Uber).
+	 */
+	readonly doublesTier: string;
+	readonly randomBattleMoves?: readonly ID[];
+	readonly randomDoubleBattleMoves?: readonly ID[];
+	readonly exclusiveMoves?: readonly ID[];
+	readonly comboMoves?: readonly ID[];
+	readonly essentialMove?: ID;
 
 	constructor(data: AnyObject, ...moreData: (AnyObject | null)[]) {
 		super(data, ...moreData);
@@ -626,6 +652,8 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.tier = data.tier || '';
 		this.doublesTier = data.doublesTier || '';
 		this.evos = data.evos || [];
+		this.evoType = data.evoType || undefined;
+		this.evoMove = data.evoMove || undefined;
 		this.evoLevel = data.evoLevel || undefined;
 		this.nfe = !!this.evos.length;
 		this.eggGroups = data.eggGroups || [];
@@ -638,6 +666,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.requiredItems = this.requiredItems || (this.requiredItem ? [this.requiredItem] : undefined);
 		this.baseStats = data.baseStats!;
 		this.weightkg = data.weightkg!;
+		this.weighthg = this.weightkg * 10;
 		this.heightm = data.heightm!;
 		this.color = data.color || '';
 		this.unreleasedHidden = !!data.unreleasedHidden;
@@ -647,10 +676,13 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.eventOnly = !!data.eventOnly;
 		this.eventPokemon = data.eventPokemon || undefined;
 		this.isMega = !!(this.forme && ['Mega', 'Mega-X', 'Mega-Y'].includes(this.forme)) || undefined;
-		this.battleOnly = !!data.battleOnly || !!this.isMega || undefined;
+		this.isGigantamax = data.isGigantamax || undefined;
+		this.battleOnly = !!data.battleOnly || !!this.isMega || !!this.isGigantamax || undefined;
 
 		if (!this.gen && this.num >= 1) {
-			if (this.num >= 722 || this.forme.startsWith('Alola')) {
+			if (this.num >= 810 || this.forme === 'Galar' || this.forme === 'Gmax') {
+				this.gen = 8;
+			} else if (this.num >= 722 || this.forme.startsWith('Alola') || this.forme === 'Starter') {
 				this.gen = 7;
 			} else if (this.forme === 'Primal') {
 				this.gen = 6;

@@ -55,7 +55,7 @@ exports.commands = {
 
 	dexsearchhelp: [
 		`/dexsearch [parameter], [parameter], [parameter], ... - Searches for Pok\u00e9mon that fulfill the selected criteria`,
-		`Search categories are: type, tier, color, moves, ability, gen, resists, recovery, priority, stat, weight, height, egg group.`,
+		`Search categories are: type, tier, color, moves, ability, gen, resists, recovery, zrecovery, priority, stat, weight, height, egg group.`,
 		`Valid colors are: green, red, blue, white, brown, yellow, purple, pink, gray and black.`,
 		`Valid tiers are: Uber/OU/UUBL/UU/RUBL/RU/NUBL/NU/PUBL/PU/ZU/NFE/LC Uber/LC/CAP/CAP NFE/CAP LC.`,
 		`Valid doubles tiers are: DUber/DOU/DBL/DUU/DNU.`,
@@ -187,15 +187,15 @@ exports.commands = {
 	},
 	movesearchhelp: [
 		`/movesearch [parameter], [parameter], [parameter], ... - Searches for moves that fulfill the selected criteria.`,
-		`Search categories are: type, category, gen, contest condition, flag, status inflicted, type boosted, and numeric range for base power, pp, and accuracy.`,
-		`Types must be followed by ' type', e.g., 'dragon type'.`,
+		`Search categories are: type, category, gen, contest condition, flag, status inflicted, type boosted, and numeric range for base power, pp, priority, and accuracy.`,
+		`Types can be followed by ' type' for clarity, e.g., 'dragon type'.`,
 		`Stat boosts must be preceded with 'boosts ', and stat-lowering moves with 'lowers ', e.g., 'boosts attack' searches for moves that boost the Attack stat of either Pok\u00e9mon.`,
 		`Z-stat boosts must be preceded with 'zboosts ', e.g., 'zboosts accuracy' searches for all Status moves with Z-Effects that boost the user's accuracy.`,
 		`Moves that have a Z-Effect of fully restoring the user's health can be searched for with 'zrecovery'.`,
 		`Inequality ranges use the characters '>' and '<' though they behave as '≥' and '≤', e.g., 'bp > 100' searches for all moves equal to and greater than 100 base power.`,
 		`Parameters can be excluded through the use of '!', e.g., !water type' excludes all Water-type moves.`,
 		`'asc' or 'desc' following a move property will arrange the names in ascending or descending order of that property respectively, e.g., basepower asc will arrange moves in ascending order of their basepowers.`,
-		`Valid flags are: authentic (bypasses substitute), bite, bullet, contact, defrost, powder, protect, pulse, punch, secondary, snatch, sound, and zmove.`,
+		`Valid flags are: authentic (bypasses substitute), bite, bullet, charge, contact, dance, defrost, gravity, mirror (reflected by mirror move), ohko, powder, priority, protect, pulse, punch, recharge, recovery, reflectable, secondary, snatch, sound, and zmove.`,
 		`A search that includes '!protect' will show all moves that bypass protection.`,
 		`Parameters separated with '|' will be searched as alternatives for each other, e.g., 'fire | water' searches for all moves that are either Fire type or Water type.`,
 		`If a Pok\u00e9mon is included as a parameter, moves will be searched from its movepool.`,
@@ -227,7 +227,7 @@ exports.commands = {
 		});
 	},
 	itemsearchhelp: [
-		`/itemsearch [move description] - finds items that match the given key words.`,
+		`/itemsearch [item description] - finds items that match the given key words.`,
 		`Command accepts natural language. (tip: fewer words tend to work better)`,
 		`Searches with "fling" in them will find items with the specified Fling behavior.`,
 		`Searches with "natural gift" in them will find items with the specified Natural Gift behavior.`,
@@ -244,8 +244,8 @@ exports.commands = {
 	bw2learn: 'learn',
 	oraslearn: 'learn',
 	learn(target, room, user, connection, cmd, message) {
-		if (!this.canBroadcast()) return;
 		if (!target) return this.parse('/help learn');
+		if (!this.canBroadcast()) return;
 
 		return runSearch({
 			target: target,
@@ -594,7 +594,6 @@ function runDexsearch(target, cmd, canAll, message) {
 	const accumulateKeyCount = (count, searchData) => count + (typeof searchData === 'object' ? Object.keys(searchData).length : 0);
 	searches.sort((a, b) => Object.values(a).reduce(accumulateKeyCount, 0) - Object.values(b).reduce(accumulateKeyCount, 0));
 
-	let lsetData = {};
 	for (const alts of searches) {
 		if (alts.skip) continue;
 		for (let mon in dex) {
@@ -655,8 +654,8 @@ function runDexsearch(target, cmd, canAll, message) {
 
 			for (let type in alts.resists) {
 				let effectiveness = 0;
-				let notImmune = Dex.getImmunity(type, dex[mon]);
-				if (notImmune) effectiveness = Dex.getEffectiveness(type, dex[mon]);
+				let notImmune = mod.getImmunity(type, dex[mon]);
+				if (notImmune) effectiveness = mod.getEffectiveness(type, dex[mon]);
 				if (!alts.resists[type]) {
 					if (notImmune && effectiveness >= 0) matched = true;
 				} else {
@@ -667,8 +666,8 @@ function runDexsearch(target, cmd, canAll, message) {
 
 			for (let type in alts.weak) {
 				let effectiveness = 0;
-				let notImmune = Dex.getImmunity(type, dex[mon]);
-				if (notImmune) effectiveness = Dex.getEffectiveness(type, dex[mon]);
+				let notImmune = mod.getImmunity(type, dex[mon]);
+				if (notImmune) effectiveness = mod.getEffectiveness(type, dex[mon]);
 				if (alts.weak[type]) {
 					if (notImmune && effectiveness >= 1) matched = true;
 				} else {
@@ -689,10 +688,12 @@ function runDexsearch(target, cmd, canAll, message) {
 				let monStat = 0;
 				if (stat === 'bst') {
 					for (let monStats in dex[mon].baseStats) {
+						// account for merged Special stat in gen 1, don't count it twice
+						if (maxGen === 1 && monStats === 'spd') continue;
 						monStat += dex[mon].baseStats[monStats];
 					}
 				} else if (stat === 'weight') {
-					monStat = dex[mon].weightkg;
+					monStat = dex[mon].weighthg / 10;
 				} else if (stat === 'height') {
 					monStat = dex[mon].heightm;
 				} else if (stat === 'gen') {
@@ -721,12 +722,14 @@ function runDexsearch(target, cmd, canAll, message) {
 			}
 			if (matched) continue;
 
+			const validator = TeamValidator.get(`gen${maxGen}ou`);
+			let pokemonSource = validator.allSources();
 			for (let move in alts.moves) {
-				if (!lsetData[mon]) lsetData[mon] = {fastCheck: true, sources: [], sourcesBefore: maxGen};
-				if (!TeamValidator.get(`gen${maxGen}ou`).checkLearnset(move, mon, lsetData[mon]) === alts.moves[move]) {
+				if (!validator.checkLearnset(move, mon, pokemonSource) === alts.moves[move]) {
 					matched = true;
 					break;
 				}
+				if (!pokemonSource.size()) break;
 			}
 			if (matched) continue;
 
@@ -759,8 +762,8 @@ function runDexsearch(target, cmd, canAll, message) {
 						monStat2 += mon2.baseStats[monStats];
 					}
 				} else if (stat === 'weight') {
-					monStat1 = mon1.weightkg;
-					monStat2 = mon2.weightkg;
+					monStat1 = mon1.weighthg;
+					monStat2 = mon2.weighthg;
 				} else if (stat === 'height') {
 					monStat1 = mon1.heightm;
 					monStat2 = mon2.heightm;
@@ -796,7 +799,7 @@ function runMovesearch(target, cmd, canAll, message) {
 	let allCategories = ['physical', 'special', 'status'];
 	let allContestTypes = ['beautiful', 'clever', 'cool', 'cute', 'tough'];
 	let allProperties = ['basePower', 'accuracy', 'priority', 'pp'];
-	let allFlags = ['authentic', 'bite', 'bullet', 'contact', 'dance', 'defrost', 'powder', 'protect', 'pulse', 'punch', 'secondary', 'snatch', 'sound', 'zmove'];
+	let allFlags = ['authentic', 'bite', 'bullet', 'charge', 'contact', 'dance', 'defrost', 'gravity', 'mirror', 'ohko', 'powder', 'protect', 'pulse', 'punch', 'recharge', 'reflectable', 'secondary', 'snatch', 'sound', 'zmove'];
 	let allStatus = ['psn', 'tox', 'brn', 'par', 'frz', 'slp'];
 	let allVolatileStatus = ['flinch', 'confusion', 'partiallytrapped'];
 	let allBoosts = ['hp', 'atk', 'def', 'spa', 'spd', 'spe', 'accuracy', 'evasion'];
@@ -1158,6 +1161,11 @@ function runMovesearch(target, cmd, canAll, message) {
 						matched = true;
 						break;
 					}
+				} else if (flag === 'ohko') {
+					if (!dex[move].ohko === !alts.flags[flag]) {
+						matched = true;
+						break;
+					}
 				} else {
 					if ((flag in dex[move].flags) === alts.flags[flag]) {
 						if (flag === 'protect' && ['all', 'allyTeam', 'allySide', 'foeSide', 'self'].includes(dex[move].target)) continue;
@@ -1230,10 +1238,17 @@ function runMovesearch(target, cmd, canAll, message) {
 						matched = true;
 						break;
 					}
-				} else if (dex[move].secondary && dex[move].secondary.self && dex[move].secondary.self.boosts) {
-					if ((dex[move].secondary.self.boosts[lower] < 0) === alts.boost[lower]) {
-						matched = true;
-						break;
+				} else if (dex[move].secondary) {
+					if (dex[move].secondary.boosts) {
+						if ((dex[move].secondary.boosts[lower] < 0) === alts.lower[lower]) {
+							matched = true;
+							break;
+						}
+					} else if (dex[move].secondary.self && dex[move].secondary.self.boosts) {
+						if ((dex[move].secondary.self.boosts[lower] < 0) === alts.lower[lower]) {
+							matched = true;
+							break;
+						}
 					}
 				}
 			}
@@ -1250,6 +1265,12 @@ function runMovesearch(target, cmd, canAll, message) {
 
 			for (let searchStatus in alts.status) {
 				let canStatus = !!(dex[move].status === searchStatus || (dex[move].secondaries && dex[move].secondaries.some(entry => entry.status === searchStatus)));
+				if (searchStatus === 'slp') {
+					canStatus = canStatus || move === 'yawn';
+				}
+				if (searchStatus === 'brn' || searchStatus === 'frz' || searchStatus === 'par') {
+					canStatus = canStatus || move === 'triattack';
+				}
 				if (canStatus === alts.status[searchStatus]) {
 					matched = true;
 					break;
@@ -1568,13 +1589,12 @@ function runLearn(target, cmd) {
 		formatName = `Gen ${gen}`;
 		if (format.requirePentagon) formatName += ' Pentagon';
 	}
-	let lsetData = {set: {}, sources: [], sourcesBefore: gen};
-
 	const validator = TeamValidator.get(format);
+
 	let template = validator.dex.getTemplate(targets.shift());
-	let move = {};
+	let setSources = validator.allSources(template);
+	let set = {level: cmd === 'learn5' ? 5 : 100};
 	let all = (cmd === 'learnall');
-	if (cmd === 'learn5') lsetData.set.level = 5;
 
 	if (!template.exists || template.id === 'missingno') {
 		return {error: `Pok\u00e9mon '${template.id}' not found.`};
@@ -1589,34 +1609,51 @@ function runLearn(target, cmd) {
 	}
 
 	let lsetProblem;
+	let moveNames = [];
 	for (const arg of targets) {
 		if (['ha', 'hidden', 'hiddenability'].includes(toID(arg))) {
-			lsetData.isHidden = true;
+			setSources.isHidden = true;
 			continue;
 		}
-		move = validator.dex.getMove(arg);
+		let move = validator.dex.getMove(arg);
+		moveNames.push(move.name);
 		if (!move.exists || move.id === 'magikarpsrevenge') {
 			return {error: `Move '${move.id}' not found.`};
 		}
 		if (move.gen > gen) {
 			return {error: `${move.name} didn't exist yet in generation ${gen}.`};
 		}
-		lsetProblem = validator.checkLearnset(move, template, lsetData);
+		lsetProblem = validator.checkLearnset(move, template, setSources, set);
 		if (lsetProblem) {
 			lsetProblem.moveName = move.name;
 			break;
 		}
 	}
-	let problems = validator.reconcileLearnset(template, lsetData, lsetProblem);
+	let problems = validator.reconcileLearnset(template, setSources, lsetProblem);
+	let sources = setSources.sources.map(source => {
+		if (source.charAt(1) !== 'E') return source;
+		const fathers = validator.findEggMoveFathers(source, template, setSources, true);
+		if (!fathers) return null;
+		return source + ':' + fathers.join(',');
+	}).filter(Boolean);
+	if (setSources.sources.length && !sources.length) {
+		if (!problems) problems = [];
+		problems.push(`${template.name} doesn't have a valid father for its egg moves (${setSources.limitedEggMoves.join(', ')})`);
+	}
 	let buffer = `In ${formatName}, `;
-	buffer += `${template.name}` + (problems ? ` <span class="message-learn-cannotlearn">can't</span> learn ` : ` <span class="message-learn-canlearn">can</span> learn `) + (targets.length > 1 ? `these moves` : move.name);
+	if (setSources.isHidden) {
+		buffer += `${template.abilities['H'] || 'HA'} `;
+	}
+	buffer += `${template.name}` + (problems ? ` <span class="message-learn-cannotlearn">can't</span> learn ` : ` <span class="message-learn-canlearn">can</span> learn `) + Chat.toListString(moveNames);
 	if (!problems) {
-		let sourceNames = {E: "egg", S: "event", D: "dream world", V: "virtual console transfer from gen 1-2", X: "egg, traded back", Y: "event, traded back"};
-		let sourcesBefore = lsetData.sourcesBefore;
-		if (lsetData.sources || sourcesBefore < gen) buffer += " only when obtained";
+		let sourceNames = {
+			E: "", S: "event", D: "dream world", V: "virtual console transfer from gen 1-2", X: "traded-back ", Y: "traded-back event",
+		};
+		let sourcesBefore = setSources.sourcesBefore;
+		if (sources.length || sourcesBefore < gen) buffer += " only when obtained";
 		buffer += " from:<ul class=\"message-learn-list\">";
-		if (lsetData.sources) {
-			let sources = lsetData.sources.map(source => {
+		if (sources.length) {
+			sources = sources.map(source => {
 				if (source.slice(0, 3) === '1ET') {
 					return '2X' + source.slice(3);
 				}
@@ -1625,34 +1662,35 @@ function runLearn(target, cmd) {
 				}
 				return source;
 			}).sort();
-			let prevSourceType;
-			let prevSourceCount = 0;
-			for (const source of sources) {
-				let hatchAs = ['6E', '7E'].includes(source.substr(0, 2)) ? 'hatched as ' : '';
-				if (source.substr(0, 2) === prevSourceType) {
-					if (!hatchAs && source.length <= 2) continue;
-					if (prevSourceCount < 0) {
-						buffer += `: ${hatchAs + source.substr(2)}`;
-					} else if (all || prevSourceCount < 3) {
-						buffer += `, ${hatchAs + source.substr(2)}`;
-					} else if (prevSourceCount === 3) {
-						buffer += ", ...";
-					}
-					++prevSourceCount;
-					continue;
-				}
-				prevSourceType = source.substr(0, 2);
-				prevSourceCount = source.substr(2) ? 0 : -1;
+			for (let source of sources) {
 				buffer += `<li>Gen ${source.charAt(0)} ${sourceNames[source.charAt(1)]}`;
-				if (prevSourceType === '5E' && template.maleOnlyHidden) buffer += " (cannot have hidden ability)";
-				if (source.substr(2)) buffer += `: ${hatchAs + source.substr(2)}`;
+
+				if (source.charAt(1) === 'E') {
+					let fathers;
+					[source, fathers] = source.split(':');
+					fathers = fathers.split(',');
+					if (fathers.length > 4 && !all) fathers = fathers.slice(-4).concat('...');
+					if (source.length > 2) {
+						buffer += `${source.slice(2)} `;
+					}
+					buffer += `egg`;
+					if (!fathers[0]) {
+						buffer += `: chainbreed`;
+					} else {
+						buffer += `: breed ${fathers.join(', ')}`;
+					}
+				}
+
+				if (source.slice(0, 2) === '5E' && template.maleOnlyHidden) {
+					buffer += " (no hidden ability)";
+				}
 			}
 		}
 		if (sourcesBefore) {
 			buffer += `<li>${(sourcesBefore < gen ? "Gen " + sourcesBefore + " or earlier" : "anywhere") + " (all moves are level-up/tutor/TM/HM in Gen " + Math.min(gen, sourcesBefore) + (sourcesBefore < gen ? " to " + gen : "")})`;
 		}
-		if (lsetData.babyOnly && sourcesBefore) {
-			buffer += `<li>must be obtained as ` + Dex.getTemplate(lsetData.babyOnly).species;
+		if (setSources.babyOnly && sourcesBefore) {
+			buffer += `<li>must be obtained as ` + Dex.getTemplate(setSources.babyOnly).species;
 		}
 		buffer += "</ul>";
 	} else if (targets.length > 1 || problems.length > 1) {
@@ -1718,6 +1756,7 @@ if (!PM.isParentProcess) {
 	}
 
 	global.Dex = require('../../.sim-dist/dex').Dex;
+	global.Chat = require('../../.server-dist/chat').Chat;
 	global.toID = Dex.getId;
 	Dex.includeData();
 	global.TeamValidator = require('../../.sim-dist/team-validator').TeamValidator;

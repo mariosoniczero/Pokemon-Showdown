@@ -83,7 +83,8 @@ Main's SSL deploy script from Let's Encrypt looks like:
  *   This can be either false (meaning not to trust any proxies) or an array
  *   of strings. Each string should be either an IP address or a subnet given
  *   in CIDR notation. You should usually leave this as `false` unless you
- *   know what you are doing.
+ *   know what you are doing
+ * @type {false | string[]}.
  */
 exports.proxyip = false;
 
@@ -255,14 +256,17 @@ exports.restrictLinks = false;
 
 /**
   * chat modchat - default minimum group for speaking in chatrooms; changeable with /modchat
+  * @type {false | string}
  */
 exports.chatmodchat = false;
 /**
  * battle modchat - default minimum group for speaking in battles; changeable with /modchat
+ * @type {false | string}
  */
 exports.battlemodchat = false;
 /**
  * pm modchat - minimum group for PMing other users, challenging other users
+ * @type {false | string}
  */
 exports.pmmodchat = false;
 /**
@@ -402,8 +406,17 @@ exports.replsocketmode = 0o600;
 exports.disablehotpatchall = false;
 
 /**
+ * forcedpublicprefixes - user ID prefixes which will be forced to battle publicly.
+ * Battles involving user IDs which begin with one of the prefixes configured here
+ * will be unaffected by various battle privacy commands such as /modjoin, /hideroom
+ * or /ionext.
+ * @type {string[]}
+ */
+exports.forcedpublicprefixes = [];
+
+/**
  * permissions and groups:
- *   Each entry in `grouplist' is a seperate group. Some of the members are "special"
+ *   Each entry in `grouplist` is a seperate group. Some of the members are "special"
  *     while the rest is just a normal permission.
  *   The order of the groups determines their ranking.
  *   The special members are as follows:
@@ -475,7 +488,6 @@ exports.grouplist = [
 		roomdriver: true,
 		forcewin: true,
 		declare: true,
-		modchatall: true,
 		rangeban: true,
 		makeroom: true,
 		editroom: true,
@@ -498,7 +510,6 @@ exports.grouplist = [
 		editroom: true,
 		declare: true,
 		addhtml: true,
-		modchatall: true,
 		roomonly: true,
 		gamemanagement: true,
 	},
@@ -514,19 +525,6 @@ exports.grouplist = [
 		roomonly: true,
 		gamemanagement: true,
 		joinbattle: true,
-	},
-	{
-		symbol: '\u2606',
-		id: "player",
-		name: "Player",
-		inherit: '+',
-		roomvoice: true,
-		modchat: true,
-		roomonly: true,
-		joinbattle: true,
-		nooverride: true,
-		editprivacy: true,
-		exportinputlog: true,
 	},
 	{
 		symbol: '*',
@@ -546,6 +544,7 @@ exports.grouplist = [
 		jurisdiction: 'u',
 		ban: true,
 		modchat: true,
+		modchatall: true,
 		roomvoice: true,
 		forcerename: true,
 		ip: true,
@@ -576,6 +575,19 @@ exports.grouplist = [
 		minigame: true,
 	},
 	{
+		symbol: '\u2606',
+		id: "player",
+		name: "Player",
+		inherit: '+',
+		roomvoice: true,
+		modchat: true,
+		roomonly: true,
+		joinbattle: true,
+		nooverride: true,
+		editprivacy: true,
+		exportinputlog: true,
+	},
+	{
 		symbol: '+',
 		id: "voice",
 		name: "Voice",
@@ -585,7 +597,6 @@ exports.grouplist = [
 	},
 	{
 		symbol: ' ',
-		ip: 's',
 	},
 	{
 		name: 'Locked',
