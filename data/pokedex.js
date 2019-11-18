@@ -743,7 +743,7 @@ let BattlePokedex = {
 		eggGroups: ["Undiscovered"],
 	},
 	pikachugmax: {
-		num: 12,
+		num: 25,
 		species: "Pikachu-Gmax",
 		baseSpecies: "Pikachu",
 		forme: "Gmax",
@@ -4226,7 +4226,7 @@ let BattlePokedex = {
 		formeLetter: "G",
 		types: ["Ghost"],
 		genderRatio: {M: 0.25, F: 0.75},
-		baseStats: {hp: 60, atk: 55, def: 100, spa: 65, spd: 100, spe: 35},
+		baseStats: {hp: 60, atk: 55, def: 100, spa: 65, spd: 100, spe: 30},
 		abilities: {0: "Weak Armor", H: "Cursed Body"},
 		heightm: 0.6,
 		weightkg: 0.5,

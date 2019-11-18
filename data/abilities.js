@@ -1422,25 +1422,30 @@ let BattleAbilities = {
 			pokemon.abilityData.choiceLock = "";
 		},
 		onBeforeMove(pokemon, target, move) {
-			if (pokemon.abilityData.choiceLock && pokemon.abilityData.choiceLock !== move.id && move.id !== 'struggle') {
+			if (move.isZPowered || move.maxPowered || move.id === 'struggle') return;
+			if (pokemon.abilityData.choiceLock && pokemon.abilityData.choiceLock !== move.id) {
 				// Fails unless ability is being ignored (these events will not run), no PP lost.
 				this.addMove('move', pokemon, move.name);
 				this.attrLastMove('[still]');
+				this.debug("Disabled by Gorilla Tactics");
 				this.add('-fail', pokemon);
 				return false;
 			}
 		},
 		onModifyMove(move, pokemon) {
+			if (move.isZPowered || move.maxPowered || move.id === 'struggle') return;
 			pokemon.abilityData.choiceLock = move.id;
 		},
 		onModifyAtkPriority: 1,
-		onModifyAtk(atk) {
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
 			// PLACEHOLDER
 			this.debug('Gorilla Tactics Atk Boost');
 			return this.chainModify(1.5);
 		},
 		onDisableMove(pokemon) {
 			if (!pokemon.abilityData.choiceLock) return;
+			if (pokemon.volatiles['dynamax']) return;
 			for (const moveSlot of pokemon.moveSlots) {
 				if (moveSlot.id !== pokemon.abilityData.choiceLock) {
 					pokemon.disableMove(moveSlot.id, false, this.effectData.sourceEffect);
@@ -1603,7 +1608,7 @@ let BattleAbilities = {
 	"hustle": {
 		desc: "This Pokemon's Attack is multiplied by 1.5 and the accuracy of its physical attacks is multiplied by 0.8.",
 		shortDesc: "This Pokemon's Attack is 1.5x and accuracy of its physical attacks is 0.8x.",
-		// This should be applied directly to the stat as opposed to chaining witht he others
+		// This should be applied directly to the stat as opposed to chaining with the others
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk) {
 			return this.modify(atk, 1.5);
@@ -1675,7 +1680,7 @@ let BattleAbilities = {
 		onDamage(damage, target, source, effect) {
 			if (effect && effect.effectType === 'Move' && effect.category === 'Physical' && target.template.speciesid === 'eiscue' && !target.transformed) {
 				this.add('-activate', target, 'ability: Ice Face');
-				this.effectData.melted = true;
+				target.addVolatile('iceface');
 				return 0;
 			}
 		},
@@ -1685,36 +1690,20 @@ let BattleAbilities = {
 			if (!target.runImmunity(move.type)) return;
 			return 0;
 		},
-		onUpdate(pokemon) {
-			if (pokemon.template.speciesid === 'eiscue' && this.effectData.melted) {
-				pokemon.formeChange('Eiscue-Noice', this.effect, true);
-			}
+		effect: {
+			onUpdate(pokemon) {
+				if (pokemon.template.speciesid === 'eiscue') {
+					pokemon.removeVolatile('iceface');
+					pokemon.formeChange('Eiscue-Noice', this.effect, true);
+				}
+			},
 		},
-		// TODO Incomplete. Use one of these depending on how mechanics research determines this works exactly.
-		/*
-		// End of turn restore if hailing
-		onResidualOrder: 27,
-		onResidual(pokemon) {
-			if (this.field.isWeather('hail') && pokemon.template.speciesid === 'eiscuemelted' && !pokemon.transformed) {
-				this.effectData.melted = false;
-				pokemon.formeChange('Eiscue', this.effect, true);
-			}
-		},
-		// On switch-in if hailing
-		onStart(pokemon) {
-			if (this.field.isWeather('hail') && pokemon.template.speciesid === 'eiscuemelted' && !pokemon.transformed) {
-				this.effectData.melted = false;
-				pokemon.formeChange('Eiscue', this.effect, true);
-			}
-		},
-		// On start of hail
 		onAnyWeatherStart() {
-			if (this.field.isWeather('hail') && this.effectData.target.template.speciesid === 'eiscuenoice' && !this.effectData.target.transformed) {
-				this.effectData.melted = false;
-				this.effectData.target.formeChange('Eiscue', this.effect, true);
+			const pokemon = this.effectData.target;
+			if (this.field.isWeather('hail') && pokemon.template.speciesid === 'eiscuenoice' && !pokemon.transformed) {
+				pokemon.formeChange('Eiscue', this.effect, true);
 			}
 		},
-		*/
 		id: "iceface",
 		name: "Ice Face",
 		rating: 3.5,
@@ -1835,7 +1824,7 @@ let BattleAbilities = {
 		num: 215,
 	},
 	"innerfocus": {
-		shortDesc: "This Pokemon cannot be made to flinch.",
+		shortDesc: "This Pokemon cannot be made to flinch. Immune to Intimidate.",
 		onFlinch: false,
 		id: "innerfocus",
 		name: "Inner Focus",
@@ -1862,7 +1851,7 @@ let BattleAbilities = {
 		num: 15,
 	},
 	"intimidate": {
-		desc: "On switch-in, this Pokemon lowers the Attack of adjacent opposing Pokemon by 1 stage. Own Tempo, Inner Focus, Keen Eye, and Pokemon behind a substitute are immune.",
+		desc: "On switch-in, this Pokemon lowers the Attack of adjacent opposing Pokemon by 1 stage. Own Tempo, Inner Focus, Keen Eye, Oblivious, and Pokemon behind a substitute are immune.",
 		shortDesc: "On switch-in, this Pokemon lowers the Attack of adjacent opponents by 1 stage.",
 		onStart(pokemon) {
 			let activated = false;
@@ -1874,7 +1863,7 @@ let BattleAbilities = {
 				}
 				if (target.volatiles['substitute']) {
 					this.add('-immune', target);
-				} else if (target.hasAbility(['Own Tempo', 'Inner Focus', 'Keen Eye'])) {
+				} else if (target.hasAbility(['Own Tempo', 'Inner Focus', 'Keen Eye', 'Oblivious'])) {
 					this.add('-immune', target, `[from] ability: ${this.dex.getAbility(target.ability).name}`);
 				} else {
 					this.boost({atk: -1}, target, pokemon, null, true);
@@ -1939,8 +1928,8 @@ let BattleAbilities = {
 		num: 154,
 	},
 	"keeneye": {
-		desc: "Prevents other Pokemon from lowering this Pokemon's accuracy stat stage. This Pokemon ignores a target's evasiveness stat stage.",
-		shortDesc: "This Pokemon's accuracy can't be lowered by others; ignores their evasiveness stat.",
+		desc: "Prevents other Pokemon from lowering this Pokemon's accuracy stat stage. This Pokemon ignores a target's evasiveness stat stage. Immune to Intimidate.",
+		shortDesc: "Foes cannot lower accuracy; enemy evasiveness is ignored. Immune to Intimidate.",
 		onBoost(boost, target, source, effect) {
 			if (source && target === source) return;
 			if (boost.accuracy && boost.accuracy < 0) {
@@ -1997,7 +1986,8 @@ let BattleAbilities = {
 		num: 26,
 	},
 	"libero": {
-		shortDesc: "Changes the Pokémon's type to the type of the move it's about to use.",
+		desc: "This Pokemon's type changes to match the type of the move it is about to use. This effect comes after all effects that change a move's type.",
+		shortDesc: "This Pokemon's type changes to match the type of the move it is about to use.",
 		onPrepareHit(source, target, move) {
 			if (move.hasBounced) return;
 			let type = move.type;
@@ -2613,8 +2603,8 @@ let BattleAbilities = {
 		num: 96,
 	},
 	"oblivious": {
-		desc: "This Pokemon cannot be infatuated or taunted. Gaining this Ability while affected cures it.",
-		shortDesc: "This Pokemon cannot be infatuated or taunted. Gaining this Ability cures it.",
+		desc: "This Pokemon cannot be infatuated or taunted. Gaining this Ability while affected cures it. Immune to Intimidate.",
+		shortDesc: "This Pokemon cannot be infatuated or taunted. Immune to Intimidate.",
 		onUpdate(pokemon) {
 			if (pokemon.volatiles['attract']) {
 				this.add('-activate', pokemon, 'ability: Oblivious');
@@ -2681,7 +2671,8 @@ let BattleAbilities = {
 		num: 65,
 	},
 	"owntempo": {
-		shortDesc: "This Pokemon cannot be confused. Gaining this Ability while confused cures it.",
+		desc: "This Pokemon cannot be confused. Gaining this Ability while confused cures it. Immune to Intimidate.",
+		shortDesc: "This Pokemon cannot be confused. Immune to Intimidate.",
 		onUpdate(pokemon) {
 			if (pokemon.volatiles['confusion']) {
 				this.add('-activate', pokemon, 'ability: Own Tempo');
@@ -3930,10 +3921,10 @@ let BattleAbilities = {
 		num: 80,
 	},
 	"steamengine": {
-		shortDesc: "Boosts the Pokémon's Speed stat drastically if hit by a Fire- or Water-type move.",
+		shortDesc: "This Pokemon's Speed is raised by 6 stages after it is damaged by Fire/Water moves.",
 		onAfterDamage(damage, target, source, effect) {
 			if (effect && ['Water', 'Fire'].includes(effect.type)) {
-				this.boost({spe: 3});
+				this.boost({spe: 6});
 			}
 		},
 		id: "steamengine",

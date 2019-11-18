@@ -1032,7 +1032,6 @@ let BattleMovedex = {
 		shortDesc: "Summons Reflect.",
 		id: "baddybad",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Baddy Bad",
 		pp: 15,
@@ -1629,7 +1628,7 @@ let BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
-		useSourceDefensive: true,
+		useSourceDefensiveAsOffensive: true,
 		secondary: null,
 		target: "normal",
 		type: "Fighting",
@@ -1840,7 +1839,6 @@ let BattleMovedex = {
 		shortDesc: "User recovers 50% of the damage dealt.",
 		id: "bouncybubble",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Bouncy Bubble",
 		pp: 15,
@@ -2221,7 +2219,6 @@ let BattleMovedex = {
 		shortDesc: "100% chance to paralyze the foe.",
 		id: "buzzybuzz",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Buzzy Buzz",
 		pp: 15,
@@ -2557,7 +2554,7 @@ let BattleMovedex = {
 		name: "Clangorous Soul",
 		pp: 5,
 		priority: 0,
-		flags: {snatch: 1, sound: 1},
+		flags: {snatch: 1, sound: 1, dance: 1},
 		onHit(target) {
 			if (target.hp <= target.maxhp / 3 || target.boosts.atk >= 6 || target.boosts.def >= 6 || target.boosts.spa >= 6 || target.boosts.spd >= 6 || target.boosts.spe >= 6 || target.maxhp === 1) { // Shedinja clause
 				return false;
@@ -5976,7 +5973,6 @@ let BattleMovedex = {
 		shortDesc: "30% chance to flinch the target.",
 		id: "floatyfall",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Floaty Fall",
 		pp: 15,
@@ -6418,7 +6414,6 @@ let BattleMovedex = {
 		shortDesc: "Eliminates all stat changes.",
 		id: "freezyfrost",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Freezy Frost",
 		pp: 15,
@@ -6925,7 +6920,6 @@ let BattleMovedex = {
 		shortDesc: "Summons Light Screen.",
 		id: "glitzyglow",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Glitzy Glow",
 		pp: 15,
@@ -6952,20 +6946,17 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: "Butterfree",
-		secondary: {
-			chance: 100,
-			onHit(target, source) {
-				for (let pokemon of target.side.active) {
-					let result = this.random(3);
-					if (result === 0) {
-						pokemon.trySetStatus('slp', source);
-					} else if (result === 1) {
-						pokemon.trySetStatus('par', source);
-					} else {
-						pokemon.trySetStatus('psn', source);
-					}
+		onHit(target, source) {
+			for (let pokemon of target.side.active) {
+				let result = this.random(3);
+				if (result === 0) {
+					pokemon.trySetStatus('slp', source);
+				} else if (result === 1) {
+					pokemon.trySetStatus('par', source);
+				} else {
+					pokemon.trySetStatus('psn', source);
 				}
-			},
+			}
 		},
 		target: "normal",
 		type: "Bug",
@@ -7152,14 +7143,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: "Orbeetle",
-		secondary: {
-			chance: 100,
-			self: {
-				onHit() {
-					this.field.addPseudoWeather('gravity');
-				},
-			},
-		},
+		pseudoWeather: 'gravity',
 		target: "normal",
 		type: "Psychic",
 		contestType: "Cool",
@@ -7177,13 +7161,10 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: "Garbodor",
-		secondary: {
-			chance: 100,
-			onHit(target, source) {
-				for (let pokemon of target.side.active) {
-					pokemon.trySetStatus('psn', source);
-				}
-			},
+		onHit(target, source) {
+			for (let pokemon of target.side.active) {
+				pokemon.trySetStatus('psn', source);
+			}
 		},
 		target: "normal",
 		type: "Poison",
@@ -9728,7 +9709,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
-		desc: "Prevents the user and the target from switching out. The target and the target can still switch out if either of them is holding Shed Shell or uses Baton Pass, Parting Shot, U-turn, or Volt Switch. If the target leaves the field using Baton Pass, the replacement will remain trapped. The effect ends if either Pokemon faints.",
+		desc: "Prevents the user and the target from switching out. The user and the target can still switch out if either of them is holding Shed Shell or uses Baton Pass, Parting Shot, U-turn, or Volt Switch. If the target leaves the field using Baton Pass, the replacement will remain trapped. The effect ends if either Pokemon faints.",
 		shortDesc: "Prevents the user and the target from switching out.",
 		id: "jawlock",
 		name: "Jaw Lock",
@@ -11109,14 +11090,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: true,
-		secondary: {
-			chance: 100,
-			self: {
-				onHit() {
-					this.field.setWeather('sunnyday');
-				},
-			},
-		},
+		weather: 'sunnyday',
 		target: "normal",
 		type: "Fire",
 		contestType: "Cool",
@@ -11156,14 +11130,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: true,
-		secondary: {
-			chance: 100,
-			self: {
-				onHit() {
-					this.field.setWeather('raindance');
-				},
-			},
-		},
+		weather: 'raindance',
 		target: "normal",
 		type: "Water",
 		contestType: "Cool",
@@ -11171,7 +11138,7 @@ let BattleMovedex = {
 	"maxguard": {
 		num: 743,
 		accuracy: true,
-		basePower: 1,
+		basePower: 0,
 		category: "Status",
 		shortDesc: "Prevents all moves from affecting the user this turn.",
 		id: "maxguard",
@@ -11225,14 +11192,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: true,
-		secondary: {
-			chance: 100,
-			self: {
-				onHit() {
-					this.field.setWeather('hail');
-				},
-			},
-		},
+		weather: 'hail',
 		target: "normal",
 		type: "Ice",
 		contestType: "Cool",
@@ -11272,14 +11232,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: true,
-		secondary: {
-			chance: 100,
-			self: {
-				onHit() {
-					this.field.setTerrain('electricterrain');
-				},
-			},
-		},
+		terrain: 'electricterrain',
 		target: "normal",
 		type: "Electric",
 		contestType: "Cool",
@@ -11297,14 +11250,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: true,
-		secondary: {
-			chance: 100,
-			self: {
-				onHit() {
-					this.field.setTerrain('psychicterrain');
-				},
-			},
-		},
+		terrain: 'psychicterrain',
 		target: "normal",
 		type: "Psychic",
 		contestType: "Cool",
@@ -11344,14 +11290,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: true,
-		secondary: {
-			chance: 100,
-			self: {
-				onHit() {
-					this.field.setTerrain('grassyterrain');
-				},
-			},
-		},
+		terrain: 'grassyterrain',
 		target: "normal",
 		type: "Grass",
 		contestType: "Cool",
@@ -11413,14 +11352,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: true,
-		secondary: {
-			chance: 100,
-			self: {
-				onHit() {
-					this.field.setWeather('sandstorm');
-				},
-			},
-		},
+		weather: 'sandstorm',
 		target: "normal",
 		type: "Rock",
 		contestType: "Cool",
@@ -11438,14 +11370,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: true,
-		secondary: {
-			chance: 100,
-			self: {
-				onHit() {
-					this.field.setTerrain('mistyterrain');
-				},
-			},
-		},
+		terrain: 'mistyterrain',
 		target: "normal",
 		type: "Fairy",
 		contestType: "Cool",
@@ -13505,7 +13430,6 @@ let BattleMovedex = {
 		shortDesc: "Max happiness: 102 power. Can't miss.",
 		id: "pikapapow",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Pika Papow",
 		pp: 20,
@@ -14593,6 +14517,7 @@ let BattleMovedex = {
 		desc: "Has a 10% chance to burn the target.",
 		shortDesc: "10% chance to burn the target.",
 		id: "pyroball",
+		isViable: true,
 		name: "Pyro Ball",
 		pp: 5,
 		priority: 0,
@@ -15882,7 +15807,6 @@ let BattleMovedex = {
 		shortDesc: "Summons Leech Seed.",
 		id: "sappyseed",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Sappy Seed",
 		pp: 15,
@@ -16680,7 +16604,6 @@ let BattleMovedex = {
 		shortDesc: "100% chance to burn the foe.",
 		id: "sizzlyslide",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Sizzly Slide",
 		pp: 15,
@@ -17640,7 +17563,6 @@ let BattleMovedex = {
 		shortDesc: "Cures the user's party of all status conditions.",
 		id: "sparklyswirl",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Sparkly Swirl",
 		pp: 15,
@@ -18000,7 +17922,6 @@ let BattleMovedex = {
 		shortDesc: "30% chance to paralyze the target.",
 		id: "splishysplash",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Splishy Splash",
 		pp: 15,
@@ -18413,8 +18334,8 @@ let BattleMovedex = {
 		accuracy: 95,
 		basePower: 90,
 		category: "Special",
-		desc: "Has a 100% chance to lower the target's Special Attack by 1 stage.",
-		shortDesc: "100% chance to lower the target's Sp. Atk by 1.",
+		desc: "Has a 20% chance to confuse the target.",
+		shortDesc: "20% chance to confuse the target.",
 		id: "strangesteam",
 		isViable: true,
 		name: "Strange Steam",
@@ -19236,12 +19157,12 @@ let BattleMovedex = {
 		basePower: 0,
 		category: "Status",
 		desc: "Lowers the target's Speed by 1 stage. Until the target switches out, it takes 2x damage from Fire moves.",
-		shortDesc: "-1 Spe. Target takes 2x damage from Fire moves.",
+		shortDesc: "Target gets -1 Spe and takes 2x damage from Fire.",
 		id: "tarshot",
 		name: "Tar Shot",
 		pp: 20,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {protect: 1, reflectable: 1, mirror: 1},
 		boosts: {
 			spe: -1,
 		},
@@ -19342,7 +19263,7 @@ let BattleMovedex = {
 		desc: "Forces all active Pokemon to consume their held berries. This move bypasses Substitutes.",
 		shortDesc: "All active Pokemon consume held Berries.",
 		id: "teatime",
-		name: "Tea Time",
+		name: "Teatime",
 		pp: 10,
 		priority: 0,
 		flags: {authentic: 1},
@@ -19351,7 +19272,7 @@ let BattleMovedex = {
 				for (const active of side.active) {
 					let item = active.getItem();
 					if (active.hp && item.isBerry) {
-						this.add('-enditem', target, item.name, '[from] eat', '[move] Tea Time', '[of] ' + active);
+						this.add('-enditem', target, item.name, '[from] eat', '[move] Teatime', '[of] ' + active);
 						if (this.singleEvent('Eat', item, null, active, null, null)) {
 							this.runEvent('EatItem', active, null, null, item);
 							// TODO: Test
@@ -20419,7 +20340,6 @@ let BattleMovedex = {
 		shortDesc: "Max happiness: 102 power. Can't miss.",
 		id: "veeveevolley",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Veevee Volley",
 		pp: 20,
@@ -21345,7 +21265,6 @@ let BattleMovedex = {
 		shortDesc: "Nearly always goes first. Always crits.",
 		id: "zippyzap",
 		isNonstandard: "LGPE",
-		isUnreleased: true,
 		isViable: true,
 		name: "Zippy Zap",
 		pp: 15,

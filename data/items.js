@@ -2253,8 +2253,9 @@ let BattleItems = {
 			}
 		},
 		onAnyTerrainStart() {
-			if (this.field.isTerrain('electricterrain') && this.effectData.target.useItem()) {
-				this.boost({def: 1}, this.effectData.target);
+			const pokemon = this.effectData.target;
+			if (this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+				this.boost({def: 1}, pokemon);
 			}
 		},
 		num: 881,
@@ -3003,8 +3004,9 @@ let BattleItems = {
 			}
 		},
 		onAnyTerrainStart() {
-			if (this.field.isTerrain('grassyterrain') && this.effectData.target.useItem()) {
-				this.boost({def: 1}, this.effectData.target);
+			const pokemon = this.effectData.target;
+			if (this.field.isTerrain('grassyterrain') && pokemon.useItem()) {
+				this.boost({def: 1}, pokemon);
 			}
 		},
 		num: 884,
@@ -4502,8 +4504,9 @@ let BattleItems = {
 			}
 		},
 		onAnyTerrainStart() {
-			if (this.field.isTerrain('mistyterrain') && this.effectData.target.useItem()) {
-				this.boost({spd: 1}, this.effectData.target);
+			const pokemon = this.effectData.target;
+			if (this.field.isTerrain('mistyterrain') && pokemon.useItem()) {
+				this.boost({spd: 1}, pokemon);
 			}
 		},
 		num: 883,
@@ -5322,8 +5325,9 @@ let BattleItems = {
 			}
 		},
 		onAnyTerrainStart() {
-			if (this.field.isTerrain('psychicterrain') && this.effectData.target.useItem()) {
-				this.boost({spd: 1}, this.effectData.target);
+			const pokemon = this.effectData.target;
+			if (this.field.isTerrain('psychicterrain') && pokemon.useItem()) {
+				this.boost({spd: 1}, pokemon);
 			}
 		},
 		num: 882,

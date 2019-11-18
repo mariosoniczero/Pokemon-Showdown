@@ -3489,10 +3489,9 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	shayminsky: {
-		inherit: true,
 		randomBattleMoves: ["seedflare", "airslash", "earthpower", "hiddenpowerice", "substitute", "leechseed"],
 		randomDoubleBattleMoves: ["seedflare", "earthpower", "airslash", "rest", "substitute", "leechseed", "tailwind", "protect", "hiddenpowerice"],
-		isNonstandard: null,
+		eventOnly: true,
 		tier: "Uber",
 		doublesTier: "DUU",
 	},
@@ -4471,6 +4470,10 @@ let BattleFormatsData = {
 		tier: "OU",
 		doublesTier: "(DUU)",
 	},
+	keldeoresolute: {
+		requiredMove: "Secret Sword",
+		isUnreleased: false,
+	},
 	meloetta: {
 		inherit: true,
 		randomBattleMoves: ["uturn", "calmmind", "psyshock", "hypervoice", "shadowball", "focusblast"],
@@ -4492,6 +4495,22 @@ let BattleFormatsData = {
 		isNonstandard: null,
 		tier: "Uber",
 		doublesTier: "DOU",
+	},
+	genesectburn: {
+		eventOnly: true,
+		requiredItem: "Burn Drive",
+	},
+	genesectchill: {
+		eventOnly: true,
+		requiredItem: "Chill Drive",
+	},
+	genesectdouse: {
+		eventOnly: true,
+		requiredItem: "Douse Drive",
+	},
+	genesectshock: {
+		eventOnly: true,
+		requiredItem: "Shock Drive",
 	},
 	chespin: {
 		tier: "LC",
@@ -4576,6 +4595,14 @@ let BattleFormatsData = {
 		randomDoubleBattleMoves: ["sleeppowder", "quiverdance", "hurricane", "bugbuzz", "roost", "protect"],
 		tier: "NU",
 		doublesTier: "(DUU)",
+	},
+	vivillonfancy: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	vivillonpokeball: {
+		inherit: true,
+		isNonstandard: null,
 	},
 	litleo: {
 		tier: "LC",
@@ -4901,8 +4928,9 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	zygardecomplete: {
-		inherit: true,
-		isNonstandard: null,
+		gen: 7,
+		requiredAbility: "Power Construct",
+		battleOnly: true,
 		tier: "Uber",
 		doublesTier: "DUber",
 	},
@@ -4930,10 +4958,9 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	hoopaunbound: {
-		inherit: true,
 		randomBattleMoves: ["nastyplot", "substitute", "psychic", "darkpulse", "focusblast", "hyperspacefury", "zenheadbutt", "icepunch", "drainpunch", "gunkshot", "trick"],
 		randomDoubleBattleMoves: ["psychic", "darkpulse", "focusblast", "protect", "hyperspacefury", "zenheadbutt", "icepunch", "drainpunch", "gunkshot"],
-		isNonstandard: null,
+		eventOnly: true,
 		tier: "UUBL",
 		doublesTier: "DOU",
 	},
@@ -5424,8 +5451,8 @@ let BattleFormatsData = {
 		isNonstandard: null,
 	},
 	mimikyubustedtotem: {
-		inherit: true,
-		isNonstandard: null,
+		requiredAbility: 'Disguise',
+		battleOnly: true,
 	},
 	bruxish: {
 		randomBattleMoves: ["psychicfangs", "crunch", "liquidation", "icefang", "aquajet", "swordsdance"],
@@ -5597,8 +5624,8 @@ let BattleFormatsData = {
 		doublesTier: "DUber",
 	},
 	necrozmaultra: {
-		inherit: true,
-		isNonstandard: null,
+		requiredItem: "Ultranecrozium Z",
+		battleOnly: true,
 		tier: "Uber",
 		doublesTier: "DUber",
 	},
@@ -5609,6 +5636,11 @@ let BattleFormatsData = {
 		isNonstandard: null,
 		tier: "OU",
 		doublesTier: "DUber",
+	},
+	magearnaoriginal: {
+		isNonstandard: null,
+		isUnreleased: true,
+		tier: "Unreleased",
 	},
 	marshadow: {
 		inherit: true,
