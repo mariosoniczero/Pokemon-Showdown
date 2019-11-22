@@ -41,6 +41,7 @@ let BattleFormats = {
 			'Victini', 'Reshiram', 'Zekrom', 'Kyurem', 'Keldeo', 'Meloetta', 'Genesect',
 			'Xerneas', 'Yveltal', 'Zygarde', 'Diancie', 'Hoopa', 'Volcanion',
 			'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala', 'Necrozma', 'Magearna', 'Marshadow', 'Zeraora',
+			'Zacian', 'Zamazenta', 'Eternatus',
 		],
 		onValidateSet(set, format) {
 			if (this.gen < 7 && toID(set.item) === 'souldew') {
@@ -338,12 +339,12 @@ let BattleFormats = {
 			}
 		},
 	},
-	abilityclause: {
+	"2abilityclause": {
 		effectType: 'ValidatorRule',
-		name: 'Ability Clause',
+		name: '2 Ability Clause',
 		desc: "Prevents teams from having more than two Pok&eacute;mon with the same ability",
 		onBegin() {
-			this.add('rule', 'Ability Clause: Limit two of each ability');
+			this.add('rule', '2 Ability Clause: Limit two of each ability');
 		},
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: number}} */
@@ -671,6 +672,17 @@ let BattleFormats = {
 			for (const pokemon of this.getAllPokemon()) {
 				if (pokemon.speciesid === 'rayquaza') pokemon.canMegaEvo = null;
 			}
+		},
+	},
+	dynamaxclause: {
+		effectType: 'Rule',
+		name: 'Dynamax Clause',
+		desc: "Prevents Pok&eacute;mon from dynamaxing",
+		onBegin() {
+			for (const pokemon of this.getAllPokemon()) {
+				pokemon.canDynamax = null;
+			}
+			this.add('rule', 'Dynamax Clause: You cannot dynamax');
 		},
 	},
 	arceusevclause: {

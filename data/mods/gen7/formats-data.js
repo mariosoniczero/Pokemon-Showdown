@@ -282,6 +282,7 @@ let BattleFormatsData = {
 	sandslashalola: {
 		randomBattleMoves: ["swordsdance", "iciclecrash", "ironhead", "earthquake", "rapidspin", "stealthrock", "knockoff"],
 		randomDoubleBattleMoves: ["protect", "swordsdance", "iciclecrash", "ironhead", "earthquake", "rockslide"],
+		isNonstandard: null,
 		tier: "PU",
 		doublesTier: "(DUU)",
 	},
@@ -341,6 +342,7 @@ let BattleFormatsData = {
 	},
 	vulpixalola: {
 		inherit: true,
+		isUnreleased: false,
 		tier: "LC",
 	},
 	ninetales: {
@@ -445,6 +447,7 @@ let BattleFormatsData = {
 	},
 	diglettalola: {
 		inherit: true,
+		isUnreleased: false,
 		tier: "LC",
 	},
 	dugtrio: {
@@ -2627,16 +2630,19 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	castformsunny: {
-		inherit: true,
 		randomBattleMoves: ["sunnyday", "fireblast", "solarbeam", "icebeam"],
+		requiredAbility: 'Forecast',
+		battleOnly: true,
 	},
 	castformrainy: {
-		inherit: true,
 		randomBattleMoves: ["raindance", "hydropump", "thunder", "hurricane"],
+		requiredAbility: 'Forecast',
+		battleOnly: true,
 	},
 	castformsnowy: {
-		inherit: true,
 		randomBattleMoves: ["hail", "blizzard", "thunderbolt", "fireblast"],
+		requiredAbility: 'Forecast',
+		battleOnly: true,
 	},
 	kecleon: {
 		randomBattleMoves: ["fakeout", "knockoff", "drainpunch", "suckerpunch", "shadowsneak", "stealthrock", "recover"],
@@ -4788,6 +4794,7 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	sylveon: {
+		inherit: true,
 		randomBattleMoves: ["hypervoice", "calmmind", "psyshock", "hiddenpowerfire", "wish", "protect"],
 		randomDoubleBattleMoves: ["hypervoice", "calmmind", "wish", "protect", "psyshock", "helpinghand", "shadowball", "hiddenpowerground"],
 		tier: "UU",
@@ -5038,6 +5045,10 @@ let BattleFormatsData = {
 		isNonstandard: null,
 		tier: "(PU)",
 		doublesTier: "(DUU)",
+	},
+	gumshoostotem: {
+		inherit: true,
+		isNonstandard: null,
 	},
 	grubbin: {
 		tier: "LC",
@@ -5415,6 +5426,10 @@ let BattleFormatsData = {
 		randomDoubleBattleMoves: ["shellsmash", "powergem", "acrobatics", "earthquake", "protect"],
 		tier: "NU",
 		doublesTier: "(DUU)",
+	},
+	miniormeteor: {
+		requiredAbility: 'Shields Down',
+		battleOnly: true,
 	},
 	komala: {
 		randomBattleMoves: ["return", "suckerpunch", "woodhammer", "earthquake", "playrough", "uturn"],

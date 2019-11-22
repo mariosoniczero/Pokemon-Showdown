@@ -273,12 +273,8 @@ export class Format extends BasicEffect implements Readonly<BasicEffect & Format
 	readonly teamLength?: {battle?: number, validate?: [number, number]};
 	/** An optional function that runs at the start of a battle. */
 	readonly onBegin?: (this: Battle) => void;
-	/** Pokemon must be obtained from Gen 6 or later. */
-	readonly requirePentagon: boolean;
-	/** Pokemon must be obtained from Gen 7 or later. */
-	readonly requirePlus: boolean;
-	/** Pokemon must be obtained from Gen 8 or later. */
-	readonly requireGalar: boolean;
+	/** Pokemon must be obtained from this generation or later. */
+	readonly minSourceGen?: number;
 	/**
 	 * Maximum possible level pokemon you can bring. Note that this is
 	 * still 100 in VGC, because you can bring level 100 pokemon,
@@ -327,9 +323,7 @@ export class Format extends BasicEffect implements Readonly<BasicEffect & Format
 		this.ruleTable = null;
 		this.teamLength = data.teamLength || undefined;
 		this.onBegin = data.onBegin || undefined;
-		this.requirePentagon = !!data.requirePentagon;
-		this.requirePlus = !!data.requirePlus;
-		this.requireGalar = !!data.requireGalar;
+		this.minSourceGen = data.minSourceGen || undefined;
 		this.maxLevel = data.maxLevel || 100;
 		this.defaultLevel = data.defaultLevel || this.maxLevel;
 		this.forcedLevel = data.forcedLevel || undefined;
@@ -551,7 +545,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	readonly prevo: ID;
 	/** Evolutions. Array because many Pokemon have multiple evolutions. */
 	readonly evos: ID[];
-	readonly evoType?: 'trade' | 'useItem' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold';
+	readonly evoType?: 'trade' | 'useItem' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold' | 'other';
 	readonly evoMove?: string;
 	/** Evolution level. falsy if doesn't evolve. */
 	readonly evoLevel?: number;
@@ -683,7 +677,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.battleOnly = !!data.battleOnly || !!this.isMega || !!this.isGigantamax || undefined;
 
 		if (!this.gen && this.num >= 1) {
-			if (this.num >= 810 || this.forme === 'Galar' || this.forme === 'Gmax') {
+			if (this.num >= 810 || this.forme.endsWith('Galar') || this.forme === 'Gmax') {
 				this.gen = 8;
 			} else if (this.num >= 722 || this.forme.startsWith('Alola') || this.forme === 'Starter') {
 				this.gen = 7;
@@ -913,7 +907,7 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 		}
 
 		if (!this.gen) {
-			if (this.num >= 742) {
+			if (this.num >= 743) {
 				this.gen = 8;
 			} else if (this.num >= 622) {
 				this.gen = 7;

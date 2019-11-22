@@ -1185,6 +1185,7 @@ let BattleItems = {
 		},
 		num: 535,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Kyogre, this item triggers its Primal Reversion in battle.",
 	},
 	"blukberry": {
@@ -1243,7 +1244,6 @@ let BattleItems = {
 	"buggem": {
 		id: "buggem",
 		name: "Bug Gem",
-		isUnreleased: true,
 		spritenum: 53,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1257,6 +1257,7 @@ let BattleItems = {
 		},
 		num: 558,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Bug-type attack will have 1.3x power. Single use.",
 	},
 	"bugmemory": {
@@ -1754,7 +1755,6 @@ let BattleItems = {
 	"darkgem": {
 		id: "darkgem",
 		name: "Dark Gem",
-		isUnreleased: true,
 		spritenum: 89,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1768,6 +1768,7 @@ let BattleItems = {
 		},
 		num: 562,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Dark-type attack will have 1.3x power. Single use.",
 	},
 	"darkmemory": {
@@ -1971,7 +1972,6 @@ let BattleItems = {
 	"dragongem": {
 		id: "dragongem",
 		name: "Dragon Gem",
-		isUnreleased: true,
 		spritenum: 107,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1985,6 +1985,7 @@ let BattleItems = {
 		},
 		num: 561,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Dragon-type attack will have 1.3x power. Single use.",
 	},
 	"dragonmemory": {
@@ -2208,7 +2209,6 @@ let BattleItems = {
 	"electricgem": {
 		id: "electricgem",
 		name: "Electric Gem",
-		isUnreleased: true,
 		spritenum: 120,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -2222,6 +2222,7 @@ let BattleItems = {
 		},
 		num: 550,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Electric-type attack will have 1.3x power. Single use.",
 	},
 	"electricmemory": {
@@ -2367,7 +2368,6 @@ let BattleItems = {
 	"fairygem": {
 		id: "fairygem",
 		name: "Fairy Gem",
-		isUnreleased: true,
 		spritenum: 611,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -2381,6 +2381,7 @@ let BattleItems = {
 		},
 		num: 715,
 		gen: 6,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Fairy-type attack will have 1.3x power. Single use.",
 	},
 	"fairymemory": {
@@ -2411,7 +2412,6 @@ let BattleItems = {
 	"fightinggem": {
 		id: "fightinggem",
 		name: "Fighting Gem",
-		isUnreleased: true,
 		spritenum: 139,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -2425,6 +2425,7 @@ let BattleItems = {
 		},
 		num: 553,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Fighting-type attack will have 1.3x power. Single use.",
 	},
 	"fightingmemory": {
@@ -2487,7 +2488,6 @@ let BattleItems = {
 	"firegem": {
 		id: "firegem",
 		name: "Fire Gem",
-		isUnreleased: true,
 		spritenum: 141,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -2501,6 +2501,7 @@ let BattleItems = {
 		},
 		num: 548,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Fire-type attack will have 1.3x power. Single use.",
 	},
 	"firememory": {
@@ -2634,7 +2635,6 @@ let BattleItems = {
 	"flyinggem": {
 		id: "flyinggem",
 		name: "Flying Gem",
-		isUnreleased: true,
 		spritenum: 149,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -2648,6 +2648,7 @@ let BattleItems = {
 		},
 		num: 556,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Flying-type attack will have 1.3x power. Single use.",
 	},
 	"flyingmemory": {
@@ -2870,7 +2871,6 @@ let BattleItems = {
 	"ghostgem": {
 		id: "ghostgem",
 		name: "Ghost Gem",
-		isUnreleased: true,
 		spritenum: 161,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -2884,6 +2884,7 @@ let BattleItems = {
 		},
 		num: 560,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Ghost-type attack will have 1.3x power. Single use.",
 	},
 	"ghostmemory": {
@@ -2945,7 +2946,6 @@ let BattleItems = {
 	"grassgem": {
 		id: "grassgem",
 		name: "Grass Gem",
-		isUnreleased: true,
 		spritenum: 172,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -2959,6 +2959,7 @@ let BattleItems = {
 		},
 		num: 551,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Grass-type attack will have 1.3x power. Single use.",
 	},
 	"grassmemory": {
@@ -3075,7 +3076,6 @@ let BattleItems = {
 	"groundgem": {
 		id: "groundgem",
 		name: "Ground Gem",
-		isUnreleased: true,
 		spritenum: 182,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -3089,6 +3089,7 @@ let BattleItems = {
 		},
 		num: 555,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Ground-type attack will have 1.3x power. Single use.",
 	},
 	"groundmemory": {
@@ -3302,7 +3303,6 @@ let BattleItems = {
 	"icegem": {
 		id: "icegem",
 		name: "Ice Gem",
-		isUnreleased: true,
 		spritenum: 218,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -3316,6 +3316,7 @@ let BattleItems = {
 		},
 		num: 552,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Ice-type attack will have 1.3x power. Single use.",
 	},
 	"icememory": {
@@ -5008,7 +5009,6 @@ let BattleItems = {
 	"poisongem": {
 		id: "poisongem",
 		name: "Poison Gem",
-		isUnreleased: true,
 		spritenum: 344,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -5022,6 +5022,7 @@ let BattleItems = {
 		},
 		num: 554,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Poison-type attack will have 1.3x power. Single use.",
 	},
 	"poisonmemory": {
@@ -5280,7 +5281,6 @@ let BattleItems = {
 	"psychicgem": {
 		id: "psychicgem",
 		name: "Psychic Gem",
-		isUnreleased: true,
 		spritenum: 369,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -5294,6 +5294,7 @@ let BattleItems = {
 		},
 		num: 557,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Psychic-type attack will have 1.3x power. Single use.",
 	},
 	"psychicmemory": {
@@ -5560,6 +5561,7 @@ let BattleItems = {
 		},
 		num: 534,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Groudon, this item triggers its Primal Reversion in battle.",
 	},
 	"repeatball": {
@@ -5620,7 +5622,6 @@ let BattleItems = {
 	"rockgem": {
 		id: "rockgem",
 		name: "Rock Gem",
-		isUnreleased: true,
 		spritenum: 415,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -5634,6 +5635,7 @@ let BattleItems = {
 		},
 		num: 559,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Rock-type attack will have 1.3x power. Single use.",
 	},
 	"rockincense": {
@@ -6437,7 +6439,6 @@ let BattleItems = {
 	"steelgem": {
 		id: "steelgem",
 		name: "Steel Gem",
-		isUnreleased: true,
 		spritenum: 473,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -6451,6 +6452,7 @@ let BattleItems = {
 		},
 		num: 563,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Steel-type attack will have 1.3x power. Single use.",
 	},
 	"steelmemory": {
@@ -6865,7 +6867,6 @@ let BattleItems = {
 	"watergem": {
 		id: "watergem",
 		name: "Water Gem",
-		isUnreleased: true,
 		spritenum: 528,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -6879,6 +6880,7 @@ let BattleItems = {
 		},
 		num: 549,
 		gen: 5,
+		isNonstandard: 'Past',
 		desc: "Holder's first successful Water-type attack will have 1.3x power. Single use.",
 	},
 	"watermemory": {

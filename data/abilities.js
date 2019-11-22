@@ -12,7 +12,7 @@ Ratings and how they work:
 
  1: Ineffective
 	  An ability that has minimal effect or is only useful in niche situations.
-	ex. Inner Focus, Suction Cups
+	ex. Light Metal, Suction Cups
 
  2: Useful
 	  An ability that can be generally useful.
@@ -656,7 +656,7 @@ let BattleAbilities = {
 		// Implemented in sim/pokemon.js:Pokemon#setStatus
 		id: "corrosion",
 		name: "Corrosion",
-		rating: 2,
+		rating: 2.5,
 		num: 212,
 	},
 	"cottondown": {
@@ -875,7 +875,7 @@ let BattleAbilities = {
 		num: 190,
 	},
 	"disguise": {
-		desc: "If this Pokemon is a Mimikyu, the first hit it takes in battle deals 0 neutral damage. Its disguise is then broken and it changes to Busted Form. Confusion damage also breaks the disguise.",
+		desc: "If this Pokemon is a Mimikyu, the first hit it takes in battle deals 0 neutral damage. Its disguise is then broken, it changes to Busted Form, and it loses 1/10 of its max HP. Confusion damage also breaks the disguise.",
 		shortDesc: "If this Pokemon is a Mimikyu, the first hit it takes in battle deals 0 neutral damage.",
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
@@ -895,6 +895,7 @@ let BattleAbilities = {
 			if (['mimikyu', 'mimikyutotem'].includes(pokemon.template.speciesid) && this.effectData.busted) {
 				let templateid = pokemon.template.speciesid === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' : 'Mimikyu-Busted';
 				pokemon.formeChange(templateid, this.effect, true);
+				this.damage(pokemon.maxhp / 10, pokemon, pokemon);
 			}
 		},
 		id: "disguise",
@@ -1484,7 +1485,29 @@ let BattleAbilities = {
 	"gulpmissile": {
 		desc: "When the Pokémon uses Surf or Dive, it will come back with prey. When it takes damage, it will spit out the prey to attack.",
 		shortDesc: "Get prey with Surf/Dive. When taking damage, prey is used to attack.",
-		// TODO
+		onDamagePriority: -1,
+		onDamage(damage, target, source, effect) {
+			// Needs to trigger even if cramorant is about to faint
+			if (effect && effect.effectType === 'Move' && ['cramorantgulping', 'cramorantgorging'].includes(target.template.speciesid) && !target.transformed) {
+				// Forme change before damaging to avoid a potential infinite loop with surf cramorant vs surf cramorant
+				const forme = target.template.speciesid;
+				target.formeChange('cramorant', effect);
+
+				this.damage(source.maxhp / 4, source, target, effect);
+				if (forme === 'cramorantgulping') {
+					this.boost({def: -1}, source, target, null, true);
+				} else {
+					source.trySetStatus('par', target, effect);
+				}
+			}
+		},
+		onAfterMove(source, target, move) {
+			if (!['surf', 'dive'].includes(move.id) || source.volatiles['dive'] || source.speciesid !== 'cramorant' || source.transformed) return;
+
+			// PLACEHOLDER Estimated 10% of the time you get pikachu
+			const forme = this.random(10) === 1 ? 'cramorantgorging' : 'cramorantgulping';
+			source.formeChange(forme, move);
+		},
 		id: "gulpmissile",
 		name: "Gulp Missile",
 		rating: 1.5,
@@ -1680,7 +1703,7 @@ let BattleAbilities = {
 		onDamage(damage, target, source, effect) {
 			if (effect && effect.effectType === 'Move' && effect.category === 'Physical' && target.template.speciesid === 'eiscue' && !target.transformed) {
 				this.add('-activate', target, 'ability: Ice Face');
-				target.addVolatile('iceface');
+				this.effectData.busted = true;
 				return 0;
 			}
 		},
@@ -1690,17 +1713,15 @@ let BattleAbilities = {
 			if (!target.runImmunity(move.type)) return;
 			return 0;
 		},
-		effect: {
-			onUpdate(pokemon) {
-				if (pokemon.template.speciesid === 'eiscue') {
-					pokemon.removeVolatile('iceface');
-					pokemon.formeChange('Eiscue-Noice', this.effect, true);
-				}
-			},
+		onUpdate(pokemon) {
+			if (pokemon.template.speciesid === 'eiscue' && this.effectData.busted) {
+				pokemon.formeChange('Eiscue-Noice', this.effect, true);
+			}
 		},
 		onAnyWeatherStart() {
 			const pokemon = this.effectData.target;
 			if (this.field.isWeather('hail') && pokemon.template.speciesid === 'eiscuenoice' && !pokemon.transformed) {
+				this.effectData.busted = false;
 				pokemon.formeChange('Eiscue', this.effect, true);
 			}
 		},
@@ -1851,7 +1872,7 @@ let BattleAbilities = {
 		num: 15,
 	},
 	"intimidate": {
-		desc: "On switch-in, this Pokemon lowers the Attack of adjacent opposing Pokemon by 1 stage. Own Tempo, Inner Focus, Keen Eye, Oblivious, and Pokemon behind a substitute are immune.",
+		desc: "On switch-in, this Pokemon lowers the Attack of adjacent opposing Pokemon by 1 stage. Inner Focus, Oblivious, Own Tempo, Scrappy, and Pokemon behind a substitute are immune.",
 		shortDesc: "On switch-in, this Pokemon lowers the Attack of adjacent opponents by 1 stage.",
 		onStart(pokemon) {
 			let activated = false;
@@ -1863,7 +1884,7 @@ let BattleAbilities = {
 				}
 				if (target.volatiles['substitute']) {
 					this.add('-immune', target);
-				} else if (target.hasAbility(['Own Tempo', 'Inner Focus', 'Keen Eye', 'Oblivious'])) {
+				} else if (target.hasAbility(['Inner Focus', 'Oblivious', 'Own Tempo', 'Scrappy'])) {
 					this.add('-immune', target, `[from] ability: ${this.dex.getAbility(target.ability).name}`);
 				} else {
 					this.boost({atk: -1}, target, pokemon, null, true);
@@ -1872,7 +1893,7 @@ let BattleAbilities = {
 		},
 		id: "intimidate",
 		name: "Intimidate",
-		rating: 4,
+		rating: 3.5,
 		num: 22,
 	},
 	"intrepidsword": {
@@ -1928,8 +1949,8 @@ let BattleAbilities = {
 		num: 154,
 	},
 	"keeneye": {
-		desc: "Prevents other Pokemon from lowering this Pokemon's accuracy stat stage. This Pokemon ignores a target's evasiveness stat stage. Immune to Intimidate.",
-		shortDesc: "Foes cannot lower accuracy; enemy evasiveness is ignored. Immune to Intimidate.",
+		desc: "Prevents other Pokemon from lowering this Pokemon's accuracy stat stage. This Pokemon ignores a target's evasiveness stat stage.",
+		shortDesc: "This Pokemon's accuracy can't be lowered by others; ignores their evasiveness stat.",
 		onBoost(boost, target, source, effect) {
 			if (source && target === source) return;
 			if (boost.accuracy && boost.accuracy < 0) {
@@ -2338,7 +2359,7 @@ let BattleAbilities = {
 		num: 104,
 	},
 	"moody": {
-		desc: "This Pokemon has a random stat raised by 2 stages and another stat lowered by 1 stage at the end of each turn.",
+		desc: "This Pokemon has a random stat other than accuracy or evasion raised by 2 stages and another stat lowered by 1 stage at the end of each turn.",
 		shortDesc: "Raises a random stat by 2 and lowers another stat by 1 at the end of each turn.",
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
@@ -2346,6 +2367,7 @@ let BattleAbilities = {
 			let stats = [];
 			let boost = {};
 			for (let statPlus in pokemon.boosts) {
+				if (statPlus === 'accuracy' || statPlus === 'evasion') continue;
 				// @ts-ignore
 				if (pokemon.boosts[statPlus] < 6) {
 					stats.push(statPlus);
@@ -2357,6 +2379,7 @@ let BattleAbilities = {
 
 			stats = [];
 			for (let statMinus in pokemon.boosts) {
+				if (statMinus === 'accuracy' || statMinus === 'evasion') continue;
 				// @ts-ignore
 				if (pokemon.boosts[statMinus] > -6 && statMinus !== randomStat) {
 					stats.push(statMinus);
@@ -3139,10 +3162,15 @@ let BattleAbilities = {
 		num: 44,
 	},
 	"rattled": {
-		desc: "This Pokemon's Speed is raised by 1 stage if hit by a Bug-, Dark-, or Ghost-type attack.",
-		shortDesc: "This Pokemon's Speed is raised 1 stage if hit by a Bug-, Dark-, or Ghost-type attack.",
+		desc: "This Pokemon's Speed is raised by 1 stage if hit by a Bug-, Dark-, or Ghost-type attack, or Intimidate.",
+		shortDesc: "Speed is raised 1 stage if hit by a Bug-, Dark-, or Ghost-type attack, or Intimidated.",
 		onAfterDamage(damage, target, source, effect) {
 			if (effect && (effect.type === 'Dark' || effect.type === 'Bug' || effect.type === 'Ghost')) {
+				this.boost({spe: 1});
+			}
+		},
+		onAfterBoost(boost, target, source, effect) {
+			if (effect && effect.id === 'intimidate') {
 				this.boost({spe: 1});
 			}
 		},
@@ -3446,7 +3474,8 @@ let BattleAbilities = {
 		num: 208,
 	},
 	"scrappy": {
-		shortDesc: "This Pokemon can hit Ghost types with Normal- and Fighting-type moves.",
+		desc: "This Pokemon can hit Ghost types with Normal- and Fighting-type moves. Immune to Intimidate.",
+		shortDesc: "Fighting, Normal moves hit Ghost. Immune to Intimidate.",
 		onModifyMovePriority: -5,
 		onModifyMove(move) {
 			if (!move.ignoreImmunity) move.ignoreImmunity = {};

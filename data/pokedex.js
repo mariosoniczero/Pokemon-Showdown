@@ -5112,7 +5112,7 @@ let BattlePokedex = {
 		weightkg: 6.6,
 		color: "White",
 		evos: ["kirlia"],
-		eggGroups: ["Amorphous"],
+		eggGroups: ["Human-Like", "Amorphous"],
 	},
 	kirlia: {
 		num: 281,
@@ -5126,7 +5126,7 @@ let BattlePokedex = {
 		prevo: "ralts",
 		evoLevel: 20,
 		evos: ["gardevoir", "gallade"],
-		eggGroups: ["Amorphous"],
+		eggGroups: ["Human-Like", "Amorphous"],
 	},
 	gardevoir: {
 		num: 282,
@@ -5139,7 +5139,7 @@ let BattlePokedex = {
 		color: "White",
 		prevo: "kirlia",
 		evoLevel: 30,
-		eggGroups: ["Amorphous"],
+		eggGroups: ["Human-Like", "Amorphous"],
 		otherFormes: ["gardevoirmega"],
 	},
 	gardevoirmega: {
@@ -5871,7 +5871,7 @@ let BattlePokedex = {
 		weightkg: 15,
 		color: "Brown",
 		evos: ["vibrava"],
-		eggGroups: ["Bug"],
+		eggGroups: ["Bug", "Dragon"],
 	},
 	vibrava: {
 		num: 329,
@@ -5885,7 +5885,7 @@ let BattlePokedex = {
 		prevo: "trapinch",
 		evos: ["flygon"],
 		evoLevel: 35,
-		eggGroups: ["Bug"],
+		eggGroups: ["Bug", "Dragon"],
 	},
 	flygon: {
 		num: 330,
@@ -5898,7 +5898,7 @@ let BattlePokedex = {
 		color: "Green",
 		prevo: "vibrava",
 		evoLevel: 45,
-		eggGroups: ["Bug"],
+		eggGroups: ["Bug", "Dragon"],
 	},
 	flygonmegax: {
 		num: 330,
@@ -8345,7 +8345,7 @@ let BattlePokedex = {
 		prevo: "kirlia",
 		evoType: "useItem",
 		evoItem: "Dawn Stone",
-		eggGroups: ["Amorphous"],
+		eggGroups: ["Human-Like", "Amorphous"],
 		otherFormes: ["gallademega"],
 	},
 	gallademega: {
@@ -14771,7 +14771,7 @@ let BattlePokedex = {
 		species: "Yamper",
 		types: ["Electric"],
 		baseStats: {hp: 59, atk: 45, def: 50, spa: 40, spd: 50, spe: 26},
-		abilities: {0: "Ball Catch", H: "Rattled"},
+		abilities: {0: "Ball Fetch", H: "Rattled"},
 		heightm: 0.3,
 		weightkg: 13.5,
 		color: "Yellow",
@@ -15336,7 +15336,7 @@ let BattlePokedex = {
 		weightkg: 0.4,
 		color: "White",
 		prevo: "corsolagalar",
-		evoLevel: 1,
+		evoLevel: 38,
 		eggGroups: ["Water 1", "Water 3"],
 	},
 	sirfetchd: {
@@ -15349,7 +15349,7 @@ let BattlePokedex = {
 		weightkg: 117,
 		color: "White",
 		prevo: "farfetchdgalar",
-		evoType: "levelExtra",
+		evoType: "other",
 		evoCondition: "Land 3 critical hits in 1 battle",
 		eggGroups: ["Flying", "Field"],
 	},
@@ -15376,8 +15376,8 @@ let BattlePokedex = {
 		weightkg: 66.6,
 		color: "Gray",
 		prevo: "yamaskgalar",
-		// TODO: Find correct evolution method
-		evoLevel: 34,
+		evoType: "other",
+		evoCondition: "Have 49+ HP lost and walk under stone sculpture in Dusty Bowl",
 		eggGroups: ["Mineral", "Amorphous"],
 	},
 	milcery: {
@@ -15789,7 +15789,6 @@ let BattlePokedex = {
 		weightkg: 950,
 		color: "Purple",
 		eggGroups: ["Undiscovered"],
-		otherFormes: ["eternatuseternamax"],
 	},
 	missingno: {
 		num: 0,
