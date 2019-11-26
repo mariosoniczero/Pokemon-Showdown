@@ -752,7 +752,7 @@ interface ItemData extends EffectData, ItemEventMethods, EventMethods {
 	zMove?: string | true
 	zMoveFrom?: string
 	zMoveType?: string
-	zMoveUser?: string[]
+	itemUser?: string[]
 }
 
 interface ModdedItemData extends Partial<ItemData>, ModdedEffectData {
@@ -922,7 +922,6 @@ interface TemplateData {
 	evos?: string[]
 	evoType?: 'trade' | 'useItem' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold' | 'other'
 	forme?: string
-	formeLetter?: string
 	gender?: GenderName
 	genderRatio?: {[k: string]: number}
 	maxHP?: number

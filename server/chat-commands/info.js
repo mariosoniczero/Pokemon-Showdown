@@ -680,12 +680,17 @@ const commands = {
 							details["&#10003; Z-Move"] = "";
 							details["Z-Crystal"] = dex.getItem(move.isZ).name;
 							if (move.basePower !== 1) {
-								details["User"] = dex.getItem(move.isZ).zMoveUser.join(", ");
+								details["User"] = dex.getItem(move.isZ).itemUser.join(", ");
 								details["Required Move"] = dex.getItem(move.isZ).zMoveFrom;
 							}
 						} else {
 							details["Z-Effect"] = "None";
 						}
+					}
+
+					if (dex.gen >= 8 && move.isMax) {
+						details["&#10003; Max Move"] = "";
+						if (typeof move.isMax === "string") details["User"] = move.isMax + "-Gmax";
 					}
 
 					details["Target"] = {

@@ -398,7 +398,7 @@ export class Item extends BasicEffect implements Readonly<BasicEffect & ItemData
 	 * Note that these are the full names, e.g. 'Mimikyu-Busted'
 	 * undefined, if not a species-specific Z crystal
 	 */
-	readonly zMoveUser?: string[];
+	readonly itemUser?: string[];
 	/** Is this item a Berry? */
 	readonly isBerry: boolean;
 	/** Whether or not this item ignores the Klutz ability. */
@@ -424,7 +424,7 @@ export class Item extends BasicEffect implements Readonly<BasicEffect & ItemData
 		this.zMove = data.zMove || undefined;
 		this.zMoveType = data.zMoveType || undefined;
 		this.zMoveFrom = data.zMoveFrom || undefined;
-		this.zMoveUser = data.zMoveUser || undefined;
+		this.itemUser = data.itemUser || undefined;
 		this.isBerry = !!data.isBerry;
 		this.ignoreKlutz = !!data.ignoreKlutz;
 		this.onPlate = data.onPlate || undefined;
@@ -524,12 +524,6 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	 * forme. Unlike forms, these have their own entry in `pokedex.js`.
 	 */
 	readonly otherFormes?: string[];
-	/**
-	 * Forme letter. One-letter version of the forme name. Usually the
-	 * first letter of the forme, but not always - e.g. Rotom-S is
-	 * Rotom-Fan because Rotom-F is Rotom-Frost.
-	 */
-	readonly formeLetter: string;
 	/**
 	 * Sprite ID. Basically the same as ID, but with a dash between
 	 * species and forme.
@@ -639,7 +633,6 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.forme = data.forme || '';
 		this.otherForms = data.otherForms || undefined;
 		this.otherFormes = data.otherFormes || undefined;
-		this.formeLetter = data.formeLetter || '';
 		this.spriteid = data.spriteid ||
 			(toID(this.baseSpecies) + (this.baseSpecies !== this.name ? `-${toID(this.forme)}` : ''));
 		this.abilities = data.abilities || {0: ""};
@@ -677,7 +670,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.battleOnly = !!data.battleOnly || !!this.isMega || !!this.isGigantamax || undefined;
 
 		if (!this.gen && this.num >= 1) {
-			if (this.num >= 810 || this.forme.endsWith('Galar') || this.forme === 'Gmax') {
+			if (this.num >= 810 || this.species.includes('Galar') || this.forme === 'Gmax') {
 				this.gen = 8;
 			} else if (this.num >= 722 || this.forme.startsWith('Alola') || this.forme === 'Starter') {
 				this.gen = 7;
@@ -796,8 +789,12 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 	readonly noPPBoosts: boolean;
 	/** Is this move a Z-Move? */
 	readonly isZ: boolean | string;
+	/** How many times does this move hit? */
+	readonly multihit?: number | number[];
 	/** Max/G-Max move power */
 	readonly gmaxPower?: number;
+	/** Z-move power */
+	readonly zMovePower?: number;
 	readonly flags: MoveFlags;
 	/** Whether or not the user must switch after using this move. */
 	readonly selfSwitch?: ID | boolean;
@@ -903,6 +900,33 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 				} else  {
 					this.gmaxPower = 90;
 				}
+			}
+		}
+		if (this.category !== 'Status' && !this.zMovePower) {
+			let basePower = this.basePower;
+			if (Array.isArray(this.multihit)) basePower *= 3;
+			if (!basePower) {
+				this.zMovePower = 100;
+			} else if (basePower >= 140) {
+				this.zMovePower = 200;
+			} else if (basePower >= 130) {
+				this.zMovePower = 195;
+			} else if (basePower >= 120) {
+				this.zMovePower = 190;
+			} else if (basePower >= 110) {
+				this.zMovePower = 185;
+			} else if (basePower >= 100) {
+				this.zMovePower = 180;
+			} else if (basePower >= 90) {
+				this.zMovePower = 175;
+			} else if (basePower >= 80) {
+				this.zMovePower = 160;
+			} else if (basePower >= 70) {
+				this.zMovePower = 140;
+			} else if (basePower >= 60) {
+				this.zMovePower = 120;
+			} else  {
+				this.zMovePower = 100;
 			}
 		}
 

@@ -72,33 +72,6 @@ let Formats = [
 		minSourceGen: 8,
 	},
 	{
-		name: "[Gen 8] National Dex (beta)",
-
-		mod: 'gen8',
-		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', '+Unreleased'],
-		banlist: ['Uber', 'Shadow Tag', 'Baton Pass',
-			"Gengar-Mega", "Kangaskhan-Mega", "Mewtwo", "Lugia", "Ho-Oh", "Blaziken", "Blaziken-Mega", "Salamence-Mega", "Metagross-Mega", "Kyogre", "Groudon", "Rayquaza", "Deoxys", "Lucario-Mega", "Dialga", "Palkia", "Giratina", "Darkrai", "Shaymin-Sky", "Arceus", "Reshiram", "Zekrom", "Landorus-Base", "Kyurem-White", "Genesect", "Xerneas", "Yveltal", "Zygarde", "Solgaleo", "Lunala", "Pheromosa", "Necrozma-Dusk-Mane", "Necrozma-Dawn-Wings", "Necrozma-Ultra", "Marshadow", "Naganadel",
-		],
-		onBegin() {
-			// if you have a mega or z, you can't dynamax
-			for (const side of this.sides) {
-				let canMegaOrZ = false;
-				for (const pokemon of side.pokemon) {
-					const item = this.dex.getItem(pokemon.item);
-					if (item.megaStone || item.zMove) {
-						canMegaOrZ = true;
-						break;
-					}
-				}
-				if (canMegaOrZ) {
-					for (const pokemon of side.pokemon) {
-						pokemon.canDynamax = false;
-					}
-				}
-			}
-		},
-	},
-	{
 		name: "[Gen 8] Ubers",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3656149/">Ubers Metagame Discussion</a>`,
@@ -129,7 +102,7 @@ let Formats = [
 
 		mod: 'gen8',
 		maxLevel: 5,
-		ruleset: ['Obtainable', 'Little Cup', 'Standard', 'Team Preview'],
+		ruleset: ['Obtainable', 'Little Cup', 'Standard', 'Team Preview', 'Dynamax Clause'],
 		banlist: ['Corsola-Galar', 'Sneasel', 'Swirlix', 'Baton Pass'],
 		minSourceGen: 8,
 	},
@@ -144,16 +117,17 @@ let Formats = [
 
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Same Type Clause', 'Standard', 'Team Preview'],
-		banlist: ['Eternatus', 'Zacian', 'Zamazenta', 'Shadow Tag', 'Baton Pass'],
+		banlist: ['Eternatus', 'Zacian', 'Zamazenta', 'Damp Rock', 'Smooth Rock', 'Shadow Tag', 'Baton Pass'],
 		minSourceGen: 8,
 	},
 	{
 		name: "[Gen 8] Anything Goes",
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3656317/">AG Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656317/">Anything Goes</a>`,
 		],
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 		minSourceGen: 8,
 	},
@@ -213,6 +187,21 @@ let Formats = [
 				pokemon.canGigantamax = null;
 			}
 		},
+	},
+	{
+		name: "[Gen 8] Galar Beginnings",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656359/">Galar Beginnings</a>`,
+		],
+
+		mod: 'gen8',
+		maxForcedLevel: 50,
+		teamLength: {
+			validate: [3, 6],
+			battle: 3,
+		},
+		ruleset: ['Obtainable', 'Standard GBU'],
+		minSourceGen: 8,
 	},
 	{
 		name: "[Gen 8] Custom Game",
@@ -355,62 +344,32 @@ let Formats = [
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
 
-	// Let's Go!
+	// National Dex
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "Let's Go!",
+		section: "National Dex",
 	},
 	{
-		name: "[Gen 7 Let's Go] Random Battle",
+		name: "[Gen 8] National Dex (beta)",
 
-		mod: 'letsgo',
-		team: 'random',
-		ruleset: ['Obtainable', 'Allow AVs', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		mod: 'gen8',
+		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', '+Unreleased', 'NatDex'],
+		banlist: ['Uber', 'Shadow Tag', 'Baton Pass',
+			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys', 'Dialga', 'Genesect', 'Gengar-Mega', 'Giratina', 'Groudon',
+			'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega', 'Lugia', 'Lunala',
+			'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa',
+			'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+		],
 	},
 	{
-		name: "[Gen 7 Let's Go] OU",
+		name: "[Gen 8] National Dex AG",
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3644015/">LGPE OverUsed</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656779/">National Dex AG</a>`,
 		],
 
-		mod: 'letsgo',
-		forcedLevel: 50,
-		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-		banlist: ['Uber'],
-	},
-	{
-		name: "[Gen 7 Let's Go] Singles No Restrictions",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3643931/">Let's Go! Discussion</a>`,
-		],
-
-		mod: 'letsgo',
-		searchShow: false,
-		ruleset: ['Obtainable', 'Allow AVs', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 7 Let's Go] Doubles OU",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3645303/">LGPE DOU</a>`,
-		],
-
-		mod: 'letsgo',
-		gameType: 'doubles',
-		forcedLevel: 50,
-		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-		banlist: ['Mewtwo'],
-	},
-	{
-		name: "[Gen 7 Let's Go] Doubles No Restrictions",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3643931/">Let's Go! Discussion</a>`,
-		],
-
-		mod: 'letsgo',
-		gameType: 'doubles',
-		searchShow: false,
-		ruleset: ['Obtainable', 'Allow AVs', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
+		mod: 'gen8',
+		ruleset: ['Obtainable', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', '+Past', '+Unreleased', 'NatDex'],
 	},
 
 	// OM of the Month
@@ -489,54 +448,59 @@ let Formats = [
 		column: 2,
 	},
 	{
-		name: "[Gen 7] Balanced Hackmons",
-		desc: `Anything that can be hacked in-game and is usable in local battles is allowed.`,
+		name: "[Gen 8] Almost Any Ability",
+		desc: `Pok&eacute;mon have access to almost any ability.`,
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3587475/">Balanced Hackmons</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3588586/">BH Suspects and Bans Discussion</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3593766/">BH Resources</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656414/">Almost Any Ability</a>`,
+			//`&bullet; <a href="https://www.smogon.com/forums/threads/3595753/">AAA Resources</a>`,
 		],
 
-		mod: 'gen7',
-		ruleset: ['-Nonexistent', '2 Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 'Sleep Clause Mod', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
-		banlist: ['Groudon-Primal', 'Rayquaza-Mega', 'Arena Trap', 'Contrary', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 'Moody', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Chatter', 'Comatose + Sleep Talk'],
+		mod: 'gen8',
+		ruleset: ['Obtainable', '!Obtainable Abilities', 'Species Clause', 'Nickname Clause', '2 Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
+		banlist: [
+			'Eternatus', 'Shedinja', 'Zacian', 'Zamazenta',
+			'Arena Trap', 'Comatose', 'Contrary', 'Fluffy', 'Fur Coat', 'Huge Power', 'Ice Scales', 'Illusion', 'Imposter', 'Innards Out', 'Libero', 'Moody', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Simple', 'Stakeout', 'Speed Boost', 'Water Bubble', 'Wonder Guard',
+		],
 	},
 	{
-		name: "[Gen 7] Mix and Mega",
-		desc: `Mega Stones and Primal Orbs can be used on almost any Pok&eacute;mon with no Mega Evolution limit.`,
+		name: "[Gen 8] STABmons",
+		desc: `Pok&eacute;mon can use any move of their typing, in addition to the moves they can normally learn.`,
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3587740/">Mix and Mega</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3591580/">Mix and Mega Resources</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656429/">STABmons</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] OU', 'STABmons Move Legality'],
+		banlist: ['Silvally', 'King\'s Rock', 'Razor Fang'],
+		restrictedMoves: ['Acupressure', 'Belly Drum', 'Shell Smash', 'Shift Gear', 'Spore'],
+	},
+	{
+		name: "[Gen 8] Mix and Mega",
+		desc: `Mega evolve any Pok&eacute;mon with any mega stone and no limit. Boosts based on mega evolution from gen 7.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656469/">Mix and Mega</a>`,
+			//`&bullet; <a href="https://www.smogon.com/forums/threads/3591580/">Mix and Mega Resources</a>`,
 		],
 
 		mod: 'mixandmega',
-		ruleset: ['Obtainable', 'Standard', 'Mega Rayquaza Clause', 'Team Preview'],
-		banlist: ['Shadow Tag', 'Gengarite', 'Baton Pass', 'Electrify'],
-		restrictedStones: ['Beedrillite', 'Blazikenite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite', 'Ultranecrozium Z'],
-		cannotMega: [
-			'Arceus', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Dragonite', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-Black',
-			'Kyurem-White', 'Landorus-Therian', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
-			'Palkia', 'Pheromosa', 'Rayquaza', 'Regigigas', 'Reshiram', 'Shuckle', 'Slaking', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
+		banlist: [
+			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
+			'Baton Pass', 'Electrify',
 		],
-		onValidateTeam(team) {
+		cannotMega: ['Eternatus', 'Zacian', 'Zamazenta'],
+		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
 			let itemTable = {};
 			for (const set of team) {
 				let item = this.dex.getItem(set.item);
-				if (!item) continue;
-				if (itemTable[item.id] && item.megaStone) return ["You are limited to one of each Mega Stone.", "(You have more than one " + this.dex.getItem(item).name + ")"];
-				if (itemTable[item.id] && ['blueorb', 'redorb'].includes(item.id)) return ["You are limited to one of each Primal Orb.", "(You have more than one " + this.dex.getItem(item).name + ")"];
+				if (!item || !item.megaStone) continue;
+				let template = this.dex.getTemplate(set.name || set.species);
+				// @ts-ignore
+				if (format.cannotMega.includes(template.baseSpecies)) return [`${template.species} is not allowed to hold ${item.name}.`];
+				if (itemTable[item.id]) return ["You are limited to one of each mega stone.", "(You have more than one " + item.name + ")"];
 				itemTable[item.id] = true;
 			}
-		},
-		onValidateSet(set, format) {
-			let template = this.dex.getTemplate(set.species || set.name);
-			let item = this.dex.getItem(set.item);
-			if (!item.megaEvolves && !['blueorb', 'redorb', 'ultranecroziumz'].includes(item.id)) return;
-			if (template.baseSpecies === item.megaEvolves || (template.baseSpecies === 'Groudon' && item.id === 'redorb') || (template.baseSpecies === 'Kyogre' && item.id === 'blueorb') || (template.species.substr(0, 9) === 'Necrozma-' && item.id === 'ultranecroziumz')) return;
-			let uberStones = format.restrictedStones || [];
-			let uberPokemon = format.cannotMega || [];
-			if (uberPokemon.includes(template.name) || set.ability === 'Power Construct' || uberStones.includes(item.name)) return ["" + template.species + " is not allowed to hold " + item.name + "."];
 		},
 		onBegin() {
 			for (const pokemon of this.getAllPokemon()) {
@@ -564,55 +528,16 @@ let Formats = [
 		},
 	},
 	{
-		name: "[Gen 7] Almost Any Ability",
-		desc: `Pok&eacute;mon can use any ability, barring the few that are restricted to their natural users.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3587901/">Almost Any Ability</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3595753/">AAA Resources</a>`,
-		],
-
-		mod: 'gen7',
-		ruleset: ['[Gen 7] OU', '2 Ability Clause', '!Obtainable Abilities'],
-		banlist: ['Archeops', 'Dragonite', 'Hoopa-Unbound', 'Kartana', 'Keldeo', 'Kyurem-Black', 'Regigigas', 'Shedinja', 'Slaking', 'Terrakion', 'Victini', 'Weavile'],
-		unbanlist: ['Aegislash', 'Genesect', 'Landorus', 'Metagross-Mega', 'Naganadel'],
-		restrictedAbilities: [
-			'Comatose', 'Contrary', 'Fluffy', 'Fur Coat', 'Huge Power', 'Illusion', 'Imposter', 'Innards Out',
-			'Parental Bond', 'Protean', 'Pure Power', 'Simple', 'Speed Boost', 'Stakeout', 'Water Bubble', 'Wonder Guard',
-		],
-		onValidateSet(set, format) {
-			let restrictedAbilities = format.restrictedAbilities || [];
-			if (restrictedAbilities.includes(set.ability)) {
-				let template = this.dex.getTemplate(set.species || set.name);
-				let legalAbility = false;
-				for (let i in template.abilities) {
-					// @ts-ignore
-					if (set.ability === template.abilities[i]) legalAbility = true;
-				}
-				if (!legalAbility) return ['The ability ' + set.ability + ' is banned on Pok\u00e9mon that do not naturally have it.'];
-			}
-		},
-	},
-	{
-		name: "[Gen 7] STABmons",
-		desc: `Pok&eacute;mon can use any move of their typing, in addition to the moves they can normally learn.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3587949/">STABmons</a>`,
-		],
-
-		mod: 'gen7',
-		ruleset: ['[Gen 7] OU', 'STABmons Move Legality'],
-		banlist: ['Aerodactyl', 'Araquanid', 'Blacephalon', 'Kartana', 'Komala', 'Kyurem-Black', 'Porygon-Z', 'Silvally', 'Tapu Koko', 'Tapu Lele', 'Thundurus-Base', 'King\'s Rock', 'Razor Fang'],
-		restrictedMoves: ['Acupressure', 'Belly Drum', 'Chatter', 'Extreme Speed', 'Geomancy', 'Lovely Kiss', 'Shell Smash', 'Shift Gear', 'Spore', 'Thousand Arrows'],
-	},
-	{
-		name: "[Gen 7] Camomons",
+		name: "[Gen 8] Camomons",
 		desc: `Pok&eacute;mon change type to match their first two moves.`,
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3598418/">Camomons</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656413/">Camomons</a>`,
 		],
-		mod: 'gen7',
-		ruleset: ['[Gen 7] OU'],
-		banlist: ['Dragonite', 'Kartana', 'Kyurem-Black', 'Latias-Mega', 'Shedinja', 'Kommonium Z'],
+
+		mod: 'gen8',
+		searchShow: false,
+		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
+		banlist: ['Eternatus', 'Shedinja', 'Zacian', 'Zamazenta'],
 		onModifyTemplate(template, target, source, effect) {
 			if (!target) return; // Chat command
 			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
@@ -625,6 +550,19 @@ let Formats = [
 		onAfterMega(pokemon) {
 			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 		},
+	},
+	{
+		name: "[Gen 7] Balanced Hackmons",
+		desc: `Anything that can be hacked in-game and is usable in local battles is allowed.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3587475/">Balanced Hackmons</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3588586/">BH Suspects and Bans Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3593766/">BH Resources</a>`,
+		],
+
+		mod: 'gen7',
+		ruleset: ['-Nonexistent', '2 Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 'Sleep Clause Mod', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		banlist: ['Groudon-Primal', 'Rayquaza-Mega', 'Arena Trap', 'Contrary', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 'Moody', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Chatter', 'Comatose + Sleep Talk'],
 	},
 
 	// Pet Mods
@@ -777,6 +715,14 @@ let Formats = [
 				pokemon.addVolatile(name, pokemon);
 			}
 		},
+	},
+	{
+		name: "[Gen 7 Let's Go] Random Battle",
+
+		mod: 'letsgo',
+		team: 'random',
+		searchShow: false,
+		ruleset: ['Obtainable', 'Allow AVs', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
 	},
 	{
 		name: "[Gen 6] Random Battle",
@@ -1158,6 +1104,18 @@ let Formats = [
 		minSourceGen: 6,
 	},
 	{
+		name: "[Gen 7 Let's Go] OU",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3644015/">LGPE OverUsed</a>`,
+		],
+
+		mod: 'letsgo',
+		searchShow: false,
+		forcedLevel: 50,
+		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		banlist: ['Uber'],
+	},
+	{
 		name: "[Gen 7] Custom Game",
 
 		mod: 'gen7',
@@ -1193,6 +1151,16 @@ let Formats = [
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Standard Doubles', 'Swagger Clause', 'Team Preview'],
 		banlist: ['DUber', 'Power Construct', 'Eevium Z', 'Dark Void', 'Gravity ++ Grass Whistle', 'Gravity ++ Hypnosis', 'Gravity ++ Lovely Kiss', 'Gravity ++ Sing', 'Gravity ++ Sleep Powder'],
+	},
+	{
+		name: "[Gen 7] Doubles UU",
+		threads: [`&bullet; <a href="https://www.smogon.com/forums/threads/3598014/">Doubles UU Metagame Discussion</a>`],
+
+		mod: 'gen7',
+		gameType: 'doubles',
+		searchShow: false,
+		ruleset: ['[Gen 7] Doubles OU'],
+		banlist: ['DOU', 'DBL'],
 	},
 	{
 		name: "[Gen 7] VGC 2019 Ultra Series",

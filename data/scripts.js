@@ -72,7 +72,7 @@ let BattleScripts = {
 			if (!lockedMove) {
 				if (!pokemon.deductPP(baseMove, null, target) && (move.id !== 'struggle')) {
 					this.add('cant', pokemon, 'nopp', move);
-					let gameConsole = [null, 'Game Boy', 'Game Boy', 'Game Boy Advance', 'DS', 'DS'][this.gen] || '3DS';
+					let gameConsole = [null, 'Game Boy', 'Game Boy Color', 'Game Boy Advance', 'DS', 'DS', '3DS', '3DS'][this.gen] || 'Switch';
 					this.hint(`This is not a bug, this is really how it works on the ${gameConsole}; try it yourself if you don't believe us.`);
 					this.clearActiveMove(true);
 					pokemon.moveThisTurnResult = false;
@@ -1050,7 +1050,7 @@ let BattleScripts = {
 		if (!skipChecks) {
 			if (pokemon.side.zMoveUsed) return;
 			if (!item.zMove) return;
-			if (item.zMoveUser && !item.zMoveUser.includes(pokemon.template.species)) return;
+			if (item.itemUser && !item.itemUser.includes(pokemon.template.species)) return;
 			let moveData = pokemon.getMoveData(move);
 			if (!moveData || !moveData.pp) return; // Draining the PP of the base move prevents the corresponding Z-move from being used.
 		}
@@ -1099,7 +1099,7 @@ let BattleScripts = {
 		if (pokemon.side.zMoveUsed || (pokemon.transformed && (pokemon.template.isMega || pokemon.template.isPrimal || pokemon.template.forme === "Ultra"))) return;
 		let item = pokemon.getItem();
 		if (!item.zMove) return;
-		if (item.zMoveUser && !item.zMoveUser.includes(pokemon.template.species)) return;
+		if (item.itemUser && !item.itemUser.includes(pokemon.template.species)) return;
 		let atLeastOne = false;
 		let mustStruggle = true;
 		/**@type {ZMoveOptions} */
@@ -1169,7 +1169,7 @@ let BattleScripts = {
 	canDynamax(pokemon, skipChecks) {
 		// {gigantamax?: string, maxMoves: {[k: string]: string} | null}[]
 		if (!skipChecks) {
-			if (!pokemon.canDynamax) return;
+			if (!pokemon.side.canDynamax) return;
 			if (this.canZMove(pokemon)) return;
 			if (this.canMegaEvo(pokemon)) return;
 			// TODO ban specific species from dynamaxing based on reserach
