@@ -599,7 +599,7 @@ let BattleLearnsets = {
 		gigaimpact: ["7M", "6M", "5M", "4M"],
 		growl: ["7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 		headbutt: ["7V", "4T"],
-		heatwave: [\"7T", "6T", "5T", "4T"],
+		heatwave: ["7T", "6T", "5T", "4T"],
 		hiddenpower: ["7M", "7V", "6M", "5M", "4M", "3M"],
 		horndrill: ["7V"],
 		hyperbeam: ["7M", "7V", "6M", "5M", "4M", "3M"],
