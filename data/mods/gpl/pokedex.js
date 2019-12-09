@@ -41,7 +41,7 @@ let BattlePokedex = {
     rapidash: {
         inherit: true,
         otherFormes: ["rapidashgalar", "rapidashmega"],
-    }
+    },
     rapidashmega: {
 		num: 78,
 		species: "Rapidash-Mega",
@@ -59,7 +59,7 @@ let BattlePokedex = {
     weezing: {
         inherit: true,
         otherFormes: ["weezinggalar", "weezingmega"],
-    }
+    },
     weezingmega: {
 		num: 110,
 		species: "Weezing-Mega",
