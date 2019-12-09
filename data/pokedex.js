@@ -4588,7 +4588,7 @@ let BattlePokedex = {
 		color: "Brown",
 		evos: ["linoone"],
 		eggGroups: ["Field"],
-		otherFormes: ["Zigzagoon-Galar"],
+		otherFormes: ["zigzagoongalar"],
 	},
 	zigzagoongalar: {
 		num: 263,
@@ -4616,7 +4616,7 @@ let BattlePokedex = {
 		prevo: "zigzagoon",
 		evoLevel: 20,
 		eggGroups: ["Field"],
-		otherFormes: ["Linoone-Galar"],
+		otherFormes: ["linoonegalar"],
 	},
 	linoonegalar: {
 		num: 264,
@@ -7048,6 +7048,7 @@ let BattlePokedex = {
 		heightm: 0.5,
 		weightkg: 9.3,
 		color: "Pink",
+		prevo: "cherubi",
 		evoLevel: 25,
 		eggGroups: ["Fairy", "Grass"],
 	},
@@ -7912,6 +7913,7 @@ let BattlePokedex = {
 		weightkg: 0.3,
 		color: "Red",
 		eggGroups: ["Amorphous"],
+		inheritsLearnsetFrom: "rotom",
 	},
 	rotomwash: {
 		num: 479,
@@ -7926,6 +7928,7 @@ let BattlePokedex = {
 		weightkg: 0.3,
 		color: "Red",
 		eggGroups: ["Amorphous"],
+		inheritsLearnsetFrom: "rotom",
 	},
 	rotomfrost: {
 		num: 479,
@@ -7940,6 +7943,7 @@ let BattlePokedex = {
 		weightkg: 0.3,
 		color: "Red",
 		eggGroups: ["Amorphous"],
+		inheritsLearnsetFrom: "rotom",
 	},
 	rotomfan: {
 		num: 479,
@@ -7954,6 +7958,7 @@ let BattlePokedex = {
 		weightkg: 0.3,
 		color: "Red",
 		eggGroups: ["Amorphous"],
+		inheritsLearnsetFrom: "rotom",
 	},
 	rotommow: {
 		num: 479,
@@ -7968,6 +7973,7 @@ let BattlePokedex = {
 		weightkg: 0.3,
 		color: "Red",
 		eggGroups: ["Amorphous"],
+		inheritsLearnsetFrom: "rotom",
 	},
 	uxie: {
 		num: 480,
@@ -9266,7 +9272,7 @@ let BattlePokedex = {
 		prevo: "darumaka",
 		evoLevel: 35,
 		eggGroups: ["Field"],
-		otherFormes: ["darmanitanzen", "darmanitangalar"],
+		otherFormes: ["darmanitanzen", "darmanitangalar", "darmanitangalarzen"],
 	},
 	darmanitanzen: {
 		num: 555,
@@ -9279,8 +9285,10 @@ let BattlePokedex = {
 		heightm: 1.3,
 		weightkg: 92.9,
 		color: "Blue",
+		prevo: "darumaka",
 		evoLevel: 35,
 		eggGroups: ["Field"],
+		inheritsLearnsetFrom: "darmanitan",
 	},
 	darmanitangalar: {
 		num: 555,
@@ -9297,22 +9305,23 @@ let BattlePokedex = {
 		evoType: "useItem",
 		evoItem: "Ice Stone",
 		eggGroups: ["Field"],
-		otherFormes: ["darmanitangalarzen"],
 	},
 	darmanitangalarzen: {
 		num: 555,
 		species: "Darmanitan-Galar-Zen",
-		baseSpecies: "Darmanitan-Galar",
-		forme: "Zen",
+		baseSpecies: "Darmanitan",
+		forme: "Galar-Zen",
 		types: ["Ice", "Fire"],
 		baseStats: {hp: 105, atk: 160, def: 55, spa: 30, spd: 55, spe: 135},
 		abilities: {0: "Zen Mode"},
 		heightm: 1.7,
 		weightkg: 120,
 		color: "White",
+		prevo: "darumakagalar",
 		evoType: "useItem",
 		evoItem: "Ice Stone",
 		eggGroups: ["Field"],
+		inheritsLearnsetFrom: "darmanitangalar",
 	},
 	maractus: {
 		num: 556,
@@ -11240,6 +11249,7 @@ let BattlePokedex = {
 		heightm: 1.7,
 		weightkg: 53,
 		color: "Brown",
+		prevo: "doublade",
 		evoType: "useItem",
 		evoItem: "Dusk Stone",
 		eggGroups: ["Mineral"],
@@ -11498,7 +11508,7 @@ let BattlePokedex = {
 		heightm: 0.8,
 		weightkg: 21.5,
 		color: "Green",
-		eggGroups: ["Human-Like"],
+		eggGroups: ["Flying", "Human-Like"],
 	},
 	dedenne: {
 		num: 702,
@@ -11724,7 +11734,7 @@ let BattlePokedex = {
 		weightkg: 99.5,
 		color: "Blue",
 		evos: ["avalugg"],
-		eggGroups: ["Monster"],
+		eggGroups: ["Monster", "Mineral"],
 	},
 	avalugg: {
 		num: 713,
@@ -11737,7 +11747,7 @@ let BattlePokedex = {
 		color: "Blue",
 		prevo: "bergmite",
 		evoLevel: 37,
-		eggGroups: ["Monster"],
+		eggGroups: ["Monster", "Mineral"],
 	},
 	noibat: {
 		num: 714,
@@ -11749,7 +11759,7 @@ let BattlePokedex = {
 		weightkg: 8,
 		color: "Purple",
 		evos: ["noivern"],
-		eggGroups: ["Flying"],
+		eggGroups: ["Flying", "Dragon"],
 	},
 	noivern: {
 		num: 715,
@@ -11762,7 +11772,7 @@ let BattlePokedex = {
 		color: "Purple",
 		prevo: "noibat",
 		evoLevel: 48,
-		eggGroups: ["Flying"],
+		eggGroups: ["Flying", "Dragon"],
 	},
 	xerneas: {
 		num: 716,
@@ -13104,7 +13114,7 @@ let BattlePokedex = {
 		weightkg: 0.7,
 		color: "Yellow",
 		eggGroups: ["Amorphous"],
-		otherFormes: ["mimikyubusted", "mimikyutotem"],
+		otherFormes: ["mimikyubusted", "mimikyutotem", "mimikyubustedtotem"],
 	},
 	mimikyubusted: {
 		num: 778,
@@ -13118,6 +13128,7 @@ let BattlePokedex = {
 		weightkg: 0.7,
 		color: "Yellow",
 		eggGroups: ["Amorphous"],
+		inheritsLearnsetFrom: "mimikyu",
 	},
 	mimikyutotem: {
 		num: 778,
@@ -13131,13 +13142,12 @@ let BattlePokedex = {
 		weightkg: 2.8,
 		color: "Yellow",
 		eggGroups: ["Amorphous"],
-		otherFormes: ["mimikyutotembusted"],
 	},
-	mimikyutotembusted: {
+	mimikyubustedtotem: {
 		num: 778,
-		species: "Mimikyu-Totem-Busted",
-		baseSpecies: "Mimikyu-Totem",
-		forme: "Busted",
+		species: "Mimikyu-Busted-Totem",
+		baseSpecies: "Mimikyu",
+		forme: "Busted-Totem",
 		types: ["Ghost", "Fairy"],
 		baseStats: {hp: 55, atk: 90, def: 80, spa: 50, spd: 105, spe: 96},
 		abilities: {0: "Disguise"},
@@ -13145,6 +13155,7 @@ let BattlePokedex = {
 		weightkg: 2.8,
 		color: "Yellow",
 		eggGroups: ["Amorphous"],
+		inheritsLearnsetFrom: "mimikyutotem",
 	},
 	bruxish: {
 		num: 779,
@@ -13447,6 +13458,7 @@ let BattlePokedex = {
 		weightkg: 460,
 		color: "Yellow",
 		eggGroups: ["Undiscovered"],
+		inheritsLearnsetFrom: "necrozma",
 	},
 	necrozmadawnwings: {
 		num: 800,
@@ -13461,6 +13473,7 @@ let BattlePokedex = {
 		weightkg: 350,
 		color: "Blue",
 		eggGroups: ["Undiscovered"],
+		inheritsLearnsetFrom: "necrozma",
 	},
 	necrozmaultra: {
 		num: 800,
@@ -13475,6 +13488,7 @@ let BattlePokedex = {
 		weightkg: 230,
 		color: "Blue",
 		eggGroups: ["Undiscovered"],
+		inheritsLearnsetFrom: "necrozma",
 	},
 	magearna: {
 		num: 801,
@@ -13589,7 +13603,6 @@ let BattlePokedex = {
 		heightm: 0.2,
 		weightkg: 8,
 		color: "Gray",
-		evos: ["melmetal"],
 		eggGroups: ["Undiscovered"],
 	},
 	melmetal: {
@@ -13602,7 +13615,6 @@ let BattlePokedex = {
 		heightm: 2.5,
 		weightkg: 800,
 		color: "Gray",
-		prevo: "meltan",
 		eggGroups: ["Undiscovered"],
 		otherFormes: ["melmetalgmax"],
 	},
@@ -14364,8 +14376,7 @@ let BattlePokedex = {
 		color: "Blue",
 		prevo: "clobbopus",
 		evoType: "levelMove",
-		// TODO: Figure out evolution move
-		evoMove: "",
+		evoMove: "Taunt",
 		eggGroups: ["Water 1", "Human-Like"],
 	},
 	sinistea: {
@@ -14620,9 +14631,8 @@ let BattlePokedex = {
 		weightkg: 0.5,
 		color: "White",
 		prevo: "milcery",
-		evoType: "levelHold",
-		// TODO
-		evoItem: "cloversweet",
+		evoType: "other",
+		evoCondition: "spin while holding a Sweet",
 		eggGroups: ["Fairy", "Amorphous"],
 		otherFormes: ["alcremiegmax"],
 		otherForms: ["alcremierubycream", "alcremiematcha", "alcremiemint", "alcremielemon", "alcremiesalted", "alcremierubyswirl", "alcremiecaramel", "alcremierainbow"],
@@ -14995,6 +15005,20 @@ let BattlePokedex = {
 		abilities: {0: "Pressure"},
 		heightm: 20,
 		weightkg: 950,
+		color: "Purple",
+		eggGroups: ["Undiscovered"],
+	},
+	eternatuseternamax: {
+		num: 890,
+		species: "Eternatus-Eternamax",
+		baseSpecies: "Eternatus",
+		forme: "Eternamax",
+		types: ["Poison", "Dragon"],
+		gender: "N",
+		baseStats: {hp: 255, atk: 115, def: 250, spa: 125, spd: 250, spe: 130},
+		abilities: {"0": "Pressure"},
+		heightm: 100,
+		weightkg: 0,
 		color: "Purple",
 		eggGroups: ["Undiscovered"],
 	},

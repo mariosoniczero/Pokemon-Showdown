@@ -13,7 +13,7 @@ let BattleFormats = {
 		effectType: 'ValidatorRule',
 		name: 'Standard',
 		desc: "The standard ruleset for all offical Smogon singles tiers (Ubers, OU, etc.)",
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	standardnext: {
 		effectType: 'ValidatorRule',
@@ -81,30 +81,8 @@ let BattleFormats = {
 		desc: "Makes sure the team is possible to obtain in-game.",
 		ruleset: ['Obtainable Moves', 'Obtainable Abilities', 'Obtainable Formes', 'Obtainable Misc'],
 		banlist: ['Unreleased', 'Nonexistent'],
-	},
-	obtainablemoves: {
-		effectType: 'ValidatorRule',
-		name: 'Obtainable Moves',
-		desc: "Makes sure moves are learnable by the species.",
-		banlist: [
-			// Leaf Blade: Gen 6+ Nuzleaf level-up
-			// Sucker Punch: Gen 4 Shiftry tutor
-			'Shiftry + Leaf Blade + Sucker Punch',
-		],
 		// Mostly hardcoded in team-validator.ts
-	},
-	obtainableabilities: {
-		effectType: 'ValidatorRule',
-		name: 'Obtainable Abilities',
-		desc: "Makes sure abilities match the species.",
-		// Hardcoded in team-validator.ts
-	},
-	obtainableformes: {
-		effectType: 'ValidatorRule',
-		name: 'Obtainable Formes',
-		desc: "Makes sure in-battle formes only appear in-battle.",
-		// Mostly hardcoded in team-validator.ts
-		onValidateTeam(team) {
+		onValidateTeam(team, format) {
 			let kyuremCount = 0;
 			let necrozmaDMCount = 0;
 			let necrozmaDWCount = 0;
@@ -114,6 +92,11 @@ let BattleFormats = {
 						return ['You cannot have more than one Kyurem-Black/Kyurem-White.'];
 					}
 					kyuremCount++;
+				}
+				if (set.species === 'Keldeo-Resolute') {
+					if (!set.moves.includes('secretsword')) {
+						return ['Keldeo-Resolute needs to have the move Secret Sword.'];
+					}
 				}
 				if (set.species === 'Necrozma-Dusk-Mane') {
 					if (necrozmaDMCount > 0) {
@@ -130,6 +113,24 @@ let BattleFormats = {
 			}
 			return [];
 		},
+	},
+	obtainablemoves: {
+		effectType: 'ValidatorRule',
+		name: 'Obtainable Moves',
+		desc: "Makes sure moves are learnable by the species.",
+		// Hardcoded in team-validator.ts
+	},
+	obtainableabilities: {
+		effectType: 'ValidatorRule',
+		name: 'Obtainable Abilities',
+		desc: "Makes sure abilities match the species.",
+		// Hardcoded in team-validator.ts
+	},
+	obtainableformes: {
+		effectType: 'ValidatorRule',
+		name: 'Obtainable Formes',
+		desc: "Makes sure in-battle formes only appear in-battle.",
+		// Hardcoded in team-validator.ts
 	},
 	obtainablemisc: {
 		effectType: 'ValidatorRule',
@@ -240,7 +241,7 @@ let BattleFormats = {
 			this.add('clearpoke');
 			for (const pokemon of this.getAllPokemon()) {
 				let details = pokemon.details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo|Silvally)(-[a-zA-Z?]+)?/g, '$1-*').replace(', shiny', '');
-				this.add('poke', pokemon.side.id, details, pokemon.item ? 'item' : '');
+				this.add('poke', pokemon.side.id, details, this.gen < 8 && pokemon.item ? 'item' : '');
 			}
 		},
 		onTeamPreview() {
@@ -541,13 +542,13 @@ let BattleFormats = {
 		name: 'NFE Clause',
 		desc: "Bans Pok&eacute;mon that are fully evolved or can't evolve",
 		onValidateSet(set) {
-			const template = this.dex.getTemplate(set.name || set.species);
+			const template = this.dex.getTemplate(set.species);
 			if (!template.nfe) {
 				return [set.species + " cannot evolve."];
 			}
 		},
 		onBegin() {
-			this.add('rule', 'NFE Clause: Fully Evolved Pok&eacute;mon are banned');
+			this.add('rule', 'NFE Clause: Fully Evolved Pokémon are banned');
 		},
 	},
 	hppercentagemod: {
@@ -679,8 +680,8 @@ let BattleFormats = {
 		name: 'Dynamax Clause',
 		desc: "Prevents Pok&eacute;mon from dynamaxing",
 		onBegin() {
-			for (let side of this.sides) {
-				side.canDynamax = false;
+			for (let pokemon of this.getAllPokemon()) {
+				pokemon.canDynamax = false;
 			}
 			this.add('rule', 'Dynamax Clause: You cannot dynamax');
 		},
@@ -714,10 +715,17 @@ let BattleFormats = {
 			return -typeMod;
 		},
 	},
-	natdex: {
+	natdexrule: {
 		effectType: 'Rule',
-		name: 'NatDex',
+		name: 'NatDex Rule',
 		onValidateSet(set) {
+			// These Pokemon are still unobtainable
+			const unobtainables = [
+				'Eevee-Starter', 'Floette-Eternal', 'Magearna-Original', 'Pichu-Spiky-eared', 'Pikachu-Belle', 'Pikachu-Cosplay', 'Pikachu-Libre', 'Pikachu-PhD', 'Pikachu-Pop-Star', 'Pikachu-Rock-Star', 'Pikachu-Starter',
+			];
+			if (unobtainables.includes(set.species)) {
+				return [`${set.name || set.species} does not exist in the National Dex.`];
+			}
 			// Items other than Z-Crystals and Pokémon-specific items should be illegal
 			if (!set.item) return;
 			let item = this.dex.getItem(set.item);
@@ -727,16 +735,12 @@ let BattleFormats = {
 		},
 		onBegin() {
 			// if you have a mega/primal or z, you can't dynamax
-			for (const side of this.sides) {
-				let canMegaOrZ = false;
-				for (const pokemon of side.pokemon) {
-					const item = this.dex.getItem(pokemon.item);
-					if (item.megaStone || item.onPrimal || item.zMove) {
-						canMegaOrZ = true;
-						break;
-					}
+			for (const pokemon of this.getAllPokemon()) {
+				const item = pokemon.getItem();
+				// this.canMegaEvo check is for Rayquaza.
+				if (item.megaStone || this.canMegaEvo(pokemon) || item.onPrimal || item.zMove) {
+					pokemon.canDynamax = false;
 				}
-				if (canMegaOrZ) side.canDynamax = false;
 			}
 		},
 	},
@@ -752,7 +756,7 @@ let BattleFormats = {
 		desc: "Allows Pok&eacute;mon to use any move that they or a previous evolution/out-of-battle forme share a type with",
 		checkLearnset(move, template, setSources, set) {
 			const restrictedMoves = this.format.restrictedMoves || [];
-			if (!move.isNonstandard && !restrictedMoves.includes(move.name)) {
+			if (!restrictedMoves.includes(move.name) && !move.isNonstandard && !move.isMax) {
 				let dex = this.dex;
 				let types = template.types;
 				let baseTemplate = dex.getTemplate(template.baseSpecies);

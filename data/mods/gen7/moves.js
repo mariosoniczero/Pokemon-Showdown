@@ -22,6 +22,10 @@ let BattleMovedex = {
 		inherit: true,
 		isNonstandard: null,
 	},
+	banefulbunker: {
+		inherit: true,
+		desc: "The user is protected from most attacks made by other Pokemon during this turn, and Pokemon making contact with the user become poisoned. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
+	},
 	barrage: {
 		inherit: true,
 		isNonstandard: null,
@@ -130,6 +134,33 @@ let BattleMovedex = {
 		inherit: true,
 		isNonstandard: null,
 	},
+	detect: {
+		inherit: true,
+		desc: "The user is protected from most attacks made by other Pokemon during this turn. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
+	},
+	defog: {
+		inherit: true,
+		onHit(target, source, move) {
+			let success = false;
+			if (!target.volatiles['substitute'] || move.infiltrates) success = !!this.boost({evasion: -1});
+			let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			for (const targetCondition of removeTarget) {
+				if (target.side.removeSideCondition(targetCondition)) {
+					if (!removeAll.includes(targetCondition)) continue;
+					this.add('-sideend', target.side, this.dex.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + source);
+					success = true;
+				}
+			}
+			for (const sideCondition of removeAll) {
+				if (source.side.removeSideCondition(sideCondition)) {
+					this.add('-sideend', source.side, this.dex.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+					success = true;
+				}
+			}
+			return success;
+		},
+	},
 	devastatingdrake: {
 		inherit: true,
 		isNonstandard: null,
@@ -166,9 +197,59 @@ let BattleMovedex = {
 		inherit: true,
 		isNonstandard: null,
 	},
+	electricterrain: {
+		inherit: true,
+		desc: "For 5 turns, the terrain becomes Electric Terrain. During the effect, the power of Electric-type attacks made by grounded Pokemon is multiplied by 1.5 and grounded Pokemon cannot fall asleep; Pokemon already asleep do not wake up. Camouflage transforms the user into an Electric type, Nature Power becomes Thunderbolt, and Secret Power has a 30% chance to cause paralysis. Fails if the current terrain is Electric Terrain.",
+		effect: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source && source.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onSetStatus(status, target, source, effect) {
+				if (status.id === 'slp' && target.isGrounded() && !target.isSemiInvulnerable()) {
+					if (effect.effectType === 'Move' && !effect.secondaries) {
+						this.add('-activate', target, 'move: Electric Terrain');
+					}
+					return false;
+				}
+			},
+			onTryAddVolatile(status, target) {
+				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
+				if (status.id === 'yawn') {
+					this.add('-activate', target, 'move: Electric Terrain');
+					return null;
+				}
+			},
+			onBasePower(basePower, attacker, defender, move) {
+				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					this.debug('electric terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onStart(battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Electric Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Electric Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd() {
+				this.add('-fieldend', 'move: Electric Terrain');
+			},
+		},
+	},
 	embargo: {
 		inherit: true,
 		isNonstandard: null,
+	},
+	endure: {
+		inherit: true,
+		desc: "The user will survive attacks made by other Pokemon during this turn with at least 1 HP. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
 	},
 	extremeevoboost: {
 		inherit: true,
@@ -225,6 +306,52 @@ let BattleMovedex = {
 	grasswhistle: {
 		inherit: true,
 		isNonstandard: null,
+	},
+	grassyterrain: {
+		inherit: true,
+		desc: "For 5 turns, the terrain becomes Grassy Terrain. During the effect, the power of Grass-type attacks used by grounded Pokemon is multiplied by 1.5, the power of Bulldoze, Earthquake, and Magnitude used against grounded Pokemon is multiplied by 0.5, and grounded Pokemon have 1/16 of their maximum HP, rounded down, restored at the end of each turn, including the last turn. Camouflage transforms the user into a Grass type, Nature Power becomes Energy Ball, and Secret Power has a 30% chance to cause sleep. Fails if the current terrain is Grassy Terrain.",
+		effect: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source && source.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onBasePower(basePower, attacker, defender, move) {
+				let weakenedMoves = ['earthquake', 'bulldoze', 'magnitude'];
+				if (weakenedMoves.includes(move.id)) {
+					this.debug('move weakened by grassy terrain');
+					return this.chainModify(0.5);
+				}
+				if (move.type === 'Grass' && attacker.isGrounded()) {
+					this.debug('grassy terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onStart(battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Grassy Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Grassy Terrain');
+				}
+			},
+			onResidualOrder: 5,
+			onResidualSubOrder: 3,
+			onResidual() {
+				this.eachEvent('Terrain');
+			},
+			onTerrain(pokemon) {
+				if (pokemon.isGrounded() && !pokemon.isSemiInvulnerable()) {
+					this.debug('Pokemon is grounded, healing through Grassy Terrain.');
+					this.heal(pokemon.baseMaxhp / 16, pokemon, pokemon);
+				}
+			},
+			onEnd() {
+				if (!this.effectData.duration) this.eachEvent('Terrain');
+				this.add('-fieldend', 'move: Grassy Terrain');
+			},
+		},
 	},
 	guardianofalola: {
 		inherit: true,
@@ -562,6 +689,50 @@ let BattleMovedex = {
 		inherit: true,
 		isNonstandard: null,
 	},
+	protect: {
+		inherit: true,
+		desc: "The user is protected from most attacks made by other Pokemon during this turn. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
+	},
+	psychicterrain: {
+		inherit: true,
+		desc: "For 5 turns, the terrain becomes Psychic Terrain. During the effect, the power of Psychic-type attacks made by grounded Pokemon is multiplied by 1.5 and grounded Pokemon cannot be hit by moves with priority greater than 0, unless the target is an ally. Camouflage transforms the user into a Psychic type, Nature Power becomes Psychic, and Secret Power has a 30% chance to lower the target's Speed by 1 stage. Fails if the current terrain is Psychic Terrain.",
+		effect: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source && source.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onTryHitPriority: 4,
+			onTryHit(target, source, effect) {
+				if (!target.isGrounded() || target.isSemiInvulnerable() || target.side === source.side) return;
+				if (effect && (effect.priority <= 0.1 || effect.target === 'self')) {
+					return;
+				}
+				this.add('-activate', target, 'move: Psychic Terrain');
+				return null;
+			},
+			onBasePower(basePower, attacker, defender, move) {
+				if (move.type === 'Psychic' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					this.debug('psychic terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onStart(battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Psychic Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Psychic Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd() {
+				this.add('-fieldend', 'move: Psychic Terrain');
+			},
+		},
+	},
 	psychoboost: {
 		inherit: true,
 		isNonstandard: null,
@@ -581,6 +752,28 @@ let BattleMovedex = {
 	pursuit: {
 		inherit: true,
 		isNonstandard: null,
+	},
+	quash: {
+		inherit: true,
+		onHit(target) {
+			if (target.side.active.length < 2) return false; // fails in singles
+			let action = this.willMove(target);
+			if (!action) return false;
+
+			action.priority = -7.1;
+			this.cancelMove(target);
+			for (let i = this.queue.length - 1; i >= 0; i--) {
+				if (this.queue[i].choice === 'residual') {
+					this.queue.splice(i, 0, action);
+					break;
+				}
+			}
+			this.add('-activate', target, 'move: Quash');
+		},
+	},
+	quickguard: {
+		inherit: true,
+		desc: "The user and its party members are protected from attacks with original or altered priority greater than 0 made by other Pokemon, including allies, during this turn. This move modifies the same 1/X chance of being successful used by other protection moves, where X starts at 1 and triples each time this move is successfully used, but does not use the chance to check for failure. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn or if this move is already in effect for the user's side.",
 	},
 	rage: {
 		inherit: true,
@@ -725,6 +918,10 @@ let BattleMovedex = {
 		inherit: true,
 		isNonstandard: null,
 	},
+	spikyshield: {
+		inherit: true,
+		desc: "The user is protected from most attacks made by other Pokemon during this turn, and Pokemon making contact with the user lose 1/8 of their maximum HP, rounded down. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
+	},
 	splinteredstormshards: {
 		inherit: true,
 		isNonstandard: null,
@@ -812,6 +1009,10 @@ let BattleMovedex = {
 	watersport: {
 		inherit: true,
 		isNonstandard: null,
+	},
+	wideguard: {
+		inherit: true,
+		desc: "The user and its party members are protected from moves made by other Pokemon, including allies, during this turn that target all adjacent foes or all adjacent Pokemon. This move modifies the same 1/X chance of being successful used by other protection moves, where X starts at 1 and triples each time this move is successfully used, but does not use the chance to check for failure. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn or if this move is already in effect for the user's side.",
 	},
 	wringout: {
 		inherit: true,
