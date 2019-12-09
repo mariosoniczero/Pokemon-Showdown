@@ -1546,7 +1546,7 @@ let BattleLearnsets = {
 		psychup: ["7M", "6M", "5M"],
 		quickattack: ["7L1", "6L1", "5L1"],
 		quickguard: ["7L42", "6L1", "5L55", "5S2"],
-		reflect: "7M", "6M", "5M"],
+		reflect: ["7M", "6M", "5M"],
 		rest: ["7M", "6M", "5M"],
 		retaliate: ["7L19", "6M", "6L31", "6S3", "5M", "5L31", "5S1", "5S0"],
 		return: ["7M", "6M", "5M"],
