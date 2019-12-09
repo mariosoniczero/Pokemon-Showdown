@@ -11,6 +11,30 @@ let Formats = [
 	{
 		section: "Custom",
 	},
+    {
+		name: "[Gen 8] Custom Mega OU",
+
+		mod: 'gpl',
+		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', '+Unreleased', 'NatDex', '+GPL', 'Baton Pass Clause', 'Z-Move Clause', 'Dynamax Clause'],
+		banlist: ['Uber', 'Shadow Tag', 'Power Construct', 'Kangaskhanite + Seismic Toss',
+			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys', 'Dialga', 'Genesect', 'Gengar-Mega', 'Giratina', 'Groudon',
+			'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega', 'Lugia', 'Lunala',
+			'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa',
+			'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+		],
+	},
+	{
+		name: "[Gen 8] Draft League",
+
+		mod: 'gpl',
+		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', '+Unreleased', 
+                  'NatDex', '+GPL', 'Baton Pass Clause', 'Z-Move Clause', 'Dynamax Clause'
+        ],
+		banlist: ['Power Construct', 'Bellossomite + Strength Sap', 
+                  'Kangaskhanite + Seismic Toss', 'Glalitite + Moody', 
+                  'Battle Bond', 'Greninja + Protean', 'Blaziken + Speed Boost'
+		],
+	},
 	{
 		name: "[Gen 7] Custom Mega OU",
 
