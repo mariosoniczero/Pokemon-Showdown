@@ -3025,7 +3025,6 @@ let BattlePokedex = {
 		prevo: "bayleef",
 		evoLevel: 32,
 		eggGroups: ["Monster", "Grass"],
-		otherFormes: ["meganiummega"],
 	},
 	cyndaquil: {
 		num: 155,
@@ -3068,7 +3067,6 @@ let BattlePokedex = {
 		prevo: "quilava",
 		evoLevel: 36,
 		eggGroups: ["Field"],
-		otherFormes: ["typhlosionmega"],
 	},
 	totodile: {
 		num: 158,
@@ -3111,7 +3109,6 @@ let BattlePokedex = {
 		prevo: "croconaw",
 		evoLevel: 30,
 		eggGroups: ["Monster", "Water 1"],
-		otherFormes: ["feraligatrmega"],
 	},
 	sentret: {
 		num: 161,
