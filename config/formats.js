@@ -6,12 +6,67 @@
 /**@type {(FormatsData | {section: string, column?: number})[]} */
 let Formats = [
 
+	// Custom
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "Custom",
+	},
+    {
+		name: "[Gen 8] Custom Mega OU",
+
+		mod: 'gpl',
+		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', '+Unreleased', 'NatDex', '+GPL', 'Baton Pass Clause', 'Z-Move Clause', 'Dynamax Clause'],
+		banlist: ['Uber', 'Shadow Tag', 'Power Construct', 'Kangaskhanite + Seismic Toss',
+			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys', 'Dialga', 'Genesect', 'Gengar-Mega', 'Giratina', 'Groudon',
+			'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega', 'Lugia', 'Lunala',
+			'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa',
+			'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+		],
+	},
+	{
+		name: "[Gen 8] Draft League",
+
+		mod: 'gpl',
+		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', '+Unreleased', 
+                  'NatDex', '+GPL', 'Baton Pass Clause', 'Z-Move Clause', 'Dynamax Clause'
+        ],
+		banlist: ['Power Construct', 'Bellossomite + Strength Sap', 
+                  'Kangaskhanite + Seismic Toss', 'Glalitite + Moody', 
+                  'Battle Bond', 'Greninja + Protean', 'Blaziken + Speed Boost'
+		],
+	},
+	{
+		name: "[Gen 7] Custom Mega OU",
+
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Allow GPL', 'Baton Pass Clause'],
+
+		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Shadow Tag'],
+	},
+	{
+		name: "[Gen 7] Custom Mega UU",
+
+		mod: 'gen7',
+		ruleset: ['[Gen 7] Custom Mega OU', 'Allow GPL'],
+
+		banlist: ['OU', 'UUBL', 'Drizzle', 'Drought', 'Kommonium Z', 'Mewnium Z', 'Infernapite', 'Roseradite', 'Flygonite Y', 'Lanturnite', 'Rapidashite'],
+	},
+	{
+		name: "[Gen 7] Draft League",
+
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Allow GPL'],
+
+		banlist: ['Power Construct', 'Bellossom + Strength Sap'],
+	},
+	
 	// Sw/Sh Singles
 	///////////////////////////////////////////////////////////////////
 
 	{
 		section: "Sw/Sh Singles",
 	},
+
 	{
 		name: "[Gen 8] Random Battle",
 		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
