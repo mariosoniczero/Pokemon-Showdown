@@ -5,7 +5,45 @@
 
 /**@type {(FormatsData | {section: string, column?: number})[]} */
 let Formats = [
+	
+    // GPL
+	///////////////////////////////////////////////////////////////////
+    {
+        section: "GPL",
+    },
+    {
+		name: "[Gen 8] Custom Mega OU",
 
+		mod: 'gen8',
+		ruleset: [
+            'Obtainable', 'Standard', 'Team Preview', '+Past', 'NatDex Rule',
+            '+GPL', 'Dynamax Clause', 'Z-Move Clause', 'Baton Pass Clause'
+        ],
+		banlist: [
+			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys', 'Dialga', 'Eternatus', 'Genesect', 'Gengar-Mega', 'Giratina', 'Groudon',
+			'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega', 'Lugia', 'Lunala',
+			'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
+			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Power Construct', 'Shadow Tag'
+		],
+	},
+    {
+		name: "[Gen 8] Draft League",
+
+		mod: 'gen8',
+		ruleset: [
+            'Obtainable', 'Standard', 'Team Preview', '+Past', 
+            'NatDex Rule', '+GPL', 'Baton Pass Clause', 
+            'Z-Move Clause', 'Dynamax Clause'
+        ],
+		banlist: [
+            'Power Construct', 'Bellossomite + Strength Sap', 
+            'Kangaskhanite + Seismic Toss', 'Glalitite + Moody',
+            'Battle Bond', 'Greninja + Protean', 'Blaziken + Speed Boost'
+		],
+	},
+    
+    
 	// Sw/Sh Singles
 	///////////////////////////////////////////////////////////////////
 
