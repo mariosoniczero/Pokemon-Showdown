@@ -1527,6 +1527,6 @@ export class ModdedDex {
 dexes['base'] = new ModdedDex(undefined, true);
 
 // "gen8" is an alias for the current base data
-dexes['gen8'] = dexes['base'];
+dexes['gpl'] = dexes['base'];
 
-export const Dex = dexes['gen8'];
+export const Dex = dexes['gpl'];
