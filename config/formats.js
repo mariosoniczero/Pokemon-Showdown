@@ -14,7 +14,7 @@ let Formats = [
     {
 		name: "[Gen 8] Custom Mega OU",
 
-		mod: 'gpl',
+		mod: 'gen8',
 		ruleset: [
             'Obtainable', 'Standard', 'Team Preview', '+Past', 'NatDex Rule',
             '+GPL', 'Dynamax Clause', 'Z-Move Clause', 'Baton Pass Clause'
@@ -26,11 +26,12 @@ let Formats = [
 			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
 			'Power Construct', 'Shadow Tag'
 		],
+        minSourceGen: 1,
 	},
     {
 		name: "[Gen 8] Draft League",
 
-		mod: 'gpl',
+		mod: 'gen8',
 		ruleset: [
             'Obtainable', 'Standard', 'Team Preview', '+Past', 
             'NatDex Rule', '+GPL', 'Baton Pass Clause', 
@@ -41,6 +42,7 @@ let Formats = [
             'Kangaskhanite + Seismic Toss', 'Glalitite + Moody',
             'Battle Bond', 'Greninja + Protean', 'Blaziken + Speed Boost'
 		],
+        minSourceGen: 1,
 	},
     
     
