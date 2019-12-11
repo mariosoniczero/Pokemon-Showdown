@@ -222,7 +222,7 @@ export class ModdedDex {
 	forFormat(format: Format | string): ModdedDex {
 		if (!this.modsLoaded) this.includeMods();
 		const mod = this.getFormat(format).mod;
-		return dexes[mod || 'gpl'].includeData();
+		return dexes[mod || 'gen8'].includeData();
 	}
 
 	modData(dataType: DataType, id: string) {
@@ -1527,6 +1527,6 @@ export class ModdedDex {
 dexes['base'] = new ModdedDex(undefined, true);
 
 // "gen8" is an alias for the current base data
-dexes['gpl'] = dexes['base'];
+dexes['gen8'] = dexes['base'];
 
-export const Dex = dexes['gpl'];
+export const Dex = dexes['gen8'];

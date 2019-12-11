@@ -26,7 +26,6 @@ let Formats = [
 			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
 			'Power Construct', 'Shadow Tag'
 		],
-        minSourceGen: 1,
 	},
     {
 		name: "[Gen 8] Draft League",
@@ -42,7 +41,6 @@ let Formats = [
             'Kangaskhanite + Seismic Toss', 'Glalitite + Moody',
             'Battle Bond', 'Greninja + Protean', 'Blaziken + Speed Boost'
 		],
-        minSourceGen: 1,
 	},
     
     
