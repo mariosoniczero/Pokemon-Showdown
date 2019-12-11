@@ -41,6 +41,7 @@ let Formats = [
             'Kangaskhanite + Seismic Toss', 'Glalitite + Moody',
             'Battle Bond', 'Greninja + Protean', 'Blaziken + Speed Boost'
 		],
+        minSourceGen: 6,
 	},
     
     
