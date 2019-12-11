@@ -14,7 +14,7 @@ let Formats = [
     {
 		name: "[Gen 8] Custom Mega OU",
 
-		mod: 'gpl',
+		mod: 'gen8',
 		ruleset: [
             'Obtainable', 'Standard', 'Team Preview', '+Past', 'NatDex Rule',
             '+GPL', 'Dynamax Clause', 'Z-Move Clause', 'Baton Pass Clause'
@@ -31,7 +31,7 @@ let Formats = [
     {
 		name: "[Gen 8] Draft League",
 
-		mod: 'gpl',
+		mod: 'gen8',
 		ruleset: [
             'Obtainable', 'Standard', 'Team Preview', '+Past', 
             'NatDex Rule', '+GPL', 'Baton Pass Clause', 
