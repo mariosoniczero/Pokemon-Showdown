@@ -783,7 +783,7 @@ export class Pokemon {
 			}
 			let disabled = moveSlot.disabled;
 			if (this.volatiles['dynamax']) {
-				disabled = false
+				disabled = false;
 			} else if (
 				(moveSlot.pp <= 0 && !this.volatiles['partialtrappinglock']) || disabled &&
 				this.side.active.length >= 2 && this.battle.targetTypeChoices(target!)
@@ -1724,6 +1724,7 @@ export class Pokemon {
 		return totalTypeMod;
 	}
 
+	/** false = immune, true = not immune */
 	runImmunity(type: string, message?: string | boolean) {
 		if (!type || type === '???') return true;
 		if (!(type in this.battle.dex.data.TypeChart)) {
