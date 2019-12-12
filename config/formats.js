@@ -12,7 +12,7 @@ let Formats = [
         section: "GPL",
     },
     {
-		name: "Custom Mega OU",
+		name: "[Gen 8] National Dex Custom Mega OU",
 
 		mod: 'gen8',
 		ruleset: [
@@ -28,7 +28,7 @@ let Formats = [
 		],
 	},
     {
-		name: "Draft League",
+		name: "[Gen 8] National Dex Draft League",
 
 		mod: 'gen8',
 		ruleset: [
