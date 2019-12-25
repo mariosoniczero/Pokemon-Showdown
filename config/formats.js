@@ -11,6 +11,21 @@ let Formats = [
     {
         section: "GPL",
     },
+	{
+		name: "[Gen 8] National Dex Custom Mega Draft League",
+
+		mod: 'gen8',
+		ruleset: [
+            'Obtainable', 'Standard', 'Team Preview', '+Past', 
+            'NatDex Rule', '+GPL', 'Baton Pass Clause', 
+            'Z-Move Clause', 'Dynamax Clause'
+        ],
+		banlist: [
+            'Power Construct', 'Bellossomite + Strength Sap', 
+            'Kangaskhanite + Seismic Toss', 'Glalitite + Moody',
+            'Battle Bond', 'Greninja + Protean', 'Blaziken + Speed Boost'
+		],
+	},
     {
 		name: "[Gen 8] National Dex Custom Mega OU",
 
@@ -27,21 +42,7 @@ let Formats = [
 			'Power Construct', 'Shadow Tag'
 		],
 	},
-    {
-		name: "[Gen 8] National Dex Draft League",
-
-		mod: 'gen8',
-		ruleset: [
-            'Obtainable', 'Standard', 'Team Preview', '+Past', 
-            'NatDex Rule', '+GPL', 'Baton Pass Clause', 
-            'Z-Move Clause', 'Dynamax Clause'
-        ],
-		banlist: [
-            'Power Construct', 'Bellossomite + Strength Sap', 
-            'Kangaskhanite + Seismic Toss', 'Glalitite + Moody',
-            'Battle Bond', 'Greninja + Protean', 'Blaziken + Speed Boost'
-		],
-	},
+    
     
     
 	// Sw/Sh Singles
