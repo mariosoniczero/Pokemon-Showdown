@@ -674,6 +674,7 @@ export class Pokemon {
 		// Check if any active pokemon have the ability Neutralizing Gas
 		let neutralizinggas = false;
 		for (const pokemon of this.battle.getAllActive()) {
+			// can't use hasAbility because it would lead to infinite recursion
 			if (pokemon.ability === ('neutralizinggas' as ID) && !pokemon.volatiles['gastroacid']
 				&& !pokemon.abilityData.ending) {
 				neutralizinggas = true;
@@ -1366,15 +1367,17 @@ export class Pokemon {
 		return this.battle.dex.getEffectByID(this.status);
 	}
 
-	eatItem(source?: Pokemon, sourceEffect?: Effect) {
+	eatItem(force?: boolean, source?: Pokemon, sourceEffect?: Effect) {
 		if (!this.hp || !this.isActive) return false;
 		if (!this.item) return false;
 
 		if (!sourceEffect && this.battle.effect) sourceEffect = this.battle.effect;
 		if (!source && this.battle.event && this.battle.event.target) source = this.battle.event.target;
 		const item = this.getItem();
-		if (this.battle.runEvent('UseItem', this, null, null, item) &&
-			this.battle.runEvent('TryEatItem', this, null, null, item)) {
+		if (
+			this.battle.runEvent('UseItem', this, null, null, item) &&
+			(force || this.battle.runEvent('TryEatItem', this, null, null, item))
+		) {
 
 			this.battle.add('-enditem', this, item, '[eat]');
 
@@ -1384,11 +1387,11 @@ export class Pokemon {
 			if (item.id === 'leppaberry') {
 				switch (this.pendingStaleness) {
 				case 'internal':
-						if (this.staleness !== 'external') this.staleness = 'internal';
-						break;
+					if (this.staleness !== 'external') this.staleness = 'internal';
+					break;
 				case 'external':
-						this.staleness = 'external';
-						break;
+					this.staleness = 'external';
+					break;
 				}
 				this.pendingStaleness = undefined;
 			}
@@ -1712,6 +1715,22 @@ export class Pokemon {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Like Field.effectiveWeather(), but ignores sun and rain if
+	 * the Utility Umbrella is active for the Pokemon.
+	 */
+	effectiveWeather() {
+		const weather = this.battle.field.effectiveWeather();
+		switch (weather) {
+		case 'sunnyday':
+		case 'raindance':
+		case 'desolateland':
+		case 'primordialsea':
+			if (this.hasItem('utilityumbrella')) return '';
+		}
+		return weather;
 	}
 
 	runEffectiveness(move: ActiveMove) {

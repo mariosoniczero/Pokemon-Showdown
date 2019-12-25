@@ -1078,27 +1078,22 @@ export class TeamValidator {
 				// Impossible!
 				throw new Error(`Species ${template.name} has a required ability despite not being a battle-only forme; it should just be in its abilities table.`);
 			}
-			if (template.requiredItems) {
-				if (!template.requiredItems.includes(item.name)) {
-					// Memory/Drive/Griseous Orb/Plate/Z-Crystal - Forme mismatch
-					if (dex.gen <= 7 || !['Download', 'Multitype', 'RKS System'].includes(template.abilities[0]) || set.ability === template.abilities[0]) {
+			if (template.requiredItems && !template.requiredItems.includes(item.name)) {
+				if (dex.gen >= 8 && (template.baseSpecies === 'Arceus' || template.baseSpecies === 'Silvally')) {
+					// Arceus/Silvally formes in gen 8 only require the item with Multitype/RKS System
+					if (set.ability === template.abilities[0]) {
 						problems.push(`${name} needs to hold ${Chat.toOrList(template.requiredItems)}.`);
 					}
-				}
-				// In gen 8, non-aesthetic formes always require the real ability
-				if (dex.gen > 7 && !['Download', 'Multitype', 'RKS System'].includes(template.abilities[0]) && set.ability !== template.abilities[0]) {
-					problems.push(`${name} needs to have ${template.abilities[0]}.`);
+				} else {
+					// Memory/Drive/Griseous Orb/Plate/Z-Crystal - Forme mismatch
+					problems.push(`${name} needs to hold ${Chat.toOrList(template.requiredItems)}.`);
 				}
 			}
 
 			// Mismatches between the set forme (if not base) and the item signature forme will have been rejected already.
-			// It only remains to assign the right forme to a set with the base species (Arceus/Genesect/Giratina/Silvally/Zacian/Zamazenta).
+			// It only remains to assign the right forme to a set with the base species (Arceus/Genesect/Giratina/Silvally).
 			if (item.forcedForme && template.species === dex.getTemplate(item.forcedForme).baseSpecies) {
 				set.species = item.forcedForme;
-				// Assign the correct ability
-				if (dex.gen > 7 && !['Download', 'Multitype', 'RKS System'].includes(template.abilities[0])) {
-					set.ability = template.abilities[0];
-				}
 			}
 		}
 
@@ -1112,6 +1107,16 @@ export class TeamValidator {
 					set.species = cosplay[moveid];
 					break;
 				}
+			}
+		}
+
+		const crowned: {[k: string]: string} = {
+			'Zacian-Crowned': 'behemothblade', 'Zamazenta-Crowned': 'behemothbash',
+		};
+		if (set.species in crowned) {
+			const ironHead = set.moves.indexOf('ironhead');
+			if (ironHead >= 0) {
+				set.moves[ironHead] = crowned[set.species];
 			}
 		}
 		return problems;
@@ -1191,26 +1196,19 @@ export class TeamValidator {
 		if (tierTemplate.isNonstandard) {
 			banReason = ruleTable.check('pokemontag:' + toID(tierTemplate.isNonstandard));
 			if (banReason) {
-				return `${tierTemplate.species} is tagged ${tierTemplate.isNonstandard}, which is ${banReason}.`;
+				if (tierTemplate.isNonstandard === 'Unobtainable') {
+					return `${tierTemplate.species} is not obtainable without hacking or glitches.`;
+				}
+				if (['Past', 'Future'].includes(tierTemplate.isNonstandard)) {
+					return `${tierTemplate.species} does not exist in Gen ${dex.gen}.`;
+				}
 			}
 			if (banReason === '') return null;
 		}
 
-		if (
-			tierTemplate.isNonstandard === 'Pokestar' && dex.gen === 5 ||
-			tierTemplate.isNonstandard === 'Glitch' && dex.gen === 1
-		) {
-			banReason = ruleTable.check('pokemontag:hackmons', setHas);
-			if (banReason) {
-				return `${tierTemplate.species} is not obtainable without hacking.`;
-			}
-			if (banReason === '') return null;
-		} else if (tierTemplate.isNonstandard) {
+		if (tierTemplate.isNonstandard) {
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future'].includes(tierTemplate.isNonstandard)) {
-					return `${tierTemplate.species} does not exist in Gen ${dex.gen}.`;
-				}
 				return `${tierTemplate.species} does not exist in this game.`;
 			}
 			if (banReason === '') return null;
@@ -1225,6 +1223,11 @@ export class TeamValidator {
 				}
 				if (banReason === '') return null;
 			}
+		}
+
+		banReason = ruleTable.check('pokemontag:allpokemon');
+		if (banReason) {
+			return `${template.species} is not in the list of allowed pokemon.`;
 		}
 
 		return null;
@@ -1266,6 +1269,11 @@ export class TeamValidator {
 			if (banReason === '') return null;
 		}
 
+		banReason = ruleTable.check('pokemontag:allitems');
+		if (banReason) {
+			return `${set.name}'s item ${item.name} is not in the list of allowed items.`;
+		}
+
 		return null;
 	}
 
@@ -1299,6 +1307,11 @@ export class TeamValidator {
 			if (banReason === '') return null;
 		}
 
+		banReason = ruleTable.check('pokemontag:allmoves');
+		if (banReason) {
+			return `${set.name}'s move ${move.name} is not in the list of allowed moves.`;
+		}
+
 		return null;
 	}
 
@@ -1330,6 +1343,11 @@ export class TeamValidator {
 				return `${set.name}'s ability ${ability.name} does not exist in this game.`;
 			}
 			if (banReason === '') return null;
+		}
+
+		banReason = ruleTable.check('pokemontag:allabilities');
+		if (banReason) {
+			return `${set.name}'s ability ${ability.name} is not in the list of allowed abilities.`;
 		}
 
 		return null;
@@ -1848,7 +1866,10 @@ export class TeamValidator {
 			return template;
 		} else if (template.inheritsFrom) {
 			// For Pokemon like Rotom, Necrozma, and Gmax formes whose movesets are extensions are their base formes
-			return this.dex.getTemplate(Array.isArray(template.inheritsFrom) ? template.inheritsFrom[0] : template.inheritsFrom);
+			if (Array.isArray(template.inheritsFrom)) {
+				throw new Error(`Ambiguous template ${template.species} passed to learnsetParent`);
+			}
+			return this.dex.getTemplate(template.inheritsFrom);
 		}
 		return null;
 	}
