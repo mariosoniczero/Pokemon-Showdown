@@ -514,6 +514,10 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	 */
 	readonly forme: string;
 	/**
+	 * Base forme name (e.g. 'Altered' for Giratina).
+	 */
+	readonly baseForme: string;
+	/**
 	 * Other forms. List of names of cosmetic forms. These should have
 	 * `aliases.js` aliases to this entry, but not have their own
 	 * entry in `pokedex.js`.
@@ -633,6 +637,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.name = data.species;
 		this.baseSpecies = data.baseSpecies || this.name;
 		this.forme = data.forme || '';
+		this.baseForme = data.baseForme || '';
 		this.otherForms = data.otherForms || undefined;
 		this.otherFormes = data.otherFormes || undefined;
 		this.spriteid = data.spriteid ||
@@ -661,7 +666,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.weighthg = this.weightkg * 10;
 		this.heightm = data.heightm!;
 		this.color = data.color || '';
-		this.unreleasedHidden = !!data.unreleasedHidden;
+		this.unreleasedHidden = data.unreleasedHidden || false;
 		this.maleOnlyHidden = !!data.maleOnlyHidden;
 		this.maxHP = data.maxHP || undefined;
 		this.learnset = data.learnset || undefined;
@@ -673,7 +678,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.inheritsFrom = data.inheritsFrom || undefined;
 
 		if (!this.gen && this.num >= 1) {
-			if (this.num >= 810 || this.forme.endsWith('Galar') || this.forme === 'Gmax') {
+			if (this.num >= 810 || ['Gmax', 'Galar', 'Galar-Zen'].includes(this.forme)) {
 				this.gen = 8;
 			} else if (this.num >= 722 || this.forme.startsWith('Alola') || this.forme === 'Starter') {
 				this.gen = 7;

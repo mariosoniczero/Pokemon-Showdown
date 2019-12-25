@@ -3478,6 +3478,7 @@ let BattlePokedex = {
 		color: "Green",
 		prevo: "poliwhirl",
 		evoType: "trade",
+		evoItem: "King's Rock",
 		eggGroups: ["Water 1"],
 	},
 	hoppip: {
@@ -3647,6 +3648,7 @@ let BattlePokedex = {
 		color: "Pink",
 		prevo: "slowpoke",
 		evoType: "trade",
+		evoItem: "King's Rock",
 		eggGroups: ["Monster", "Water 1"],
 	},
 	misdreavus: {
@@ -3758,6 +3760,7 @@ let BattlePokedex = {
 		color: "Gray",
 		prevo: "onix",
 		evoType: "trade",
+		evoItem: "Metal Coat",
 		eggGroups: ["Mineral"],
 		otherFormes: ["steelixmega"],
 	},
@@ -3823,6 +3826,7 @@ let BattlePokedex = {
 		color: "Red",
 		prevo: "scyther",
 		evoType: "trade",
+		evoItem: "Metal Coat",
 		eggGroups: ["Bug"],
 		otherFormes: ["scizormega"],
 	},
@@ -4103,6 +4107,7 @@ let BattlePokedex = {
 		color: "Blue",
 		prevo: "seadra",
 		evoType: "trade",
+		evoItem: "Dragon Scale",
 		eggGroups: ["Water 1", "Dragon"],
 	},
 	phanpy: {
@@ -4142,6 +4147,7 @@ let BattlePokedex = {
 		color: "Red",
 		prevo: "porygon",
 		evoType: "trade",
+		evoItem: "Up-Grade",
 		evos: ["porygonz"],
 		eggGroups: ["Mineral"],
 	},
@@ -5860,6 +5866,7 @@ let BattlePokedex = {
 		color: "Pink",
 		prevo: "feebas",
 		evoType: "trade",
+		evoItem: "Prism Scale",
 		eggGroups: ["Water 1", "Dragon"],
 	},
 	castform: {
@@ -6155,6 +6162,7 @@ let BattlePokedex = {
 		color: "Blue",
 		prevo: "clamperl",
 		evoType: "trade",
+		evoItem: "Deep Sea Tooth",
 		eggGroups: ["Water 1"],
 	},
 	gorebyss: {
@@ -6168,6 +6176,7 @@ let BattlePokedex = {
 		color: "Pink",
 		prevo: "clamperl",
 		evoType: "trade",
+		evoItem: "Deep Sea Scale",
 		eggGroups: ["Water 1"],
 	},
 	relicanth: {
@@ -7679,6 +7688,7 @@ let BattlePokedex = {
 		color: "Gray",
 		prevo: "rhydon",
 		evoType: "trade",
+		evoItem: "Protector",
 		eggGroups: ["Monster", "Field"],
 	},
 	tangrowth: {
@@ -7707,6 +7717,7 @@ let BattlePokedex = {
 		color: "Yellow",
 		prevo: "electabuzz",
 		evoType: "trade",
+		evoItem: "Electrizer",
 		eggGroups: ["Human-Like"],
 	},
 	magmortar: {
@@ -7721,6 +7732,7 @@ let BattlePokedex = {
 		color: "Red",
 		prevo: "magmar",
 		evoType: "trade",
+		evoItem: "Magmarizer",
 		eggGroups: ["Human-Like"],
 	},
 	togekiss: {
@@ -7823,6 +7835,7 @@ let BattlePokedex = {
 		color: "Red",
 		prevo: "porygon2",
 		evoType: "trade",
+		evoItem: "Dubious Disk",
 		eggGroups: ["Mineral"],
 	},
 	gallade: {
@@ -7880,6 +7893,7 @@ let BattlePokedex = {
 		color: "Black",
 		prevo: "dusclops",
 		evoType: "trade",
+		evoItem: "Reaper Cloth",
 		eggGroups: ["Amorphous"],
 	},
 	froslass: {
@@ -9823,6 +9837,7 @@ let BattlePokedex = {
 		color: "Gray",
 		prevo: "karrablast",
 		evoType: "trade",
+		evoCondition: "with a Shelmet",
 		eggGroups: ["Bug"],
 	},
 	foongus: {
@@ -10182,6 +10197,7 @@ let BattlePokedex = {
 		color: "Red",
 		prevo: "shelmet",
 		evoType: "trade",
+		evoCondition: "with a Karrablast",
 		eggGroups: ["Bug"],
 	},
 	stunfisk: {
@@ -11316,6 +11332,7 @@ let BattlePokedex = {
 		color: "Pink",
 		prevo: "spritzee",
 		evoType: "trade",
+		evoItem: "Sachet",
 		eggGroups: ["Fairy"],
 	},
 	swirlix: {
@@ -11341,6 +11358,7 @@ let BattlePokedex = {
 		color: "White",
 		prevo: "swirlix",
 		evoType: "trade",
+		evoItem: "Whipped Dream",
 		eggGroups: ["Fairy"],
 	},
 	inkay: {

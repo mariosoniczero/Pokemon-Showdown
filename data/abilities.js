@@ -1303,7 +1303,7 @@ let BattleAbilities = {
 			}
 		},
 		onModifyMove(move, pokemon) {
-			if (move.isZPowered || move.maxPowered || move.id === 'struggle') return;
+			if (pokemon.abilityData.choiceLock || move.isZPowered || move.maxPowered || move.id === 'struggle') return;
 			pokemon.abilityData.choiceLock = move.id;
 		},
 		onModifyAtkPriority: 1,
@@ -1987,7 +1987,7 @@ let BattleAbilities = {
 		},
 		id: "longreach",
 		name: "Long Reach",
-		rating: 1.5,
+		rating: 1,
 		num: 203,
 	},
 	"magicbounce": {
@@ -2133,35 +2133,56 @@ let BattleAbilities = {
 	},
 	"mimicry": {
 		shortDesc: "Changes the Pokémon's type depending on the terrain.",
-		onUpdate(pokemon) {
-			// PLACEHOLDERS. What types are used for each terrain? Does the type revert after?
-			let type = pokemon.baseTemplate.types;
-			let addedType = pokemon.addedType;
-			switch (this.field.terrain) {
-			case 'electricterrain':
-				type = ['Electric'];
-				break;
-			case 'grassyterrain':
-				type = ['Grass'];
-				break;
-			case 'mistyterrain':
-				type = ['Fairy'];
-				break;
-			case 'psychicterrain':
-				type = ['Psychic'];
-				break;
+		onStart(pokemon) {
+			if (this.field.terrain) {
+				pokemon.addVolatile('mimicry');
+			} else {
+				let types = pokemon.baseTemplate.types;
+				if (pokemon.getTypes().join() === types.join() || !pokemon.setType(types)) return;
+				this.add('-start', pokemon, 'typechange', types, '[from] ability: Mimicry');
 			}
-			if (!pokemon.hasType(type)) {
-				this.add('-ability', pokemon, 'Mimicry');
-				pokemon.setType(type);
-				// Don't override the added type
-				pokemon.addType(addedType);
-				this.add('-start', pokemon, 'typechange', type.join('/'));
-			}
+		},
+		onAnyTerrainStart() {
+			let pokemon = this.effectData.target;
+			delete pokemon.volatiles['mimicry'];
+			pokemon.addVolatile('mimicry');
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['mimicry'];
+		},
+		effect: {
+			onStart(pokemon) {
+				let newType;
+				switch (this.field.terrain) {
+				case 'electricterrain':
+					newType = 'Electric';
+					break;
+				case 'grassyterrain':
+					newType = 'Grass';
+					break;
+				case 'mistyterrain':
+					newType = 'Fairy';
+					break;
+				case 'psychicterrain':
+					newType = 'Psychic';
+					break;
+				}
+				if (!newType || pokemon.getTypes().join() === newType || !pokemon.setType(newType)) return;
+				this.add('-start', pokemon, 'typechange', newType, '[from] ability: Mimicry');
+			},
+			onUpdate(pokemon) {
+				if (!this.field.terrain) {
+					let types = pokemon.template.types;
+					if (pokemon.getTypes().join() === types.join() || !pokemon.setType(types)) return;
+					this.add('-activate', pokemon, 'ability: Mimicry');
+					this.add('-end', pokemon, 'typechange', '[silent]');
+					pokemon.removeVolatile('mimicry');
+				}
+			},
 		},
 		id: "mimicry",
 		name: "Mimicry",
-		rating: 1,
+		rating: 0.5,
 		num: 250,
 	},
 	"minus": {
@@ -3359,21 +3380,30 @@ let BattleAbilities = {
 		num: 113,
 	},
 	"screencleaner": {
-		desc: "When the Pokémon enters a battle, the effects of Light Screen, Reflect, and Aurora Veil are nullified for both opposing and ally Pokémon.",
-		shortDesc: "Removes Screens and Veil Effects on switchin.",
+		desc: "On switch-in, this Pokémon ends the effects of Reflect, Light Screen, and Aurora Veil for both the user's and the opposing side.",
+		shortDesc: "Removes Reflect, Light Screen, and Aurora Veil on switch-in.",
 		onStart(pokemon) {
-			for (let sideCondition of ['reflect', 'lightscreen', 'auroraveil']) {
+			let activated = false;
+			for (const sideCondition of ['reflect', 'lightscreen', 'auroraveil']) {
 				if (pokemon.side.removeSideCondition(sideCondition)) {
-					this.add('-sideend', pokemon.side, this.dex.getEffect(sideCondition).name, '[from] ability: Screen Cleaner', '[of] ' + pokemon);
+					if (!activated) {
+						this.add('-activate', pokemon, 'ability: Screen Cleaner');
+						activated = true;
+					}
+					this.add('-sideend', pokemon.side, this.dex.getEffect(sideCondition).name);
 				}
 				if (pokemon.side.foe.removeSideCondition(sideCondition)) {
-					this.add('-sideend', pokemon.side.foe, this.dex.getEffect(sideCondition).name, '[from] ability: Screen Cleaner', '[of] ' + pokemon);
+					if (!activated) {
+						this.add('-activate', pokemon, 'ability: Screen Cleaner');
+						activated = true;
+					}
+					this.add('-sideend', pokemon.side.foe, this.dex.getEffect(sideCondition).name);
 				}
 			}
 		},
 		id: "screencleaner",
 		name: "Screen Cleaner",
-		rating: 1.5,
+		rating: 2,
 		num: 251,
 	},
 	"serenegrace": {
