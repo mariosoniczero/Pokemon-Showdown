@@ -12214,7 +12214,7 @@ let BattlePokedex = {
 		color: "Blue",
 		prevo: "charjabug",
 		evoType: "useItem",
-		evoCondition: "Thunder Stone",
+		evoItem: "Thunder Stone",
 		eggGroups: ["Bug"],
 		otherFormes: ["vikavolttotem"],
 	},
@@ -14395,7 +14395,7 @@ let BattlePokedex = {
 		eggGroups: ["Human-Like"],
 	},
 	toxtricitygmax: {
-		num: 844,
+		num: 849,
 		species: "Toxtricity-Gmax",
 		baseSpecies: "Toxtricity",
 		forme: "Gmax",

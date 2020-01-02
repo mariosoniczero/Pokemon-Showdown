@@ -2006,7 +2006,22 @@ export class Battle {
 		const defender = target;
 		let attackStat: StatNameExceptHP = category === 'Physical' ? 'atk' : 'spa';
 		const defenseStat: StatNameExceptHP = defensiveCategory === 'Physical' ? 'def' : 'spd';
-		if (move.useSourceDefensiveAsOffensive) attackStat = defenseStat;
+		if (move.useSourceDefensiveAsOffensive) {
+			attackStat = defenseStat;
+			// Body press really wants to use the def stat,
+			// so it switches stats to compensate for Wonder Room.
+			// Of course, the game thus miscalculates the boosts...
+			if ('wonderroom' in this.field.pseudoWeather) {
+				if (attackStat === 'def') {
+					attackStat = 'spd';
+				} else if (attackStat === 'spd') {
+					attackStat = 'def';
+				}
+				if (attacker.boosts['def'] || attacker.boosts['spd']) {
+					this.hint("Body Press uses Sp. Def boosts when Wonder Room is active.");
+				}
+			}
+		}
 
 		const statTable = {atk: 'Atk', def: 'Def', spa: 'SpA', spd: 'SpD', spe: 'Spe'};
 		let attack;
@@ -2394,6 +2409,7 @@ export class Battle {
 						pokemon: action.pokemon,
 					});
 				}
+				action.fractionalPriority = this.runEvent('FractionalPriority', action.pokemon, null, action.move, 0);
 			} else if (['switch', 'instaswitch'].includes(action.choice)) {
 				if (typeof action.pokemon.switchFlag === 'string') {
 					action.sourceEffect = this.dex.getMove(action.pokemon.switchFlag as ID) as any;
@@ -2442,7 +2458,7 @@ export class Battle {
 			// (instead of compounding every time `getActionSpeed` is called)
 			let priority = this.dex.getMove(move.id).priority;
 			priority = this.runEvent('ModifyPriority', action.pokemon, null, move, priority);
-			action.priority = priority;
+			action.priority = priority + action.fractionalPriority;
 			// In Gen 6, Quick Guard blocks moves with artificially enhanced priority.
 			if (this.gen > 5) action.move.priority = priority;
 		}
@@ -2675,6 +2691,9 @@ export class Battle {
 				if (this.gen <= 4) {
 					// in gen 2-4, the switch still happens
 					this.hint("Previously chosen switches continue in Gen 2-4 after a Pursuit target faints.");
+					action.priority = -101;
+					this.queue.unshift(action);
+					break;
 				} else {
 					// in gen 5+, the switch is cancelled
 					this.hint("A Pokemon can't switch between when it runs out of HP and when it faints");

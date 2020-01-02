@@ -20,6 +20,10 @@ interface MoveSlot {
 	virtual?: boolean;
 }
 
+interface EffectState {
+	[k: string]: any;
+}
+
 export class Pokemon {
 	readonly side: Side;
 	readonly battle: Battle;
@@ -50,11 +54,11 @@ export class Pokemon {
 
 	baseTemplate: Template;
 	template: Template;
-	speciesData: AnyObject;
+	speciesData: EffectState;
 
 	status: ID;
-	statusData: AnyObject;
-	volatiles: AnyObject;
+	statusData: EffectState;
+	volatiles: {[id: string]: EffectState};
 	showCure?: boolean;
 
 	/**
@@ -82,10 +86,10 @@ export class Pokemon {
 
 	baseAbility: ID;
 	ability: ID;
-	abilityData: {[k: string]: string | Pokemon};
+	abilityData: EffectState;
 
 	item: ID;
-	itemData: {[k: string]: string | Pokemon};
+	itemData: EffectState;
 	lastItem: ID;
 	usedItemThisTurn: boolean;
 	ateBerry: boolean;
@@ -255,15 +259,7 @@ export class Pokemon {
 		const genders: {[key: string]: GenderName} = {M: 'M', F: 'F', N: 'N'};
 		this.gender = genders[set.gender] || this.template.gender || (this.battle.random() * 2 < 1 ? 'M' : 'F');
 		if (this.gender === 'N') this.gender = '';
-
-		const maxHappiness = (this.battle.gen <= 7 ? 255 : 160);
-		if (typeof set.happiness === 'number') {
-			set.happiness = this.battle.dex.clampIntRange(set.happiness, 0, maxHappiness);
-		} else {
-			set.happiness = maxHappiness;
-		}
-		this.happiness = set.happiness;
-
+		this.happiness = typeof set.happiness === 'number' ? this.battle.dex.clampIntRange(set.happiness, 0, 255) : 255;
 		this.pokeball = this.set.pokeball || 'pokeball';
 
 		this.baseMoveSlots = [];
@@ -605,7 +601,7 @@ export class Pokemon {
 	}
 
 	getMoveTargets(move: Move, target: Pokemon): {targets: Pokemon[], pressureTargets: Pokemon[]} {
-		const targets = [];
+		let targets = [];
 		let pressureTargets;
 
 		switch (move.target) {
@@ -631,6 +627,9 @@ export class Pokemon {
 			if (targets.length && !targets.includes(target)) {
 				this.battle.retargetLastMove(targets[targets.length - 1]);
 			}
+			break;
+		case 'allies':
+			targets = this.allies();
 			break;
 		default:
 			const selectedTarget = target;
@@ -669,7 +668,7 @@ export class Pokemon {
 
 	ignoringAbility() {
 		const abilities = [
-			'battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange',
+			'battlebond', 'comatose', 'disguise', 'gulpmissile', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange',
 		];
 		// Check if any active pokemon have the ability Neutralizing Gas
 		let neutralizinggas = false;
