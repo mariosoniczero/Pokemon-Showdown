@@ -399,7 +399,6 @@ let BattleItems = {
 	"belueberry": {
 		id: "belueberry",
 		name: "Belue Berry",
-		isUnreleased: true,
 		spritenum: 21,
 		isBerry: true,
 		naturalGift: {
@@ -1089,7 +1088,6 @@ let BattleItems = {
 	"cornnberry": {
 		id: "cornnberry",
 		name: "Cornn Berry",
-		isUnreleased: true,
 		spritenum: 81,
 		isBerry: true,
 		naturalGift: {
@@ -1128,7 +1126,6 @@ let BattleItems = {
 		name: "Custap Berry",
 		spritenum: 86,
 		isBerry: true,
-		isUnreleased: true,
 		naturalGift: {
 			basePower: 100,
 			type: "Ghost",
@@ -1493,7 +1490,6 @@ let BattleItems = {
 	"durinberry": {
 		id: "durinberry",
 		name: "Durin Berry",
-		isUnreleased: true,
 		spritenum: 114,
 		isBerry: true,
 		naturalGift: {
@@ -2913,7 +2909,6 @@ let BattleItems = {
 		name: "Jaboca Berry",
 		spritenum: 230,
 		isBerry: true,
-		isUnreleased: true,
 		naturalGift: {
 			basePower: 100,
 			type: "Dragon",
@@ -3566,7 +3561,6 @@ let BattleItems = {
 	"magostberry": {
 		id: "magostberry",
 		name: "Magost Berry",
-		isUnreleased: true,
 		spritenum: 275,
 		isBerry: true,
 		naturalGift: {
@@ -3883,7 +3877,6 @@ let BattleItems = {
 		name: "Micle Berry",
 		spritenum: 290,
 		isBerry: true,
-		isUnreleased: true,
 		naturalGift: {
 			basePower: 100,
 			type: "Rock",
@@ -4042,7 +4035,6 @@ let BattleItems = {
 	"nanabberry": {
 		id: "nanabberry",
 		name: "Nanab Berry",
-		isUnreleased: true,
 		spritenum: 302,
 		isBerry: true,
 		naturalGift: {
@@ -4092,7 +4084,6 @@ let BattleItems = {
 	"nomelberry": {
 		id: "nomelberry",
 		name: "Nomel Berry",
-		isUnreleased: true,
 		spritenum: 306,
 		isBerry: true,
 		naturalGift: {
@@ -4223,7 +4214,6 @@ let BattleItems = {
 	"pamtreberry": {
 		id: "pamtreberry",
 		name: "Pamtre Berry",
-		isUnreleased: true,
 		spritenum: 323,
 		isBerry: true,
 		naturalGift: {
@@ -4891,7 +4881,6 @@ let BattleItems = {
 	"rabutaberry": {
 		id: "rabutaberry",
 		name: "Rabuta Berry",
-		isUnreleased: true,
 		spritenum: 375,
 		isBerry: true,
 		naturalGift: {
@@ -4981,7 +4970,6 @@ let BattleItems = {
 	"razzberry": {
 		id: "razzberry",
 		name: "Razz Berry",
-		isUnreleased: true,
 		spritenum: 384,
 		isBerry: true,
 		naturalGift: {
@@ -5258,7 +5246,6 @@ let BattleItems = {
 		name: "Rowap Berry",
 		spritenum: 420,
 		isBerry: true,
-		isUnreleased: true,
 		naturalGift: {
 			basePower: 100,
 			type: "Dark",
@@ -5806,7 +5793,6 @@ let BattleItems = {
 	"spelonberry": {
 		id: "spelonberry",
 		name: "Spelon Berry",
-		isUnreleased: true,
 		spritenum: 462,
 		isBerry: true,
 		naturalGift: {
@@ -6444,7 +6430,6 @@ let BattleItems = {
 	"watmelberry": {
 		id: "watmelberry",
 		name: "Watmel Berry",
-		isUnreleased: true,
 		spritenum: 530,
 		isBerry: true,
 		naturalGift: {
@@ -6493,7 +6478,6 @@ let BattleItems = {
 	"wepearberry": {
 		id: "wepearberry",
 		name: "Wepear Berry",
-		isUnreleased: true,
 		spritenum: 533,
 		isBerry: true,
 		naturalGift: {

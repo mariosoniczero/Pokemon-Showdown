@@ -15,10 +15,11 @@ let Formats = [
 		name: "[Gen 8] National Dex Custom Mega Draft League",
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: [
-            'Obtainable', 'Standard', 'Team Preview', '+Past', 
-            'NatDex Rule', '+GPL', 'Baton Pass Clause', 
-            'Z-Move Clause', 'Dynamax Clause'
+            'Obtainable', 'Team Preview', 'Standard ND', 'OHKO Clause', 
+			'Evasion Moves Clause', 'Species Clause', 'Team Preview', 'Sleep Clause Mod',
+			'+GPL', 'Baton Pass Clause', 'Z-Move Clause', 'Dynamax Clause'
         ],
 		banlist: [
             'Power Construct', 'Bellossomite + Strength Sap', 
@@ -31,7 +32,8 @@ let Formats = [
 
 		mod: 'gen8',
 		ruleset: [
-            'Obtainable', 'Standard', 'Team Preview', '+Past', 'NatDex Rule',
+            'Obtainable', 'Team Preview', 'Standard ND', 'OHKO Clause', 
+			'Evasion Moves Clause', 'Species Clause', 'Team Preview', 'Sleep Clause Mod',
             '+GPL', 'Dynamax Clause', 'Z-Move Clause', 'Baton Pass Clause'
         ],
 		banlist: [
@@ -39,7 +41,40 @@ let Formats = [
 			'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega', 'Lugia', 'Lunala',
 			'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
 			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
-			'Power Construct', 'Shadow Tag'
+			'Power Construct', 'Shadow Tag', 'Moody'
+		],
+	},
+	{
+		name: "[Gen 8] Custom Mega Draft League",
+
+		mod: 'gen8',
+		searchShow: false,
+		ruleset: [
+            'Obtainable', 'Team Preview', 'Standard ND', 'OHKO Clause', 
+			'Evasion Moves Clause', 'Species Clause', 'Team Preview', 'Sleep Clause Mod',
+			'+GPL', 'Baton Pass Clause', 'Z-Move Clause', 'Dynamax Clause'
+        ],
+		banlist: [
+            'Power Construct', 'Bellossomite + Strength Sap', 
+            'Kangaskhanite + Seismic Toss', 'Glalitite + Moody',
+            'Battle Bond', 'Greninja + Protean', 'Blaziken + Speed Boost'
+		],
+	},
+	{
+		name: "[Gen 8] Custom Mega OU",
+
+		mod: 'gen8',
+		ruleset: [
+            'Obtainable', 'Team Preview', 'Standard ND', 'OHKO Clause', 
+			'Evasion Moves Clause', 'Species Clause', 'Team Preview', 'Sleep Clause Mod',
+            '+GPL', 'Dynamax Clause', 'Z-Move Clause', 'Baton Pass Clause'
+        ],
+		banlist: [
+			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys', 'Dialga', 'Eternatus', 'Genesect', 'Gengar-Mega', 'Giratina', 'Groudon',
+			'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega', 'Lugia', 'Lunala',
+			'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
+			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Power Construct', 'Shadow Tag', 'Moody'
 		],
 	},
     
