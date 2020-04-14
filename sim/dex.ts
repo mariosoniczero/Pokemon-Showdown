@@ -1021,7 +1021,7 @@ export class ModdedDex {
 					// doubles tiers
 					'duber', 'dou', 'dbl', 'duu', 'dnu',
 					// custom tags
-					'mega',
+					'mega', 'gpl',
 					// illegal/nonstandard reasons
 					'past', 'future', 'unobtainable', 'lgpe', 'custom',
 					// all

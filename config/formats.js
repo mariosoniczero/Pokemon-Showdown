@@ -6,6 +6,36 @@
 /**@type {(FormatsData | {section: string, column?: number})[]} */
 let Formats = [
 
+	{
+		section: "Custom Mega",
+	},
+	{
+		name: "[Gen 8] Custom Mega Draft League",
+		mod: 'gpl',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 
+				  'Dynamax Clause', 'Sleep Clause Mod', 'Baton Pass Clause', '+GPL', 
+				  'Z-Move Clause', 'Swagger Clause', 'Evasion Abilities Clause',
+		],
+		banlist: ['Power Construct', 'Bellossomite + Strength Sap', 'Kangaskhanite + Seismic Toss',
+				  'Glalitite + Moody', 'Rapidashite + Swords Dance', 'Greninja + Protean',
+				  'Greninja + Battle Bond', 'Blaziken + Speed Boost', 'Brightpowder', 'Lax Incense',
+		],
+	},
+	{
+		name: "[Gen 8] Custom Mega OU",
+		mod: 'gpl',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 
+				  'Dynamax Clause', 'Sleep Clause Mod', '+GPL', 'Z-Move Clause',
+		],
+		banlist: [
+			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Attack', 'Deoxys-Base', 'Deoxys-Speed', 'Dialga', 'Eternatus', 'Genesect', 'Gengar-Mega',
+			'Giratina', 'Groudon', 'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega',
+			'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
+			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom', 'Zygarde-Base',
+			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
+		],
+	},
+
 	// Sw/Sh Singles
 	///////////////////////////////////////////////////////////////////
 
