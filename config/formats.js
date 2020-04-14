@@ -11,7 +11,7 @@ let Formats = [
 	},
 	{
 		name: "[Gen 8] Custom Mega Draft League",
-		mod: 'gpl',
+		mod: 'gen8',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 
 				  'Dynamax Clause', 'Sleep Clause Mod', 'Baton Pass Clause', '+GPL', 
 				  'Z-Move Clause', 'Swagger Clause', 'Evasion Abilities Clause',
@@ -23,7 +23,7 @@ let Formats = [
 	},
 	{
 		name: "[Gen 8] Custom Mega OU",
-		mod: 'gpl',
+		mod: 'gen8',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 
 				  'Dynamax Clause', 'Sleep Clause Mod', '+GPL', 'Z-Move Clause',
 		],
