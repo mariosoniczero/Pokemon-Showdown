@@ -16454,7 +16454,7 @@ let BattlePokedex = {
 		color: "Pink",
 		eggGroups: ["Field"],
 	},
-    /*
+	/*
 	exploudmega: {
 		num: 295,
 		species: "Exploud-Mega",
@@ -16618,7 +16618,7 @@ let BattlePokedex = {
 		color: "Green",
 		eggGroups: ["Fairy", "Grass"],
 	},
-    /*
+	/*
 	vespiquenmega: {
 		num: 416,
 		species: "Vespiquen-Mega",
@@ -16649,7 +16649,7 @@ let BattlePokedex = {
 		color: "Green",
 		eggGroups: ["Mineral"],
 	},
-    /*
+	/*
 	toxicroakmega: {
 		num: 454,
 		species: "Toxicroak-Mega",
@@ -16680,7 +16680,7 @@ let BattlePokedex = {
 		color: "White",
 		eggGroups: ["Fairy", "Mineral"],
 	},
-    /*
+	/*
 	scolipedemega: {
 		num: 545,
 		species: "Scolipede-Mega",
@@ -16696,7 +16696,7 @@ let BattlePokedex = {
 		eggGroups: ["Bug"],
 	},
 	*/
-    /*
+	/*
 	whimsicottmega: {
 		num: 547,
 		species: "Whimsicott-Mega",
@@ -16754,7 +16754,7 @@ let BattlePokedex = {
 		color: "Green",
 		eggGroups: ["Mineral"],
 	},
-    /*
+	/*
 	clawitzermega: {
 		num: 693,
 		species: "Clawitzer-Mega",
@@ -16770,7 +16770,7 @@ let BattlePokedex = {
 		eggGroups: ["Water 1", "Water 3"],
 	},
 	*/
-    /*
+	/*
 	tyrantrummega: {
 		num: 697,
 		species: "Tyrantrum-Mega",
@@ -16801,7 +16801,7 @@ let BattlePokedex = {
 		color: "Blue",
 		eggGroups: ["Monster"],
 	},
-    /*
+	/*
 	toucannonmega: {
 		num: 733,
 		species: "Toucannon-Mega",
