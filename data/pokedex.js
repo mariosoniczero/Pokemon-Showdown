@@ -244,7 +244,7 @@ let BattlePokedex = {
 		prevo: "metapod",
 		evoLevel: 10,
 		eggGroups: ["Bug"],
-		otherFormes: ["butterfreegmax"],
+		otherFormes: ["butterfreegmax", "butterfreemega"],
 	},
 	butterfreegmax: {
 		num: 12,
@@ -486,6 +486,7 @@ let BattlePokedex = {
 		prevo: "ekans",
 		evoLevel: 22,
 		eggGroups: ["Field", "Dragon"],
+		otherFormes: ["arbokmega"],
 	},
 	pikachu: {
 		num: 25,
@@ -1701,7 +1702,7 @@ let BattlePokedex = {
 		prevo: "ponyta",
 		evoLevel: 40,
 		eggGroups: ["Field"],
-		otherFormes: ["rapidashgalar"],
+		otherFormes: ["rapidashgalar", "rapidashmega"],
 	},
 	rapidashgalar: {
 		num: 78,
@@ -2291,7 +2292,7 @@ let BattlePokedex = {
 		prevo: "koffing",
 		evoLevel: 35,
 		eggGroups: ["Amorphous"],
-		otherFormes: ["Weezing-Galar"],
+		otherFormes: ["Weezing-Galar", "weezingmega"],
 	},
 	weezinggalar: {
 		num: 110,
@@ -3062,6 +3063,7 @@ let BattlePokedex = {
 		prevo: "bayleef",
 		evoLevel: 32,
 		eggGroups: ["Monster", "Grass"],
+		otherFormes: ["meganiummega"],
 	},
 	cyndaquil: {
 		num: 155,
@@ -3104,6 +3106,7 @@ let BattlePokedex = {
 		prevo: "quilava",
 		evoLevel: 36,
 		eggGroups: ["Field"],
+		otherFormes: [typhlosionmega],
 	},
 	totodile: {
 		num: 158,
@@ -3146,6 +3149,7 @@ let BattlePokedex = {
 		prevo: "croconaw",
 		evoLevel: 30,
 		eggGroups: ["Monster", "Water 1"],
+		otherFormes: [feraligatrmega],
 	},
 	sentret: {
 		num: 161,
@@ -3284,6 +3288,7 @@ let BattlePokedex = {
 		prevo: "chinchou",
 		evoLevel: 27,
 		eggGroups: ["Water 2"],
+		otherFormes: ["lanturnmega"],
 	},
 	pichu: {
 		num: 172,
@@ -3462,6 +3467,7 @@ let BattlePokedex = {
 		evoType: "useItem",
 		evoItem: "Sun Stone",
 		eggGroups: ["Grass"],
+		otherFormes: ["bellossommega"],
 	},
 	marill: {
 		num: 183,
@@ -3843,6 +3849,7 @@ let BattlePokedex = {
 		prevo: "snubbull",
 		evoLevel: 23,
 		eggGroups: ["Field", "Fairy"],
+		otherFormes: [granbullmega],
 	},
 	qwilfish: {
 		num: 211,
@@ -4297,6 +4304,7 @@ let BattlePokedex = {
 		weightkg: 75.5,
 		color: "Pink",
 		eggGroups: ["Field"],
+		otherFormes: ["miltankmega"],
 	},
 	blissey: {
 		num: 242,
@@ -5192,6 +5200,7 @@ let BattlePokedex = {
 		evoType: "useItem",
 		evoItem: "Moon Stone",
 		eggGroups: ["Field", "Fairy"],
+		otherFormes: ["delcattymega"],
 	},
 	sableye: {
 		num: 302,
@@ -5656,6 +5665,7 @@ let BattlePokedex = {
 		prevo: "vibrava",
 		evoLevel: 45,
 		eggGroups: ["Bug", "Dragon"],
+		otherFormes: ["flygonmegax", "flygonmegay"],
 	},
 	cacnea: {
 		num: 331,
@@ -5992,6 +6002,7 @@ let BattlePokedex = {
 		weightkg: 22,
 		color: "Green",
 		eggGroups: ["Field"],
+		otherFormes: ["kecleonmega"],
 	},
 	shuppet: {
 		num: 353,
@@ -6667,6 +6678,7 @@ let BattlePokedex = {
 		prevo: "grotle",
 		evoLevel: 32,
 		eggGroups: ["Monster", "Grass"],
+		otherFormes: ["torterramega"],
 	},
 	chimchar: {
 		num: 390,
@@ -6709,6 +6721,7 @@ let BattlePokedex = {
 		prevo: "monferno",
 		evoLevel: 36,
 		eggGroups: ["Field", "Human-Like"],
+		otherFormes: ["infernapemega"],
 	},
 	piplup: {
 		num: 393,
@@ -6751,6 +6764,7 @@ let BattlePokedex = {
 		prevo: "prinplup",
 		evoLevel: 36,
 		eggGroups: ["Water 1", "Field"],
+		otherFormes: ["empoleonmega"],
 	},
 	starly: {
 		num: 396,
@@ -6790,6 +6804,7 @@ let BattlePokedex = {
 		prevo: "staravia",
 		evoLevel: 34,
 		eggGroups: ["Flying"],
+		otherFormes: ["staraptormega"],
 	},
 	bidoof: {
 		num: 399,
@@ -6879,6 +6894,7 @@ let BattlePokedex = {
 		prevo: "luxio",
 		evoLevel: 30,
 		eggGroups: ["Field"],
+		otherFormes: ["luxraymega"],
 	},
 	budew: {
 		num: 406,
@@ -6906,6 +6922,7 @@ let BattlePokedex = {
 		evoType: "useItem",
 		evoItem: "Shiny Stone",
 		eggGroups: ["Fairy", "Grass"],
+		otherFormes: ["roserademega"],
 	},
 	cranidos: {
 		num: 408,
@@ -7371,6 +7388,7 @@ let BattlePokedex = {
 		prevo: "bronzor",
 		evoLevel: 33,
 		eggGroups: ["Mineral"],
+		otherFormes: ["bronzongmega"],
 	},
 	bonsly: {
 		num: 438,
@@ -7988,6 +8006,7 @@ let BattlePokedex = {
 		evoType: "useItem",
 		evoItem: "Dawn Stone",
 		eggGroups: ["Fairy", "Mineral"],
+		otherFormes: ["froslassmega"],
 	},
 	rotom: {
 		num: 479,
@@ -9353,6 +9372,7 @@ let BattlePokedex = {
 		prevo: "krokorok",
 		evoLevel: 40,
 		eggGroups: ["Field"],
+		otherFormes: ["krookodilemega"],
 	},
 	darumaka: {
 		num: 554,
@@ -10339,6 +10359,7 @@ let BattlePokedex = {
 		weightkg: 139,
 		color: "Red",
 		eggGroups: ["Monster", "Dragon"],
+		otherFormes: ["druddigonmega"],
 	},
 	golett: {
 		num: 622,
@@ -10366,6 +10387,7 @@ let BattlePokedex = {
 		prevo: "golett",
 		evoLevel: 43,
 		eggGroups: ["Mineral"],
+		otherFormes: ["golurkmega"],
 	},
 	pawniard: {
 		num: 624,
@@ -11888,6 +11910,7 @@ let BattlePokedex = {
 		prevo: "bergmite",
 		evoLevel: 37,
 		eggGroups: ["Monster", "Mineral"],
+		otherFormes: ["avaluggmega"],
 	},
 	noibat: {
 		num: 714,
@@ -16263,7 +16286,7 @@ let BattlePokedex = {
 	},
 	butterfreemega: {
 		num: 12,
-		species: "Butterfree-Mega",
+		name: "Butterfree-Mega",
 		baseSpecies: "Butterfree",
 		forme: "Mega",
 		types: ["Bug", "Psychic"],
@@ -16277,7 +16300,7 @@ let BattlePokedex = {
 	},
 	arbokmega: {
 		num: 24,
-		species: "Arbok-Mega",
+		name: "Arbok-Mega",
 		baseSpecies: "Arbok",
 		forme: "Mega",
 		types: ["Poison", "Dark"],
@@ -16291,7 +16314,7 @@ let BattlePokedex = {
 	},
 	rapidashmega: {
 		num: 78,
-		species: "Rapidash-Mega",
+		name: "Rapidash-Mega",
 		baseSpecies: "Rapidash",
 		forme: "Mega",
 		types: ["Fire", "Fairy"],
@@ -16305,7 +16328,7 @@ let BattlePokedex = {
 	},
 	weezingmega: {
 		num: 110,
-		species: "Weezing-Mega",
+		name: "Weezing-Mega",
 		baseSpecies: "Weezing",
 		forme: "Mega",
 		types: ["Poison", "Fire"],
@@ -16319,7 +16342,7 @@ let BattlePokedex = {
 	},
 	meganiummega: {
 		num: 154,
-		species: "Meganium-Mega",
+		name: "Meganium-Mega",
 		baseSpecies: "Meganium",
 		forme: "Mega",
 		types: ["Grass", "Fairy"],
@@ -16336,7 +16359,7 @@ let BattlePokedex = {
 	},
 	typhlosionmega: {
 		num: 157,
-		species: "Typhlosion-Mega",
+		name: "Typhlosion-Mega",
 		baseSpecies: "Typhlosion",
 		forme: "Mega",
 		types: ["Fire", "Electric"],
@@ -16353,7 +16376,7 @@ let BattlePokedex = {
 	},
 	feraligatrmega: {
 		num: 160,
-		species: "Feraligatr-Mega",
+		name: "Feraligatr-Mega",
 		baseSpecies: "Feraligatr",
 		forme: "Mega",
 		types: ["Water", "Ice"],
@@ -16370,7 +16393,7 @@ let BattlePokedex = {
 	},
 	/*ariadosmega: {
 		num: 168,
-		species: "Ariados-Mega",
+		name: "Ariados-Mega",
 		baseSpecies: "Ariados",
 		forme: "Mega",
 		types: ["Bug", "Dark"],
@@ -16383,7 +16406,7 @@ let BattlePokedex = {
 	},*/
 	lanturnmega: {
 		num: 171,
-		species: "Lanturn-Mega",
+		name: "Lanturn-Mega",
 		baseSpecies: "Lanturn",
 		forme: "Mega",
 		types: ["Water", "Electric"],
@@ -16397,7 +16420,7 @@ let BattlePokedex = {
 	},
 	/*xatumega: {
 		num: 178,
-		species: "Xatu-Mega",
+		name: "Xatu-Mega",
 		baseSpecies: "Xatu",
 		forme: "Mega",
 		types: ["Psychic", "Flying"],
@@ -16410,7 +16433,7 @@ let BattlePokedex = {
 	},*/
 	bellossommega: {
 		num: 182,
-		species: "Bellossom-Mega",
+		name: "Bellossom-Mega",
 		baseSpecies: "Bellossom",
 		forme: "Mega",
 		types: ["Grass", "Fire"],
@@ -16424,7 +16447,7 @@ let BattlePokedex = {
 	},
 	granbullmega: {
 		num: 210,
-		species: "Granbull-Mega",
+		name: "Granbull-Mega",
 		baseSpecies: "Granbull",
 		forme: "Mega",
 		types: ["Fairy", "Fighting"],
@@ -16439,7 +16462,7 @@ let BattlePokedex = {
 	},
 	miltankmega: {
 		num: 241,
-		species: "Miltank-Mega",
+		name: "Miltank-Mega",
 		baseSpecies: "Miltank",
 		forme: "Mega",
 		types: ["Normal"],
@@ -16455,7 +16478,7 @@ let BattlePokedex = {
 	/*
 	exploudmega: {
 		num: 295,
-		species: "Exploud-Mega",
+		name: "Exploud-Mega",
 		baseSpecies: "Exploud",
 		forme: "Mega",
 		types: ["Normal"],
@@ -16469,7 +16492,7 @@ let BattlePokedex = {
 	*/
 	delcattymega: {
 		num: 301,
-		species: "Delcatty-Mega",
+		name: "Delcatty-Mega",
 		baseSpecies: "Delcatty",
 		forme: "Mega",
 		types: ["Normal", "Ghost"],
@@ -16484,7 +16507,7 @@ let BattlePokedex = {
 	},
 	flygonmegax: {
 		num: 330,
-		species: "Flygon-Mega-X",
+		name: "Flygon-Mega-X",
 		baseSpecies: "Flygon",
 		forme: "Mega-X",
 		types: ["Ground", "Dragon"],
@@ -16498,7 +16521,7 @@ let BattlePokedex = {
 	},
 	flygonmegay: {
 		num: 330,
-		species: "Flygon-Mega-Y",
+		name: "Flygon-Mega-Y",
 		baseSpecies: "Flygon",
 		forme: "Mega-Y",
 		types: ["Bug", "Dragon"],
@@ -16512,7 +16535,7 @@ let BattlePokedex = {
 	},
 	kecleonmega: {
 		num: 352,
-		species: "Kecleon-Mega",
+		name: "Kecleon-Mega",
 		baseSpecies: "Kecleon",
 		forme: "Mega",
 		types: ["Normal"],
@@ -16526,7 +16549,7 @@ let BattlePokedex = {
 	},
 	torterramega: {
 		num: 389,
-		species: "Torterra-Mega",
+		name: "Torterra-Mega",
 		baseSpecies: "Torterra",
 		forme: "Mega",
 		types: ["Grass", "Ground"],
@@ -16543,7 +16566,7 @@ let BattlePokedex = {
 	},
 	infernapemega: {
 		num: 392,
-		species: "Infernape-Mega",
+		name: "Infernape-Mega",
 		baseSpecies: "Infernape",
 		forme: "Mega",
 		types: ["Fire", "Fighting"],
@@ -16558,7 +16581,7 @@ let BattlePokedex = {
 	},
 	empoleonmega: {
 		num: 395,
-		species: "Empoleon-Mega",
+		name: "Empoleon-Mega",
 		baseSpecies: "Empoleon",
 		forme: "Mega",
 		types: ["Water", "Steel"],
@@ -16575,7 +16598,7 @@ let BattlePokedex = {
 	},
 	staraptormega: {
 		num: 398,
-		species: "Staraptor-Mega",
+		name: "Staraptor-Mega",
 		baseSpecies: "Staraptor",
 		forme: "Mega",
 		types: ["Fighting", "Flying"],
@@ -16589,7 +16612,7 @@ let BattlePokedex = {
 	},
 	luxraymega: {
 		num: 405,
-		species: "Luxray-Mega",
+		name: "Luxray-Mega",
 		baseSpecies: "Luxray",
 		forme: "Mega",
 		types: ["Electric", "Dark"],
@@ -16603,7 +16626,7 @@ let BattlePokedex = {
 	},
 	roserademega: {
 		num: 407,
-		species: "Roserade-Mega",
+		name: "Roserade-Mega",
 		baseSpecies: "Roserade",
 		forme: "Mega",
 		types: ["Grass", "Poison"],
@@ -16618,7 +16641,7 @@ let BattlePokedex = {
 	/*
 	vespiquenmega: {
 		num: 416,
-		species: "Vespiquen-Mega",
+		name: "Vespiquen-Mega",
 		baseSpecies: "Vespiquen",
 		forme: "Mega",
 		types: ["Bug", "Rock"],
@@ -16633,7 +16656,7 @@ let BattlePokedex = {
 	*/
 	bronzongmega: {
 		num: 437,
-		species: "Bronzong-Mega",
+		name: "Bronzong-Mega",
 		baseSpecies: "Bronzong",
 		forme: "Mega",
 		types: ["Steel", "Psychic"],
@@ -16649,7 +16672,7 @@ let BattlePokedex = {
 	/*
 	toxicroakmega: {
 		num: 454,
-		species: "Toxicroak-Mega",
+		name: "Toxicroak-Mega",
 		baseSpecies: "Toxicroak",
 		forme: "Mega",
 		types: ["Poison", "Fighting"],
@@ -16663,7 +16686,7 @@ let BattlePokedex = {
 	*/
 	froslassmega: {
 		num: 478,
-		species: "Froslass-Mega",
+		name: "Froslass-Mega",
 		baseSpecies: "Froslass",
 		forme: "Mega",
 		types: ["Ice", "Ghost"],
@@ -16679,7 +16702,7 @@ let BattlePokedex = {
 	/*
 	scolipedemega: {
 		num: 545,
-		species: "Scolipede-Mega",
+		name: "Scolipede-Mega",
 		baseSpecies: "Scolipede",
 		forme: "Mega",
 		types: ["Bug", "Poison"],
@@ -16694,7 +16717,7 @@ let BattlePokedex = {
 	/*
 	whimsicottmega: {
 		num: 547,
-		species: "Whimsicott-Mega",
+		name: "Whimsicott-Mega",
 		baseSpecies: "Whimsicott",
 		forme: "Mega",
 		types: ["Grass", "Fairy"],
@@ -16708,7 +16731,7 @@ let BattlePokedex = {
 	*/
 	krookodilemega: {
 		num: 553,
-		species: "Krookodile-Mega",
+		name: "Krookodile-Mega",
 		baseSpecies: "Krookodile",
 		forme: "Mega",
 		types: ["Ground", "Dark"],
@@ -16722,7 +16745,7 @@ let BattlePokedex = {
 	},
 	druddigonmega: {
 		num: 621,
-		species: "Druddigon-Mega",
+		name: "Druddigon-Mega",
 		baseSpecies: "Druddigon",
 		forme: "Mega",
 		types: ["Dragon", "Steel"],
@@ -16736,7 +16759,7 @@ let BattlePokedex = {
 	},
 	golurkmega: {
 		num: 623,
-		species: "Golurk-Mega",
+		name: "Golurk-Mega",
 		baseSpecies: "Golurk",
 		forme: "Mega",
 		types: ["Ground", "Ghost"],
@@ -16752,7 +16775,7 @@ let BattlePokedex = {
 	/*
 	clawitzermega: {
 		num: 693,
-		species: "Clawitzer-Mega",
+		name: "Clawitzer-Mega",
 		baseSpecies: "Clawitzer",
 		forme: "Mega",
 		types: ["Water", "Fighting"],
@@ -16767,7 +16790,7 @@ let BattlePokedex = {
 	/*
 	tyrantrummega: {
 		num: 697,
-		species: "Tyrantrum-Mega",
+		name: "Tyrantrum-Mega",
 		baseSpecies: "Tyrantrum",
 		forme: "Mega",
 		types: ["Rock", "Dragon"],
@@ -16782,7 +16805,7 @@ let BattlePokedex = {
 	*/
 	avaluggmega: {
 		num: 713,
-		species: "Avalugg-Mega",
+		name: "Avalugg-Mega",
 		baseSpecies: "Avalugg",
 		forme: "Mega",
 		types: ["Ice", "Ground"],
@@ -16797,7 +16820,7 @@ let BattlePokedex = {
 	/*
 	toucannonmega: {
 		num: 733,
-		species: "Toucannon-Mega",
+		name: "Toucannon-Mega",
 		baseSpecies: "Toucannon",
 		forme: "Mega",
 		formeLetter: "M",
