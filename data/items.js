@@ -8117,7 +8117,7 @@ let BattleItems = {
 		megaStone: "Krookodile-Mega",
 		megaEvolves: "Krookodile",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1041,
@@ -8131,7 +8131,7 @@ let BattleItems = {
 		megaStone: "Flygon-Mega-Y",
 		megaEvolves: "Flygon",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1040,
@@ -8145,7 +8145,7 @@ let BattleItems = {
 		megaStone: "Flygon-Mega-X",
 		megaEvolves: "Flygon",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1039,
@@ -8159,7 +8159,7 @@ let BattleItems = {
 		megaStone: "Miltank-Mega",
 		megaEvolves: "Miltank",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1038,
@@ -8173,7 +8173,7 @@ let BattleItems = {
 		megaStone: "Druddigon-Mega",
 		megaEvolves: "Druddigon",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1037,
@@ -8187,7 +8187,7 @@ let BattleItems = {
 		megaStone: "Ariados-Mega",
 		megaEvolves: "Ariados",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1036,
@@ -8201,7 +8201,7 @@ let BattleItems = {
 		megaStone: "Bellossom-Mega",
 		megaEvolves: "Bellossom",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1035,
@@ -8215,7 +8215,7 @@ let BattleItems = {
 		megaStone: "Staraptor-Mega",
 		megaEvolves: "Staraptor",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1035,
@@ -8229,7 +8229,7 @@ let BattleItems = {
 		megaStone: "Kecleon-Mega",
 		megaEvolves: "Kecleon",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1034,
@@ -8244,7 +8244,7 @@ let BattleItems = {
 		megaStone: "Clawitzer-Mega",
 		megaEvolves: "Clawitzer",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1033,
@@ -8259,7 +8259,7 @@ let BattleItems = {
 		megaStone: "Delcatty-Mega",
 		megaEvolves: "Delcatty",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1032,
@@ -8273,7 +8273,7 @@ let BattleItems = {
 		megaStone: "Roserade-Mega",
 		megaEvolves: "Roserade",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1031,
@@ -8287,7 +8287,7 @@ let BattleItems = {
 		megaStone: "Tyrantrum-Mega",
 		megaEvolves: "Tyrantrum",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1030,
@@ -8302,7 +8302,7 @@ let BattleItems = {
 		megaStone: "Scolipede-Mega",
 		megaEvolves: "Scolipede",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1029,
@@ -8316,7 +8316,7 @@ let BattleItems = {
 		megaStone: "Toxicroak-Mega",
 		megaEvolves: "Toxicroak",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1028,
@@ -8331,7 +8331,7 @@ let BattleItems = {
 		megaStone: "Lanturn-Mega",
 		megaEvolves: "Lanturn",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1027,
@@ -8345,7 +8345,7 @@ let BattleItems = {
 		megaStone: "Granbull-Mega",
 		megaEvolves: "Granbull",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1026,
@@ -8359,7 +8359,7 @@ let BattleItems = {
 		megaStone: "Butterfree-Mega",
 		megaEvolves: "Butterfree",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1025,
@@ -8373,7 +8373,7 @@ let BattleItems = {
 		megaStone: "Avalugg-Mega",
 		megaEvolves: "Avalugg",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1024,
@@ -8388,7 +8388,7 @@ let BattleItems = {
 		megaStone: "Scolipede-Mega",
 		megaEvolves: "Scolipede",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1023,
@@ -8403,7 +8403,7 @@ let BattleItems = {
 		megaStone: "Bronzong-Mega",
 		megaEvolves: "Bronzong",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1022,
@@ -8418,7 +8418,7 @@ let BattleItems = {
 		megaStone: "Toxicroak-Mega",
 		megaEvolves: "Toxicroak",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1021,
@@ -8433,7 +8433,7 @@ let BattleItems = {
 		megaStone: "Golurk-Mega",
 		megaEvolves: "Golurk",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1020,
@@ -8447,7 +8447,7 @@ let BattleItems = {
 		megaStone: "Lanturn-Mega",
 		megaEvolves: "Lanturn",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1019,
@@ -8462,7 +8462,7 @@ let BattleItems = {
 		megaStone: "Exploud-Mega",
 		megaEvolves: "Exploud",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1018,
@@ -8476,7 +8476,7 @@ let BattleItems = {
 		megaStone: "Whimsicott-Mega",
 		megaEvolves: "Whimsicott",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1017,
@@ -8491,7 +8491,7 @@ let BattleItems = {
 		megaStone: "Rapidash-Mega",
 		megaEvolves: "Rapidash",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1016,
@@ -8506,7 +8506,7 @@ let BattleItems = {
 		megaStone: "Vespiquen-Mega",
 		megaEvolves: "Vespiquen",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1015,
@@ -8520,7 +8520,7 @@ let BattleItems = {
 		megaStone: "Toucannon-Mega",
 		megaEvolves: "Toucannon",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1014,
@@ -8535,7 +8535,7 @@ let BattleItems = {
 		megaStone: "Weezing-Mega",
 		megaEvolves: "Weezing",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1013,
@@ -8549,7 +8549,7 @@ let BattleItems = {
 		megaStone: "Arbok-Mega",
 		megaEvolves: "Arbok",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1012,
@@ -8563,7 +8563,7 @@ let BattleItems = {
 		megaStone: "Xatu-Mega",
 		megaEvolves: "Xatu",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1011,
@@ -8577,7 +8577,7 @@ let BattleItems = {
 		megaStone: "Granbull-Mega",
 		megaEvolves: "Granbull",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1010,
@@ -8591,7 +8591,7 @@ let BattleItems = {
 		megaStone: "Luxray-Mega",
 		megaEvolves: "Luxray",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1010,
@@ -8605,7 +8605,7 @@ let BattleItems = {
 		megaStone: "Butterfree-Mega",
 		megaEvolves: "Butterfree",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1009,
@@ -8619,7 +8619,7 @@ let BattleItems = {
 		megaStone: "Flygon-Mega",
 		megaEvolves: "Flygon",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1008,
@@ -8633,7 +8633,7 @@ let BattleItems = {
 		megaStone: "Froslass-Mega",
 		megaEvolves: "Froslass",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1007,
@@ -8647,7 +8647,7 @@ let BattleItems = {
 		megaStone: "Meganium-Mega",
 		megaEvolves: "Meganium",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1006,
@@ -8661,7 +8661,7 @@ let BattleItems = {
 		megaStone: "Torterra-Mega",
 		megaEvolves: "Torterra",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1005,
@@ -8675,7 +8675,7 @@ let BattleItems = {
 		megaStone: "Feraligatr-Mega",
 		megaEvolves: "Feraligatr",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1004,
@@ -8689,7 +8689,7 @@ let BattleItems = {
 		megaStone: "Empoleon-Mega",
 		megaEvolves: "Empoleon",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1003,
@@ -8703,7 +8703,7 @@ let BattleItems = {
 		megaStone: "Typhlosion-Mega",
 		megaEvolves: "Typhlosion",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1002,
@@ -8717,7 +8717,7 @@ let BattleItems = {
 		megaStone: "Infernape-Mega",
 		megaEvolves: "Infernape",
 		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
 		num: 1001,
