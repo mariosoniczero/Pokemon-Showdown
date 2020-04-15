@@ -16317,7 +16317,7 @@ let BattlePokedex = {
 		color: "Purple",
 		eggGroups: ["Amorphous"],
 	},
-    meganiummega: {
+	meganiummega: {
 		num: 154,
 		species: "Meganium-Mega",
 		baseSpecies: "Meganium",
@@ -16351,7 +16351,7 @@ let BattlePokedex = {
 		evoLevel: 36,
 		eggGroups: ["Field"],
 	},
-    feraligatrmega: {
+	feraligatrmega: {
 		num: 160,
 		species: "Feraligatr-Mega",
 		baseSpecies: "Feraligatr",
@@ -16368,7 +16368,7 @@ let BattlePokedex = {
 		evoLevel: 30,
 		eggGroups: ["Monster", "Water 1"],
 	},
-    /*ariadosmega: {
+	/*ariadosmega: {
 		num: 168,
 		species: "Ariados-Mega",
 		baseSpecies: "Ariados",
@@ -16382,7 +16382,7 @@ let BattlePokedex = {
 		color: "Red",
 		eggGroups: ["Bug"],
 	},*/
-    lanturnmega: {
+	lanturnmega: {
 		num: 171,
 		species: "Lanturn-Mega",
 		baseSpecies: "Lanturn",
@@ -16396,7 +16396,7 @@ let BattlePokedex = {
 		color: "Blue",
 		eggGroups: ["Water 2"],
 	},
-    /*xatumega: {
+	/*xatumega: {
 		num: 178,
 		species: "Xatu-Mega",
 		baseSpecies: "Xatu",
@@ -16410,7 +16410,7 @@ let BattlePokedex = {
 		color: "Green",
 		eggGroups: ["Flying"],
 	},*/
-    bellossommega: {
+	bellossommega: {
 		num: 182,
 		species: "Bellossom-Mega",
 		baseSpecies: "Bellossom",
@@ -16424,7 +16424,7 @@ let BattlePokedex = {
 		color: "Green",
 		eggGroups: ["Grass"],
 	},
-    granbullmega: {
+	granbullmega: {
 		num: 210,
 		species: "Granbull-Mega",
 		baseSpecies: "Granbull",
@@ -16439,7 +16439,7 @@ let BattlePokedex = {
 		color: "Purple",
 		eggGroups: ["Field", "Fairy"],
 	},
-    miltankmega: {
+	miltankmega: {
 		num: 241,
 		species: "Miltank-Mega",
 		baseSpecies: "Miltank",
@@ -16470,7 +16470,7 @@ let BattlePokedex = {
 		eggGroups: ["Monster", "Field"],
 	},
 	*/
-    delcattymega: {
+	delcattymega: {
 		num: 301,
 		species: "Delcatty-Mega",
 		baseSpecies: "Delcatty",
@@ -16485,7 +16485,7 @@ let BattlePokedex = {
 		color: "Purple",
 		eggGroups: ["Field", "Fairy"],
 	},
-    flygonmegax: {
+	flygonmegax: {
 		num: 330,
 		species: "Flygon-Mega-X",
 		baseSpecies: "Flygon",
@@ -16513,7 +16513,7 @@ let BattlePokedex = {
 		color: "Green",
 		eggGroups: ["Bug"],
 	},
-    kecleonmega: {
+	kecleonmega: {
 		num: 352,
 		species: "Kecleon-Mega",
 		baseSpecies: "Kecleon",
@@ -16527,7 +16527,7 @@ let BattlePokedex = {
 		color: "Green",
 		eggGroups: ["Field"],
 	},
-    torterramega: {
+	torterramega: {
 		num: 389,
 		species: "Torterra-Mega",
 		baseSpecies: "Torterra",
@@ -16544,7 +16544,7 @@ let BattlePokedex = {
 		evoLevel: 32,
 		eggGroups: ["Monster", "Grass"],
 	},
-    infernapemega: {
+	infernapemega: {
 		num: 392,
 		species: "Infernape-Mega",
 		baseSpecies: "Infernape",
@@ -16559,7 +16559,7 @@ let BattlePokedex = {
 		color: "Brown",
 		eggGroups: ["Field", "Human-Like"],
 	},
-    empoleonmega: {
+	empoleonmega: {
 		num: 395,
 		species: "Empoleon-Mega",
 		baseSpecies: "Empoleon",
@@ -16576,7 +16576,7 @@ let BattlePokedex = {
 		evoLevel: 36,
 		eggGroups: ["Water 1", "Field"],
 	},
-    staraptormega: {
+	staraptormega: {
 		num: 398,
 		species: "Staraptor-Mega",
 		baseSpecies: "Staraptor",
@@ -16590,7 +16590,7 @@ let BattlePokedex = {
 		color: "Brown",
 		eggGroups: ["Flying"],
 	},
-    luxraymega: {
+	luxraymega: {
 		num: 405,
 		species: "Luxray-Mega",
 		baseSpecies: "Luxray",
@@ -16604,7 +16604,7 @@ let BattlePokedex = {
 		color: "Blue",
 		eggGroups: ["Field"],
 	},
-    roserademega: {
+	roserademega: {
 		num: 407,
 		species: "Roserade-Mega",
 		baseSpecies: "Roserade",
@@ -16635,7 +16635,7 @@ let BattlePokedex = {
 		eggGroups: ["Bug"],
 	},
 	*/
-    bronzongmega: {
+	bronzongmega: {
 		num: 437,
 		species: "Bronzong-Mega",
 		baseSpecies: "Bronzong",
@@ -16665,7 +16665,7 @@ let BattlePokedex = {
 		eggGroups: ["Human-Like"],
 	},
 	*/
-    froslassmega: {
+	froslassmega: {
 		num: 478,
 		species: "Froslass-Mega",
 		baseSpecies: "Froslass",
@@ -16712,7 +16712,7 @@ let BattlePokedex = {
 		eggGroups: ["Fairy", "Grass"],
 	},
 	*/
-    krookodilemega: {
+	krookodilemega: {
 		num: 553,
 		species: "Krookodile-Mega",
 		baseSpecies: "Krookodile",
@@ -16726,7 +16726,7 @@ let BattlePokedex = {
 		color: "Red",
 		eggGroups: ["Field"],
 	},
-    druddigonmega: {
+	druddigonmega: {
 		num: 621,
 		species: "Druddigon-Mega",
 		baseSpecies: "Druddigon",
@@ -16740,7 +16740,7 @@ let BattlePokedex = {
 		color: "Red",
 		eggGroups: ["Monster", "Dragon"],
 	},
-    golurkmega: {
+	golurkmega: {
 		num: 623,
 		species: "Golurk-Mega",
 		baseSpecies: "Golurk",
@@ -16770,7 +16770,8 @@ let BattlePokedex = {
 		eggGroups: ["Water 1", "Water 3"],
 	},
 	*/
-    /*tyrantrummega: {
+    /*
+	tyrantrummega: {
 		num: 697,
 		species: "Tyrantrum-Mega",
 		baseSpecies: "Tyrantrum",
@@ -16784,8 +16785,9 @@ let BattlePokedex = {
 		weightkg: 270,
 		color: "Red",
 		eggGroups: ["Monster", "Dragon"],
-	},*/
-    avaluggmega: {
+	},
+	*/
+	avaluggmega: {
 		num: 713,
 		species: "Avalugg-Mega",
 		baseSpecies: "Avalugg",
