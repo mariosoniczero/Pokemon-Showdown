@@ -16289,7 +16289,7 @@ let BattlePokedex = {
 		color: "Purple",
 		eggGroups: ["Field", "Dragon"],
 	},
-    rapidashmega: {
+	rapidashmega: {
 		num: 78,
 		species: "Rapidash-Mega",
 		baseSpecies: "Rapidash",
@@ -16303,7 +16303,7 @@ let BattlePokedex = {
 		color: "Yellow",
 		eggGroups: ["Field"],
 	},
-    weezingmega: {
+	weezingmega: {
 		num: 110,
 		species: "Weezing-Mega",
 		baseSpecies: "Weezing",
@@ -16332,9 +16332,9 @@ let BattlePokedex = {
 		color: "Green",
 		prevo: "bayleef",
 		evoLevel: 32,
-		eggGroups: ["Monster","Grass"],
+		eggGroups: ["Monster", "Grass"],
 	},
-    typhlosionmega: {
+	typhlosionmega: {
 		num: 157,
 		species: "Typhlosion-Mega",
 		baseSpecies: "Typhlosion",

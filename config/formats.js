@@ -12,8 +12,8 @@ let Formats = [
 	{
 		name: "[Gen 8] Custom Mega Draft League",
 		mod: 'gen8',
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 
-				  'Dynamax Clause', 'Sleep Clause Mod', 'Baton Pass Clause', '+GPL', 
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause',
+				  'Dynamax Clause', 'Sleep Clause Mod', 'Baton Pass Clause', '+GPL',
 				  'Z-Move Clause', 'Swagger Clause', 'Evasion Abilities Clause',
 		],
 		banlist: ['Power Construct', 'Bellossomite + Strength Sap', 'Kangaskhanite + Seismic Toss',
@@ -24,7 +24,7 @@ let Formats = [
 	{
 		name: "[Gen 8] Custom Mega OU",
 		mod: 'gen8',
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause',
 				  'Dynamax Clause', 'Sleep Clause Mod', '+GPL', 'Z-Move Clause',
 		],
 		banlist: [

@@ -8110,8 +8110,7 @@ let BattleItems = {
 		isNonstandard: "CAP",
 		desc: "If held by a Crucibelle, this item allows it to Mega Evolve in battle.",
 	},
-	
-		    	"krookodilite": {
+	"krookodilite": {
 		id: "krookodilite",
 		name: "Krookodilite",
 		spritenum: 575,
