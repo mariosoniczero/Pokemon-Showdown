@@ -4891,7 +4891,7 @@ let BattleAbilities = {
 		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain.",
 		onStart(source) {
 			for (const action of this.queue) {
-				if (action.choice === 'runPrimal' && action.pokemon === source && source.template.speciesid === 'kyogre') return;
+				if (action.choice === 'runPrimal' && action.pokemon === source && source.species.id === 'kyogre') return;
 				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
 			}
 			this.field.setWeather('raindance');

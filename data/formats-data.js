@@ -4904,111 +4904,111 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	butterfreemega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	arbokmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	rapidashmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	weezingmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	meganiummega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	typhlosionmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	feraligatrmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	lanturnmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	bellossommega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	granbullmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	miltankmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	delcattymega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	flygonmegax: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	flygonmegay: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	kecleonmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	torterramega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	infernapemega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	empoleonmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	staraptormega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	luxraymega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	roserademega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	bronzongmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	froslassmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	krookodilemega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	druddigonmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	golurkmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 	avaluggmega: {
-		isNonstandard: "GPL",
+		isNonstandard: "Custom",
 		tier: "GPL",
 	},
 };
