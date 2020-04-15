@@ -3106,7 +3106,7 @@ let BattlePokedex = {
 		prevo: "quilava",
 		evoLevel: 36,
 		eggGroups: ["Field"],
-		otherFormes: [typhlosionmega],
+		otherFormes: ["typhlosionmega"],
 	},
 	totodile: {
 		num: 158,
@@ -3149,7 +3149,7 @@ let BattlePokedex = {
 		prevo: "croconaw",
 		evoLevel: 30,
 		eggGroups: ["Monster", "Water 1"],
-		otherFormes: [feraligatrmega],
+		otherFormes: ["feraligatrmega"],
 	},
 	sentret: {
 		num: 161,
@@ -3849,7 +3849,7 @@ let BattlePokedex = {
 		prevo: "snubbull",
 		evoLevel: 23,
 		eggGroups: ["Field", "Fairy"],
-		otherFormes: [granbullmega],
+		otherFormes: ["granbullmega"],
 	},
 	qwilfish: {
 		num: 211,
