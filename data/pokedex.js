@@ -16845,7 +16845,6 @@ let BattlePokedex = {
 		eggGroups: ["Field", "Fairy"],
 		requiredItem: "Pachirisunite",
 	},
-	/*
 	vespiquenmega: {
 		num: 416,
 		name: "Vespiquen-Mega",
@@ -16858,8 +16857,8 @@ let BattlePokedex = {
 		weightkg: 38.5,
 		color: "Yellow",
 		eggGroups: ["Bug"],
+		requiredItem: "Vespiquenite",
 	},
-	*/
 };
 
 exports.BattlePokedex = BattlePokedex;

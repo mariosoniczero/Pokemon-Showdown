@@ -8738,7 +8738,6 @@ let BattleItems = {
 		gen: 8,
 		desc: "If held by a Pachirisu, this item allows it to Mega Evolve in battle.",
 	},
-	/*
 	"vespiquenite": {
 		id: "vespiquenite",
 		name: "Vespiquenite",
@@ -8753,7 +8752,6 @@ let BattleItems = {
 		gen: 8,
 		desc: "If held by a Vespiquen, this item allows it to Mega Evolve in battle.",
 	},
-	*/
 };
 
 exports.BattleItems = BattleItems;
