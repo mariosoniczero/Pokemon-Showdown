@@ -16823,7 +16823,6 @@ let BattlePokedex = {
 		name: "Toucannon-Mega",
 		baseSpecies: "Toucannon",
 		forme: "Mega",
-		formeLetter: "M",
 		types: ["Grass", "Flying"],
 		baseStats: {hp: 80, atk: 155, def: 75, spa: 85, spd: 75, spe: 115},
 		abilities: {0: "Skill Link"},
@@ -16831,6 +16830,34 @@ let BattlePokedex = {
 		weightkg: 26,
 		color: "Black",
 		eggGroups: ["Flying"],
+	},
+	*/
+	pachirisumega: {
+		num: 417,
+		name: "Pachirisu-Mega",
+		baseSpecies: "Pachirisu",
+		types: ["Electric"],
+		baseStats: {hp: 60, atk: 75, def: 90, spa: 75, spd: 110, spe: 95},
+		abilities: {0: "Sharpened Fangs"},
+		heightm: 0.4,
+		weightkg: 3.9,
+		color: "White",
+		eggGroups: ["Field", "Fairy"],
+		requiredItem: "Pachirisunite",
+	},
+	/*
+	vespiquenmega: {
+		num: 416,
+		name: "Vespiquen-Mega",
+		baseSpecies: "Vespiquen",
+		types: ["Bug", "Rock"],
+		gender: "F",
+		baseStats: {hp: 70, atk: 80, def: 122, spa: 100, spd: 127, spe: 75},
+		abilities: {0: "Magic Guard"},
+		heightm: 1.2,
+		weightkg: 38.5,
+		color: "Yellow",
+		eggGroups: ["Bug"],
 	},
 	*/
 };

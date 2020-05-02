@@ -8121,7 +8121,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1041,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Krookodile, this item allows it to Mega Evolve in battle.",
 	},
 	"flygonitey": {
@@ -8135,7 +8135,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1040,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
 	},
 	"flygonitex": {
@@ -8149,7 +8149,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1039,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
 	},
 	"miltankite": {
@@ -8163,7 +8163,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1038,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Miltank, this item allows it to Mega Evolve in battle.",
 	},
 	"druddigonite": {
@@ -8177,7 +8177,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1037,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Druddigon, this item allows it to Mega Evolve in battle.",
 	},
 	/*"ariadosite": {
@@ -8191,7 +8191,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1036,
-		gen: 6,
+		gen: 7,
 		desc: "If held by an Ariados, this item allows it to Mega Evolve in battle.",
 	},*/
 	"bellossomite": {
@@ -8205,7 +8205,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1035,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Bellossom, this item allows it to Mega Evolve in battle.",
 	},
 	"staraptorite": {
@@ -8219,7 +8219,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1035,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Staraptor, this item allows it to Mega Evolve in battle.",
 	},
 	"kecleonite": {
@@ -8233,7 +8233,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1034,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Kecleon, this item allows it to Mega Evolve in battle.",
 	},
 	/*
@@ -8248,7 +8248,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1033,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Clawitzer, this item allows it to Mega Evolve in battle.",
 	},
 	*/
@@ -8263,7 +8263,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1032,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Delcatty, this item allows it to Mega Evolve in battle.",
 	},
 	"roseradite": {
@@ -8277,7 +8277,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1031,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Roserade, this item allows it to Mega Evolve in battle.",
 	},
 	/*"tyrantrumite": {
@@ -8291,7 +8291,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1030,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Tyrantrum, this item allows it to Mega Evolve in battle.",
 	},*/
 	/*
@@ -8306,7 +8306,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1029,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Scolipede, this item allows it to Mega Evolve in battle.",
 	},
 	"froginite": {
@@ -8320,7 +8320,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1028,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Toxicroak, this item allows it to Mega Evolve in battle.",
 	},
 	*/
@@ -8335,7 +8335,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1027,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Lanturn, this item allows it to Mega Evolve in battle.",
 	},
 	"dottite": {
@@ -8349,7 +8349,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1026,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Granbull, this item allows it to Mega Evolve in battle.",
 	},
 	"granbelite": {
@@ -8363,7 +8363,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1025,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.",
 	},
 	"avaluggite": {
@@ -8377,7 +8377,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1024,
-		gen: 6,
+		gen: 7,
 		desc: "If held by an Avalugg, this item allows it to Mega Evolve in battle.",
 	},
 	/*
@@ -8392,7 +8392,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1023,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Scolipede, this item allows it to Mega Evolve in battle.",
 	},
 	*/
@@ -8407,7 +8407,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1022,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Bronzong, this item allows it to Mega Evolve in battle.",
 	},
 	/*
@@ -8422,7 +8422,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1021,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Toxicroak, this item allows it to Mega Evolve in battle.",
 	},
 	*/
@@ -8437,7 +8437,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1020,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Golurk, this item allows it to Mega Evolve in battle.",
 	},
 	"lanturnite": {
@@ -8451,7 +8451,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1019,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Lanturn, this item allows it to Mega Evolve in battle.",
 	},
 	/*
@@ -8466,7 +8466,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1018,
-		gen: 6,
+		gen: 7,
 		desc: "If held by an Exploud, this item allows it to Mega Evolve in battle.",
 	},
 	"whimsicottite": {
@@ -8480,7 +8480,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1017,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Whimsicott, this item allows it to Mega Evolve in battle.",
 	},
 	*/
@@ -8495,7 +8495,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1016,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Rapidash, this item allows it to Mega Evolve in battle.",
 	},
 	/*
@@ -8510,7 +8510,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1015,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Vespiquen, this item allows it to Mega Evolve in battle.",
 	},
 	"toucannonite": {
@@ -8524,7 +8524,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1014,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Toucannon, this item allows it to Mega Evolve in battle.",
 	},
 	*/
@@ -8539,7 +8539,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1013,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Weezing, this item allows it to Mega Evolve in battle.",
 	},
 	"arbokite": {
@@ -8553,7 +8553,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1012,
-		gen: 6,
+		gen: 7,
 		desc: "If held by an Arbok, this item allows it to Mega Evolve in battle.",
 	},
 	/*"xatunite": {
@@ -8567,7 +8567,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1011,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Xatu, this item allows it to Mega Evolve in battle.",
 	},*/
 	"granbullite": {
@@ -8581,7 +8581,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1010,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Granbull, this item allows it to Mega Evolve in battle.",
 	},
 	"luxrite": {
@@ -8595,7 +8595,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1010,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Luxray, this item allows it to Mega Evolve in battle.",
 	},
 	"butterfrite": {
@@ -8609,7 +8609,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1009,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.",
 	},
 	/*"flygonite": {
@@ -8623,7 +8623,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1008,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
 	},*/
 	"froslassite": {
@@ -8637,7 +8637,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1007,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Froslass, this item allows it to Mega Evolve in battle.",
 	},
 	"meganiumite": {
@@ -8651,7 +8651,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1006,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Meganium, this item allows it to Mega Evolve in battle.",
 	},
 	"torterrite": {
@@ -8665,7 +8665,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1005,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Torterra, this item allows it to Mega Evolve in battle.",
 	},
 	"feraligatite": {
@@ -8679,7 +8679,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1004,
-		gen: 6,
+		gen: 7,
 		desc: "If held by an Typhlosion, this item allows it to Mega Evolve in battle.",
 	},
 	"empoleonite": {
@@ -8693,7 +8693,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1003,
-		gen: 6,
+		gen: 7,
 		desc: "If held by an Empoleon, this item allows it to Mega Evolve in battle.",
 	},
 	"typhlosionite": {
@@ -8707,7 +8707,7 @@ let BattleItems = {
 			return true;
 		},
 		num: 1002,
-		gen: 6,
+		gen: 7,
 		desc: "If held by a Typhlosion, this item allows it to Mega Evolve in battle.",
 	},
 	"infernapite": {
@@ -8721,9 +8721,39 @@ let BattleItems = {
 			return true;
 		},
 		num: 1001,
-		gen: 6,
+		gen: 7,
 		desc: "If held by an Infernape, this item allows it to Mega Evolve in battle.",
 	},
+	"pachirisunite": {
+		id: "pachirisunite",
+		name: "Pachirisunite",
+		spritenum: 575,
+		megaStone: "Pachirisu-Mega",
+		megaEvolves: "Pachirisu",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1042,
+		gen: 8,
+		desc: "If held by a Pachirisu, this item allows it to Mega Evolve in battle.",
+	},
+	/*
+	"vespiquenite": {
+		id: "vespiquenite",
+		name: "Vespiquenite",
+		spritenum: 575,
+		megaStone: "Vespiquen-Mega",
+		megaEvolves: "Vespiquen",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1043,
+		gen: 8,
+		desc: "If held by a Vespiquen, this item allows it to Mega Evolve in battle.",
+	},
+	*/
 };
 
 exports.BattleItems = BattleItems;

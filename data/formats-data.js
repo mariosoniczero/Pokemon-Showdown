@@ -5011,6 +5011,16 @@ let BattleFormatsData = {
 		isNonstandard: "Custom",
 		tier: "GPL",
 	},
+	pachirisumega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	/*
+	vespiquenmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	*/
 };
 
 exports.BattleFormatsData = BattleFormatsData;

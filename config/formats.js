@@ -19,6 +19,7 @@ let Formats = [
 		banlist: ['Power Construct', 'Bellossomite + Strength Sap', 'Kangaskhanite + Seismic Toss',
 				  'Glalitite + Moody', 'Rapidashite + Swords Dance', 'Greninja + Protean',
 				  'Greninja + Battle Bond', 'Blaziken + Speed Boost', 'Brightpowder', 'Lax Incense',
+				  'Blastoisinite + Shell Smash',
 		],
 	},
 	{

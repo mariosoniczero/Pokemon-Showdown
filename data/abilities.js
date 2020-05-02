@@ -4902,6 +4902,15 @@ let BattleAbilities = {
 		rating: 4,
 		num: 1001,
 	},
+	"sharpenedfangs": {
+		desc: "Super Fang does damage equal to 3/4 target's current HP, rounded down, but not less than 1 HP.",
+		shortDesc: "Super Fang does damage equal to 3/4 target's current HP.",
+		//Coded on Super Fang in moves.js
+		id: "sharpenedfangs",
+		name: "Sharpened Fangs",
+		rating: 3.5,
+		num: 1008,
+	},
 };
 
 exports.BattleAbilities = BattleAbilities;

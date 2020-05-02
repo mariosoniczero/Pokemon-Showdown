@@ -18936,6 +18936,10 @@ let BattleMovedex = {
 		accuracy: 90,
 		basePower: 0,
 		damageCallback(pokemon, target) {
+			if (pokemon.hasAbility('sharpenedfangs')) {
+				const hp75 = Math.floor(target.getUndynamaxedHP() * 3 / 4);
+				return this.dex.clampIntRange(hp75, 1);
+			}
 			return this.dex.clampIntRange(target.getUndynamaxedHP() / 2, 1);
 		},
 		category: "Physical",
