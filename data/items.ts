@@ -7734,7 +7734,8 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 7,
 		desc: "If held by a Druddigon, this item allows it to Mega Evolve in battle.",
 	},
-	/*"ariadosite": {
+	/* 
+	"ariadosite": {
 		id: "ariadosite",
 		name: "Ariadosite",
 		spritenum: 575,
@@ -7747,7 +7748,8 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		num: 1036,
 		gen: 7,
 		desc: "If held by an Ariados, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	"bellossomite": {
 		id: "bellossomite",
 		name: "Bellossomite",
@@ -7834,7 +7836,8 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 7,
 		desc: "If held by a Roserade, this item allows it to Mega Evolve in battle.",
 	},
-	/*"tyrantrumite": {
+	/*
+	"tyrantrumite": {
 		id: "tyrantrumite",
 		name: "Tyrantrumite",
 		spritenum: 575,
@@ -7847,7 +7850,8 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		num: 1030,
 		gen: 7,
 		desc: "If held by a Tyrantrum, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	/*
 	"chipinite": {
 		id: "chipinite",
@@ -8110,7 +8114,8 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 7,
 		desc: "If held by an Arbok, this item allows it to Mega Evolve in battle.",
 	},
-	/*"xatunite": {
+	/*
+	"xatunite": {
 		id: "xatunite",
 		name: "Xatunite",
 		spritenum: 575,
@@ -8123,7 +8128,8 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		num: 1011,
 		gen: 7,
 		desc: "If held by a Xatu, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	"granbullite": {
 		id: "granbullite",
 		name: "Granbullite",
@@ -8166,7 +8172,8 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 7,
 		desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.",
 	},
-	/*"flygonite": {
+	/*
+	"flygonite": {
 		id: "flygonite",
 		name: "Flygonite",
 		spritenum: 575,
@@ -8179,7 +8186,8 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		num: 1008,
 		gen: 7,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	"froslassite": {
 		id: "froslassite",
 		name: "Froslassite",

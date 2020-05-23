@@ -16637,7 +16637,8 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Monster", "Water 1"],
 		requiredItem: "Feraligatite",
 	},
-	/*ariadosmega: {
+	/*
+	ariadosmega: {
 		num: 168,
 		name: "Ariados-Mega",
 		baseSpecies: "Ariados",
@@ -16649,7 +16650,8 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 33.5,
 		color: "Red",
 		eggGroups: ["Bug"],
-	},*/
+	},
+	*/
 	lanturnmega: {
 		num: 171,
 		name: "Lanturn-Mega",
@@ -16664,7 +16666,8 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Water 2"],
 		requiredItem: "Lanturnite",
 	},
-	/*xatumega: {
+	/*
+	xatumega: {
 		num: 178,
 		name: "Xatu-Mega",
 		baseSpecies: "Xatu",
@@ -16676,7 +16679,8 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 15,
 		color: "Green",
 		eggGroups: ["Flying"],
-	},*/
+	},
+	*/
 	bellossommega: {
 		num: 182,
 		name: "Bellossom-Mega",

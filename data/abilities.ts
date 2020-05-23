@@ -4609,7 +4609,8 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "This Pokemon's Normal-type moves become Bug type and have 1.2x power.",
 		onModifyMovePriority: -1,
 		onModifyMove(move, pokemon) {
-			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+			const noModifyType = ['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'];
+			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Bug';
 				move.pixilateBoosted = true;
 			}
@@ -4660,7 +4661,7 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 1005,
 	},
-	/*"terraformer": {
+	/* "terraformer": {
 		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Ground-type attack.",
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
@@ -4686,7 +4687,8 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "This Pokemon's Normal-type moves become Fire type and have 1.2x power.",
 		onModifyMovePriority: -1,
 		onModifyMove(move, pokemon) {
-			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+			const noModifyType = ['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'];
+			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Fire';
 				move.pixilateBoosted = true;
 			}
@@ -4743,7 +4745,7 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 	"sharpenedfangs": {
 		desc: "Super Fang does damage equal to 3/4 target's current HP, rounded down, but not less than 1 HP.",
 		shortDesc: "Super Fang does damage equal to 3/4 target's current HP.",
-		//Coded on Super Fang in moves.js
+		// Coded on Super Fang in moves.js
 		id: "sharpenedfangs",
 		name: "Sharpened Fangs",
 		rating: 3.5,
