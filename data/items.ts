@@ -7734,7 +7734,7 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 7,
 		desc: "If held by a Druddigon, this item allows it to Mega Evolve in battle.",
 	},
-	/* 
+	/*
 	"ariadosite": {
 		id: "ariadosite",
 		name: "Ariadosite",
