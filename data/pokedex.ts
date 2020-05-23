@@ -3117,6 +3117,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 32,
 		eggGroups: ["Monster", "Grass"],
 		otherFormes: ["meganiummega"],
+		formeOrder: ["Meganium", "Meganium-Mega"],
 	},
 	cyndaquil: {
 		num: 155,
@@ -3160,6 +3161,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 36,
 		eggGroups: ["Field"],
 		otherFormes: ["typhlosionmega"],
+		formeOrder: ["Typhlosion", "Typhlosion-Mega"],
 	},
 	totodile: {
 		num: 158,
@@ -3203,6 +3205,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 30,
 		eggGroups: ["Monster", "Water 1"],
 		otherFormes: ["feraligatrmega"],
+		formeOrder: ["Feraligatr", "Feraligatr-Mega"],
 	},
 	sentret: {
 		num: 161,
@@ -3342,6 +3345,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 27,
 		eggGroups: ["Water 2"],
 		otherFormes: ["lanturnmega"],
+		formeOrder: ["Lanturn", "Lanturn-Mega"],
 	},
 	pichu: {
 		num: 172,
@@ -3523,6 +3527,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoItem: "Sun Stone",
 		eggGroups: ["Grass"],
 		otherFormes: ["bellossommega"],
+		formeOrder: ["Bellossom", "Bellossom-Mega"],
 	},
 	marill: {
 		num: 183,
@@ -3907,6 +3912,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 23,
 		eggGroups: ["Field", "Fairy"],
 		otherFormes: ["granbullmega"],
+		formeOrder: ["Granbull", "Granbull-Mega"],
 	},
 	qwilfish: {
 		num: 211,
@@ -4366,6 +4372,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Pink",
 		eggGroups: ["Field"],
 		otherFormes: ["miltankmega"],
+		formeOrder: ["Miltank", "Miltank-Mega"],
 	},
 	blissey: {
 		num: 242,
@@ -5269,6 +5276,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoItem: "Moon Stone",
 		eggGroups: ["Field", "Fairy"],
 		otherFormes: ["delcattymega"],
+		formeOrder: ["Delcatty", "Delcatty-Mega"],
 	},
 	sableye: {
 		num: 302,
@@ -5741,6 +5749,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 45,
 		eggGroups: ["Bug", "Dragon"],
 		otherFormes: ["flygonmegax", "flygonmegay"],
+		formeOrder: ["Flygon", "Flygon-Mega-X", "Flygon-Mega-Y"],
 	},
 	cacnea: {
 		num: 331,
@@ -6080,6 +6089,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Green",
 		eggGroups: ["Field"],
 		otherFormes: ["kecleonmega"],
+		formeOrder: ["Kecleon", "Kecleon-Mega"],
 	},
 	shuppet: {
 		num: 353,
@@ -6767,6 +6777,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 32,
 		eggGroups: ["Monster", "Grass"],
 		otherFormes: ["torterramega"],
+		formeOrder: ["Torterra", "Torterra-Mega"],
 	},
 	chimchar: {
 		num: 390,
@@ -6810,6 +6821,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 36,
 		eggGroups: ["Field", "Human-Like"],
 		otherFormes: ["infernapemega"],
+		formeOrder: ["Infernape", "Infernape-Mega"],
 	},
 	piplup: {
 		num: 393,
@@ -6853,6 +6865,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 36,
 		eggGroups: ["Water 1", "Field"],
 		otherFormes: ["empoleonmega"],
+		formeOrder: ["Empoleon", "Empoleon-Mega"],
 	},
 	starly: {
 		num: 396,
@@ -6893,6 +6906,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 34,
 		eggGroups: ["Flying"],
 		otherFormes: ["staraptormega"],
+		formeOrder: ["Staraptor", "Staraptor-Mega"],
 	},
 	bidoof: {
 		num: 399,
@@ -6983,6 +6997,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 30,
 		eggGroups: ["Field"],
 		otherFormes: ["luxraymega"],
+		formeOrder: ["Luxray", "Luxray-Mega"],
 	},
 	budew: {
 		num: 406,
@@ -7011,6 +7026,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoItem: "Shiny Stone",
 		eggGroups: ["Fairy", "Grass"],
 		otherFormes: ["roserademega"],
+		formeOrder: ["Roserade", "Roserade-Mega"],
 	},
 	cranidos: {
 		num: 408,
@@ -7481,6 +7497,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 33,
 		eggGroups: ["Mineral"],
 		otherFormes: ["bronzongmega"],
+		formeOrder: ["Bronzong", "Bronzong-Mega"],
 	},
 	bonsly: {
 		num: 438,
@@ -8103,6 +8120,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoItem: "Dawn Stone",
 		eggGroups: ["Fairy", "Mineral"],
 		otherFormes: ["froslassmega"],
+		formeOrder: ["Froslass", "Froslass-Mega"],
 	},
 	rotom: {
 		num: 479,
@@ -9496,6 +9514,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 40,
 		eggGroups: ["Field"],
 		otherFormes: ["krookodilemega"],
+		formeOrder: ["Krookodile", "Krookodile-Mega"],
 	},
 	darumaka: {
 		num: 554,
@@ -10485,6 +10504,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		eggGroups: ["Monster", "Dragon"],
 		otherFormes: ["druddigonmega"],
+		formeOrder: ["Druddigon", "Druddigon-Mega"],
 	},
 	golett: {
 		num: 622,
@@ -10513,6 +10533,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 43,
 		eggGroups: ["Mineral"],
 		otherFormes: ["golurkmega"],
+		formeOrder: ["Golurk", "Golurk-Mega"],
 	},
 	pawniard: {
 		num: 624,
@@ -11917,6 +11938,8 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Sliggoo",
 		evoLevel: 50,
 		eggGroups: ["Dragon"],
+		otherFormes: ["Goodra-Mega"],
+		formeOrder: ["Goodra", "Goodra-Mega"],
 	},
 	klefki: {
 		num: 707,
@@ -12097,6 +12120,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 37,
 		eggGroups: ["Monster", "Mineral"],
 		otherFormes: ["avaluggmega"],
+		formeOrder: ["Avalugg", "Avalugg-Mega"],
 	},
 	noibat: {
 		num: 714,
