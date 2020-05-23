@@ -7678,7 +7678,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Krookodile, this item allows it to Mega Evolve in battle.",
 	},
 	"flygonitey": {
-		id: "flygonitey",
 		name: "Flygonite Y",
 		spritenum: 575,
 		megaStone: "Flygon-Mega-Y",
