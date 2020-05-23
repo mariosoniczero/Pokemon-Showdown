@@ -4598,7 +4598,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 	persistent: {
 		desc: "The duration of Gravity, Heal Block, Magic Room, Safeguard, Tailwind, Trick Room, and Wonder Room is increased by 2 turns if the effect is started by this Pokemon.",
 		shortDesc: "When used, Gravity/Heal Block/Safeguard/Tailwind/Room effects last 2 more turns.",
-		id: "persistent",
 		name: "Persistent",
 		// implemented in the corresponding move
 		rating: 3,
@@ -4619,7 +4618,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
-		id: "infectate",
 		name: "Infectate",
 		rating: 4,
 		num: 1007,
@@ -4656,7 +4654,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 			this.addMove('-anim', pokemon, move.name, target);
 			return false; // skip charge turn
 		},
-		id: "spectralbattery",
 		name: "Spectral Battery",
 		rating: 3,
 		num: 1005,
@@ -4697,7 +4694,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
-		id: "conflagrate",
 		name: "Conflagrate",
 		rating: 4,
 		num: 1003,
@@ -4722,7 +4718,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 				}
 			}
 		},
-		id: "intimidate",
 		name: "Intimidate",
 		rating: 3.5,
 		num: 1002,
@@ -4737,7 +4732,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 			this.field.setWeather('raindance');
 			this.field.setTerrain('electricterrain');
 		},
-		id: "thunderstorm",
 		name: "Thunderstorm",
 		rating: 4,
 		num: 1001,
@@ -4746,7 +4740,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		desc: "Super Fang does damage equal to 3/4 target's current HP, rounded down, but not less than 1 HP.",
 		shortDesc: "Super Fang does damage equal to 3/4 target's current HP.",
 		// Coded on Super Fang in moves.js
-		id: "sharpenedfangs",
 		name: "Sharpened Fangs",
 		rating: 3.5,
 		num: 1008,

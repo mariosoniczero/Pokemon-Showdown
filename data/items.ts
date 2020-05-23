@@ -7665,7 +7665,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Crucibelle, this item allows it to Mega Evolve in battle.",
 	},
 	"krookodilite": {
-		id: "krookodilite",
 		name: "Krookodilite",
 		spritenum: 575,
 		megaStone: "Krookodile-Mega",
@@ -7693,7 +7692,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
 	},
 	"flygonitex": {
-		id: "flygonitex",
 		name: "Flygonite X",
 		spritenum: 575,
 		megaStone: "Flygon-Mega-X",
@@ -7707,7 +7705,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
 	},
 	"miltankite": {
-		id: "miltankite",
 		name: "Miltankite",
 		spritenum: 575,
 		megaStone: "Miltank-Mega",
@@ -7721,7 +7718,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Miltank, this item allows it to Mega Evolve in battle.",
 	},
 	"druddigonite": {
-		id: "druddigonite",
 		name: "Druddigonite",
 		spritenum: 575,
 		megaStone: "Druddigon-Mega",
@@ -7751,7 +7747,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 	},
 	*/
 	"bellossomite": {
-		id: "bellossomite",
 		name: "Bellossomite",
 		spritenum: 575,
 		megaStone: "Bellossom-Mega",
@@ -7765,7 +7760,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Bellossom, this item allows it to Mega Evolve in battle.",
 	},
 	"staraptorite": {
-		id: "staraptorite",
 		name: "Staraptorite",
 		spritenum: 575,
 		megaStone: "Staraptor-Mega",
@@ -7779,7 +7773,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Staraptor, this item allows it to Mega Evolve in battle.",
 	},
 	"kecleonite": {
-		id: "kecleonite",
 		name: "Kecleonite",
 		spritenum: 575,
 		megaStone: "Kecleon-Mega",
@@ -7809,7 +7802,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 	},
 	*/
 	"delcattite": {
-		id: "delcattite",
 		name: "Delcattite",
 		spritenum: 575,
 		megaStone: "Delcatty-Mega",
@@ -7823,7 +7815,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Delcatty, this item allows it to Mega Evolve in battle.",
 	},
 	"roseradite": {
-		id: "roseradite",
 		name: "Roseradite",
 		spritenum: 575,
 		megaStone: "Roserade-Mega",
@@ -7883,7 +7874,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 	},
 	*/
 	"shoqinite": {
-		id: "shoqinite",
 		name: "Shoqinite",
 		spritenum: 575,
 		megaStone: "Lanturn-Mega",
@@ -7897,7 +7887,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Lanturn, this item allows it to Mega Evolve in battle.",
 	},
 	"dottite": {
-		id: "dottite",
 		name: "Dottite",
 		spritenum: 575,
 		megaStone: "Granbull-Mega",
@@ -7911,7 +7900,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Granbull, this item allows it to Mega Evolve in battle.",
 	},
 	"granbelite": {
-		id: "granbelite",
 		name: "Granbelite",
 		spritenum: 575,
 		megaStone: "Butterfree-Mega",
@@ -7925,7 +7913,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.",
 	},
 	"avaluggite": {
-		id: "avaluggite",
 		name: "Avaluggite",
 		spritenum: 575,
 		megaStone: "Avalugg-Mega",
@@ -7955,7 +7942,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 	},
 	*/
 	"bronzongite": {
-		id: "bronzongite",
 		name: "Bronzongite",
 		spritenum: 575,
 		megaStone: "Bronzong-Mega",
@@ -7985,7 +7971,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 	},
 	*/
 	"golurkite": {
-		id: "golurkite",
 		name: "Golurkite",
 		spritenum: 575,
 		megaStone: "Golurk-Mega",
@@ -7999,7 +7984,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Golurk, this item allows it to Mega Evolve in battle.",
 	},
 	"lanturnite": {
-		id: "lanturnite",
 		name: "Lanturnite",
 		spritenum: 575,
 		megaStone: "Lanturn-Mega",
@@ -8043,7 +8027,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 	},
 	*/
 	"rapidashite": {
-		id: "rapidashite",
 		name: "Rapidashite",
 		spritenum: 575,
 		megaStone: "Rapidash-Mega",
@@ -8087,7 +8070,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 	},
 	*/
 	"weezingite": {
-		id: "weezingite",
 		name: "Weezingite",
 		spritenum: 575,
 		megaStone: "Weezing-Mega",
@@ -8101,7 +8083,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Weezing, this item allows it to Mega Evolve in battle.",
 	},
 	"arbokite": {
-		id: "arbokite",
 		name: "Arbokite",
 		spritenum: 575,
 		megaStone: "Arbok-Mega",
@@ -8131,7 +8112,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 	},
 	*/
 	"granbullite": {
-		id: "granbullite",
 		name: "Granbullite",
 		spritenum: 575,
 		megaStone: "Granbull-Mega",
@@ -8145,7 +8125,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Granbull, this item allows it to Mega Evolve in battle.",
 	},
 	"luxrite": {
-		id: "luxrite",
 		name: "Luxrite",
 		spritenum: 575,
 		megaStone: "Luxray-Mega",
@@ -8159,7 +8138,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Luxray, this item allows it to Mega Evolve in battle.",
 	},
 	"butterfrite": {
-		id: "butterfrite",
 		name: "Butterfrite",
 		spritenum: 575,
 		megaStone: "Butterfree-Mega",
@@ -8189,7 +8167,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 	},
 	*/
 	"froslassite": {
-		id: "froslassite",
 		name: "Froslassite",
 		spritenum: 575,
 		megaStone: "Froslass-Mega",
@@ -8203,7 +8180,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Froslass, this item allows it to Mega Evolve in battle.",
 	},
 	"meganiumite": {
-		id: "meganiumite",
 		name: "Meganiumite",
 		spritenum: 575,
 		megaStone: "Meganium-Mega",
@@ -8217,7 +8193,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Meganium, this item allows it to Mega Evolve in battle.",
 	},
 	"torterrite": {
-		id: "torterrite",
 		name: "Torterrite",
 		spritenum: 575,
 		megaStone: "Torterra-Mega",
@@ -8231,7 +8206,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Torterra, this item allows it to Mega Evolve in battle.",
 	},
 	"feraligatite": {
-		id: "feraligatite",
 		name: "Feraligatite",
 		spritenum: 575,
 		megaStone: "Feraligatr-Mega",
@@ -8245,7 +8219,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by an Typhlosion, this item allows it to Mega Evolve in battle.",
 	},
 	"empoleonite": {
-		id: "empoleonite",
 		name: "Empoleonite",
 		spritenum: 575,
 		megaStone: "Empoleon-Mega",
@@ -8259,7 +8232,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by an Empoleon, this item allows it to Mega Evolve in battle.",
 	},
 	"typhlosionite": {
-		id: "typhlosionite",
 		name: "Typhlosionite",
 		spritenum: 575,
 		megaStone: "Typhlosion-Mega",
@@ -8273,7 +8245,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Typhlosion, this item allows it to Mega Evolve in battle.",
 	},
 	"infernapite": {
-		id: "infernapite",
 		name: "Infernapite",
 		spritenum: 575,
 		megaStone: "Infernape-Mega",
@@ -8287,7 +8258,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by an Infernape, this item allows it to Mega Evolve in battle.",
 	},
 	"pachirisunite": {
-		id: "pachirisunite",
 		name: "Pachirisunite",
 		spritenum: 575,
 		megaStone: "Pachirisu-Mega",
@@ -8301,7 +8271,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Pachirisu, this item allows it to Mega Evolve in battle.",
 	},
 	"vespiquenite": {
-		id: "vespiquenite",
 		name: "Vespiquenite",
 		spritenum: 575,
 		megaStone: "Vespiquen-Mega",
@@ -8315,7 +8284,6 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		desc: "If held by a Vespiquen, this item allows it to Mega Evolve in battle.",
 	},
 	"goodrite": {
-		id: "goodrite",
 		name: "Goodrite",
 		spritenum: 575,
 		megaStone: "Goodra-Mega",
