@@ -8266,7 +8266,7 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 			return true;
 		},
 		num: 1042,
-		gen: 8,
+		gen: 7,
 		desc: "If held by a Pachirisu, this item allows it to Mega Evolve in battle.",
 	},
 	"vespiquenite": {
@@ -8279,7 +8279,7 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 			return true;
 		},
 		num: 1043,
-		gen: 8,
+		gen: 7,
 		desc: "If held by a Vespiquen, this item allows it to Mega Evolve in battle.",
 	},
 	"goodrite": {
@@ -8292,7 +8292,7 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 			return true;
 		},
 		num: 1044,
-		gen: 8,
+		gen: 7,
 		desc: "If held by a Goodra, this item allows it to Mega Evolve in battle.",
 	},
 };
