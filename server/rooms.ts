@@ -22,6 +22,8 @@ const RETRY_AFTER_LOGIN = null;
 import {FS} from '../lib/fs';
 import {WriteStream} from '../lib/streams';
 import {GTSGiveaway, LotteryGiveaway, QuestionGiveaway} from './chat-plugins/wifi';
+import {QueuedHunt} from './chat-plugins/scavengers';
+import {ScavengerGameTemplate} from './chat-plugins/scavenger-games';
 import {PM as RoomBattlePM, RoomBattle, RoomBattlePlayer, RoomBattleTimer} from "./room-battle";
 import {RoomGame, RoomGamePlayer} from './room-game';
 import {Roomlogs} from './roomlogs';
@@ -109,12 +111,18 @@ export abstract class BasicRoom {
 	hangmanDisabled: boolean;
 	giveaway: QuestionGiveaway | LotteryGiveaway | null;
 	gtsga: GTSGiveaway | null;
+	scavgame: ScavengerGameTemplate | null;
+	scavSettings: AnyObject;
+	scavQueue: QueuedHunt[];
+	scavLeaderboard: AnyObject;
 	toursEnabled: '%' | boolean;
 	tourAnnouncements: boolean;
+	dataCommandTierDisplay: 'tiers' | 'doubles tiers' | 'numbers';
 	privacySetter: Set<ID> | null;
 	subRooms: Map<string, ChatRoom> | null;
 	gameNumber: number;
 	highTraffic: boolean;
+
 	constructor(roomid: RoomID, title?: string) {
 		this.users = Object.create(null);
 		this.type = 'chat';
@@ -169,8 +177,13 @@ export abstract class BasicRoom {
 		this.hangmanDisabled = false;
 		this.giveaway = null;
 		this.gtsga = null;
+		this.scavgame = null;
+		this.scavSettings = {};
+		this.scavQueue = [];
+		this.scavLeaderboard = {};
 		this.toursEnabled = false;
 		this.tourAnnouncements = false;
+		this.dataCommandTierDisplay = 'tiers';
 		this.privacySetter = null;
 		this.subRooms = null;
 		this.gameNumber = 0;
@@ -328,16 +341,32 @@ export abstract class BasicRoom {
 	 * Gets the group symbol of a user in the room.
 	 */
 	getAuth(user: {id: ID, group: GroupSymbol} | User): GroupSymbol {
+		const globalGroup = this.auth && this.isPrivate === true ? ' ' : user.group;
+
 		if (this.auth && user.id in this.auth) {
-			return this.auth[user.id];
+			// room has roomauth
+			// authority is whichever is higher between roomauth and global auth
+			const roomGroup = this.auth[user.id];
+			let greaterGroup = Config.greatergroupscache[`${roomGroup}${globalGroup}`];
+			if (!greaterGroup) {
+				// unrecognized groups always trump higher global rank
+				const roomRank = (Config.groups[roomGroup] || {rank: Infinity}).rank;
+				const globalRank = (Config.groups[globalGroup] || {rank: 0}).rank;
+				if (roomGroup === Users.PLAYER_SYMBOL || roomGroup === Users.HOST_SYMBOL || roomGroup === '#') {
+					// Player, Host, and Room Owner always trump higher global rank
+					greaterGroup = roomGroup;
+				} else {
+					greaterGroup = (roomRank > globalRank ? roomGroup : globalGroup);
+				}
+				Config.greatergroupscache[`${roomGroup}${globalGroup}`] = greaterGroup;
+			}
+			return greaterGroup;
 		}
+
 		if (this.parent) {
 			return this.parent.getAuth(user);
 		}
-		if (this.auth && this.isPrivate === true) {
-			return ' ';
-		}
-		return user.group;
+		return globalGroup;
 	}
 	checkModjoin(user: User) {
 		if (this.staffRoom && !user.isStaff && (!this.auth || (this.auth[user.id] || ' ') === ' ')) return false;
@@ -952,8 +981,6 @@ export class GlobalRoom extends BasicRoom {
 				return;
 			}
 
-			for (const worker of Sockets.workers.values()) worker.kill();
-
 			// final warning
 			this.notifyRooms(
 				notifyPlaces,
@@ -1094,6 +1121,7 @@ export class BasicChatRoom extends BasicRoom {
 		this.introMessage = '';
 		this.staffMessage = '';
 		this.banwordRegex = null;
+		this.rulesLink = null;
 
 		this.chatRoomData = (options.isPersonal ? null : options);
 		this.minorActivity = null;
@@ -1128,7 +1156,6 @@ export class BasicChatRoom extends BasicRoom {
 		if (this.batchJoins) {
 			this.userList = this.getUserList();
 		}
-		this.rulesLink = null;
 		this.reportJoinsInterval = null;
 		this.tour = null;
 		this.game = null;
@@ -1143,6 +1170,12 @@ export class BasicChatRoom extends BasicRoom {
 	add(message: string) {
 		this.log.add(message);
 		return this;
+	}
+	uhtmlchange(name: string, message: string) {
+		this.log.uhtmlchange(name, message);
+	}
+	attributedUhtmlchange(user: User, name: string, message: string) {
+		this.log.attributedUhtmlchange(user, name, message);
 	}
 	roomlog(message: string) {
 		this.log.roomlog(message);
@@ -1331,8 +1364,6 @@ export class BasicChatRoom extends BasicRoom {
 			if (!this.users[user.id]) return false;
 			if (user.named) {
 				this.reportJoin('n', user.getIdentityWithStatus(this.roomid) + '|' + user.id, user);
-			} else {
-				this.reportJoin('l', user.id, user);
 			}
 		}
 		return true;
