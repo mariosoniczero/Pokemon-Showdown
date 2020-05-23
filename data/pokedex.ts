@@ -17105,4 +17105,17 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Bug"],
 		requiredItem: "Vespiquenite",
 	},
+	goodramega: {
+		num: 706,
+		name: "Goodra-Mega",
+		baseSpecies: "Goodra",
+		types: ["Dragon", "Poison"],
+		baseStats: {hp: 90, atk: 130, def: 85, spa: 140, spd: 175, spe: 80},
+		abilities: {0: "Gooey"},
+		heightm: 2,
+		weightkg: 150.5,
+		color: "Purple",
+		eggGroups: ["Dragon"],
+		requiredItem: "Goodrite",
+	},
 };

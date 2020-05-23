@@ -5366,4 +5366,8 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		isNonstandard: "Custom",
 		tier: "GPL",
 	},
+	goodramega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
 };

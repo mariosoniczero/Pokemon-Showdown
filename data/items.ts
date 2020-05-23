@@ -8306,4 +8306,18 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 8,
 		desc: "If held by a Vespiquen, this item allows it to Mega Evolve in battle.",
 	},
+	"goodrite": {
+		id: "goodrite",
+		name: "Goodrite",
+		spritenum: 575,
+		megaStone: "Goodra-Mega",
+		megaEvolves: "Goodra",
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1044,
+		gen: 8,
+		desc: "If held by a Goodra, this item allows it to Mega Evolve in battle.",
+	},
 };
