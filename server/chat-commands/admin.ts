@@ -221,7 +221,7 @@ export const commands: ChatCommands = {
 
 	memusage: 'memoryusage',
 	memoryusage(target) {
-		if (!this.can('hotpatch')) return false;
+		if (!this.can('lockdown')) return false;
 		const memUsage = process.memoryUsage();
 		const resultNums = [memUsage.rss, memUsage.heapUsed, memUsage.heapTotal];
 		const units = ["B", "KiB", "MiB", "GiB", "TiB"];
@@ -235,7 +235,7 @@ export const commands: ChatCommands = {
 	forcehotpatch: 'hotpatch',
 	async hotpatch(target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help hotpatch');
-		if (!this.can('hotpatch')) return;
+		if (!this.canUseConsole()) return false;
 
 		if (Monitor.updateServerLock) {
 			return this.errorReply("Wait for /updateserver to finish before hotpatching.");
@@ -327,7 +327,7 @@ export const commands: ChatCommands = {
 				// uncache the .sim-dist/dex.js dependency tree
 				Chat.uncacheDir('./.sim-dist');
 				Chat.uncacheDir('./.data-dist');
-				Chat.uncache('./config/formats');
+				Chat.uncache('./.config-dist/formats');
 				// reload .sim-dist/dex.js
 				global.Dex = require('../../sim/dex').Dex;
 				// rebuild the formats list
@@ -462,8 +462,8 @@ export const commands: ChatCommands = {
 		this.sendReplyBox(buf);
 	},
 
-	async savelearnsets(target, room, user) {
-		if (!this.can('hotpatch')) return false;
+	async savelearnsets(target, room, user, connection) {
+		if (!this.canUseConsole()) return false;
 		this.sendReply("saving...");
 		await FS('data/learnsets.js').write(`'use strict';\n\nexports.BattleLearnsets = {\n` +
 			Object.entries(Dex.data.Learnsets).map(([id, entry]) => (
@@ -481,7 +481,7 @@ export const commands: ChatCommands = {
 
 	widendatacenters: 'adddatacenters',
 	async adddatacenters(target, room, user, connection, cmd) {
-		if (!this.can('hotpatch')) return false;
+		if (!this.can('lockdown')) return false;
 		if (!target) return this.parse(`/help adddatacenters`);
 		// should be in the format: IP, IP, name, URL
 		const widen = (cmd === 'widendatacenters');
@@ -789,7 +789,7 @@ export const commands: ChatCommands = {
 	killhelp: [`/kill - kills the server. Can't be done unless the server is in lockdown state. Requires: ~`],
 
 	loadbanlist(target, room, user, connection) {
-		if (!this.can('hotpatch')) return false;
+		if (!this.can('lockdown')) return false;
 
 		connection.sendTo(room, "Loading ipbans.txt...");
 		Punishments.loadBanlist().then(
@@ -802,16 +802,14 @@ export const commands: ChatCommands = {
 	],
 
 	refreshpage(target, room, user) {
-		if (!this.can('hotpatch')) return false;
+		if (!this.can('lockdown')) return false;
 		Rooms.global.send('|refresh|');
 		const logRoom = Rooms.get('staff') || room;
 		logRoom.roomlog(`${user.name} used /refreshpage`);
 	},
 
 	async updateserver(target, room, user, connection) {
-		if (!user.can('hotpatch')) {
-			return this.errorReply(`/updateserver - Access denied.`);
-		}
+		if (!this.canUseConsole()) return false;
 
 		if (Monitor.updateServerLock) {
 			return this.errorReply(`/updateserver - Another update is already in progress (or a previous update crashed).`);
@@ -919,9 +917,7 @@ export const commands: ChatCommands = {
 			});
 		}
 
-		if (!user.can('hotpatch')) {
-			return this.errorReply(`/updateserver - Access denied.`);
-		}
+		if (!this.canUseConsole()) return false;
 		Monitor.updateServerLock = true;
 		const [, , stderr] = await exec('node ../../build');
 		if (stderr) {
@@ -936,9 +932,7 @@ export const commands: ChatCommands = {
 	 *********************************************************/
 
 	bash(target, room, user, connection) {
-		if (!user.hasConsoleAccess(connection)) {
-			return this.errorReply("/bash - Access denied.");
-		}
+		if (!this.canUseConsole()) return false;
 		if (!target) return this.parse('/help bash');
 
 		connection.sendTo(room, `$ ${target}`);
@@ -949,9 +943,7 @@ export const commands: ChatCommands = {
 	bashhelp: [`/bash [command] - Executes a bash command on the server. Requires: ~ console access`],
 
 	async eval(target, room, user, connection) {
-		if (!user.hasConsoleAccess(connection)) {
-			return this.errorReply("/eval - Access denied.");
-		}
+		if (!this.canUseConsole()) return false;
 		if (!this.runBroadcast(true)) return;
 
 		if (!this.broadcasting) this.sendReply(`||>> ${target}`);
@@ -976,9 +968,7 @@ export const commands: ChatCommands = {
 	},
 
 	evalbattle(target, room, user, connection) {
-		if (!user.hasConsoleAccess(connection)) {
-			return this.errorReply("/evalbattle - Access denied.");
-		}
+		if (!this.canUseConsole()) return false;
 		if (!this.runBroadcast(true)) return;
 		if (!room.battle) {
 			return this.errorReply("/evalbattle - This isn't a battle room.");
@@ -1015,10 +1005,10 @@ export const commands: ChatCommands = {
 			return 'p3';
 		}
 		function getPokemon(input: string) {
-			if (/^[0-9]+$/.test(input)) {
+			if (/^[0-9]+$/.test(input.trim())) {
 				return `.pokemon[${(parseInt(input) - 1)}]`;
 			}
-			return `.pokemon.find(p => p.id==='${toID(targets[1])}')`;
+			return `.pokemon.find(p => p.baseSpecies.id==='${toID(input)}' || p.species.id==='${toID(input)}')`;
 		}
 		switch (cmd) {
 		case 'hp':
@@ -1035,7 +1025,7 @@ export const commands: ChatCommands = {
 			break;
 		case 'pp':
 			void battle.stream.write(
-				`>eval let pl=${getPlayer(targets[0])};let p=pl${getPokemon(targets[1])};p.moveSlots[p.moves.indexOf('${toID(targets[2])}')].pp = ${parseInt(targets[3])};`
+				`>eval let pl=${getPlayer(targets[0])};let p=pl${getPokemon(targets[1])};p.getMoveData('${toID(targets[2])}').pp = ${parseInt(targets[3])};`
 			);
 			break;
 		case 'boost':
@@ -1082,6 +1072,6 @@ export const commands: ChatCommands = {
 		`/editbattle weather [weather]`,
 		`/editbattle terrain [terrain]`,
 		`Short forms: /ebat h OR s OR pp OR b OR v OR sc OR fc OR w OR t`,
-		`[player] must be a username or number, [pokemon] must be species name or number (not nickname), [move] must be move name.`,
+		`[player] must be a username or number, [pokemon] must be species name or party slot number (not nickname), [move] must be move name.`,
 	],
 };

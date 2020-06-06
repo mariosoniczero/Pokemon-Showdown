@@ -263,7 +263,21 @@ export class PageContext extends MessageContext {
 		parts.shift();
 		while (handler) {
 			if (typeof handler === 'function') {
-				let res = await handler.bind(this)(parts, this.user, this.connection);
+				let res;
+				try {
+					res = await handler.call(this, parts, this.user, this.connection);
+				} catch (err) {
+					Monitor.crashlog(err, 'A chat page', {
+						user: this.user.name,
+						room: this.room && this.room.roomid,
+						pageid: this.pageid,
+					});
+					this.send(
+						`<div class="pad"><p class="message-error">` +
+						`Pokemon Showdown crashed!</b><br />Don't worry, we're working on fixing it.` +
+						`</p></div>`
+				  );
+				}
 				if (typeof res === 'string') {
 					this.send(res);
 					res = undefined;
@@ -730,6 +744,13 @@ export class CommandContext extends MessageContext {
 		}
 		return true;
 	}
+	canUseConsole() {
+		if (!this.user.hasConsoleAccess(this.connection)) {
+			this.errorReply(this.cmdToken + this.fullCmd + " - Requires console access, please set up `Config.consoleips`.");
+			return false;
+		}
+		return true;
+	}
 	shouldBroadcast() {
 		return this.cmdToken === BROADCAST_TOKEN;
 	}
@@ -737,12 +758,12 @@ export class CommandContext extends MessageContext {
 		if (!this.broadcasting && this.shouldBroadcast()) {
 			if (this.room instanceof Rooms.GlobalRoom) {
 				this.errorReply(`You have no one to broadcast this to.`);
-				this.errorReply(`To see it for yourself, use: /${this.message.substr(1)}`);
+				this.errorReply(`To see it for yourself, use: /${this.message.slice(1)}`);
 				return false;
 			}
 			if (!this.pmTarget && !this.user.can('broadcast', null, this.room)) {
 				this.errorReply(`You need to be voiced to broadcast this command's information.`);
-				this.errorReply(`To see it for yourself, use: /${this.message.substr(1)}`);
+				this.errorReply(`To see it for yourself, use: /${this.message.slice(1)}`);
 				return false;
 			}
 
@@ -757,7 +778,10 @@ export class CommandContext extends MessageContext {
 			}
 
 			const message = this.canTalk(suppressMessage || this.message);
-			if (!message) return false;
+			if (!message) {
+				this.errorReply(`To see it for yourself, use: /${this.message.slice(1)}`);
+				return false;
+			}
 
 			// canTalk will only return true with no message
 			this.message = message;
@@ -1038,6 +1062,11 @@ export class CommandContext extends MessageContext {
 		// unknown URI, allow HTTP to be safe
 		return uri;
 	}
+	/**
+	 * This is a quick and dirty first-pass "is this good HTML" check. The full
+	 * sanitization is done on the client by Caja in `src/battle-log.ts`
+	 * `BattleLog.sanitizeHTML`.
+	 */
 	canHTML(htmlContent: string | null) {
 		htmlContent = ('' + (htmlContent || '')).trim();
 		if (!htmlContent) return '';
@@ -1064,9 +1093,9 @@ export class CommandContext extends MessageContext {
 			const stack = [];
 			for (const tag of tags) {
 				const isClosingTag = tag.charAt(1) === '/';
-				const tagContent = tag.slice(isClosingTag ? 2 : 1).toLowerCase();
-				const tagNameEndIndex = tagContent.search(/[\s/]/);
-				const tagName = tagContent.slice(0, tagNameEndIndex >= 0 ? tagNameEndIndex : undefined);
+				const tagContent = tag.slice(isClosingTag ? 2 : 1).replace(/\s+/, ' ').trim();
+				const tagNameEndIndex = tagContent.indexOf(' ');
+				const tagName = tagContent.slice(0, tagNameEndIndex >= 0 ? tagNameEndIndex : undefined).toLowerCase();
 				if (isClosingTag) {
 					if (LEGAL_AUTOCLOSE_TAGS.includes(tagName)) continue;
 					if (!stack.length) {
@@ -1091,30 +1120,46 @@ export class CommandContext extends MessageContext {
 
 				if (tagName === 'img') {
 					if (this.room.isPersonal && !this.user.can('announce')) {
+						this.errorReply(`This tag is not allowed: <${tagContent}>`);
 						this.errorReply(`Images are not allowed in personal rooms.`);
 						return null;
 					}
-					if (!/width=([0-9]+|"[0-9]+")/i.test(tagContent) || !/height=([0-9]+|"[0-9]+")/i.test(tagContent)) {
+					if (!/width ?= ?(?:[0-9]+|"[0-9]+")/i.test(tagContent) || !/height ?= ?(?:[0-9]+|"[0-9]+")/i.test(tagContent)) {
 						// Width and height are required because most browsers insert the
 						// <img> element before width and height are known, and when the
 						// image is loaded, this changes the height of the chat area, which
 						// messes up autoscrolling.
-						this.errorReply(`All images must have a width and height attribute`);
+						this.errorReply(`This image is missing a width/height attribute: <${tagContent}>`);
+						this.errorReply(`Images without predefined width/height cause problems with scrolling because loading them changes their height.`);
 						return null;
 					}
-					const srcMatch = /src\s*=\s*"?([^ "]+)(\s*")?/i.exec(tagContent);
+					const srcMatch = / src ?= ?"?([^ "]+)(?: ?")?/i.exec(tagContent);
 					if (srcMatch) {
 						if (!this.canEmbedURI(srcMatch[1])) return null;
+					} else {
+						this.errorReply(`This image has a broken src attribute: <${tagContent}>`);
+						this.errorReply(`The src attribute must exist and have no spaces in the URL`);
+						return null;
 					}
 				}
 				if (tagName === 'button') {
-					if (
-						(this.room.isPersonal || this.room.isPrivate === true) &&
-						!this.user.can('lock') && /<button[^>]/.test(htmlContent.toLowerCase().replace(/\s*style\s*=\s*"?[^"]*"\s*>/g, '>'))
-					) {
-						this.errorReply(`You do not have permission to use scripted buttons (buttons with attributes other than style="...") in HTML.`);
-						this.errorReply(`If you just want to link to a room, you can do this: <a href="/roomid"><button>button contents</button></a>`);
-						return null;
+					if ((this.room.isPersonal || this.room.isPrivate === true) && !this.user.can('lock')) {
+						const buttonName = / name ?= ?"([^"]*)"/i.exec(tagContent)?.[1];
+						const buttonValue = / value ?= ?"([^"]*)"/i.exec(tagContent)?.[1];
+						if (buttonName === 'send' && buttonValue?.startsWith('/msg ')) {
+							const [pmTarget] = buttonValue.slice(5).split(',');
+							if (this.room.auth?.[toID(pmTarget)] !== '*') {
+								this.errorReply(`This button is not allowed: <${tagContent}>`);
+								this.errorReply(`Your scripted button can't send PMs to ${pmTarget}, because that user is not a Room Bot.`);
+								return null;
+							}
+						} else if (buttonName) {
+							this.errorReply(`This button is not allowed: <${tagContent}>`);
+							this.errorReply(`You do not have permission to use most buttons. Here are the two types you're allowed can use:`);
+							this.errorReply(`1. Linking to a room: <a href="/roomid"><button>go to a place</button></a>`);
+							this.errorReply(`2. Sending a message to a Bot: <button name="send" value="/msg, BOT_USERNAME, MESSAGE">send the thing</button>`);
+							return null;
+						}
 					}
 				}
 			}
