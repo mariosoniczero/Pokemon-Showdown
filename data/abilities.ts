@@ -4699,8 +4699,8 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		num: 1003,
 	},
 	"terrify": {
-		desc: "On switch-in, this Pokemon lowers the Attack of adjacent opposing Pokemon by 1 stage. Inner Focus, Oblivious, Own Tempo, Scrappy, and Pokemon behind a substitute are immune.",
-		shortDesc: "On switch-in, this Pokemon lowers the Attack of adjacent opponents by 1 stage.",
+		desc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opposing Pokemon by 1 stage. Inner Focus, Oblivious, Own Tempo, Scrappy, and Pokemon behind a substitute are immune.",
+		shortDesc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opponents by 1 stage.",
 		onStart(pokemon) {
 			let activated = false;
 			for (const target of pokemon.side.foe.active) {
@@ -4718,7 +4718,7 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 				}
 			}
 		},
-		name: "Intimidate",
+		name: "Terrify",
 		rating: 3.5,
 		num: 1002,
 	},

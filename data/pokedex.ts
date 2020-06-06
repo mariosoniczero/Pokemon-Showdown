@@ -7186,6 +7186,8 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Combee",
 		evoLevel: 21,
 		eggGroups: ["Bug"],
+		otherFormes: ["Vespiquen-Mega"],
+		formeOrder: ["Vespiquen", "Vespiquen-Mega"],
 	},
 	pachirisu: {
 		num: 417,
@@ -7197,6 +7199,8 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 3.9,
 		color: "White",
 		eggGroups: ["Field", "Fairy"],
+		otherFormes: ["Pachirisu-Mega"],
+		formeOrder: ["Pachirisu", "Pachirisu-Mega"],
 	},
 	buizel: {
 		num: 418,
