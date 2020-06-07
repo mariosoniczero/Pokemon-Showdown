@@ -31,8 +31,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
 			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom', 'Zygarde-Base',
 			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
-			'Melmetal', 'Darmanitan-Galar', 'Deoxys-Defense', 'Metagross-Mega', 'Greninja', 
-			'Blastoise-Mega'
+			'Melmetal', 'Darmanitan-Galar', 'Deoxys-Defense', 'Metagross-Mega', 'Greninja', 'Blastoise-Mega',
 		],
 	},
 
