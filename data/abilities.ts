@@ -4762,4 +4762,56 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 1008,
 	},
+	/*
+	rainbowguard: {
+		shortDesc: "This Pokemon cannot be hit by contact moves.",
+		onTryHit(target, source, move) {
+			if (move.flags['contact']) {
+				this.add('-immune', target, '[from] ability: Rainbow Guard');
+			}
+		},
+		name: "Rainbow Guard",
+		rating: 4,
+		num: 1009,
+	},
+	*/
+	momentum: {
+		shortDesc: "Prevents this Pokemon's Speed stat stage from being lowered.",
+		onBoost(boost, target, source, effect) {
+			if (boost.spe && boost.spe < 0) {
+				delete boost.spe;
+				if (!(effect as ActiveMove).secondaries) {
+					this.add("-fail", target, "unboost", "Speed", "[from] ability: Momentum", "[of] " + target);
+				}
+			}
+		},
+		onModifySpe(spe, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1);
+			}
+		},
+		name: "Momentum",
+		rating: 2,
+		num: 1009,
+	},
+	weatherrush: {
+		shortDesc: "If Rain, Sand, or Hail is active, this Pokemon's Speed is doubled.",
+		onModifySpe(spe, pokemon) {
+			if (this.field.isWeather('hail')) {
+				return this.chainModify(2);
+			}
+			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(2);
+			}
+			if (this.field.isWeather('sandstorm')) {
+				return this.chainModify(2);
+			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'sandstorm') return false;
+		},
+		name: "Weather Rush",
+		rating: 3,
+		num: 1010,
+	},
 };

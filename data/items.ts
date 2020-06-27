@@ -8328,4 +8328,60 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 7,
 		desc: "If held by a Goodra, this item allows it to Mega Evolve in battle.",
 	},
+	"honchkrowite": {
+		name: "Honchkrowite",
+		spritenum: 575,
+		megaStone: "Honchkrow-Mega",
+		megaEvolves: "Honchkrow",
+		itemUser: ["Honchkrow"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1045,
+		gen: 7,
+		desc: "If held by a Honchkrow, this item allows it to Mega Evolve in battle.",
+	},
+	"Crobatite": {
+		name: "Crobatite",
+		spritenum: 575,
+		megaStone: "Crobat-Mega",
+		megaEvolves: "Crobat",
+		itemUser: ["Crobat"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1046,
+		gen: 7,
+		desc: "If held by a Crobat, this item allows it to Mega Evolve in battle.",
+	},
+	"Sudowoodite": {
+		name: "Sudowoodite",
+		spritenum: 575,
+		megaStone: "Sudowoodo-Mega",
+		megaEvolves: "Sudowoodo",
+		itemUser: ["Sudowoodo"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1047,
+		gen: 7,
+		desc: "If held by a Sudowoodo, this item allows it to Mega Evolve in battle.",
+	},
+	"Bearticite": {
+		name: "Bearticite",
+		spritenum: 575,
+		megaStone: "Beartic-Mega",
+		megaEvolves: "Beartic",
+		itemUser: ["Beartic"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1048,
+		gen: 7,
+		desc: "If held by a Beartic, this item allows it to Mega Evolve in battle.",
+	},
 };
