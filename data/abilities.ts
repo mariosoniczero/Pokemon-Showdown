@@ -4785,11 +4785,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 				}
 			}
 		},
-		onModifySpe(spe, pokemon) {
-			if (pokemon.status) {
-				return this;
-			}
-		},
 		name: "Momentum",
 		rating: 2,
 		num: 1009,
