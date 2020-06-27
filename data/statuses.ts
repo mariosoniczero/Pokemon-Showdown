@@ -28,7 +28,7 @@ export const BattleStatuses: {[k: string]: PureEffectData} = {
 			}
 		},
 		onModifySpe(spe, pokemon) {
-			if (!pokemon.hasAbility('quickfeet')) {
+			if (!pokemon.hasAbility('quickfeet') && !pokemon.hasAbility('momentum')) {
 				return this.chainModify(0.5);
 			}
 		},
