@@ -4776,7 +4776,7 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 	},
 	*/
 	momentum: {
-		shortDesc: "Prevents this Pokemon's Speed stat stage from being lowered.",
+		shortDesc: "Prevents this Pokemon's Speed stat from being lowered, even by paralysis.",
 		onBoost(boost, target, source, effect) {
 			if (boost.spe && boost.spe < 0) {
 				delete boost.spe;
