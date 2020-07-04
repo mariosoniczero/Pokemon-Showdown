@@ -2,6 +2,7 @@ type Battle = import('./battle').Battle;
 type BattleQueue = import('./battle-queue').BattleQueue;
 type Field = import('./field').Field;
 type Action = import('./battle-queue').Action;
+type ActionChoice = import('./battle-queue').ActionChoice;
 type ModdedDex = import('./dex').ModdedDex;
 type Pokemon = import('./pokemon').Pokemon;
 type PRNGSeed = import('./prng').PRNGSeed;
@@ -174,6 +175,7 @@ interface MoveEventMethods {
 	onHitField?: CommonHandlers['ResultMove'];
 	onHitSide?: (this: Battle, side: Side, source: Pokemon, move: ActiveMove) => boolean | null | "" | void;
 	onModifyMove?: (this: Battle, move: ActiveMove, pokemon: Pokemon, target: Pokemon) => void;
+	onModifyPriority?: CommonHandlers['ModifierSourceMove'];
 	onMoveFail?: CommonHandlers['VoidMove'];
 	onModifyType?: (this: Battle, move: ActiveMove, pokemon: Pokemon, target: Pokemon) => void;
 	onPrepareHit?: CommonHandlers['ResultMove'];
@@ -232,7 +234,7 @@ interface EventMethods {
 	onEffectiveness?: MoveEventMethods['onEffectiveness'];
 	onFaint?: CommonHandlers['VoidEffect'];
 	onFlinch?: ((this: Battle, pokemon: Pokemon) => boolean | void) | boolean;
-	onFractionalPriority?: CommonHandlers['ModifierSourceMove'];
+	onFractionalPriority?: CommonHandlers['ModifierSourceMove'] | -0.1;
 	onHit?: MoveEventMethods['onHit'];
 	onImmunity?: (this: Battle, type: string, pokemon: Pokemon) => void;
 	onLockMove?: string | ((this: Battle, pokemon: Pokemon) => void | string);
@@ -1126,6 +1128,8 @@ interface SpeciesData {
 	battleOnly?: string | string[];
 	isGigantamax?: string;
 	changesFrom?: string;
+	maleOnlyHidden?: boolean;
+	unreleasedHidden?: boolean | 'Past';
 }
 
 type ModdedSpeciesData = SpeciesData | Partial<Omit<SpeciesData, 'name'>> & {inherit: true};
@@ -1136,13 +1140,11 @@ interface SpeciesFormatsData {
 	essentialMove?: string;
 	exclusiveMoves?: readonly string[];
 	isNonstandard?: Nonstandard | null;
-	maleOnlyHidden?: boolean;
 	randomBattleMoves?: readonly string[];
 	randomBattleLevel?: number;
 	randomDoubleBattleMoves?: readonly string[];
 	randomSets?: readonly RandomTeamsTypes.Gen2RandomSet[];
 	tier?: string;
-	unreleasedHidden?: boolean | 'Past';
 }
 
 type ModdedSpeciesFormatsData = SpeciesFormatsData & {inherit?: true};
@@ -1180,7 +1182,7 @@ interface FormatsData extends EventMethods {
 	banlist?: string[];
 	battle?: ModdedBattleScriptsData;
 	pokemon?: ModdedBattlePokemon;
-	// queue?: ModdedBattleQueue;
+	queue?: ModdedBattleQueue;
 	field?: ModdedField;
 	cannotMega?: string[];
 	challengeShow?: boolean;
@@ -1355,7 +1357,7 @@ interface ModdedBattlePokemon {
 	hasAbility?: (this: Pokemon, ability: string | string[]) => boolean;
 	isGrounded?: (this: Pokemon, negateImmunity: boolean | undefined) => boolean | null;
 	modifyStat?: (this: Pokemon, statName: StatNameExceptHP, modifier: number) => void;
-	moveUsed?: (this: Pokemon, move: Move, targetLoc?: number) => void;
+	moveUsed?: (this: Pokemon, move: ActiveMove, targetLoc?: number) => void;
 	recalculateStats?: (this: Pokemon) => void;
 	setAbility?: (
 		this: Pokemon, ability: string | Ability, source: Pokemon | null, isFromFormeChange: boolean
@@ -1366,9 +1368,15 @@ interface ModdedBattlePokemon {
 		sourceEffect: Effect | null, ignoreImmunities: boolean
 	) => boolean;
 	ignoringAbility?: (this: Pokemon) => boolean;
+
+	// OM
+	getLinkedMoves?: (this: Pokemon, ignoreDisabled?: boolean) => string[];
+	hasLinkedMove?: (this: Pokemon, moveid: string) => boolean;
 }
 
-// interface ModdedBattleQueue extends Partial<BattleQueue> {}
+interface ModdedBattleQueue extends Partial<BattleQueue> {
+	resolveAction?: (this: BattleQueue, action: ActionChoice, midTurn?: boolean) => Action[];
+}
 
 interface ModdedField extends Partial<Field> {
 	suppressingWeather?: (this: Field) => boolean;
@@ -1378,6 +1386,8 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 	inherit?: string;
 	lastDamage?: number;
 	pokemon?: ModdedBattlePokemon;
+	queue?: ModdedBattleQueue;
+	field?: ModdedField;
 	side?: ModdedBattleSide;
 	boost?: (
 		this: Battle, boost: SparseBoostsTable, target: Pokemon, source?: Pokemon | null,
@@ -1387,12 +1397,17 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 	getDamage?: (
 		this: Battle, pokemon: Pokemon, target: Pokemon, move: string | number | ActiveMove, suppressMessages: boolean
 	) => number | undefined | null | false;
+	getActionSpeed?: (this: Battle, action: AnyObject) => void;
 	getEffect?: (this: Battle, name: string | Effect | null) => Effect;
 	init?: (this: ModdedDex) => void;
 	modifyDamage?: (
 		this: Battle, baseDamage: number, pokemon: Pokemon, target: Pokemon, move: ActiveMove, suppressMessages?: boolean
 	) => void;
 	natureModify?: (this: Battle, stats: StatsTable, set: PokemonSet) => StatsTable;
+	runMove?: (
+		this: Battle, moveOrMoveName: Move | string, pokemon: Pokemon, targetLoc: number, sourceEffect?: Effect | null,
+		zMove?: string, externalMove?: boolean, maxMove?: string, originalTarget?: Pokemon
+	) => void;
 	spreadModify?: (this: Battle, baseStats: StatsTable, set: PokemonSet) => StatsTable;
 	suppressingWeather?: (this: Battle) => boolean;
 	trunc?: (n: number) => number;

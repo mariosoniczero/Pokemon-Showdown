@@ -587,9 +587,9 @@ export class Species extends BasicEffect implements Readonly<BasicEffect & Speci
 	/** Added type (used in OMs). */
 	readonly addedType?: string;
 	/** Pre-evolution. '' if nothing evolves into this Pokemon. */
-	readonly prevo: ID;
+	readonly prevo: string;
 	/** Evolutions. Array because many Pokemon have multiple evolutions. */
-	readonly evos: ID[];
+	readonly evos: string[];
 	readonly evoType?: 'trade' | 'useItem' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold' | 'other';
 	/** Evolution condition. falsy if doesn't evolve. */
 	readonly evoCondition?: string;
@@ -725,7 +725,9 @@ export class Species extends BasicEffect implements Readonly<BasicEffect & Speci
 		this.isMega = !!(this.forme && ['Mega', 'Mega-X', 'Mega-Y'].includes(this.forme)) || undefined;
 		this.isGigantamax = data.isGigantamax || undefined;
 		this.battleOnly = data.battleOnly || (this.isMega || this.isGigantamax ? this.baseSpecies : undefined);
-		this.changesFrom = data.changesFrom || (this.isGigantamax ? this.baseSpecies : undefined);
+		// isGigantamax checking is used to successfully pass learnsets to the client
+		this.changesFrom = data.changesFrom ||
+			(!this.isGigantamax ? undefined : this.battleOnly !== this.baseSpecies ? this.battleOnly : this.baseSpecies);
 
 		if (!this.gen && this.num >= 1) {
 			if (this.num >= 810 || ['Gmax', 'Galar', 'Galar-Zen'].includes(this.forme)) {

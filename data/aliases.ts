@@ -42,8 +42,9 @@ export const BattleAliases: {[alias: string]: string} = {
 	gen7bsd: "[Gen 7] Battle Spot Doubles",
 	gen6mono: "[Gen 6] Monotype",
 	gen6ag: "[Gen 6] Anything Goes",
-	petmod: "[Gen 8 Pet Mod] Roulettemons",
-	roulettemons: "[Gen 8 Pet Mod] Roulettemons",
+	crossevo: "[Gen 8] Cross Evolution",
+	petmod: "[Gen 8 Pet Mod] Megamax",
+	megamax: "[Gen 8 Pet Mod] Megamax",
 
 	// mega evos
 	fabio: "Ampharos-Mega",
@@ -141,6 +142,7 @@ export const BattleAliases: {[alias: string]: string} = {
 	darmanitanz: "Darmanitan-Zen",
 	darmanitanzenmode: "Darmanitan-Zen",
 	darmanitanzengalar: "Darmanitan-Galar-Zen",
+	darmgz: "Darmanitan-Galar-Zen",
 	deoxysnormal: "Deoxys",
 	deon: "Deoxys",
 	deoxysa: "Deoxys-Attack",
@@ -241,6 +243,8 @@ export const BattleAliases: {[alias: string]: string} = {
 	rime: "Mr. Rime",
 	zacianc: "Zacian-Crowned",
 	zamazentac: "Zamazenta-Crowned",
+	urshifurs: "Urshifu-Rapid-Style",
+	urshifurapid: "Urshifu-Rapid-Style",
 
 	// base formes
 	nidoranfemale: "Nidoran-F",
