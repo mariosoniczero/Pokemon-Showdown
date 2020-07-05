@@ -8339,7 +8339,7 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 7,
 		desc: "If held by a Honchkrow, this item allows it to Mega Evolve in battle.",
 	},
-	"Crobatite": {
+	"crobatite": {
 		name: "Crobatite",
 		spritenum: 575,
 		megaStone: "Crobat-Mega",
@@ -8353,7 +8353,7 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 7,
 		desc: "If held by a Crobat, this item allows it to Mega Evolve in battle.",
 	},
-	"Sudowoodite": {
+	"sudowoodite": {
 		name: "Sudowoodite",
 		spritenum: 575,
 		megaStone: "Sudowoodo-Mega",
@@ -8367,7 +8367,7 @@ export const BattleItems: {[itemid: string]: ItemData} = {
 		gen: 7,
 		desc: "If held by a Sudowoodo, this item allows it to Mega Evolve in battle.",
 	},
-	"Bearticite": {
+	"bearticite": {
 		name: "Bearticite",
 		spritenum: 575,
 		megaStone: "Beartic-Mega",
