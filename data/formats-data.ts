@@ -5918,4 +5918,20 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		isNonstandard: "Custom",
 		tier: "GPL",
 	},
+	honchkrowmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	sudowoodomega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	bearticmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	crobatmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
 };
