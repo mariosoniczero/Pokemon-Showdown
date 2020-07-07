@@ -166,8 +166,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['Same Type Clause', 'Standard', 'Dynamax Clause'],
 		banlist: [
-			'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Magearna', 'Marshadow', 'Melmetal', 'Mewtwo',
-			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Magearna', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings',
+			'Necrozma-Dusk-Mane', 'Reshiram', 'Solgaleo', 'Urshifu-Rapid-Strike', 'Zacian', 'Zamazenta', 'Zekrom',
 			'Damp Rock', 'Smooth Rock', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
 	},
@@ -282,6 +282,19 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		gameType: 'doubles',
 		ruleset: ['Standard Doubles', 'Dynamax Clause'],
+		banlist: ['DUber', 'Beat Up'],
+	},
+	{
+		name: "[Gen 8] Doubles OU (Dynamax Level 0)",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666636/">Doubles OU Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3658826/">Doubles OU Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3658242/">Doubles OU Viability Rankings</a>`,
+		],
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		ruleset: ['Standard Doubles'],
 		banlist: ['DUber', 'Beat Up'],
 	},
 	{
@@ -484,7 +497,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['[Gen 8] Ubers', 'Dynamax Clause'],
+		ruleset: ['Standard', 'Dynamax Clause'],
 		banlist: ['Baton Pass', 'King\'s Rock'],
 		restricted: ['Shedinja', 'Lunala', 'Solgaleo', 'Type: Null', 'Huge Power', 'Pure Power', 'Gorilla Tactics', 'Shadow Tag'],
 		onValidateTeam(team) {
@@ -523,7 +536,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			return null;
 		},
 		validateSet(set, teamHas) {
-			const restricted = this.dex.getFormat('gen8crossevolution').restricted || [];
 			const crossSpecies = this.dex.getSpecies(set.name);
 			const onChangeSet = this.dex.getFormat('Pokemon').onChangeSet;
 			let problems = onChangeSet ? onChangeSet.call(this, set, this.format) : null;
@@ -536,7 +548,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			if (crossSpecies.battleOnly || crossIsUnreleased || !crossSpecies.prevo) {
 				return [`${species.name} cannot cross evolve into ${crossSpecies.name} because it isn't an evolution.`];
 			}
-			if (restricted.includes(crossSpecies.name) || restricted.includes(species.name)) {
+			if (this.ruleTable.isRestricted(`pokemon:${crossSpecies.id}`) || this.ruleTable.isRestricted(`pokemon:${species.id}`)) {
 				return [`${species.name} cannot cross evolve into ${crossSpecies.name} because it is banned.`];
 			}
 			const crossPrevoSpecies = this.dex.getSpecies(crossSpecies.prevo);
@@ -546,7 +558,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				];
 			}
 			const ability = this.dex.getAbility(set.ability);
-			if (!restricted.includes(ability.name) || Object.values(species.abilities).includes(ability.name)) {
+			if (!this.ruleTable.isRestricted(`ability:${ability.id}`) || Object.values(species.abilities).includes(ability.name)) {
 				set.species = crossSpecies.name;
 			}
 
@@ -614,12 +626,11 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Baneful Bunker', 'Bounce', 'Protect', 'Detect', 'Dig', 'Dive', 'Fly', 'King\'s Shield', 'Nature\'s Madness', 'Night Shade',
 			'Obstruct', 'Phantom Force', 'Seismic Toss', 'Shadow Force', 'Sky Drop', 'Spiky Shield', 'Super Fang',
 		],
-		onValidateSet(set, format) {
-			const restricted = format.restricted || [];
+		onValidateSet(set) {
 			const problems = [];
 			for (const [i, moveid] of set.moves.entries()) {
 				const move = this.dex.getMove(moveid);
-				if ([0, 1].includes(i) && restricted.includes(move.name)) {
+				if ([0, 1].includes(i) && this.ruleTable.isRestricted(`move:${move.id}`)) {
 					problems.push(`${set.name || set.species}'s move ${move.name} cannot be linked.`);
 				}
 			}
@@ -689,15 +700,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
 		],
 		restricted: ['Gengar', 'Kyurem-Black', 'Kyurem-White', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Solgaleo', 'Zacian', 'Zekrom', 'Zeraora'],
-		onValidateTeam(team, format) {
-			const restrictedPokemon = format.restricted || [];
+		onValidateTeam(team) {
 			const itemTable = new Set<ID>();
 			for (const set of team) {
 				const item = this.dex.getItem(set.item);
 				if (!item || !item.megaStone) continue;
 				const species = this.dex.getSpecies(set.species);
 				if (species.isNonstandard) return [`${species.baseSpecies} does not exist in gen 8.`];
-				if (restrictedPokemon.includes(species.name)) {
+				if (this.ruleTable.isRestricted(`pokemon:${species.id}`) || this.ruleTable.isRestricted(`basepokemon:${species.id}`)) {
 					return [`${species.name} is not allowed to hold ${item.name}.`];
 				}
 				if (itemTable.has(item.id)) {
@@ -960,14 +970,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'megamax',
 		ruleset: ['[Gen 8] OU'],
 		banlist: ['Corviknight-Gmax', 'Melmetal-Gmax', 'Urshifu-Gmax'],
-		unbanlist: ['Uber'],
 		onChangeSet(set) {
-			const species = this.dex.getSpecies(set.species);
-			if (species.tier === "Uber" &&
-				(!this.ruleTable.has(`+pokemon:${species.name}`) ||
-				!this.ruleTable.has(`+basepokemon:${species.baseSpecies}`))) {
-				return [`${set.name || set.species} is banned.`];
-			}
 			if (set.species.endsWith('-Gmax')) set.species = set.species.slice(0, -5);
 		},
 		checkLearnset(move, species, lsetData, set) {
@@ -992,6 +995,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			const newSpecies = this.dex.deepClone(species);
 			if (newSpecies.forme.includes('Gmax')) {
 				newSpecies.isMega = true;
+				newSpecies.tier = "OU";
 			}
 			return newSpecies;
 		},
@@ -1004,7 +1008,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['-Nonexistent', 'Standard NatDex', 'Species Clause', 'Sleep Clause Mod', '2 Ability Clause', '!Obtainable'],
+		ruleset: ['-Nonexistent', 'Standard NatDex', 'Species Clause', 'Sleep Clause Mod', '2 Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', '!Obtainable'],
 		banlist: [
 			// Pokemon
 			'Groudon-Primal', 'Rayquaza-Mega', 'Shedinja',
