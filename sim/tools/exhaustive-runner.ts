@@ -6,11 +6,10 @@
  */
 
 import {ObjectReadWriteStream} from '../../lib/streams';
-import {Dex} from '../dex';
+import {Dex, toID} from '../dex';
 import {PRNG, PRNGSeed} from '../prng';
 import {RandomPlayerAI} from './random-player-ai';
 import {AIOptions, Runner} from './runner';
-const toID = Dex.getId;
 
 interface Pools {
 	pokemon: Pool;
@@ -82,12 +81,15 @@ export class ExhaustiveRunner {
 		do {
 			this.games++;
 			try {
+				const is4P = dex.getFormat(this.format).gameType === 'multi';
 				// We run these sequentially instead of async so that the team generator
 				// and the AI can coordinate usage properly.
 				await new Runner({
 					prng: this.prng,
 					p1options: {team: generator.generate(), createAI},
 					p2options: {team: generator.generate(), createAI},
+					p3options: is4P ? {team: generator.generate(), createAI} : undefined,
+					p4options: is4P ? {team: generator.generate(), createAI} : undefined,
 					format: this.format,
 					dual: this.dual,
 					error: true,
@@ -115,7 +117,7 @@ export class ExhaustiveRunner {
 				(_, p) => (p.name !== 'Pichu-Spiky-eared' && p.name.substr(0, 8) !== 'Pikachu-')), this.prng),
 			items: new Pool(ExhaustiveRunner.onlyValid(dex.gen, dex.data.Items, i => dex.getItem(i)), this.prng),
 			abilities: new Pool(ExhaustiveRunner.onlyValid(dex.gen, dex.data.Abilities, a => dex.getAbility(a)), this.prng),
-			moves: new Pool(ExhaustiveRunner.onlyValid(dex.gen, dex.data.Movedex, m => dex.getMove(m),
+			moves: new Pool(ExhaustiveRunner.onlyValid(dex.gen, dex.data.Moves, m => dex.getMove(m),
 				m => (m !== 'struggle' && (m === 'hiddenpower' || m.substr(0, 11) !== 'hiddenpower'))), this.prng),
 		};
 	}

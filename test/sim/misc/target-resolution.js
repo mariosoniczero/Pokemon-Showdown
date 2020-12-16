@@ -199,7 +199,7 @@ describe('Target Resolution', function () {
 		});
 	});
 
-	it.skip('should not force charge moves called by another move to target an ally after Ally Switch', function () {
+	it('should not force charge moves called by another move to target an ally after Ally Switch', function () {
 		battle = common.createBattle({gameType: 'doubles'}, [[
 			{species: 'purrloin', ability: 'prankster', moves: ['copycat', 'sleeptalk']},
 			{species: 'wynaut', moves: ['allyswitch', 'solarbeam']},
@@ -211,6 +211,20 @@ describe('Target Resolution', function () {
 		battle.makeChoices('move sleeptalk, move solarbeam 1', 'auto');
 		battle.makeChoices();
 		battle.makeChoices();
+		assert.fullHP(battle.p1.active[0]);
+	});
+
+	it(`Ally Switch should cause single-target moves to fail if targeting an ally`, function () {
+		battle = common.createBattle({gameType: 'doubles'}, [[
+			{species: 'purrloin', moves: ['thunder', 'ironhead']},
+			{species: 'wynaut', moves: ['allyswitch']},
+		], [
+			{species: 'swablu', moves: ['sleeptalk']},
+			{species: 'swablu', moves: ['sleeptalk']},
+		]]);
+
+		battle.makeChoices('move ironhead -2, move allyswitch', 'auto');
+		battle.makeChoices('move allyswitch, move thunder -1', 'auto');
 		assert.fullHP(battle.p1.active[0]);
 	});
 });

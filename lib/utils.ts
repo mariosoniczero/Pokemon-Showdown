@@ -17,7 +17,24 @@
 
 type Comparable = number | string | boolean | Comparable[] | {reverse: Comparable};
 
-export const Utils = new class Utils {
+export const Utils = new class {
+	/**
+	 * Safely converts the passed variable into a string. Unlike '' + str,
+	 * String(str), or str.toString(), Utils.getString is guaranteed not to
+	 * crash.
+	 *
+	 * Specifically, the fear with untrusted JSON is an object like:
+	 *
+	 *     let a = {"toString": "this is not a function"};
+	 *     console.log(`a is ${a}`);
+	 *
+	 * This will crash (because a.toString() is not a function). Instead,
+	 * getString simply returns '' if the passed variable isn't a
+	 * string or a number.
+	 */
+	getString(str: any): string {
+		return (typeof str === 'string' || typeof str === 'number') ? '' + str : '';
+	}
 	escapeRegex(str: string) {
 		return str.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&');
 	}
@@ -229,6 +246,16 @@ export const Utils = new class Utils {
 		}
 	}
 
+	deepClone(obj: any): any {
+		if (obj === null || typeof obj !== 'object') return obj;
+		if (Array.isArray(obj)) return obj.map(prop => this.deepClone(prop));
+		const clone = Object.create(Object.getPrototypeOf(obj));
+		for (const key of Object.keys(obj)) {
+			clone[key] = this.deepClone(obj[key]);
+		}
+		return clone;
+	}
+
 	levenshtein(s: string, t: string, l: number): number {
 		// Original levenshtein distance function by James Westgate, turned out to be the fastest
 		const d: number[][] = [];
@@ -274,5 +301,11 @@ export const Utils = new class Utils {
 
 		// Step 7
 		return d[n][m];
+	}
+
+	waitUntil(time: number): Promise<void> {
+		return new Promise(resolve => {
+			setTimeout(() => resolve(), time - Date.now());
+		});
 	}
 };

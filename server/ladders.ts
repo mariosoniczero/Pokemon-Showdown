@@ -8,15 +8,14 @@
  * @license MIT
  */
 
-// eslint-disable-next-line no-undef
-const LadderStore: typeof LadderStoreT = (typeof Config === 'object' && Config.remoteladder ?
-	require('./ladders-remote') :
-	require('./ladders-local')).LadderStore;
+const LadderStore: typeof import('./ladders-remote').LadderStore = (
+	typeof Config === 'object' && Config.remoteladder ? require('./ladders-remote') : require('./ladders-local')
+).LadderStore;
 
 const SECONDS = 1000;
 const PERIODIC_MATCH_INTERVAL = 60 * SECONDS;
 
-type ChallengeType = import('./room-battle').ChallengeType;
+import type {ChallengeType} from './room-battle';
 
 /**
  * This represents a user's search for a battle under a format.
@@ -113,23 +112,30 @@ class Ladder extends LadderStore {
 			return null;
 		}
 
+		let rating = 0;
+		let valResult;
+		let removeNicknames = !!(user.locked || user.namelocked);
+
+
 		const regex = /(?:^|])([^|]*)\|([^|]*)\|/g;
 		let match = regex.exec(team);
 		let unownWord = '';
 		while (match) {
-			let nickname = match[1];
+			const nickname = match[1];
 			const speciesid = toID(match[2] || match[1]);
 			if (speciesid.length <= 6 && speciesid.startsWith('unown')) {
 				unownWord += speciesid.charAt(5) || 'a';
 			}
 			if (nickname) {
-				nickname = Chat.nicknamefilter(nickname, user);
-				if (!nickname || nickname !== match[1]) {
+				const filtered = Chat.nicknamefilter(nickname, user);
+				if (typeof filtered === 'string' && (!filtered || filtered !== match[1])) {
 					connection.popup(
 						`Your team was rejected for the following reason:\n\n` +
 						`- Your Pokémon has a banned nickname: ${match[1]}`
 					);
 					return null;
+				} else if (filtered === false) {
+					removeNicknames = true;
 				}
 			}
 			match = regex.exec(team);
@@ -145,12 +151,10 @@ class Ladder extends LadderStore {
 			}
 		}
 
-		let rating = 0;
-		let valResult;
 		if (isRated && !Ladders.disabled) {
 			const uid = user.id;
 			[valResult, rating] = await Promise.all([
-				TeamValidatorAsync.get(this.formatid).validateTeam(team, {removeNicknames: !!(user.locked || user.namelocked)}),
+				TeamValidatorAsync.get(this.formatid).validateTeam(team, {removeNicknames}),
 				this.getRating(uid),
 			]);
 			if (uid !== user.id) {
@@ -164,7 +168,7 @@ class Ladder extends LadderStore {
 				rating = 1;
 			}
 			const validator = TeamValidatorAsync.get(this.formatid);
-			valResult = await validator.validateTeam(team, {removeNicknames: !!(user.locked || user.namelocked)});
+			valResult = await validator.validateTeam(team, {removeNicknames});
 		}
 
 		if (valResult.charAt(0) !== '1') {
@@ -181,8 +185,18 @@ class Ladder extends LadderStore {
 		return new BattleReady(userid, this.formatid, settings, rating, challengeType);
 	}
 
+	static getChallenging(userid: ID) {
+		const userChalls = Ladders.challenges.get(userid);
+		if (userChalls) {
+			for (const chall of userChalls) {
+				if (chall.from === userid) return chall;
+			}
+		}
+		return null;
+	}
+
 	static cancelChallenging(user: User) {
-		const chall = Ladders.getChallenging(user.id);
+		const chall = Ladder.getChallenging(user.id);
 		if (chall) {
 			Ladder.removeChallenge(chall);
 			return true;
@@ -191,7 +205,7 @@ class Ladder extends LadderStore {
 	}
 	static rejectChallenge(user: User, targetUsername: string) {
 		const targetUserid = toID(targetUsername);
-		const chall = Ladders.getChallenging(targetUserid);
+		const chall = Ladder.getChallenging(targetUserid);
 		if (chall && chall.to === user.id) {
 			Ladder.removeChallenge(chall);
 			return true;
@@ -225,7 +239,7 @@ class Ladder extends LadderStore {
 			connection.popup(`You can't battle yourself. The best you can do is open PS in Private Browsing (or another browser) and log into a different username, and battle that username.`);
 			return false;
 		}
-		if (Ladders.getChallenging(user.id)) {
+		if (Ladder.getChallenging(user.id)) {
 			connection.popup(`You are already challenging someone. Cancel that challenge before challenging someone else.`);
 			return false;
 		}
@@ -234,9 +248,17 @@ class Ladder extends LadderStore {
 			Chat.maybeNotifyBlocked('challenge', targetUser, user);
 			return false;
 		}
-		if (Date.now() < user.lastChallenge + 10 * SECONDS) {
+		if (Date.now() < user.lastChallenge + 10 * SECONDS && !Config.nothrottle) {
 			// 10 seconds ago, probable misclick
 			connection.popup(`You challenged less than 10 seconds after your last challenge! It's cancelled in case it's a misclick.`);
+			return false;
+		}
+		const currentChallenges = Ladders.challenges.get(targetUser.id);
+		if (currentChallenges && currentChallenges.length >= 3 && !user.autoconfirmed) {
+			connection.popup(
+				`This user already has 3 pending challenges.\n` +
+				`You must be autoconfirmed to challenge them.`
+			);
 			return false;
 		}
 		const ready = await this.prepBattle(connection, 'challenge');
@@ -261,7 +283,7 @@ class Ladder extends LadderStore {
 		return true;
 	}
 	static async acceptChallenge(connection: Connection, targetUser: User) {
-		const chall = Ladders.getChallenging(targetUser.id);
+		const chall = Ladder.getChallenging(targetUser.id);
 		if (!chall || chall.to !== connection.user.id) {
 			connection.popup(`${targetUser.id} is not challenging you. Maybe they cancelled before you accepted?`);
 			return false;
@@ -448,7 +470,7 @@ class Ladder extends LadderStore {
 		// users must be different
 		if (user1 === user2) return false;
 
-		if (Config.fakeladder) {
+		if (Config.noipchecks) {
 			user1.lastMatch = user2.id;
 			user2.lastMatch = user1.id;
 			return true;
@@ -575,16 +597,6 @@ function getLadder(formatid: string) {
 	return new Ladder(formatid);
 }
 
-function getChallenging(userid: ID) {
-	const userChalls = Ladders.challenges.get(userid);
-	if (userChalls) {
-		for (const chall of userChalls) {
-			if (chall.from === userid) return chall;
-		}
-	}
-	return null;
-}
-
 const periodicMatchInterval = setInterval(
 	() => Ladder.periodicMatch(),
 	PERIODIC_MATCH_INTERVAL
@@ -594,7 +606,6 @@ export const Ladders = Object.assign(getLadder, {
 	BattleReady,
 	LadderStore,
 	Ladder,
-	getChallenging,
 
 	cancelSearches: Ladder.cancelSearches,
 	updateSearch: Ladder.updateSearch,

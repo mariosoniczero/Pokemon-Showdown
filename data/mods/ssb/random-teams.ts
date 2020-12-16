@@ -110,12 +110,6 @@ export class RandomStaffBrosTeams extends RandomTeams {
 				signatureMove: 'Murky Ambush',
 				evs: {hp: 252, def: 252, spd: 4}, ivs: {spe: 0}, nature: 'Relaxed',
 			},
-			'a random duck': {
-				species: 'Swanna', ability: 'Volt Absorb', item: 'Safety Goggles', gender: 'M',
-				moves: ['Nasty Plot', 'Steam Eruption', 'Oblivion Wing'],
-				signatureMove: 'Flock',
-				evs: {spa: 252, spd: 4, spe: 252}, ivs: {atk: 0}, nature: 'Timid', shiny: true,
-			},
 			Arcticblast: {
 				species: 'Garbodor', ability: 'Analytic', item: 'Assault Vest', gender: 'M',
 				moves: ['Knock Off', 'Earthquake', ['Horn Leech', 'U-turn', 'Avalanche']],
@@ -128,12 +122,6 @@ export class RandomStaffBrosTeams extends RandomTeams {
 				moves: ['Mimic', 'Stealth Rock', 'Memento'],
 				signatureMove: 'Come on you Gunners',
 				evs: {hp: 4, spa: 252, spe: 252}, ivs: {hp: 20, def: 20, spd: 20}, nature: 'Naive',
-			},
-			Asheviere: {
-				species: 'Slowbro', ability: 'Regenerator', item: 'Leftovers', gender: 'F',
-				moves: ['Scald', 'Slack Off', 'Psyshock'],
-				signatureMove: 'Wonder Trade',
-				evs: {hp: 252, def: 252, spa: 4}, nature: 'Bold',
 			},
 			Averardo: {
 				species: 'Tyrantrum', ability: 'Rock Head', item: 'Choice Scarf', gender: 'M',
@@ -297,12 +285,6 @@ export class RandomStaffBrosTeams extends RandomTeams {
 				signatureMove: 'Quick Reload',
 				evs: {hp: 24, atk: 232, spe: 252}, nature: 'Jolly',
 			},
-			Flare: {
-				species: 'Zoroark', ability: 'Super Illusion', item: 'Choice Scarf', gender: 'N',
-				moves: ['Fleur Cannon', 'Parting Shot', 'Sludge Bomb'],
-				signatureMove: 'Distortion Blast',
-				evs: {spa: 252, spd: 4, spe: 252}, ivs: {atk: 0}, nature: 'Timid', shiny: true,
-			},
 			FOMG: {
 				species: 'Golem', ability: 'Serene Grace', item: 'Astleyium Z', gender: 'M',
 				moves: ['Earthquake', 'Explosion', 'Iron Head'],
@@ -449,7 +431,7 @@ export class RandomStaffBrosTeams extends RandomTeams {
 				evs: {def: 4, spa: 252, spe: 252}, ivs: {atk: 0}, nature: 'Timid', shiny: true,
 			},
 			MacChaeger: {
-				species: 'Mantyke', ability: 'Water Veil', item: ['Life Orb', 'Normalium Z'], gender: 'M',
+				species: 'Mantyke', ability: 'Water Veil', item: ['Life Orb', 'Normalium Z'], gender: 'F',
 				moves: ['Scald', 'Aeroblast', 'Sleep Talk'],
 				signatureMove: 'Nap Time',
 				evs: {hp: 252, spa: 80, spe: 176}, ivs: {atk: 0}, nature: 'Modest',
