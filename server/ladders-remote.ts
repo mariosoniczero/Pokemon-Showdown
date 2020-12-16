@@ -11,8 +11,7 @@
  *
  * @license MIT
  */
-
-'use strict';
+import {Utils} from '../lib/utils';
 
 export class LadderStore {
 	formatid: string;
@@ -27,6 +26,8 @@ export class LadderStore {
 	 * ladder toplist, to be displayed directly in the ladder tab of the
 	 * client.
 	 */
+	// This requires to be `async` because it must conform with the `LadderStore` interface
+	// eslint-disable-next-line @typescript-eslint/require-await
 	async getTop(prefix?: string): Promise<[string, string] | null> {
 		return null;
 	}
@@ -37,7 +38,7 @@ export class LadderStore {
 	async getRating(userid: string) {
 		const formatid = this.formatid;
 		const user = Users.getExact(userid);
-		if (user && user.mmrCache[formatid]) {
+		if (user?.mmrCache[formatid]) {
 			return user.mmrCache[formatid];
 		}
 		const [data] = await LoginServer.request('mmr', {
@@ -71,7 +72,7 @@ export class LadderStore {
 		const p2 = Users.getExact(p2name);
 		room.update();
 		room.send(`||Ladder updating...`);
-		const [data, , error] = await LoginServer.request('ladderupdate', {
+		const [data, error] = await LoginServer.request('ladderupdate', {
 			p1: p1name,
 			p2: p2name,
 			score: p1score,
@@ -118,7 +119,7 @@ export class LadderStore {
 			let act = (p1score > 0.9 ? `winning` : (p1score < 0.1 ? `losing` : `tying`));
 			let reasons = `${elo - oldelo} for ${act}`;
 			if (reasons.charAt(0) !== '-') reasons = '+' + reasons;
-			room.addRaw(Chat.html`${p1name}'s rating: ${oldelo} &rarr; <strong>${elo}</strong><br />(${reasons})`);
+			room.addRaw(Utils.html`${p1name}'s rating: ${oldelo} &rarr; <strong>${elo}</strong><br />(${reasons})`);
 			let minElo = elo;
 
 			oldelo = Math.round(p2rating.oldelo);
@@ -126,7 +127,7 @@ export class LadderStore {
 			act = (p1score > 0.9 || p1score < 0 ? `losing` : (p1score < 0.1 ? `winning` : `tying`));
 			reasons = `${elo - oldelo} for ${act}`;
 			if (reasons.charAt(0) !== '-') reasons = '+' + reasons;
-			room.addRaw(Chat.html`${p2name}'s rating: ${oldelo} &rarr; <strong>${elo}</strong><br />(${reasons})`);
+			room.addRaw(Utils.html`${p2name}'s rating: ${oldelo} &rarr; <strong>${elo}</strong><br />(${reasons})`);
 			if (elo < minElo) minElo = elo;
 			room.rated = minElo;
 
@@ -137,13 +138,14 @@ export class LadderStore {
 			room.addRaw(`There was an error calculating rating changes.`);
 			room.update();
 		}
-
 		return [p1score, p1rating, p2rating];
 	}
 
 	/**
 	 * Returns a Promise for an array of strings of <tr>s for ladder ratings of the user
 	 */
+	// This requires to be `async` because it must conform with the `LadderStore` interface
+	// eslint-disable-next-line @typescript-eslint/require-await
 	static async visualizeAll(username: string) {
 		return [`<tr><td><strong>Please use the official client at play.pokemonshowdown.com</strong></td></tr>`];
 	}

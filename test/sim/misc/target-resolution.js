@@ -38,7 +38,7 @@ describe('Target Resolution', function () {
 			battle.makeChoices('move watergun -2, auto', 'auto');
 			const newHps = activePokemonList.map(pokemon => pokemon.hp);
 
-			assert.deepStrictEqual(prevHps, newHps);
+			assert.deepEqual(prevHps, newHps);
 			assert(battle.log.includes('|move|p1a: Wailord|Water Gun|p1: Latias|[notarget]'));
 			assert(battle.log.includes('|-fail|p1a: Wailord'));
 		});
@@ -135,7 +135,7 @@ describe('Target Resolution', function () {
 			battle.makeChoices('move watergun -2, pass', 'move watergun -2, pass');
 			const newHps = attackers.map(pokemon => pokemon.hp);
 
-			assert.deepStrictEqual(prevHps, newHps);
+			assert.deepEqual(prevHps, newHps);
 			assert(battle.log.includes('|move|p1a: Wailord|Water Gun|p1: Shedinja|[notarget]'));
 			assert(battle.log.includes('|-fail|p1a: Wailord'));
 			assert(battle.log.includes('|move|p2a: Wailord|Water Gun|p2: Shedinja|[notarget]'));
@@ -171,5 +171,46 @@ describe('Target Resolution', function () {
 			battle.makeChoices('move watergun -2, pass', 'auto');
 			assert.statStage(redirector, 'spa', 2);
 		});
+
+		it(`should smart-track targets for Stalwart`, function () {
+			battle = common.createBattle({gameType: 'doubles'}, [[
+				{species: 'Duraludon', ability: 'stalwart', moves: ['watergun']},
+				{species: 'Ninjask', ability: 'runaway', moves: ['splash']},
+			], [
+				{species: 'Gastrodon', ability: 'runaway', moves: ['splash']},
+				{species: 'Ninjask', ability: 'runaway', moves: ['allyswitch']},
+			]]);
+
+			battle.makeChoices('move watergun 1, move splash', 'auto');
+			assert.notEqual(battle.p2.active[1].hp, battle.p2.active[1].maxhp);
+		});
+
+		it(`should smart-track targets for Snipe Shot`, function () {
+			battle = common.createBattle({gameType: 'doubles'}, [[
+				{species: 'Duraludon', ability: 'runaway', moves: ['snipeshot']},
+				{species: 'Ninjask', ability: 'runaway', moves: ['splash']},
+			], [
+				{species: 'Gastrodon', ability: 'runaway', moves: ['splash']},
+				{species: 'Ninjask', ability: 'runaway', moves: ['allyswitch']},
+			]]);
+
+			battle.makeChoices('move snipeshot 1, move splash', 'auto');
+			assert.notEqual(battle.p2.active[1].hp, battle.p2.active[1].maxhp);
+		});
+	});
+
+	it.skip('should not force charge moves called by another move to target an ally after Ally Switch', function () {
+		battle = common.createBattle({gameType: 'doubles'}, [[
+			{species: 'purrloin', ability: 'prankster', moves: ['copycat', 'sleeptalk']},
+			{species: 'wynaut', moves: ['allyswitch', 'solarbeam']},
+		], [
+			{species: 'swablu', moves: ['sleeptalk']},
+			{species: 'swablu', moves: ['sleeptalk']},
+		]]);
+
+		battle.makeChoices('move sleeptalk, move solarbeam 1', 'auto');
+		battle.makeChoices();
+		battle.makeChoices();
+		assert.fullHP(battle.p1.active[0]);
 	});
 });

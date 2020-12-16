@@ -14,13 +14,13 @@ import * as path from 'path';
 import * as repl from 'repl';
 import {crashlogger} from './crashlogger';
 
-export const Repl = new class {
+export const Repl = new class ReplSingleton {
 	/**
 	 * Contains the pathnames of all active REPL sockets.
 	 */
 	socketPathnames: Set<string> = new Set();
 
-	listenersSetup: boolean = false;
+	listenersSetup = false;
 
 	setupListeners() {
 		if (Repl.listenersSetup) return;
@@ -54,7 +54,6 @@ export const Repl = new class {
 
 		// TODO: Windows does support the REPL when using named pipes. For now,
 		// this only supports UNIX sockets.
-		if (process.platform === 'win32') return;
 
 		Repl.setupListeners();
 
@@ -79,7 +78,6 @@ export const Repl = new class {
 			repl.start({
 				input: socket,
 				output: socket,
-				// tslint:disable-next-line:ban-types
 				eval(cmd: string, context: any, unusedFilename: string, callback: Function): any {
 					try {
 						return callback(null, evalFunction(cmd));
@@ -92,29 +90,34 @@ export const Repl = new class {
 		});
 
 		const pathname = path.resolve(__dirname, '..', Config.replsocketprefix || 'logs/repl', filename);
-		server.listen(pathname, () => {
-			fs.chmodSync(pathname, Config.replsocketmode || 0o600);
-			Repl.socketPathnames.add(pathname);
-		});
+		try {
+			server.listen(pathname, () => {
+				fs.chmodSync(pathname, Config.replsocketmode || 0o600);
+				Repl.socketPathnames.add(pathname);
+			});
 
-		server.once('error', (err: NodeJS.ErrnoException) => {
-			if (err.code === "EADDRINUSE") {
-				// tslint:disable-next-line:variable-name
-				fs.unlink(pathname, _err => {
-					if (_err && _err.code !== "ENOENT") {
-						crashlogger(_err, `REPL: ${filename}`);
-					}
-					server.close();
-				});
-			} else {
-				crashlogger(err, `REPL: ${filename}`);
+			server.once('error', (err: NodeJS.ErrnoException) => {
 				server.close();
-			}
-		});
+				if (err.code === "EADDRINUSE") {
+					fs.unlink(pathname, _err => {
+						if (_err && _err.code !== "ENOENT") {
+							crashlogger(_err, `REPL: ${filename}`);
+						}
+					});
+				} else if (err.code === "EACCES") {
+					if (process.platform !== 'win32') {
+						console.error(`Could not start REPL server "${filename}": Your filesystem doesn't support Unix sockets (everything else will still work)`);
+					}
+				} else {
+					crashlogger(err, `REPL: ${filename}`);
+				}
+			});
 
-		server.once('close', () => {
-			Repl.socketPathnames.delete(pathname);
-			Repl.start(filename, evalFunction);
-		});
+			server.once('close', () => {
+				Repl.socketPathnames.delete(pathname);
+			});
+		} catch (err) {
+			console.error(`Could not start REPL server "${filename}": ${err}`);
+		}
 	}
 };

@@ -37,8 +37,8 @@ export class RoundRobin {
 				cols: players.slice(0),
 				rows: players.slice(0),
 			},
-			tableContents: players.map((p1, row) =>
-				players.map((p2, col) => {
+			tableContents: players.map(
+				(p1, row) => players.map((p2, col) => {
 					if (!this.isDoubles && col >= row) return null;
 					if (p1 === p2) return null;
 
@@ -58,8 +58,8 @@ export class RoundRobin {
 				cols: players.slice(0),
 				rows: players.slice(0),
 			},
-			tableContents: players.map((p1, row) =>
-				players.map((p2, col) => {
+			tableContents: players.map(
+				(p1, row) => players.map((p2, col) => {
 					if (!this.isDoubles && col >= row) return null;
 					if (p1 === p2) return null;
 					const match = this.matches[row][col];
@@ -82,8 +82,8 @@ export class RoundRobin {
 		this.players = players;
 		this.isBracketFrozen = true;
 
-		this.matches = players.map((p1, row) =>
-			players.map((p2, col) => {
+		this.matches = players.map(
+			(p1, row) => players.map((p2, col) => {
 				if (!this.isDoubles && col >= row) return null;
 				if (p1 === p2) return null;
 
@@ -172,7 +172,7 @@ export class RoundRobin {
 	getResults() {
 		if (!this.isTournamentEnded()) return 'TournamentNotEnded';
 
-		const sortedScores = this.players.sort(
+		const sortedScores = this.players.slice().sort(
 			(p1, p2) => p2.score - p1.score
 		);
 
