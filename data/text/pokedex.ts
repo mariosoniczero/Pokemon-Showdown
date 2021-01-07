@@ -3674,4 +3674,124 @@ export const PokedexText: {[k: string]: PokedexText} = {
 	pokestarufopropu2: {
 		name: "Pokestar UFO-PropU2",
 	},
+	butterfreemega: {
+		name: "Butterfree-Mega",
+	},
+	arbokmega: {
+		name: "Arbok-Mega",
+	},
+	rapidashmega: {
+		name: "Rapidash-Mega",
+	},
+	weezingmega: {
+		name: "Weezing-Mega",
+	},
+	meganiummega: {
+		name: "Meganium-Mega",
+	},
+	typhlosionmega: {
+		name: "Typhlosion-Mega",
+	},
+	feraligatrmega: {
+		name: "Feraligatr-Mega",
+	},
+	lanturnmega: {
+		name: "Lanturn-Mega",
+	},
+	bellossommega: {
+		name: "Bellossom-Mega",
+	},
+	granbullmega: {
+		name: "Granbull-Mega",
+	},
+	miltankmega: {
+		name: "Miltank-Mega",
+	},
+	delcattymega: {
+		name: "Delcatty-Mega",
+	},
+	flygonmegax: {
+		name: "Flygon-Mega-X",
+	},
+	flygonmegay: {
+		name: "Flygon-Mega-Y",
+	},
+	kecleonmega: {
+		name: "Kecleon-Mega",
+	},
+	torterramega: {
+		name: "Torterra-Mega",
+	},
+	infernapemega: {
+		name: "Infernape-Mega",
+	},
+	empoleonmega: {
+		name: "Empoleon-Mega",
+	},
+	staraptormega: {
+		name: "Staraptor-Mega",
+	},
+	luxraymega: {
+		name: "Luxray-Mega",
+	},
+	roserademega: {
+		name: "Roserade-Mega",
+	},
+	bronzongmega: {
+		name: "Bronzong-Mega",
+	},
+	froslassmega: {
+		name: "Froslass-Mega",
+	},
+	krookodilemega: {
+		name: "Krookodile-Mega",
+	},
+	druddigonmega: {
+		name: "Druddigon-Mega",
+	},
+	golurkmega: {
+		name: "Golurk-Mega",
+	},
+	avaluggmega: {
+		name: "Avalugg-Mega",
+	},
+	pachirisumega: {
+		name: "Pachirisu-Mega",
+	},
+	vespiquenmega: {
+		name: "Vespiquen-Mega",
+	},
+	goodramega: {
+		name: "Goodra-Mega",
+	},
+	honchkrowmega: {
+		name: "Honchkrow-Mega",
+	},
+	crobatmega: {
+		name: "Crobat-Mega",
+	},
+	sudowoodomega: {
+		name: "Sudowoodo-Mega",
+	},
+	bearticmega: {
+		name: "Beartic-Mega",
+	},
+	decidueyemega: {
+		name: "Decidueye-Mega",
+	},
+	incineroarmega: {
+		name: "Incineroar-Mega",
+	},
+	primarinamega: {
+		name: "Primarina-Mega",
+	},
+	crustlemega: {
+		name: "Crustle-Mega",
+	},
+	girafarigmega: {
+		name: "Girafarig-Mega",
+	},
+	primeapemega: {
+		name: "Primeape-Mega",
+	},
 };

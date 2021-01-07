@@ -4775,25 +4775,7 @@ let BattleAbilities = {
 		rating: 3,
 		num: -4,
 	},
-    "infectate": {
-		desc: "This Pokemon's Normal-type moves become Bug-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
-		shortDesc: "This Pokemon's Normal-type moves become Bug type and have 1.2x power.",
-		onModifyMovePriority: -1,
-		onModifyMove(move, pokemon) {
-			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
-				move.type = 'Bug';
-				move.pixilateBoosted = true;
-			}
-		},
-		onBasePowerPriority: 8,
-		onBasePower(basePower, pokemon, target, move) {
-			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
-		},
-		id: "infectate",
-		name: "Infectate",
-		rating: 4,
-		num: 1007,
-	},
+	/*
 	"hemotoxin": {
 		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Poison-type attack.",
 		onModifyAtkPriority: 5,
@@ -4815,20 +4797,8 @@ let BattleAbilities = {
 		rating: 3,
 		num: 1006,
 	},
-	"spectralbattery": {
-		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
-		onChargeMove(pokemon, target, move) {
-			this.add('-ability', pokemon, 'Spectral Battery');
-			this.debug('spectral battery - remove charge turn for ' + move.id);
-			this.attrLastMove('[still]');
-			this.addMove('-anim', pokemon, move.name, target);
-			return false; // skip charge turn
-		},
-		id: "spectralbattery",
-		name: "Spectral Battery",
-		rating: 3,
-		num: 1005,
-	},
+	*/
+	
 	/*"terraformer": {
 		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Ground-type attack.",
 		onModifyAtkPriority: 5,
@@ -4850,24 +4820,20 @@ let BattleAbilities = {
 		rating: 3,
 		num: 1004,
 	},*/
-	"conflagrate": {
-		desc: "This Pokemon's Normal-type moves become Fire-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
-		shortDesc: "This Pokemon's Normal-type moves become Fire type and have 1.2x power.",
-		onModifyMovePriority: -1,
-		onModifyMove(move, pokemon) {
-			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
-				move.type = 'Fire';
-				move.pixilateBoosted = true;
+	"thunderstorm": {
+		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain.",
+		onStart(source) {
+			for (const action of this.queue) {
+				if (action.choice === 'runPrimal' && action.pokemon === source && source.template.speciesid === 'kyogre') return;
+				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
 			}
+			this.field.setWeather('raindance');
+			this.field.setTerrain('electricterrain');
 		},
-		onBasePowerPriority: 8,
-		onBasePower(basePower, pokemon, target, move) {
-			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
-		},
-		id: "conflagrate",
-		name: "Conflagrate",
+		id: "thunderstorm",
+		name: "Thunderstorm",
 		rating: 4,
-		num: 1003,
+		num: 1001,
 	},
 	"terrify": {
 		desc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
@@ -4892,21 +4858,183 @@ let BattleAbilities = {
 		rating: 3.5,
 		num: 1002,
 	},
-	"thunderstorm": {
-		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain.",
-		onStart(source) {
-			for (const action of this.queue) {
-				if (action.choice === 'runPrimal' && action.pokemon === source && source.template.speciesid === 'kyogre') return;
-				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
+	"conflagrate": {
+		desc: "This Pokemon's Normal-type moves become Fire-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Fire type and have 1.2x power.",
+		onModifyMovePriority: -1,
+		onModifyMove(move, pokemon) {
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Fire';
+				move.pixilateBoosted = true;
 			}
-			this.field.setWeather('raindance');
-			this.field.setTerrain('electricterrain');
 		},
-		id: "thunderstorm",
-		name: "Thunderstorm",
+		onBasePowerPriority: 8,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
+		},
+		id: "conflagrate",
+		name: "Conflagrate",
 		rating: 4,
-		num: 1001,
+		num: 1003,
 	},
+	"spectralbattery": {
+		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
+		onChargeMove(pokemon, target, move) {
+			this.add('-ability', pokemon, 'Spectral Battery');
+			this.debug('spectral battery - remove charge turn for ' + move.id);
+			this.attrLastMove('[still]');
+			this.addMove('-anim', pokemon, move.name, target);
+			return false; // skip charge turn
+		},
+		id: "spectralbattery",
+		name: "Spectral Battery",
+		rating: 3,
+		num: 1004,
+	},
+	"infectate": {
+		desc: "This Pokemon's Normal-type moves become Bug-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Bug type and have 1.2x power.",
+		onModifyMovePriority: -1,
+		onModifyMove(move, pokemon) {
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Bug';
+				move.pixilateBoosted = true;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
+		},
+		id: "infectate",
+		name: "Infectate",
+		rating: 4,
+		num: 1005,
+	},
+	"weatherrush": {
+        onModifySpe(spe, pokemon) {
+            if (this.field.isWeather('hail') || ['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()) || this.field.isWeather('sandstorm')) {
+                return this.chainModify(2);
+            }
+        },
+        name: "Weather Rush",
+        rating: 3,
+        num: 1006,
+    },
+	"momentum": {
+        onBoost(boost, target, source, effect) {
+            if (source && target === source) return;
+            if (boost.spe && boost.spe < 0) {
+                delete boost.spe;
+            }
+        },
+        name: "Momentum",
+        rating: 2,
+        num: 1007,
+    },
+	"sharpenedfangs": {
+        // Implemented in moves.ts
+        name: "Sharpened Fangs",
+        rating: 2,
+        num: 1008,
+    },
+	"starstruck": {
+        onResidualOrder: 26,
+        onResidualSubOrder: 1,
+		onStart (pokemon) {
+			if (!pokemon.hp) return;
+            for (const target of pokemon.side.foe.active) {
+                if (!target || !target.hp) continue;
+                if (target.hasType('Dark')) {
+                    this.damage(target.baseMaxhp / 8, target, pokemon);
+                }
+            }
+		},
+        onResidual(pokemon) {
+            if (!pokemon.hp) return;
+            for (const target of pokemon.side.foe.active) {
+                if (!target || !target.hp) continue;
+                if (target.hasType('Dark')) {
+                    this.damage(target.baseMaxhp / 8, target, pokemon);
+                }
+            }
+        },
+        name: "Starstruck",
+        rating: 3,
+        num: 1009,
+    },
+	"heeltactics": {
+        onModifyAtkPriority: 5,
+        onModifyAtk(atk, attacker, defender, move) {
+            if (move.type === 'Fighting') {
+                this.debug('Heel Tactics boost');
+                return this.chainModify(1.5);
+            }
+        },
+        onModifySpAPriority: 5,
+        onModifySpA(atk, attacker, defender, move) {
+            if (move.type === 'Fighting') {
+                this.debug('Heel Tactics boost');
+                return this.chainModify(1.5);
+            }
+        },
+        name: "Heel Tactics",
+        rating: 3.5,
+        num: 1010,
+    },
+	"crescendo": {
+        onStart(pokemon) {
+            pokemon.addVolatile('metronome');
+        },
+        condition: {
+            onStart(pokemon) {
+                this.effectData.lastMove = '';
+                this.effectData.numConsecutive = 0;
+            },
+            onTryMovePriority: -2,
+            onTryMove(pokemon, target, move) {
+                if (!pokemon.hasAbility('crescendo')) {
+                    pokemon.removeVolatile('metronome');
+                    return;
+                }
+                if (this.effectData.lastMove === move.id && pokemon.moveLastTurnResult) {
+                    this.effectData.numConsecutive++;
+                } else if (pokemon.volatiles['twoturnmove'] && this.effectData.lastMove !== move.id) {
+                    this.effectData.numConsecutive = 1;
+                } else {
+                    this.effectData.numConsecutive = 0;
+                }
+                this.effectData.lastMove = move.id;
+            },
+            onModifyDamage(damage, source, target, move) {
+                const dmgMod = [0x1000, 0x1333, 0x1666, 0x1999, 0x1CCC, 0x2000];
+                const numConsecutive = this.effectData.numConsecutive > 5 ? 5 : this.effectData.numConsecutive;
+                return this.chainModify([dmgMod[numConsecutive], 0x1000]);
+            },
+        },
+        name: "Crescendo",
+        rating: 3,
+        num: 1011,
+    },
+	"rocksendurance": {
+        onBeforeMovePriority: 11,
+		onBeforeMove(pokemon) {
+			pokemon.removeVolatile('mustrecharge');
+			return null;
+		},
+        name: "Rock's Endurance",
+        rating: 3,
+        num: 1013,
+    },
+	"determination": {
+        onTryHit(pokemon, source, move) {
+			if (!pokemon.runImmunity(move.type)) {
+				this.boost({atk: 1}, source);
+			}	
+		},
+        name: "Determination",
+        rating: 3,
+        num: 1013,
+    },
 };
 
 exports.BattleAbilities = BattleAbilities;

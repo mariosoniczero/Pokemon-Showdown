@@ -1708,4 +1708,61 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 
 		activate: "  [POKEMON] extends [MOVE] by 2 turns!",
 	},
+	
+	//GPL
+	thunderstorm: {
+		name: "Thunderstorm",
+		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain.",
+	},
+	terrify: {
+		name: "Terrify",
+		desc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+		shortDesc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opponents by 1 stage.",
+	},
+	conflagrate: {
+		name: "Conflagrate",
+		desc: "This Pokemon's Normal-type moves become Fire-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Fire type and have 1.2x power.",
+	},
+	spectralbattery: {
+		name: "Spectral Battery",
+		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
+	},
+	infectate: {
+		name: "Infectate",
+		desc: "This Pokemon's Normal-type moves become Bug-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Bug type and have 1.2x power.",
+	},
+	weatherrush: {
+		name: "Weather Rush",
+		shortDesc: "If Rain Dance, Sandstorm, or Hail is active, Speed is doubled; immunity to Sandstorm.",
+	},
+	momentum: {
+		name: "Momentum",
+		shortDesc: "This Pokemon's Speed cannot be reduced, including by paralysis.",
+	},
+	sharpenedfangs: {
+		name: "Sharpened Fangs",
+		shortDesc: "Super Fang does damage equal to 3/4 target's current HP.",
+	},
+	starstruck: {
+		name: "Starstruck",
+		shortDesc: "Does 1/8 damage to Dark types each turn and upon switch-in.",
+	},
+	heeltactics: {
+		name: "Heel Tactics",
+		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Fighting-type attack.",
+	},
+	crescendo: {
+		name: "Crescendo",
+		shortDesc: "Damage of moves used on consecutive turns is increased. Max 2x after 5 turns.",
+	},
+	rocksendurance: {
+		name: "Rock's Endurance",
+		shortDesc: "Negates the recharge turn for moves which require recharging."
+	},
+	determination: {
+		name: "Determination",
+		shortDesc: "When using a move the target is immune to, Attack is raised by 1 stage."
+	},
 };
