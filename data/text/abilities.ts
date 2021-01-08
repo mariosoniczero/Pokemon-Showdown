@@ -1706,7 +1706,6 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 
 		activate: "  [POKEMON] extends [MOVE] by 2 turns!",
 	},
-	
 	// GPL
 	thunderstorm: {
 		name: "Thunderstorm",
