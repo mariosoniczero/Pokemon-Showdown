@@ -4491,14 +4491,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	"conflagrate": {
 		desc: "This Pokemon's Normal-type moves become Fire-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 		shortDesc: "This Pokemon's Normal-type moves become Fire type and have 1.2x power.",
-		onModifyMovePriority: -1,
-		onModifyMove(move, pokemon) {
-			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Fire';
 				move.pixilateBoosted = true;
 			}
 		},
-		onBasePowerPriority: 8,
+		onBasePowerPriority: 23,
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
@@ -4524,14 +4527,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	"infectate": {
 		desc: "This Pokemon's Normal-type moves become Bug-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 		shortDesc: "This Pokemon's Normal-type moves become Bug type and have 1.2x power.",
-		onModifyMovePriority: -1,
-		onModifyMove(move, pokemon) {
-			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Bug';
 				move.pixilateBoosted = true;
 			}
 		},
-		onBasePowerPriority: 8,
+		onBasePowerPriority: 23,
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
@@ -4542,9 +4548,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	"weatherrush": {
 		onModifySpe(spe, pokemon) {
-			if (this.field.isWeather('hail') || ['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()) || this.field.isWeather('sandstorm')) {
+			if (['hail', 'raindance', 'primordialsea', 'sandstorm'].includes(pokemon.effectiveWeather())) {
 				return this.chainModify(2);
 			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'sandstorm') return false;
 		},
 		name: "Weather Rush",
 		rating: 3,
@@ -4570,7 +4579,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	"starstruck": {
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
-		onStart (pokemon) {
+		onStart(pokemon) {
 			if (!pokemon.hp) return;
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
