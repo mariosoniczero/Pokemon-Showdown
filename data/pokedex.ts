@@ -1404,6 +1404,8 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Mankey",
 		evoLevel: 28,
 		eggGroups: ["Field"],
+		otherFormes: ["primeapemega"],
+		formeOrder: ["Primeape", "Primeape-Mega"],
 	},
 	growlithe: {
 		num: 58,
@@ -3943,6 +3945,8 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 41.5,
 		color: "Yellow",
 		eggGroups: ["Field"],
+		otherFormes: ["girafarigmega"],
+		formeOrder: ["Girafarig", "Girafarig-Mega"],
 	},
 	pineco: {
 		num: 204,
@@ -17732,6 +17736,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: 203,
 		name: "Girafarig-Mega",
 		baseSpecies: "Girafarig",
+		forme: "Mega",
 		types: ["Normal", "Psychic"],
 		baseStats: {hp: 70, atk: 110, def: 70, spa: 125, spd: 70, spe: 110},
 		abilities: {0: "Neuroforce"},
@@ -17745,6 +17750,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: 57,
 		name: "Primeape-Mega",
 		baseSpecies: "Primeape",
+		forme: "Mega",
 		types: ["Fighting", "Ground"],
 		baseStats: {hp: 65, atk: 140, def: 75, spa: 75, spd: 85, spe: 115},
 		abilities: {0: "Determination"},

@@ -4622,7 +4622,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	"crescendo": {
 		onStart(pokemon) {
-			pokemon.addVolatile('metronome');
+			pokemon.addVolatile('crescendo');
 		},
 		condition: {
 			onStart(pokemon) {
@@ -4632,7 +4632,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			onTryMovePriority: -2,
 			onTryMove(pokemon, target, move) {
 				if (!pokemon.hasAbility('crescendo')) {
-					pokemon.removeVolatile('metronome');
+					pokemon.removeVolatile('crescendo');
 					return;
 				}
 				if (this.effectData.lastMove === move.id && pokemon.moveLastTurnResult) {
@@ -4658,7 +4658,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onBeforeMovePriority: 11,
 		onBeforeMove(pokemon) {
 			pokemon.removeVolatile('mustrecharge');
-			return null;
 		},
 		name: "Rock's Endurance",
 		rating: 3,
