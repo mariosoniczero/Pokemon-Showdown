@@ -4541,128 +4541,128 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1005,
 	},
 	"weatherrush": {
-        onModifySpe(spe, pokemon) {
-            if (this.field.isWeather('hail') || ['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()) || this.field.isWeather('sandstorm')) {
-                return this.chainModify(2);
-            }
-        },
-        name: "Weather Rush",
-        rating: 3,
-        num: 1006,
-    },
+		onModifySpe(spe, pokemon) {
+			if (this.field.isWeather('hail') || ['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()) || this.field.isWeather('sandstorm')) {
+				return this.chainModify(2);
+			}
+		},
+		name: "Weather Rush",
+		rating: 3,
+		num: 1006,
+	},
 	"momentum": {
-        onBoost(boost, target, source, effect) {
-            if (source && target === source) return;
-            if (boost.spe && boost.spe < 0) {
-                delete boost.spe;
-            }
-        },
-        name: "Momentum",
-        rating: 2,
-        num: 1007,
-    },
+		onBoost(boost, target, source, effect) {
+			if (source && target === source) return;
+			if (boost.spe && boost.spe < 0) {
+				delete boost.spe;
+			}
+		},
+		name: "Momentum",
+		rating: 2,
+		num: 1007,
+	},
 	"sharpenedfangs": {
-        // Implemented in moves.ts
-        name: "Sharpened Fangs",
-        rating: 2,
-        num: 1008,
-    },
+		// Implemented in moves.ts
+		name: "Sharpened Fangs",
+		rating: 2,
+		num: 1008,
+	},
 	"starstruck": {
-        onResidualOrder: 26,
-        onResidualSubOrder: 1,
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
 		onStart (pokemon) {
 			if (!pokemon.hp) return;
-            for (const target of pokemon.side.foe.active) {
-                if (!target || !target.hp) continue;
-                if (target.hasType('Dark')) {
-                    this.damage(target.baseMaxhp / 8, target, pokemon);
-                }
-            }
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !target.hp) continue;
+				if (target.hasType('Dark')) {
+					this.damage(target.baseMaxhp / 8, target, pokemon);
+				}
+			}
 		},
-        onResidual(pokemon) {
-            if (!pokemon.hp) return;
-            for (const target of pokemon.side.foe.active) {
-                if (!target || !target.hp) continue;
-                if (target.hasType('Dark')) {
-                    this.damage(target.baseMaxhp / 8, target, pokemon);
-                }
-            }
-        },
-        name: "Starstruck",
-        rating: 3,
-        num: 1009,
-    },
+		onResidual(pokemon) {
+			if (!pokemon.hp) return;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !target.hp) continue;
+				if (target.hasType('Dark')) {
+					this.damage(target.baseMaxhp / 8, target, pokemon);
+				}
+			}
+		},
+		name: "Starstruck",
+		rating: 3,
+		num: 1009,
+	},
 	"heeltactics": {
-        onModifyAtkPriority: 5,
-        onModifyAtk(atk, attacker, defender, move) {
-            if (move.type === 'Fighting') {
-                this.debug('Heel Tactics boost');
-                return this.chainModify(1.5);
-            }
-        },
-        onModifySpAPriority: 5,
-        onModifySpA(atk, attacker, defender, move) {
-            if (move.type === 'Fighting') {
-                this.debug('Heel Tactics boost');
-                return this.chainModify(1.5);
-            }
-        },
-        name: "Heel Tactics",
-        rating: 3.5,
-        num: 1010,
-    },
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Fighting') {
+				this.debug('Heel Tactics boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Fighting') {
+				this.debug('Heel Tactics boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Heel Tactics",
+		rating: 3.5,
+		num: 1010,
+	},
 	"crescendo": {
-        onStart(pokemon) {
-            pokemon.addVolatile('metronome');
-        },
-        condition: {
-            onStart(pokemon) {
-                this.effectData.lastMove = '';
-                this.effectData.numConsecutive = 0;
-            },
-            onTryMovePriority: -2,
-            onTryMove(pokemon, target, move) {
-                if (!pokemon.hasAbility('crescendo')) {
-                    pokemon.removeVolatile('metronome');
-                    return;
-                }
-                if (this.effectData.lastMove === move.id && pokemon.moveLastTurnResult) {
-                    this.effectData.numConsecutive++;
-                } else if (pokemon.volatiles['twoturnmove'] && this.effectData.lastMove !== move.id) {
-                    this.effectData.numConsecutive = 1;
-                } else {
-                    this.effectData.numConsecutive = 0;
-                }
-                this.effectData.lastMove = move.id;
-            },
-            onModifyDamage(damage, source, target, move) {
-                const dmgMod = [0x1000, 0x1333, 0x1666, 0x1999, 0x1CCC, 0x2000];
-                const numConsecutive = this.effectData.numConsecutive > 5 ? 5 : this.effectData.numConsecutive;
-                return this.chainModify([dmgMod[numConsecutive], 0x1000]);
-            },
-        },
-        name: "Crescendo",
-        rating: 3,
-        num: 1011,
-    },
+		onStart(pokemon) {
+			pokemon.addVolatile('metronome');
+		},
+		condition: {
+			onStart(pokemon) {
+				this.effectData.lastMove = '';
+				this.effectData.numConsecutive = 0;
+			},
+			onTryMovePriority: -2,
+			onTryMove(pokemon, target, move) {
+				if (!pokemon.hasAbility('crescendo')) {
+					pokemon.removeVolatile('metronome');
+					return;
+				}
+				if (this.effectData.lastMove === move.id && pokemon.moveLastTurnResult) {
+					this.effectData.numConsecutive++;
+				} else if (pokemon.volatiles['twoturnmove'] && this.effectData.lastMove !== move.id) {
+					this.effectData.numConsecutive = 1;
+				} else {
+					this.effectData.numConsecutive = 0;
+				}
+				this.effectData.lastMove = move.id;
+			},
+			onModifyDamage(damage, source, target, move) {
+				const dmgMod = [0x1000, 0x1333, 0x1666, 0x1999, 0x1CCC, 0x2000];
+				const numConsecutive = this.effectData.numConsecutive > 5 ? 5 : this.effectData.numConsecutive;
+				return this.chainModify([dmgMod[numConsecutive], 0x1000]);
+			},
+		},
+		name: "Crescendo",
+		rating: 3,
+		num: 1011,
+	},
 	"rocksendurance": {
-        onBeforeMovePriority: 11,
+		onBeforeMovePriority: 11,
 		onBeforeMove(pokemon) {
 			pokemon.removeVolatile('mustrecharge');
 			return null;
 		},
-        name: "Rock's Endurance",
-        rating: 3,
-        num: 1013,
-    },
+		name: "Rock's Endurance",
+		rating: 3,
+		num: 1013,
+	},
 	"determination": {
-        onTryHit(pokemon, source, move) {
+		onTryHit(pokemon, source, move) {
 			if (!pokemon.runImmunity(move.type)) {
 				this.boost({atk: 1}, source);
 			}
 		},
-        name: "Determination",
-        rating: 3,
-        num: 1013,
-    },
+		name: "Determination",
+		rating: 3,
+		num: 1013,
+	},
 };
