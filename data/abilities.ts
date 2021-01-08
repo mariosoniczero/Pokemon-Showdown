@@ -4655,16 +4655,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1011,
 	},
 	"rocksendurance": {
-		onBeforeMovePriority: 11,
-		onBeforeMove(pokemon) {
-			pokemon.removeVolatile('mustrecharge');
+		onEnd(pokemon) {
+			if (pokemon.volatiles['mustrecharge']) {
+				pokemon.removeVolatile('mustrecharge');
+			}
 		},
 		name: "Rock's Endurance",
 		rating: 3,
 		num: 1013,
 	},
 	"determination": {
-		onTryHit(pokemon, source, move) {
+		onHit(pokemon, source, move) {
 			if (!pokemon.runImmunity(move.type)) {
 				this.boost({atk: 1}, source);
 			}
