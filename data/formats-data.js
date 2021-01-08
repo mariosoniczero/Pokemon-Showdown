@@ -1,7 +1,4 @@
-'use strict';
-
-/**@type {{[k: string]: TemplateFormatsData}} */
-let BattleFormatsData = {
+export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	bulbasaur: {
 		eventPokemon: [
 			{"generation": 3, "level": 70, "moves": ["sweetscent", "growth", "solarbeam", "synthesis"], "pokeball": "pokeball"},
@@ -8318,14 +8315,14 @@ let BattleFormatsData = {
 		gen: 5,
 		tier: "Illegal",
 	},
-    krookodilemega: {
+	krookodilemega: {
 		requiredItem: "Krookodilite",
-        isNonstandard: "GPL",
+		isNonstandard: "GPL",
 		tier: "GPL",
 	},
 	flygonmegay: {
 		requiredItem: "Flygonite Y",
-        isNonstandard: "GPL",
+		isNonstandard: "GPL",
 		tier: "GPL",
 	},
 	flygonmegax: {
@@ -8473,6 +8470,69 @@ let BattleFormatsData = {
 		isNonstandard: "GPL",
 		tier: "GPL",
 	},
+	pachirisumega: {
+		requiredItem: "Pachirisunite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	vespiquenmega: {
+		requiredItem: "Vespiquenite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	goodramega: {
+		requiredItem: "Goodrite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	honchkrowmega: {
+		requiredItem: "Honchkrowite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	crobatmega: {
+		requiredItem: "Crobatite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	sudowoodomega: {
+		requiredItem: "Sudowoodite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	bearticmega: {
+		requiredItem: "Bearticite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	decidueyemega: {
+		requiredItem: "Deciduite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	incineroarmega: {
+		requiredItem: "Incinerite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	primarinamega: {
+		requiredItem: "Primarinite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	crustlemega: {
+		requiredItem: "Crustlite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	girafarigmega: {
+		requiredItem: "Girafarigite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
+	primeapemega: {
+		requiredItem: "Primeapite",
+		isNonstandard: "GPL",
+		tier: "GPL",
+	},
 };
-
-exports.BattleFormatsData = BattleFormatsData;

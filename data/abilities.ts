@@ -32,10 +32,7 @@ Ratings and how they work:
 
 */
 
-'use strict';
-
-/**@type {{[k: string]: AbilityData}} */
-let BattleAbilities = {
+export const Abilities: {[abilityid: string]: AbilityData} = {
 	"noability": {
 		shortDesc: "Does nothing.",
 		id: "noability",
@@ -5036,5 +5033,3 @@ let BattleAbilities = {
         num: 1013,
     },
 };
-
-exports.BattleAbilities = BattleAbilities;
