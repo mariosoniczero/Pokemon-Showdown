@@ -1707,7 +1707,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		activate: "  [POKEMON] extends [MOVE] by 2 turns!",
 	},
 	
-	//GPL
+	// GPL
 	thunderstorm: {
 		name: "Thunderstorm",
 		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain.",
@@ -1757,10 +1757,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	rocksendurance: {
 		name: "Rock's Endurance",
-		shortDesc: "Negates the recharge turn for moves which require recharging."
+		shortDesc: "Negates the recharge turn for moves which require recharging.",
 	},
 	determination: {
 		name: "Determination",
-		shortDesc: "When using a move the target is immune to, Attack is raised by 1 stage."
+		shortDesc: "When using a move the target is immune to, Attack is raised by 1 stage.",
 	},
 };

@@ -1,7 +1,6 @@
-'use strict';
+/* eslint-disable max-len */
 
-/**@type {{[k: string]: {learnset: {[k: string]: MoveSource[]}}}} */
-let BattleLearnsets = {
+export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	missingno: {learnset: {
 		blizzard: ["5L1"],
 		bubblebeam: ["5L1"],
@@ -685,7 +684,7 @@ let BattleLearnsets = {
 	}},
 	wartortle: {learnset: {
 		aquatail: ["7T", "7L33", "6T", "6L32", "5T", "5L32", "4T", "4L32"],
-		attract: ["7M", "7V", "6M", "5M", "4M", "3M"],	
+		attract: ["7M", "7V", "6M", "5M", "4M", "3M"],
 		bide: ["7V"],
 		bite: ["7L17", "7V", "6L16", "5L16", "4L16", "3L19"],
 		blizzard: ["7M", "7V", "6M", "5M", "4M", "3M"],
@@ -23894,7 +23893,7 @@ let BattleLearnsets = {
 		confuseray: ["7E", "6E", "5D", "5E", "4E", "3E"],
 		curse: ["7E", "7V", "6E", "5E", "4E"],
 		defensecurl: ["7V", "3T"],
-		dig: [ "6M", "5M", "4M", "3M"],
+		dig: ["6M", "5M", "4M", "3M"],
 		doubleedge: ["3T"],
 		doubleteam: ["7M", "7V", "6M", "5M", "4M", "3M"],
 		earthpower: ["7T", "7L47", "6T", "6L47", "5T", "5L53", "4T", "4L53"],
@@ -53293,7 +53292,7 @@ let BattleLearnsets = {
 		psychic: ["7M", "6M", "5M"],
 		raindance: ["7M", "6M", "5M"],
 		reflect: ["7M", "6M", "5M"],
-		rest: [ "7M", "6M", "5M"],
+		rest: ["7M", "6M", "5M"],
 		return: ["7M", "6M", "5M"],
 		rockslide: ["7M", "6M", "5M"],
 		rocksmash: ["6M", "5M"],
@@ -59305,7 +59304,6 @@ let BattleLearnsets = {
 		mistyterrain: ["7L60"],
 		moonblast: ["7L44", "7S0"],
 		perishsong: ["7S0"],
-		
 		pound: ["7L1"],
 		protect: ["7M"],
 		psychic: ["7M"],
@@ -72411,5 +72409,3 @@ let BattleLearnsets = {
 		workup: ["7M"],
 	}},
 };
-
-exports.BattleLearnsets = BattleLearnsets;

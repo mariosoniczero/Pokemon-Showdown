@@ -17698,7 +17698,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		eggGroups: ["Field"],
 		requiredItem: "Incinerite",
-    },
+	},
 	primarinamega: {
 		num: 730,
 		name: "Primarina-Mega",
