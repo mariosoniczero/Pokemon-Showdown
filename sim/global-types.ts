@@ -290,7 +290,9 @@ interface BattleScriptsData {
 		this: Battle, damage: SpreadMoveDamage, targets: SpreadMoveTargets, pokemon: Pokemon,
 		move: ActiveMove, moveData: ActiveMove, isSecondary?: boolean
 	) => SpreadMoveDamage;
-	trySpreadMoveHit?: (this: Battle, targets: Pokemon[], pokemon: Pokemon, move: ActiveMove) => boolean;
+	trySpreadMoveHit?: (
+		this: Battle, targets: Pokemon[], pokemon: Pokemon, move: ActiveMove, notActive?: boolean
+	) => boolean;
 	useMove?: (
 		this: Battle, move: Move, pokemon: Pokemon, target?: Pokemon | null,
 		sourceEffect?: Effect | null, zMove?: string, maxMove?: string
@@ -372,6 +374,7 @@ interface ModdedBattleScriptsData extends Partial<BattleScriptsData> {
 		this: Battle, baseDamage: number, pokemon: Pokemon, target: Pokemon, move: ActiveMove, suppressMessages?: boolean
 	) => void;
 	natureModify?: (this: Battle, stats: StatsTable, set: PokemonSet) => StatsTable;
+	nextTurn?: (this: Battle) => void;
 	runMove?: (
 		this: Battle, moveOrMoveName: Move | string, pokemon: Pokemon, targetLoc: number, sourceEffect?: Effect | null,
 		zMove?: string, externalMove?: boolean, maxMove?: string, originalTarget?: Pokemon
@@ -503,7 +506,7 @@ namespace RandomTeamsTypes {
 		statusCure?: number;
 	}
 	export interface FactoryTeamDetails {
-		megaCount: number;
+		megaCount?: number;
 		zCount?: number;
 		forceResult: boolean;
 		weather?: string;
@@ -513,6 +516,7 @@ namespace RandomTeamsTypes {
 		has: {[k: string]: number};
 		weaknesses: {[k: string]: number};
 		resistances: {[k: string]: number};
+		gigantamax?: boolean;
 	}
 	export interface RandomSet {
 		name: string;
@@ -542,5 +546,6 @@ namespace RandomTeamsTypes {
 		ivs: SparseStatsTable;
 		nature: string;
 		moves: string[];
+		gigantamax?: boolean;
 	}
 }

@@ -1716,10 +1716,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 215,
 	},
-	"innerfocus": {
-		shortDesc: "This Pokemon cannot be made to flinch. Immune to Intimidate.",
-		onFlinch: false,
-		id: "innerfocus",
+	innerfocus: {
+		onTryAddVolatile(status, pokemon) {
+			if (status.id === 'flinch') return null;
+		},
+		onBoost(boost, target, source, effect) {
+			if (effect.id === 'intimidate') {
+				delete boost.atk;
+				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Inner Focus', '[of] ' + target);
+			}
+		},
 		name: "Inner Focus",
 		rating: 1.5,
 		num: 39,
@@ -2457,20 +2463,24 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		desc: "If the Pokémon with Neutralizing Gas is in the battle, the effects of all Pokémon's Abilities will be nullified or will not be triggered.",
 		shortDesc: "Nullifies abilities while on the field.",
 		// Ability suppression implemented in sim/pokemon.ts:Pokemon#ignoringAbility
-		// TODO Will abilities that already started start again? (Intimidate seems like a good test case)
 		onPreStart(pokemon) {
 			this.add('-ability', pokemon, 'Neutralizing Gas');
 			pokemon.abilityData.ending = false;
 		},
 		onEnd(source) {
+			this.add('-end', source, 'ability: Neutralizing Gas');
+
 			// FIXME this happens before the pokemon switches out, should be the opposite order.
 			// Not an easy fix since we cant use a supported event. Would need some kind of special event that
 			// gathers events to run after the switch and then runs them when the ability is no longer accessible.
-			// (If your tackling this, do note extreme weathers have the same issue)
+			// (If you're tackling this, do note extreme weathers have the same issue)
 
 			// Mark this pokemon's ability as ending so Pokemon#ignoringAbility skips it
+			if (source.abilityData.ending) return;
 			source.abilityData.ending = true;
-			for (const pokemon of this.getAllActive()) {
+			const sortedActive = this.getAllActive();
+			this.speedSort(sortedActive);
+			for (const pokemon of sortedActive) {
 				if (pokemon !== source) {
 					// Will be suppressed by Pokemon#ignoringAbility if needed
 					this.singleEvent('Start', this.dex.getAbility(pokemon.ability), pokemon.abilityData, pokemon);
@@ -2542,7 +2552,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return null;
 			}
 		},
-		id: "oblivious",
+		onBoost(boost, target, source, effect) {
+			if (effect.id === 'intimidate') {
+				delete boost.atk;
+				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Oblivious', '[of] ' + target);
+			}
+		},
 		name: "Oblivious",
 		rating: 1.5,
 		num: 12,
@@ -2603,7 +2618,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.add('-immune', target, 'confusion', '[from] ability: Own Tempo');
 			}
 		},
-		id: "owntempo",
+		onBoost(boost, target, source, effect) {
+			if (effect.id === 'intimidate') {
+				delete boost.atk;
+				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Own Tempo', '[of] ' + target);
+			}
+		},
 		name: "Own Tempo",
 		rating: 1.5,
 		num: 20,
@@ -2658,11 +2678,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 257,
 	},
-	"perishbody": {
-		desc: "When hit by a move that makes direct contact, the Pokémon and the attacker will faint after three turns unless they switch out of battle.",
-		shortDesc: "When hit by a contact move, the Pokémon and the attacker faint in 3 turns.",
-		onAfterDamage(damage, target, source, move) {
-			if (!move.flags['contact']) return;
+	perishbody: {
+		onDamagingHit(damage, target, source, move) {
+			if (!move.flags['contact'] || source.hasItem('protectivepads')) return;
 
 			let announced = false;
 			for (let pokemon of [target, source]) {
@@ -3372,7 +3390,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				move.ignoreImmunity['Normal'] = true;
 			}
 		},
-		id: "scrappy",
+		onBoost(boost, target, source, effect) {
+			if (effect.id === 'intimidate') {
+				delete boost.atk;
+				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Scrappy', '[of] ' + target);
+			}
+		},
 		name: "Scrappy",
 		rating: 3,
 		num: 113,
@@ -3978,7 +4001,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return null;
 			}
 		},
-		onDamagePriority: -100,
+		onDamagePriority: -30,
 		onDamage(damage, target, source, effect) {
 			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
 				this.add('-ability', target, 'Sturdy');
@@ -4398,6 +4421,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "While this Pokemon is active, it prevents opposing Pokemon from using their Berries.",
 		onPreStart(pokemon) {
 			this.add('-ability', pokemon, 'Unnerve', pokemon.side.foe);
+			this.effectData.unnerved = true;
+		},
+		onStart(pokemon) {
+			if (this.effectData.unnerved) return;
+			this.add('-ability', pokemon, 'Unnerve', pokemon.side.foe);
+			this.effectData.unnerved = true;
 		},
 		onFoeTryEatItem: false,
 		id: "unnerve",
@@ -4795,7 +4824,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1006,
 	},
 	*/
-	
+
 	/*"terraformer": {
 		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Ground-type attack.",
 		onModifyAtkPriority: 5,
@@ -5026,7 +5055,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
         onTryHit(pokemon, source, move) {
 			if (!pokemon.runImmunity(move.type)) {
 				this.boost({atk: 1}, source);
-			}	
+			}
 		},
         name: "Determination",
         rating: 3,
