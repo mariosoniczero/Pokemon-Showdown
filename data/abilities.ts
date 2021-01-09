@@ -4667,7 +4667,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	"determination": {
 		onMoveFail(target, source, move) {
-			this.boost({atk: 1}, source);		
+			this.boost({atk: 1}, source);
 		},
 		name: "Determination",
 		rating: 3,
