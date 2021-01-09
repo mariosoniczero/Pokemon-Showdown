@@ -4655,8 +4655,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1011,
 	},
 	"rocksendurance": {
-		onEnd(pokemon) {
+		onUpdate(pokemon) {
 			if (pokemon.volatiles['mustrecharge']) {
+				this.add('-activate', pokemon, "ability: Rock's Endurance");
 				pokemon.removeVolatile('mustrecharge');
 			}
 		},
@@ -4665,10 +4666,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1013,
 	},
 	"determination": {
-		onHit(pokemon, source, move) {
-			if (!pokemon.runImmunity(move.type)) {
+		onEffectiveness(typeMod, target, type, move) {
+			if (!target) return;
+			if (!target.runImmunity(move.type)) {
 				this.boost({atk: 1}, source);
 			}
+			return;
 		},
 		name: "Determination",
 		rating: 3,
