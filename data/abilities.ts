@@ -4658,7 +4658,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onUpdate(pokemon) {
 			if (pokemon.volatiles['mustrecharge']) {
 				this.add('-activate', pokemon, "ability: Rock's Endurance");
-				pokemon.removeVolatile('mustrecharge');
+				delete pokemon.volatiles['mustrecharge'];
 			}
 		},
 		name: "Rock's Endurance",
