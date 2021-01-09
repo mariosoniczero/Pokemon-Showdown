@@ -4666,12 +4666,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1013,
 	},
 	"determination": {
-		onEffectiveness(typeMod, target, type, move) {
-			if (!target) return;
-			if (!target.runImmunity(move.type)) {
+		onAfterHit(pokemon, target, source, move) {
+			if (pokemon.moveLastTurnResult === false) {
 				this.boost({atk: 1}, source);
 			}
-			return;
 		},
 		name: "Determination",
 		rating: 3,
