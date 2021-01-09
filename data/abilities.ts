@@ -4666,10 +4666,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1013,
 	},
 	"determination": {
-		onAfterHit(pokemon, target, source, move) {
-			if (pokemon.moveLastTurnResult === false) {
-				this.boost({atk: 1}, source);
-			}
+		onMoveFail(target, source, move) {
+			this.boost({atk: 1}, source);		
 		},
 		name: "Determination",
 		rating: 3,
