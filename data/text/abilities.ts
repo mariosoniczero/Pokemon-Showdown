@@ -1760,6 +1760,6 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	determination: {
 		name: "Determination",
-		shortDesc: "When using a move the target is immune to, Attack is raised by 1 stage.",
+		shortDesc: "Move's power is multiplied by 1.5 if the user's last move failed.",
 	},
 };
