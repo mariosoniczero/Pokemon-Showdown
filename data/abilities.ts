@@ -4666,8 +4666,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1013,
 	},
 	"determination": {
-		onFoeImmunity(target, source, move) {
-			this.boost({atk: 1}, source);
+		onBasePower(basePower, pokemon, target, move) {
+			if (pokemon.moveLastTurnResult === false) {
+				this.debug('doubling BP due to previous move failure');
+				return this.chainModify(2);
+			}
 		},
 		name: "Determination",
 		rating: 3,
