@@ -4668,8 +4668,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	"determination": {
 		onBasePower(basePower, pokemon, target, move) {
 			if (pokemon.moveLastTurnResult === false) {
-				this.debug('doubling BP due to previous move failure');
-				return this.chainModify(2);
+				this.add('-activate', pokemon, "ability: Determination");
+				return this.chainModify(1.5);
 			}
 		},
 		name: "Determination",
