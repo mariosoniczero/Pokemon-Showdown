@@ -4579,7 +4579,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	"starstruck": {
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
-		onStart(pokemon) {
+		onSwitchIn(pokemon) {
 			if (!pokemon.hp) return;
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
@@ -4666,7 +4666,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1013,
 	},
 	"determination": {
-		onMoveFail(target, source, move) {
+		onFoeImmunity(target, source, move) {
 			this.boost({atk: 1}, source);
 		},
 		name: "Determination",
