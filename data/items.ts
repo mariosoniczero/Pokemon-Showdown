@@ -7936,4 +7936,30 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1055,
 		gen: 6,
 	},
+	"mightyenite": {
+		name: "Mightyenite",
+		spritenum: 575,
+		megaStone: "Mightyena-Mega",
+		megaEvolves: "Mightyena",
+		itemUser: ["Mightyena"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1056,
+		gen: 6,
+	},
+	"boltundite": {
+		name: "Boltundite",
+		spritenum: 575,
+		megaStone: "Boltund-Mega",
+		megaEvolves: "Boltund",
+		itemUser: ["Boltund"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1057,
+		gen: 6,
+	},
 };

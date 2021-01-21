@@ -3794,4 +3794,10 @@ export const PokedexText: {[k: string]: PokedexText} = {
 	primeapemega: {
 		name: "Primeape-Mega",
 	},
+	mightyenamega: {
+		name: "Mightyena-Mega",
+	},
+	boltundmega: {
+		name: "Boltund-Mega",
+	},
 };

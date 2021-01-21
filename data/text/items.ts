@@ -2505,6 +2505,14 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Primeapite",
 		desc: "If held by a Primeape, this item allows it to Mega Evolve in battle.",
 	},
+	mightyenite: {
+		name: "Mightyenite",
+		desc: "If held by a Mightyena, this item allows it to Mega Evolve in battle.",
+	},
+	boltundite: {
+		name: "Boltundite",
+		desc: "If held by a Boltund, this item allows it to Mega Evolve in battle.",
+	},
 	/*
 	ite: {
 		name: "ite",
