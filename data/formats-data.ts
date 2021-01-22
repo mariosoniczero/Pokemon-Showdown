@@ -6556,4 +6556,36 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		isNonstandard: "Custom",
 		tier: "GPL",
 	},
+	decidueyemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	incineroarmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	primarinamega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	crustlemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	girafarigmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	primeapemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	mightyenamega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	boltundmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
 };
