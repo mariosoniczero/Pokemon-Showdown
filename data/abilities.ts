@@ -4654,14 +4654,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 1011,
 	},
-	"rocksendurance": {
+	"vigorcharge": {
 		onUpdate(pokemon) {
 			if (pokemon.volatiles['mustrecharge']) {
-				this.add('-activate', pokemon, "ability: Rock's Endurance");
+				this.add('-activate', pokemon, "ability: Vigor Charge");
 				delete pokemon.volatiles['mustrecharge'];
 			}
 		},
-		name: "Rock's Endurance",
+		name: "Vigor Charge",
 		rating: 3,
 		num: 1013,
 	},

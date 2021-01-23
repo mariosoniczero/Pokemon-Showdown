@@ -1754,8 +1754,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Crescendo",
 		shortDesc: "Damage of moves used on consecutive turns is increased. Max 2x after 5 turns.",
 	},
-	rocksendurance: {
-		name: "Rock's Endurance",
+	vigorcharge: {
+		name: "Vigor Charge",
 		shortDesc: "Negates the recharge turn for moves which require recharging.",
 	},
 	determination: {
