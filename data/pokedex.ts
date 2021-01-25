@@ -17725,7 +17725,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		forme: "Mega",
 		types: ["Bug", "Rock"],
 		baseStats: {hp: 70, atk: 125, def: 155, spa: 95, spd: 80, spe: 60},
-		abilities: {0: "Rock's Endurance"},
+		abilities: {0: "Vigor Charge"},
 		heightm: 1.4,
 		weightkg: 200,
 		color: "Red",
