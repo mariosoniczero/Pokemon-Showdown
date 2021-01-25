@@ -4677,29 +4677,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1013,
 	},
 	"packtactics": {
-		onStart(pokemon) {
-			//this.add('-start', target, 'ability: Pack Tactics');
-			this.add('-ability', pokemon, 'Pack Tactics', pokemon.side.foe);
-		},
-		/*
-		onResidualOrder: 12,
-		onEnd(target) {
-			this.add('-end', target, 'ability: Pack Tactics');
-		},
-		*/
-		onDisableMove(pokemon) {
-			for (const moveSlot of pokemon.moveSlots) {
-				const move = this.dex.getMove(moveSlot.id);
-				if (move.category === 'Status' && move.id !== 'mefirst') {
-					pokemon.disableMove(moveSlot.id);
-				}
+		onStart(source) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !target.hp) continue;
+				source.setStatus('packtactics', target);
 			}
 		},
-		onBeforeMovePriority: 5,
-		onBeforeMove(attacker, defender, move) {
-			if (!move.isZ && !move.isMax && move.category === 'Status' && move.id !== 'mefirst') {
-				this.add('cant', attacker, 'move: Taunt', move);
-				return false;
+		onFoeSwitchIn(pokemon) {
+			pokemon.setStatus('packtactics');
+		},
+		onEnd(source) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !target.hp) continue;
+				delete target.volatiles['packtactics'];
 			}
 		},
 		name: "Pack Tactics",
