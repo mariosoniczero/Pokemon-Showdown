@@ -4677,16 +4677,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1013,
 	},
 	"packtactics": {
-		onStart(source) {
+		onStart(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
-				source.setStatus('packtactics', target);
+				pokemon.setStatus('packtactics', target);
 			}
 		},
 		onFoeSwitchIn(pokemon) {
 			pokemon.setStatus('packtactics');
 		},
-		onEnd(source) {
+		onEnd(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
 				delete target.volatiles['packtactics'];
