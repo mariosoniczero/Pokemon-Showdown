@@ -4677,13 +4677,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1013,
 	},
 	"packtactics": {
-		onStart(target) {
-			this.add('-start', target, 'ability: Pack Tactics');
+		onStart(pokemon) {
+			//this.add('-start', target, 'ability: Pack Tactics');
+			this.add('-ability', pokemon, 'Pack Tactics', pokemon.side.foe);
 		},
+		/*
 		onResidualOrder: 12,
 		onEnd(target) {
 			this.add('-end', target, 'ability: Pack Tactics');
 		},
+		*/
 		onDisableMove(pokemon) {
 			for (const moveSlot of pokemon.moveSlots) {
 				const move = this.dex.getMove(moveSlot.id);
