@@ -4680,7 +4680,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
-				pokemon.setStatus('packtactics', target);
+				target.setStatus('packtactics');
 			}
 		},
 		onFoeSwitchIn(pokemon) {
