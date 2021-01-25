@@ -1762,4 +1762,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Determination",
 		shortDesc: "Move's power is multiplied by 1.5 if the user's last move failed.",
 	},
+	packtactics: {
+		name: "Pack Tactics",
+		shortDesc: "Opponent can't use status moves.",
+	},
 };
