@@ -4658,7 +4658,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onUpdate(pokemon) {
 			if (pokemon.volatiles['mustrecharge']) {
 				this.add('-activate', pokemon, "ability: Vigor Charge");
-				delete pokemon.volatiles['mustrecharge'];
+				pokemon.removeVolatile('mustrecharge');
 			}
 		},
 		name: "Vigor Charge",
@@ -4680,6 +4680,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
+				this.add('-ability', pokemon, 'Pack Tactics');
 				target.setStatus('packtactics');
 			}
 		},
@@ -4689,7 +4690,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onEnd(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
-				delete target.volatiles['packtactics'];
+				target.removeVolatile('packtactics');
 			}
 		},
 		name: "Pack Tactics",

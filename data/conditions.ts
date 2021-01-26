@@ -765,10 +765,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'Pack Tactics',
 		// this is a volatile status
 		onStart(target) {				
-			this.add('-start', target, 'ability: Pack Tactics');
+			this.add('-start', target, 'Pack Tactics');
 		},
 		onEnd(target) {
-			this.add('-end', target, 'ability: Pack Tactics');
+			this.add('-end', target, 'Pack Tactics');
 		},
 		onDisableMove(pokemon) {
 			for (const moveSlot of pokemon.moveSlots) {
