@@ -4690,6 +4690,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onEnd(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
+				this.add('-end', target, 'Pack Tactics');
 				target.removeVolatile('packtactics');
 			}
 		},
