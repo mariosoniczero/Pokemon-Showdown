@@ -4681,11 +4681,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
 				this.add('-ability', pokemon, 'Pack Tactics');
-				target.setStatus('packtactics');
+				target.addVolatile('packtactics');
 			}
 		},
 		onFoeSwitchIn(pokemon) {
-			pokemon.setStatus('packtactics');
+			pokemon.addVolatile('packtactics');
 		},
 		onEnd(pokemon) {
 			for (const target of pokemon.side.foe.active) {
