@@ -764,7 +764,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 	packtactics: {
 		name: 'Pack Tactics',
 		// this is a volatile status
-		onStart(target) {				
+		onStart(target) {
 			this.add('-start', target, 'Pack Tactics');
 		},
 		onEnd(target) {

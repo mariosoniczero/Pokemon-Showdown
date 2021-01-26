@@ -4513,7 +4513,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	"spectralbattery": {
 		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
 		onChargeMove(pokemon, target, move) {
-			this.add('-ability', pokemon, 'Spectral Battery');
+			this.add('-activate', pokemon, 'ability: Spectral Battery');
 			this.debug('spectral battery - remove charge turn for ' + move.id);
 			this.attrLastMove('[still]');
 			this.addMove('-anim', pokemon, move.name, target);
@@ -4680,7 +4680,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
-				this.add('-ability', pokemon, 'Pack Tactics');
+				this.add('-activate', pokemon, 'ability: Pack Tactics');
 				target.addVolatile('packtactics');
 			}
 		},
@@ -4690,7 +4690,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onEnd(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
-				this.add('-end', target, 'Pack Tactics');
 				target.removeVolatile('packtactics');
 			}
 		},
