@@ -17786,5 +17786,6 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 34,
 		color: "Yellow",
 		eggGroups: ["Field"],
+		requiredItem: "Boltundite",
 	},
 };
