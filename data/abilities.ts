@@ -2099,6 +2099,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyMove(move) {
 			move.ignoreAbility = true;
 		},
+		onTryAddVolatile(status, target, source, effect) {
+			if (['packtactics'].includes(status.id)) {
+				return null;
+			}
+		},
 		name: "Mold Breaker",
 		rating: 3.5,
 		num: 104,
@@ -3863,6 +3868,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyMove(move) {
 			move.ignoreAbility = true;
 		},
+		onTryAddVolatile(status, target, source, effect) {
+			if (['packtactics'].includes(status.id)) {
+				return null;
+			}
+		},
 		name: "Teravolt",
 		rating: 3.5,
 		num: 164,
@@ -4024,6 +4034,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onModifyMove(move) {
 			move.ignoreAbility = true;
+		},
+		onTryAddVolatile(status, target, source, effect) {
+			if (['packtactics'].includes(status.id)) {
+				return null;
+			}
 		},
 		name: "Turboblaze",
 		rating: 3.5,
@@ -4685,15 +4700,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
-				if (target.ability == 'Mold Breaker' || target.ability == 'Turboblaze' || target.ability == 'Teravolt') continue;
 				this.add('-activate', pokemon, 'ability: Pack Tactics');
 				target.addVolatile('packtactics');
 			}
 		},
 		onFoeSwitchIn(pokemon) {
-			if (!target.ability == 'Mold Breaker' && !target.ability == 'Turboblaze' && !target.ability == 'Teravolt') {
-				pokemon.addVolatile('packtactics');
-			}
+			pokemon.addVolatile('packtactics');
 		},
 		onEnd(pokemon) {
 			for (const target of pokemon.side.foe.active) {

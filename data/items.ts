@@ -3309,7 +3309,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			},
 		},
 		onUpdate(pokemon) {
-			const conditions = ['attract', 'taunt', 'encore', 'torment', 'disable', 'healblock'];
+			const conditions = ['attract', 'taunt', 'encore', 'torment', 'disable', 'healblock', 'packtactics'];
 			for (const firstCondition of conditions) {
 				if (pokemon.volatiles[firstCondition]) {
 					if (!pokemon.useItem()) return;
