@@ -166,7 +166,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	aromaveil: {
 		onAllyTryAddVolatile(status, target, source, effect) {
-			if (['attract', 'disable', 'encore', 'healblock', 'taunt', 'torment'].includes(status.id)) {
+			if (['attract', 'disable', 'encore', 'healblock', 'taunt', 'torment', 'packtactics'].includes(status.id)) {
 				if (effect.effectType === 'Move') {
 					const effectHolder = this.effectData.target;
 					this.add('-block', target, 'ability: Aroma Veil', '[of] ' + effectHolder);
@@ -2372,6 +2372,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (pokemon.volatiles['taunt']) {
 				this.add('-activate', pokemon, 'ability: Oblivious');
 				pokemon.removeVolatile('taunt');
+				// Taunt's volatile already sends the -end message when removed
+			}
+			if (pokemon.volatiles['packtactics']) {
+				this.add('-activate', pokemon, 'ability: Oblivious');
+				pokemon.removeVolatile('packtactics');
 				// Taunt's volatile already sends the -end message when removed
 			}
 		},
@@ -4680,12 +4685,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
+				if (target.ability == 'Mold Breaker' || target.ability == 'Turboblaze' || target.ability == 'Teravolt') continue;
 				this.add('-activate', pokemon, 'ability: Pack Tactics');
 				target.addVolatile('packtactics');
 			}
 		},
 		onFoeSwitchIn(pokemon) {
-			pokemon.addVolatile('packtactics');
+			if (!target.ability == 'Mold Breaker' && !target.ability == 'Turboblaze' && !target.ability == 'Teravolt') {
+				pokemon.addVolatile('packtactics');
+			}
 		},
 		onEnd(pokemon) {
 			for (const target of pokemon.side.foe.active) {
