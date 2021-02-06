@@ -4581,7 +4581,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	"momentum": {
 		onBoost(boost, target, source, effect) {
-			if (source && target === source) return;
 			if (boost.spe && boost.spe < 0) {
 				delete boost.spe;
 			}

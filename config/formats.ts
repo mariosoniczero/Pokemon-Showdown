@@ -30,7 +30,7 @@ export const Formats: FormatList = [
 				  'Dynamax Clause', 'Sleep Clause Mod', 'Baton Pass Clause', '+GPL',
 				  'Z-Move Clause', 'Swagger Clause', 'Evasion Abilities Clause',
 		],
-		banlist: ['Power Construct', 'Bellossomite + Strength Sap', 'Kangaskhanite + Seismic Toss',
+		banlist: ['Power Construct', 'Kangaskhanite + Seismic Toss',
 				  'Glalitite + Moody', 'Rapidashite + Swords Dance', 'Greninja + Protean',
 				  'Greninja + Battle Bond', 'Blaziken + Speed Boost', 'Brightpowder', 'Lax Incense',
 				  'Blastoisinite + Shell Smash',

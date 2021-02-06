@@ -1009,7 +1009,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				source.skipBeforeSwitchOutEventFlag = true;
 			},
 		},
-		selfSwitch: 'copyvolatile',
+		selfSwitch: true,
 		secondary: null,
 		target: "self",
 		type: "Normal",
