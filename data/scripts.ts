@@ -470,7 +470,8 @@ export const Scripts: BattleScriptsData = {
 					}
 				}
 			}
-			if (move.alwaysHit || (move.id === 'toxic' && this.gen >= 8 && pokemon.hasType('Poison'))) {
+			if (move.alwaysHit || (move.id === 'toxic' && this.gen >= 8 && pokemon.hasType('Poison')) ||
+					(move.target === 'self' && move.category === 'Status' && !target.isSemiInvulnerable())) {
 				accuracy = true; // bypasses ohko accuracy modifiers
 			} else {
 				accuracy = this.runEvent('Accuracy', target, pokemon, move, accuracy);
@@ -702,7 +703,7 @@ export const Scripts: BattleScriptsData = {
 			if (this.dex.gen >= 5) {
 				recoilDamage = this.clampIntRange(Math.round(pokemon.baseMaxhp / 4), 1);
 			} else {
-				recoilDamage = this.trunc(pokemon.maxhp / 4);
+				recoilDamage = this.clampIntRange(this.trunc(pokemon.maxhp / 4), 1);
 			}
 			this.directDamage(recoilDamage, pokemon, pokemon, {id: 'strugglerecoil'} as Condition);
 		}
