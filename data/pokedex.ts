@@ -17912,7 +17912,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		requiredItem: "Pangorite",
 	},
 	drifblimmega: {
-		num: ,
+		num: 426,
 		name: "Drifblim-Mega",
 		baseSpecies: "Drifblim",
 		forme: "Mega",
@@ -17926,7 +17926,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		requiredItem: "Drifblimite",
 	},
 	golisopodmega: {
-		num: ,
+		num: 768,
 		name: "Golisopod-Mega",
 		baseSpecies: "Golisopod",
 		forme: "Mega",
