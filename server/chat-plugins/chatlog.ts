@@ -1066,7 +1066,7 @@ export class RipgrepLogSearcher extends Searcher {
 	async ripgrepSearchMonth(opts: ChatlogSearch) {
 		let {raw, search, room: roomid, date: month, args} = opts;
 		let results: string[];
-		let count = 0;
+		let lineCount = 0;
 		if (!raw) {
 			search = this.constructSearchRegex(search);
 		}
@@ -1095,8 +1095,8 @@ export class RipgrepLogSearcher extends Searcher {
 				results = [];
 			}
 		}
-		count += results.length;
-		return {results, count};
+		lineCount += results.length;
+		return {results, lineCount};
 	}
 	async searchLogs(
 		roomid: RoomID,
@@ -1111,7 +1111,7 @@ export class RipgrepLogSearcher extends Searcher {
 			else if (date.length < 7) date = date.substr(0, 4);
 		}
 		const months = (date && toID(date) !== 'all' ? [date] : await new LogReaderRoom(roomid).listMonths()).reverse();
-		let count = 0;
+		let linecount = 0;
 		let results: string[] = [];
 		if (!limit || limit > MAX_RESULTS) limit = MAX_RESULTS;
 		if (!date) date = 'all';
@@ -1128,7 +1128,7 @@ export class RipgrepLogSearcher extends Searcher {
 				.join('');
 			search = `\\|c\\|${this.constructUserRegex(id)}\\|${rest}`;
 		}
-		while (count < MAX_RESULTS) {
+		while (linecount < MAX_RESULTS) {
 			const month = months.shift();
 			if (!month) break;
 			const output = await this.ripgrepSearchMonth({
@@ -1136,10 +1136,10 @@ export class RipgrepLogSearcher extends Searcher {
 				limit, args: [`-m`, `${limit}`, '-C', '3', '--engine=auto'], raw: !!userSearch,
 			});
 			results = results.concat(output.results);
-			count += output.count;
+			linecount += output.lineCount;
 		}
-		if (count > MAX_RESULTS) {
-			const diff = count - MAX_RESULTS;
+		if (linecount > MAX_RESULTS) {
+			const diff = linecount - MAX_RESULTS;
 			results = results.slice(0, -diff);
 		}
 		return this.renderSearchResults(results, roomid, search, limit, date, originalSearch);
@@ -1295,7 +1295,6 @@ if (!PM.isParentProcess) {
 	};
 	global.Dex = Dex;
 	global.toID = Dex.toID;
-	global.Chat = Chat;
 	process.on('uncaughtException', err => {
 		if (Config.crashguard) {
 			Monitor.crashlog(err, 'A chatlog search child process');
