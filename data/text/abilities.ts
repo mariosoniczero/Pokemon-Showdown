@@ -1792,8 +1792,24 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Determination",
 		shortDesc: "Move's power is multiplied by 1.5 if the user's last move failed.",
 	},
-	packtactics: {
-		name: "Pack Tactics",
-		shortDesc: "Opponent can't use status moves.",
+	hindenburg: {
+		name: "Hindenburg",
+		shortDesc: "Attempts to burn at end of turn; special attacks 1.5x power while burned.",
+	},
+	opportunistic: {
+		name: "Opportunistic",
+		shortDesc: "This Pokemon's attacks have 1.3x power if it is the first to move in a turn.",
+	},
+	flytrap: {
+		name: "Fly Trap",
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Bug moves; Bug immunity.",
+	},
+	dragonstyle: {
+		name: "Dragon Style",
+		shortDesc: "All of this Pokemon's attacks gain the STAB attack boost.",
+	},
+	restoreorder: {
+		name: "Restore Order",
+		shortDesc: "At the end of every turn, this Pokemon restores 1/16 of its max HP.",
 	},
 };

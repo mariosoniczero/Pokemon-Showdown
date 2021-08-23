@@ -7924,4 +7924,82 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1057,
 		gen: 6,
 	},
+	"pangorite": {
+		name: "Pangorite",
+		spritenum: 575,
+		megaStone: "Pangoro-Mega",
+		megaEvolves: "Pangoro",
+		itemUser: ["Pangoro"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1058,
+		gen: 6,
+	},
+	"drifblimite": {
+		name: "Drifblimite",
+		spritenum: 575,
+		megaStone: "Drifblim-Mega",
+		megaEvolves: "Drifblim",
+		itemUser: ["Drifblim"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1059,
+		gen: 6,
+	},
+	"golisopodite": {
+		name: "Golisopodite",
+		spritenum: 575,
+		megaStone: "Golisopod-Mega",
+		megaEvolves: "Golisopod",
+		itemUser: ["Golisopod"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1060,
+		gen: 6,
+	},
+	"carnivinite": {
+		name: "Carnivinite",
+		spritenum: 575,
+		megaStone: "Carnivine-Mega",
+		megaEvolves: "Carnivine",
+		itemUser: ["Carnivine"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1061,
+		gen: 6,
+	},
+	"copperajite": {
+		name: "Copperajite",
+		spritenum: 575,
+		megaStone: "Copperajah-Mega",
+		megaEvolves: "Copperajah",
+		itemUser: ["Copperajah"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1062,
+		gen: 6,
+	},
+	"wigglytuffite": {
+		name: "Wigglytuffite",
+		spritenum: 575,
+		megaStone: "Wigglytuff-Mega",
+		megaEvolves: "Wigglytuff",
+		itemUser: ["Wigglytuff"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1063,
+		gen: 6,
+	},
 };

@@ -6633,4 +6633,28 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		isNonstandard: "Custom",
 		tier: "GPL",
 	},
+	pangoromega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	drifblimmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	golisopodmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	carnivinemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	copperajahmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	wigglytuffmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
 };

@@ -4794,4 +4794,79 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 1014,
 	},
+	"hindenburg": {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (attacker.status === 'brn' && move.category === 'Special') {
+				return this.chainModify(1.5);
+			}
+		},
+		onResidualOrder: 28,
+		onResidualSubOrder: 3,
+		onResidual(pokemon) {
+			pokemon.trySetStatus('brn', pokemon);
+		},
+		name: "Hindenburg",
+		rating: 3,
+		num: 1015,
+	},
+	"opportunistic": {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, pokemon) {
+			let boosted = false;
+			for (const target of this.getAllActive()) {
+				if (target === pokemon) continue;
+				if (this.queue.willMove(target)) {
+					boosted = true;
+					break;
+				}
+			}
+			if (boosted) {
+				this.debug('Opportunistic boost');
+				return this.chainModify([5325, 4096]);
+			}
+		},
+		name: "Opportunistic",
+		rating: 2.5,
+		num: 1016,
+	},
+	"flytrap": {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Bug') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Fly Trap');
+				}
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Fly Trap",
+		rating: 3.5,
+		num: 1017,
+	},
+	"dragonstyle": {
+		onModifyMove(move) {
+			move.stab = 1;
+		},
+		onBasePowerPriority: 30,
+		onBasePower(basePower, attacker, defender, move) {
+			const basePowerAfterMultiplier = this.modify(basePower, this.event.modifier);
+			this.debug('Base Power: ' + basePowerAfterMultiplier);
+			this.debug('Technician boost');
+			return this.chainModify(1.5);
+		},
+		name: "Dragon Style",
+		rating: 4,
+		num: 1018,
+	},
+	"restoreorder": {
+		onResidualOrder: 5,
+		onResidualSubOrder: 4,
+		onResidual(pokemon) {
+			this.heal(pokemon.baseMaxhp / 16);
+		},
+		name: "Restore Order",
+		rating: 4,
+		num: 1019,
+	},
 };
