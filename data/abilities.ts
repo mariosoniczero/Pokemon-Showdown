@@ -4568,8 +4568,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opponents by 1 stage.",
 		onStart(pokemon) {
 			let activated = false;
-			for (const target of pokemon.side.foe.active) {
-				if (!target || !this.isAdjacent(target, pokemon)) continue;
+			for (const target of pokemon.adjacentFoes()) {
 				if (!activated) {
 					this.add('-ability', pokemon, 'Terrify', 'boost');
 					activated = true;
@@ -4577,7 +4576,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				if (target.volatiles['substitute']) {
 					this.add('-immune', target);
 				} else {
-					this.boost({spa: -1}, target, pokemon);
+					this.boost({spa: -1}, target, pokemon, null, true);
 				}
 			}
 		},

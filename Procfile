@@ -1,1 +1,1 @@
-worker: node pokemon-showdown $PORT
+web: node pokemon-showdown $PORT

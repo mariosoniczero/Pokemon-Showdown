@@ -785,7 +785,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onDisableMove(pokemon) {
 			for (const moveSlot of pokemon.moveSlots) {
-				const move = this.dex.getMove(moveSlot.id);
+				const move = this.dex.moves.get(moveSlot.id);
 				if (move.category === 'Status' && move.id !== 'mefirst') {
 					pokemon.disableMove(moveSlot.id);
 				}
