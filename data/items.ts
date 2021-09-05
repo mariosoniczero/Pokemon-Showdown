@@ -7107,9 +7107,9 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 6,
 		isNonstandard: "CAP",
 	},
-	
-	//GPL items
-	
+
+	// GPL items
+
 	"krookodilite": {
 		id: "krookodilite",
 		name: "Krookodilite",
@@ -7180,7 +7180,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 6,
 		desc: "If held by a Druddigon, this item allows it to Mega Evolve in battle.",
 	},
-	/*"ariadosite": {
+	/*
+    "ariadosite": {
 		id: "ariadosite",
 		name: "Ariadosite",
 		spritenum: 575,
@@ -7556,7 +7557,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 6,
 		desc: "If held by an Arbok, this item allows it to Mega Evolve in battle.",
 	},
-	/*"xatunite": {
+	/*
+    "xatunite": {
 		id: "xatunite",
 		name: "Xatunite",
 		spritenum: 575,
@@ -7724,7 +7726,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 6,
 		desc: "If held by an Infernape, this item allows it to Mega Evolve in battle.",
 	},
-    "pachirisunite": {
+	"pachirisunite": {
 		name: "Pachirisunite",
 		spritenum: 575,
 		megaStone: "Pachirisu-Mega",
