@@ -424,7 +424,7 @@ export class Modlog {
 			if (action.isExclusion) {
 				ands.push({query: `action NOT LIKE ?`, args});
 			} else {
-				ors.push({query: `action LIKE ?`, args});
+				ands.push({query: `action LIKE ?`, args});
 			}
 		}
 		if (onlyPunishments) {
@@ -437,7 +437,7 @@ export class Modlog {
 			if (ip.isExclusion) {
 				ands.push({query: `ip NOT LIKE ?`, args});
 			} else {
-				ors.push({query: `ip LIKE ?`, args});
+				ands.push({query: `ip LIKE ?`, args});
 			}
 		}
 		for (const actionTaker of search.actionTaker) {
@@ -445,7 +445,7 @@ export class Modlog {
 			if (actionTaker.isExclusion) {
 				ands.push({query: `action_taker_userid NOT LIKE ?`, args});
 			} else {
-				ors.push({query: `action_taker_userid LIKE ?`, args});
+				ands.push({query: `action_taker_userid LIKE ?`, args});
 			}
 		}
 
@@ -455,26 +455,25 @@ export class Modlog {
 			if (noteSearch.isExclusion) {
 				ands.push({query: `note ${noteSearch.isExact ? '!' : 'NOT '}${tester}`, args});
 			} else {
-				ors.push({query: `note ${tester}`, args});
+				ands.push({query: `note ${tester}`, args});
 			}
 		}
 
 		for (const user of search.user) {
 			let tester;
-			let args;
+			let param;
 			if (user.isExact) {
 				tester = user.isExclusion ? `!= ?` : `= ?`;
-				args = [user.search.toLowerCase()];
+				param = user.search.toLowerCase();
 			} else {
 				tester = user.isExclusion ? `NOT LIKE ?` : `LIKE ?`;
-				args = [user.search.toLowerCase() + '%'];
+				param = user.search.toLowerCase() + '%';
 			}
 
-			ors.push({query: `userid ${tester}`, args});
-			ors.push({query: `autoconfirmed_userid ${tester}`, args});
+			ors.push({query: `(userid ${tester} OR autoconfirmed_userid ${tester})`, args: [param, param]});
 			ors.push({
 				query: `EXISTS(SELECT * FROM alts WHERE alts.modlog_id = modlog.modlog_id AND alts.userid ${tester})`,
-				args,
+				args: [param],
 			});
 		}
 		return this.buildParallelIndexScanQuery(select, ors, ands, sortAndLimit);
