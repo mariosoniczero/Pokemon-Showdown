@@ -13103,6 +13103,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Pink",
 		prevo: "Fomantis",
 		evoLevel: 34,
+		evoCondition: "during the day",
 		eggGroups: ["Grass"],
 		otherFormes: ["Lurantis-Totem"],
 		formeOrder: ["Lurantis", "Lurantis-Totem"],
