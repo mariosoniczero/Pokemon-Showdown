@@ -3800,4 +3800,50 @@ export const PokedexText: {[k: string]: PokedexText} = {
 	boltundmega: {
 		name: "Boltund-Mega",
 	},
+	pangoromega: {
+		name: "Pangoro-Mega",
+	},
+	quagsiremega: {
+		name: "Quagsire-Mega",
+	},
+	gogoatmega: {
+		name: "Gogoat-Mega",
+	},
+	spiritombmega: {
+		name: "Spiritomb-Mega",
+	},
+	chatotmega: {
+		name: "Chatot-Mega",
+	},
+	lunatonemega: {
+		name: "Lunatone-Mega",
+	},
+	solrockmega: {
+		name: "Solrock-Mega",
+	},
+	heatmormega: {
+		name: "Heatmor-Mega",
+	},
+	drampamega: {
+		name: "Drampa-Mega",
+	},
+	beheeyemmega: {
+		name: "Beheeyem-Mega",
+	},
+	probopassmega: {
+		name: "Probopass-Mega",
+	},
+	grimmsnarlmega: {
+		name: "Grimmsnarl-Mega",
+	},
+	/*
+	aromatissemega: {
+		name: "Aromatisse-Mega",
+	},
+	*/
+	/*
+	mega: {
+		name: "-Mega",
+	},
+	*/
 };

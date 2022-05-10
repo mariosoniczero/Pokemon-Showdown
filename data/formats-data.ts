@@ -6609,4 +6609,47 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	wigglytuffmega: {
 		isNonstandard: "GPL",
 	},
+	quagsiremega: {
+		isNonstandard: "GPL",
+	},
+	gogoatmega: {
+		isNonstandard: "GPL",
+	},
+	spiritombmega: {
+		isNonstandard: "GPL",
+	},
+	chatotmega: {
+		isNonstandard: "GPL",
+	},
+	lunatonemega: {
+		isNonstandard: "GPL",
+	},
+	solrockmega: {
+		isNonstandard: "GPL",
+	},
+	heatmormega: {
+		isNonstandard: "GPL",
+	},
+	drampamega: {
+		isNonstandard: "GPL",
+	},
+	beheeyemmega: {
+		isNonstandard: "GPL",
+	},
+	probopassmega: {
+		isNonstandard: "GPL",
+	},
+	grimmsnarlmega: {
+		isNonstandard: "GPL",
+	},
+	/*
+	aromatissemega: {
+		isNonstandard: "GPL",
+	},
+	*/
+	/*
+	mega: {
+		isNonstandard: "GPL",
+	},
+	/*
 };

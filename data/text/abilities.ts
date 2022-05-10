@@ -1812,4 +1812,49 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Restore Order",
 		shortDesc: "At the end of every turn, this Pokemon restores 1/16 of its max HP.",
 	},
+	brainless: {
+		name: "Brainless",
+		shortDesc: "Ignores stat changes; protects from Attract, Disable, Encore, Heal Block, Taunt, Torment.",
+	},
+	soulsiphon: {
+		name: "Soul Siphon",
+		shortDesc: "User recovers 50% of the damage dealt by STAB moves.",
+	},
+	bootyplunderer: {
+		name: "Booty Plunderer",
+		shortDesc: "When damage is dealt, the opponent's held item is removed.",
+	},
+	clearskies: {
+		name: "Clear Skies",
+		shortDesc: "On switch-in, any active weather ",
+		start: "  [POKEMON] cleared the weather!",
+	},
+	arsonist: {
+		name: "Arsonist",
+		shortDesc: "This Pokemon's attacks are critical hits if the target is burned.",
+	},
+	ancientwisdom: {
+		name: "Ancient Wisdom",
+		shortDesc: "Negates the recharge turn for moves which require recharging.",
+	},
+	mindreboot: {
+		name: "Mind Reboot",
+		shortDesc: "On switch-in, the opponent's Pokemon have their stat stages reset to 0.",
+	},
+	darkwarp: {
+		name: "Dark Warp",
+		shortDesc: "When this Pokemon attacks, it will automatically switch (except if the move has priority).",
+	},
+	/*
+	tantalize: {
+		name: "Tantalize",
+		shortDesc: "",
+	},
+	*/
+	/*
+	: {
+		name: "",
+		shortDesc: "",
+	},
+	*/
 };

@@ -2540,6 +2540,56 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Wigglytuffite",
 		desc: "If held by a Wigglytuff, this item allows it to Mega Evolve in battle.",
 	},
+	quagsirite: {
+		name: "Quagsirite",
+		desc: "If held by a Quagsire, this item allows it to Mega Evolve in battle.",
+	},
+	gogoatite: {
+		name: "Gogoatite",
+		desc: "If held by a Gogoat, this item allows it to Mega Evolve in battle.",
+	},
+	spiritombite: {
+		name: "Spiritombite",
+		desc: "If held by a Spiritomb, this item allows it to Mega Evolve in battle.",
+	},
+	chatotite: {
+		name: "Chatotite",
+		desc: "If held by a Chatot, this item allows it to Mega Evolve in battle.",
+	},
+	lunatonite: {
+		name: "Lunatonite",
+		desc: "If held by a Lunatone, this item allows it to Mega Evolve in battle.",
+	},
+	solrockite: {
+		name: "ite",
+		desc: "If held by a Solrock, this item allows it to Mega Evolve in battle.",
+	},
+	heatmorite: {
+		name: "Heatmorite",
+		desc: "If held by a Heatmor, this item allows it to Mega Evolve in battle.",
+	},
+	drampite: {
+		name: "Drampite",
+		desc: "If held by a Drampa, this item allows it to Mega Evolve in battle.",
+	},
+	probopassite: {
+		name: "Probopassite",
+		desc: "If held by a Probopass, this item allows it to Mega Evolve in battle.",
+	},
+	beheeyite: {
+		name: "Beheeyite",
+		desc: "If held by a Beheeyem, this item allows it to Mega Evolve in battle.",
+	},
+	grimmsnarlite: {
+		name: "Grimmsnarlite",
+		desc: "If held by a Grimmsnarl, this item allows it to Mega Evolve in battle.",
+	},
+	/*
+	aromatissite: {
+		name: "Aromatissite",
+		desc: "If held by an Aromatisse, this item allows it to Mega Evolve in battle.",
+	},
+	*/
 	/*
 	ite: {
 		name: "ite",

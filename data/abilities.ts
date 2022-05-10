@@ -4869,4 +4869,122 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 1019,
 	},
+	"brainless": {
+		onAnyModifyBoost(boosts, pokemon) {
+			const unawareUser = this.effectState.target;
+			if (unawareUser === pokemon) return;
+			if (unawareUser === this.activePokemon && pokemon === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (pokemon === this.activePokemon && unawareUser === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['def'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		onAllyTryAddVolatile(status, target, source, effect) {
+			if (['attract', 'disable', 'encore', 'healblock', 'taunt', 'torment', 'packtactics'].includes(status.id)) {
+				if (effect.effectType === 'Move') {
+					const effectHolder = this.effectState.target;
+					this.add('-block', target, 'ability: Brainless', '[of] ' + effectHolder);
+				}
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Brainless",
+		rating: 4,
+		num: 1020,
+	},
+	"soulsiphon": {
+		onDamagingHit(damage, target, source, move) {
+			let type1 = source.getTypes()[0];
+			let type2 = source.getTypes()[1];
+			if (type1 === move.getType() || type2 === move.getType()) this.heal(damage / 2);			
+		},
+		name: "Soul Siphon",
+		rating: 4,
+		num: 1021,
+	},
+	"bootyplunderer": {
+		onHit(target, source) {
+			const item = target.takeItem(source);
+			if (item) {
+				this.add('-enditem', target, item.name, '[from] ability: Booty Plunderer', '[of] ' + source);
+			} else {
+				this.add('-fail', target, 'ability: Booty Plunderer');
+			}
+		},
+		name: "Booty Plunderer",
+		rating: 4,
+		num: 1022,
+	},
+	"clearskies": {
+		onStart(source) {
+			this.field.clearWeather();
+		},
+		onAnySetWeather(target, source, weather) {
+			const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
+			if (!strongWeathers.includes(weather.id)) return false;
+		},
+		name: "Clear Skies",
+		rating: 3,
+		num: 1023,
+	},
+	"arsonist": {
+		onModifyCritRatio(critRatio, source, target) {
+			if (target && ['brn'].includes(target.status)) return 5;
+		},
+		name: "Arsonist",
+		rating: 3,
+		num: 1024,
+	},
+	"ancientwisdom": {
+		onUpdate(pokemon) {
+			if (pokemon.volatiles['mustrecharge']) {
+				this.add('-activate', pokemon, "ability: Ancient Wisdom");
+				pokemon.removeVolatile('mustrecharge');
+			}
+		},
+		name: "Ancient Wisdom",
+		rating: 3,
+		num: 1025,
+	},
+	"mindreboot": {
+		onStart(pokemon) {
+			for (const target of pokemon.adjacentFoees()) {
+				target.clearBoosts();
+				this.add('-clearboost', target, '[from] ability: Mind Reboot', '[of] ' + pokemon);
+			}
+		},
+		name: "Mind Reboot",
+		rating: 3,
+		num: 1026,
+	},
+	"darkwarp": {
+		onHit(target, source) {
+			if (!this.canSwitch(source.side) || source.forceSwitchFlag || source.switchFlag) return;
+			for (const side of this.sides) {
+				for (const active of side.active) {
+					active.switchFlag = false;
+				}
+			}
+			source.switchFlag = true;
+			this.add('-activate', source, 'ability: Dark Warp');
+		}
+		name: "Dark Warp",
+		rating: 4,
+		num: 1027,
+	},
+	/*
+	"tantalize": {
+		
+		name: "Tantalize",
+		rating: 4,
+		num: 1028,
+	},
+	*/
 };

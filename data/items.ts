@@ -7999,4 +7999,177 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1063,
 		gen: 6,
 	},
+	"quagsirite": {
+		name: "Quagsirite",
+		spritenum: 575,
+		megaStone: "Quagsire-Mega",
+		megaEvolves: "Quagsire",
+		itemUser: ["Quagsire"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1064,
+		gen: 6,
+	},
+	"gogoatite": {
+		name: "Gogoatite",
+		spritenum: 575,
+		megaStone: "Gogoat-Mega",
+		megaEvolves: "Gogoat",
+		itemUser: ["Gogoat"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1065,
+		gen: 6,
+	},
+	"spiritombite": {
+		name: "Spiritombite",
+		spritenum: 575,
+		megaStone: "Spiritomb-Mega",
+		megaEvolves: "Spiritomb",
+		itemUser: ["Spiritomb"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1066,
+		gen: 6,
+	},
+	"chatotite": {
+		name: "Chatotite",
+		spritenum: 575,
+		megaStone: "Chatot-Mega",
+		megaEvolves: "Chatot",
+		itemUser: ["Chatot"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1067,
+		gen: 6,
+	},
+	"Lunatonite": {
+		name: "Lunatonite",
+		spritenum: 575,
+		megaStone: "Lunatone-Mega",
+		megaEvolves: "Lunatone",
+		itemUser: ["Lunatone"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1068,
+		gen: 6,
+	},
+	"Solrockite": {
+		name: "Solrockite",
+		spritenum: 575,
+		megaStone: "Solrock-Mega",
+		megaEvolves: "Solrock",
+		itemUser: ["Solrock"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1069,
+		gen: 6,
+	},
+	"Heatmorite": {
+		name: "Heatmorite",
+		spritenum: 575,
+		megaStone: "Heatmor-Mega",
+		megaEvolves: "Heatmor",
+		itemUser: ["Heatmor"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1070,
+		gen: 6,
+	},
+	"drampite": {
+		name: "Drampite",
+		spritenum: 575,
+		megaStone: "Drampa-Mega",
+		megaEvolves: "Drampa",
+		itemUser: ["Drampa"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1071,
+		gen: 6,
+	},
+	"beheeyite": {
+		name: "Beheeyite",
+		spritenum: 575,
+		megaStone: "Beheeyem-Mega",
+		megaEvolves: "Beheeyem",
+		itemUser: ["Beheeyem"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1072,
+		gen: 6,
+	},
+	"probopassite": {
+		name: "Probopassite",
+		spritenum: 575,
+		megaStone: "Probopass-Mega",
+		megaEvolves: "Probopass",
+		itemUser: ["Probopass"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1073,
+		gen: 6,
+	},
+	"grimmsnarlite": {
+		name: "Grimmsnarlite",
+		spritenum: 575,
+		megaStone: "Grimmsnarl-Mega",
+		megaEvolves: "Grimmsnarl",
+		itemUser: ["Grimmsnarl"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1073,
+		gen: 6,
+	},
+	/*
+	"aromatissite": {
+		name: "Aromatissite",
+		spritenum: 575,
+		megaStone: "Aromatisse-Mega",
+		megaEvolves: "Aromatisse",
+		itemUser: ["Aromatisse"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1074,
+		gen: 6,
+	},
+	*/
+	/*
+	"ite": {
+		name: "ite",
+		spritenum: 575,
+		megaStone: "-Mega",
+		megaEvolves: "",
+		itemUser: [""],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 10,
+		gen: 6,
+	},
+	*/
 };
