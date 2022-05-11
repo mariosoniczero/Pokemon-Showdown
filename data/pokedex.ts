@@ -18560,7 +18560,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		baseSpecies: "Quagsire",
 		forme: "Mega",
 		types: ["Water", "Ground"],
-		baseStats: {hp: 95, atk: 105, def: 115, spa: 100, spd: 105, spe: 10},
+		baseStats: {hp: 95, atk: 105, def: 115, spa: 105, spd: 105, spe: 5},
 		abilities: {0: "Brainless"},
 		heightm: 1.4,
 		weightkg: 75,
