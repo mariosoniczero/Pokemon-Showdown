@@ -4974,7 +4974,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 			source.switchFlag = true;
 			this.add('-activate', source, 'ability: Dark Warp');
-		}
+		},
 		name: "Dark Warp",
 		rating: 4,
 		num: 1027,
