@@ -500,10 +500,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 5,
 		priority: 0,
 		flags: {snatch: 1, distance: 1},
-		onHit(pokemon, source, move) {
+		onHit(target, source, move) {
 			this.add('-activate', source, 'move: Aromatherapy');
 			let success = false;
-			for (const ally of pokemon.side.pokemon) {
+			const allies = [...target.side.pokemon, ...target.side.allySide?.pokemon || []];
+			for (const ally of allies) {
 				if (ally !== source && ((ally.hasAbility('sapsipper')) ||
 						(ally.volatiles['substitute'] && !move.infiltrates))) {
 					continue;
@@ -663,9 +664,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 					return false;
 				}
 
-				if (effect.id === 'cutecharm') {
+				if (effect.name === 'Cute Charm') {
 					this.add('-start', pokemon, 'Attract', '[from] ability: Cute Charm', '[of] ' + source);
-				} else if (effect.id === 'destinyknot') {
+				} else if (effect.name === 'Destiny Knot') {
 					this.add('-start', pokemon, 'Attract', '[from] item: Destiny Knot', '[of] ' + source);
 				} else {
 					this.add('-start', pokemon, 'Attract');
@@ -1005,6 +1006,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 40,
 		priority: 0,
 		flags: {},
+		onHit(target) {
+			if (!this.canSwitch(target.side)) {
+				this.attrLastMove('[still]');
+				this.add('-fail', target);
+				return this.NOT_FAIL;
+			}
+		},
 		self: {
 			onHit(source) {
 				source.skipBeforeSwitchOutEventFlag = true;
@@ -1027,7 +1035,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 15,
 		priority: -3,
 		flags: {bullet: 1, protect: 1},
-		beforeTurnCallback(pokemon) {
+		priorityChargeCallback(pokemon) {
 			pokemon.addVolatile('beakblast');
 		},
 		condition: {
@@ -1399,7 +1407,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
-		useSourceDefensiveAsOffensive: true,
+		overrideOffensiveStat: 'def',
 		secondary: null,
 		target: "normal",
 		type: "Fighting",
@@ -2282,7 +2290,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Coaching",
 		pp: 10,
 		priority: 0,
-		flags: {bypasssub: 1},
+		flags: {bypasssub: 1, allyanim: 1},
 		secondary: null,
 		boosts: {
 			atk: 1,
@@ -2632,7 +2640,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		beforeTurnCallback(pokemon) {
 			pokemon.addVolatile('counter');
 		},
-		onTryHit(target, source, move) {
+		onTry(source) {
 			if (!source.volatiles['counter']) return false;
 			if (source.volatiles['counter'].slot === null) return false;
 		},
@@ -3084,6 +3092,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		volatileStatus: 'defensecurl',
 		condition: {
 			noCopy: true,
+			onRestart: () => null,
 		},
 		secondary: null,
 		target: "self",
@@ -3387,7 +3396,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Dive",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, charge: 1, protect: 1, mirror: 1, nonsky: 1},
+		flags: {contact: 1, charge: 1, protect: 1, mirror: 1, nonsky: 1, allyanim: 1},
 		onTryMove(attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
@@ -4102,7 +4111,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onFieldStart(field, source, effect) {
 				if (effect?.effectType === 'Ability') {
-					this.add('-fieldstart', 'move: Electric Terrain', '[from] ability: ' + effect, '[of] ' + source);
+					this.add('-fieldstart', 'move: Electric Terrain', '[from] ability: ' + effect.name, '[of] ' + source);
 				} else {
 					this.add('-fieldstart', 'move: Electric Terrain');
 				}
@@ -4574,7 +4583,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pseudoWeather: 'fairylock',
 		condition: {
 			duration: 2,
-			onStart(target) {
+			onFieldStart(target) {
 				this.add('-fieldactivate', 'move: Fairy Lock');
 			},
 			onTrapPokemon(pokemon) {
@@ -4790,7 +4799,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1},
-		selfdestruct: "ifHit",
 		secondary: null,
 		target: "normal",
 		type: "Fighting",
@@ -5320,6 +5328,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (success && !target.isAlly(source)) {
 				target.staleness = 'external';
 			}
+			if (!success) {
+				this.add('-fail', target, 'heal');
+				return this.NOT_FAIL;
+			}
 			return success;
 		},
 		secondary: null,
@@ -5377,6 +5389,17 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-prepare', attacker, move.name);
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
 				return;
+			}
+
+			// In SwSh, Fly's animation leaks the initial target through a camera focus
+			// The animation leak target itself isn't "accurate"; the target it reveals is as if Fly weren't a charge movee
+			// (Fly, like all other charge moves, will actually target slots on its charging turn, relevant for things like Follow Me)
+			// We use a generic single-target move to represent this
+			if (this.gameType === 'doubles' || this.gameType === 'multi') {
+				const animatedTarget = attacker.getMoveTargets(this.dex.getActiveMove('aerialace'), defender).targets[0];
+				if (animatedTarget) {
+					this.hint(`${move.name}'s animation targeted ${animatedTarget.name}`);
+				}
 			}
 			attacker.addVolatile('twoturnmove', defender);
 			return null;
@@ -5476,11 +5499,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 20,
 		priority: -3,
 		flags: {contact: 1, protect: 1, punch: 1},
-		beforeTurnCallback(pokemon) {
+		priorityChargeCallback(pokemon) {
 			pokemon.addVolatile('focuspunch');
 		},
 		beforeMoveCallback(pokemon) {
-			if (pokemon.volatiles['focuspunch'] && pokemon.volatiles['focuspunch'].lostFocus) {
+			if (pokemon.volatiles['focuspunch']?.lostFocus) {
 				this.add('cant', pokemon, 'Focus Punch', 'Focus Punch');
 				return true;
 			}
@@ -5492,7 +5515,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onHit(pokemon, source, move) {
 				if (move.category !== 'Status') {
-					pokemon.volatiles['focuspunch'].lostFocus = true;
+					this.effectState.lostFocus = true;
 				}
 			},
 			onTryAddVolatile(status, pokemon) {
@@ -5621,7 +5644,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
-		useTargetOffensive: true,
+		overrideOffensivePokemon: 'target',
 		secondary: null,
 		target: "normal",
 		type: "Dark",
@@ -6509,9 +6532,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		isMax: "Melmetal",
 		self: {
-			onHit(source) {
+			onHit(source, target, effect) {
 				for (const pokemon of source.foes()) {
-					if (!pokemon.volatiles['dynamax']) pokemon.addVolatile('torment');
+					if (!pokemon.volatiles['dynamax']) pokemon.addVolatile('torment', source, effect);
 				}
 			},
 		},
@@ -7148,7 +7171,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Grassy Glide",
 		pp: 20,
 		priority: 0,
-		flags: {contact: 1, protect: 1, allyanim: 1},
+		flags: {contact: 1, protect: 1},
 		onModifyPriority(priority, source, target, move) {
 			if (this.field.isTerrain('grassyterrain') && source.isGrounded()) {
 				return priority + 1;
@@ -7191,7 +7214,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onFieldStart(field, source, effect) {
 				if (effect?.effectType === 'Ability') {
-					this.add('-fieldstart', 'move: Grassy Terrain', '[from] ability: ' + effect, '[of] ' + source);
+					this.add('-fieldstart', 'move: Grassy Terrain', '[from] ability: ' + effect.name, '[of] ' + source);
 				} else {
 					this.add('-fieldstart', 'move: Grassy Terrain');
 				}
@@ -7706,11 +7729,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 5,
 		priority: 0,
 		flags: {snatch: 1, sound: 1, distance: 1, bypasssub: 1},
-		onHit(pokemon, source) {
+		onHit(target, source) {
 			this.add('-activate', source, 'move: Heal Bell');
-			const side = pokemon.side;
 			let success = false;
-			for (const ally of side.pokemon) {
+			const allies = [...target.side.pokemon, ...target.side.allySide?.pokemon || []];
+			for (const ally of allies) {
 				if (ally !== source && ally.hasAbility('soundproof')) continue;
 				if (ally.cureStatus()) success = true;
 			}
@@ -7795,10 +7818,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
-		onTryHit(pokemon, target, move) {
-			if (!this.canSwitch(pokemon.side)) {
+		onHit(target, source, move) {
+			if (!this.canSwitch(source.side)) {
 				delete move.selfdestruct;
-				return false;
+				this.attrLastMove('[still]');
+				this.add('-fail', source);
+				return this.NOT_FAIL;
 			}
 		},
 		selfdestruct: "ifHit",
@@ -7853,6 +7878,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			}
 			if (success && !target.isAlly(source)) {
 				target.staleness = 'external';
+			}
+			if (!success) {
+				this.add('-fail', target, 'heal');
+				return this.NOT_FAIL;
 			}
 			return success;
 		},
@@ -9077,7 +9106,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pseudoWeather: 'iondeluge',
 		condition: {
 			duration: 1,
-			onStart(target, source, sourceEffect) {
+			onFieldStart(target, source, sourceEffect) {
 				this.add('-fieldactivate', 'move: Ion Deluge');
 				this.hint(`Normal-type moves become Electric-type after using ${sourceEffect}.`);
 			},
@@ -9885,10 +9914,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1, dance: 1},
-		onTryHit(pokemon, target, move) {
-			if (!this.canSwitch(pokemon.side)) {
+		onHit(target, source, move) {
+			if (!this.canSwitch(source.side)) {
 				delete move.selfdestruct;
-				return false;
+				this.attrLastMove('[still]');
+				this.add('-fail', source);
+				return this.NOT_FAIL;
 			}
 		},
 		selfdestruct: "ifHit",
@@ -10420,16 +10451,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onTryHitPriority: 3,
 			onTryHit(target, source, move) {
-				if (['gmaxoneblow', 'gmaxrapidflow'].includes(move.id)) return;
-				/** moves blocked by Max Guard but not Protect */
-				const overrideBypassProtect = [
-					'block', 'flowershield', 'gearup', 'magneticflux', 'phantomforce', 'psychup', 'shadowforce', 'teatime', 'transform',
+				const bypassesMaxGuard = [
+					'acupressure', 'afteryou', 'allyswitch', 'aromatherapy', 'aromaticmist', 'coaching', 'confide', 'copycat', 'curse', 'decorate', 'doomdesire', 'feint', 'futuresight', 'gmaxoneblow', 'gmaxrapidflow', 'healbell', 'holdhands', 'howl', 'junglehealing', 'lifedew', 'meanlook', 'perishsong', 'playnice', 'powertrick', 'roar', 'roleplay', 'tearfullook',
 				];
-				const blockedByMaxGuard = (this.dex.moves.get(move.id).flags['protect'] ||
-						move.isZ || move.isMax || overrideBypassProtect.includes(move.id));
-				if (!blockedByMaxGuard) {
-					return;
-				}
+				if (bypassesMaxGuard.includes(move.id)) return;
 				if (move.smartTarget) {
 					move.smartTarget = false;
 				} else {
@@ -10911,7 +10936,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onTryHit(target, source, move) {
+		onTry(source) {
 			const lastDamagedBy = source.getLastDamagedBy(true);
 			if (lastDamagedBy === undefined || !lastDamagedBy.thisTurn) return false;
 		},
@@ -11090,7 +11115,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, bypasssub: 1, allyanim: 1},
 		onHit(target, source) {
-			const disallowedMoves = ['chatter', 'dynamaxcannon', 'mimic', 'sketch', 'struggle', 'transform'];
+			const disallowedMoves = [
+				'behemothbash', 'behemothblade', 'chatter', 'dynamaxcannon', 'mimic', 'sketch', 'struggle', 'transform',
+			];
 			const move = target.lastMove;
 			if (source.transformed || !move || disallowedMoves.includes(move.id) || source.moves.includes(move.id)) {
 				return false;
@@ -11171,6 +11198,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		volatileStatus: 'minimize',
 		condition: {
 			noCopy: true,
+			onRestart: () => null,
 			onSourceModifyDamage(damage, source, target, move) {
 				const boostedMoves = [
 					'stomp', 'steamroller', 'bodyslam', 'flyingpress', 'dragonrush', 'heatcrash', 'heavyslam', 'maliciousmoonsault',
@@ -11248,7 +11276,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		beforeTurnCallback(pokemon) {
 			pokemon.addVolatile('mirrorcoat');
 		},
-		onTryHit(target, source, move) {
+		onTry(source) {
 			if (!source.volatiles['mirrorcoat']) return false;
 			if (source.volatiles['mirrorcoat'].slot === null) return false;
 		},
@@ -11444,7 +11472,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onFieldStart(field, source, effect) {
 				if (effect?.effectType === 'Ability') {
-					this.add('-fieldstart', 'move: Misty Terrain', '[from] ability: ' + effect, '[of] ' + source);
+					this.add('-fieldstart', 'move: Misty Terrain', '[from] ability: ' + effect.name, '[of] ' + source);
 				} else {
 					this.add('-fieldstart', 'move: Misty Terrain');
 				}
@@ -11518,7 +11546,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 				factor = 0.25;
 				break;
 			}
-			return !!this.heal(this.modify(pokemon.maxhp, factor));
+			const success = !!this.heal(this.modify(pokemon.maxhp, factor));
+			if (!success) {
+				this.add('-fail', pokemon, 'heal');
+				return this.NOT_FAIL;
+			}
+			return success;
 		},
 		secondary: null,
 		target: "self",
@@ -11549,7 +11582,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 				factor = 0.25;
 				break;
 			}
-			return !!this.heal(this.modify(pokemon.maxhp, factor));
+			const success = !!this.heal(this.modify(pokemon.maxhp, factor));
+			if (!success) {
+				this.add('-fail', pokemon, 'heal');
+				return this.NOT_FAIL;
+			}
+			return success;
 		},
 		secondary: null,
 		target: "self",
@@ -12727,7 +12765,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Pollen Puff",
 		pp: 15,
 		priority: 0,
-		flags: {bullet: 1, protect: 1, mirror: 1},
+		flags: {bullet: 1, protect: 1, mirror: 1, allyanim: 1},
 		onTryHit(target, source, move) {
 			if (source.isAlly(target)) {
 				move.basePower = 0;
@@ -12738,6 +12776,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (source.isAlly(target)) {
 				if (!this.heal(Math.floor(target.baseMaxhp * 0.5))) {
 					this.add('-immune', target);
+					return this.NOT_FAIL;
 				}
 			}
 		},
@@ -12800,6 +12839,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (move.type === 'Fire') {
 					this.add('-activate', pokemon, 'move: Powder');
 					this.damage(this.clampIntRange(Math.round(pokemon.maxhp / 4), 1));
+					this.attrLastMove('[still]');
 					return false;
 				}
 			},
@@ -13227,7 +13267,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onFieldStart(field, source, effect) {
 				if (effect?.effectType === 'Ability') {
-					this.add('-fieldstart', 'move: Psychic Terrain', '[from] ability: ' + effect, '[of] ' + source);
+					this.add('-fieldstart', 'move: Psychic Terrain', '[from] ability: ' + effect.name, '[of] ' + source);
 				} else {
 					this.add('-fieldstart', 'move: Psychic Terrain');
 				}
@@ -13308,7 +13348,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
-		defensiveCategory: "Physical",
+		overrideDefensiveStat: 'def',
 		name: "Psyshock",
 		pp: 10,
 		priority: 0,
@@ -13323,7 +13363,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 100,
 		category: "Special",
-		defensiveCategory: "Physical",
+		overrideDefensiveStat: 'def',
 		name: "Psystrike",
 		pp: 10,
 		priority: 0,
@@ -13399,7 +13439,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, heal: 1},
 		onHit(target, source) {
-			if (!target.cureStatus()) return false;
+			if (!target.cureStatus()) return this.NOT_FAIL;
 			this.heal(Math.ceil(source.maxhp * 0.5), source);
 		},
 		secondary: null,
@@ -13450,7 +13490,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				let alreadyAdded = false;
 				pokemon.removeVolatile('destinybond');
 				for (const source of this.effectState.sources) {
-					if (!this.queue.cancelMove(source) || !source.hp) continue;
+					if (!source.isAdjacent(pokemon) || !this.queue.cancelMove(source) || !source.hp) continue;
 					if (!alreadyAdded) {
 						this.add('-activate', pokemon, 'move: Pursuit');
 						alreadyAdded = true;
@@ -13972,7 +14012,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 			}
 		},
 		onHit(target, source, move) {
-			if (!target.setStatus('slp', source, move)) return false;
+			const result = target.setStatus('slp', source, move);
+			if (!result) return result;
 			target.statusState.time = 3;
 			target.statusState.startTime = 3;
 			this.heal(target.maxhp); // Aesthetic only as the healing happens after you fall asleep in-game
@@ -14105,17 +14146,18 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: 804,
 		accuracy: 100,
 		basePower: 70,
+		basePowerCallback(source, target, move) {
+			if (this.field.isTerrain('electricterrain') && target.isGrounded()) {
+				if (!source.isAlly(target)) this.hint(`${move.name}'s BP doubled on grounded target.`);
+				return move.basePower * 2;
+			}
+			return move.basePower;
+		},
 		category: "Special",
 		name: "Rising Voltage",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onBasePower(basePower, pokemon, target) {
-			if (this.field.isTerrain('electricterrain') && target.isGrounded()) {
-				this.debug('terrain buff');
-				return this.chainModify(2);
-			}
-		},
 		secondary: null,
 		target: "normal",
 		type: "Electric",
@@ -14851,7 +14893,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 85,
 		category: "Special",
-		defensiveCategory: "Physical",
+		overrideDefensiveStat: 'def',
 		name: "Secret Sword",
 		pp: 10,
 		priority: 0,
@@ -15181,7 +15223,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 5,
 		priority: -3,
 		flags: {protect: 1},
-		beforeTurnCallback(pokemon) {
+		priorityChargeCallback(pokemon) {
 			pokemon.addVolatile('shelltrap');
 		},
 		onTryMove(pokemon) {
@@ -15198,7 +15240,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onHit(pokemon, source, move) {
 				if (!pokemon.isAlly(source) && move.category === 'Physical') {
-					pokemon.volatiles['shelltrap'].gotHit = true;
+					this.effectState.gotHit = true;
 					const action = this.queue.willMove(pokemon);
 					if (action) {
 						this.queue.prioritizeAction(action);
@@ -15258,7 +15300,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (this.field.isWeather('sandstorm')) {
 				factor = 0.667;
 			}
-			return !!this.heal(this.modify(pokemon.maxhp, factor));
+			const success = !!this.heal(this.modify(pokemon.maxhp, factor));
+			if (!success) {
+				this.add('-fail', pokemon, 'heal');
+				return this.NOT_FAIL;
+			}
+			return success;
 		},
 		secondary: null,
 		target: "self",
@@ -15751,7 +15798,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				const moveid = moveSlot.id;
 				if (!moveid) continue;
 				const move = this.dex.moves.get(moveid);
-				if (noSleepTalk.includes(moveid) || move.flags['charge'] || (move.isZ && move.basePower !== 1)) {
+				if (noSleepTalk.includes(moveid) || move.flags['charge'] || (move.isZ && move.basePower !== 1) || move.isMax) {
 					continue;
 				}
 				moves.push(moveid);
@@ -15856,6 +15903,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onRestart(pokemon) {
 				if (pokemon.removeVolatile('fly') || pokemon.removeVolatile('bounce')) {
 					this.queue.cancelMove(pokemon);
+					pokemon.removeVolatile('twoturnmove');
 					this.add('-start', pokemon, 'Smack Down');
 				}
 			},
@@ -17391,9 +17439,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		onHit(pokemon) {
 			const healAmount = [0.25, 0.5, 1];
-			const healedBy = this.heal(this.modify(pokemon.maxhp, healAmount[(pokemon.volatiles['stockpile'].layers - 1)]));
+			const success = !!this.heal(this.modify(pokemon.maxhp, healAmount[(pokemon.volatiles['stockpile'].layers - 1)]));
+			if (!success) this.add('-fail', pokemon, 'heal');
 			pokemon.removeVolatile('stockpile');
-			return !!healedBy;
+			return success || this.NOT_FAIL;
 		},
 		secondary: null,
 		target: "self",
@@ -17556,7 +17605,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 				factor = 0.25;
 				break;
 			}
-			return !!this.heal(this.modify(pokemon.maxhp, factor));
+			const success = !!this.heal(this.modify(pokemon.maxhp, factor));
+			if (!success) {
+				this.add('-fail', pokemon, 'heal');
+				return this.NOT_FAIL;
+			}
+			return success;
 		},
 		secondary: null,
 		target: "self",
@@ -17919,8 +17973,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 20,
 		priority: -6,
 		flags: {},
+		onTry(source) {
+			return !!this.canSwitch(source.side);
+		},
 		selfSwitch: true,
-		onTryHit: true,
 		secondary: null,
 		target: "self",
 		type: "Psychic",
@@ -18315,11 +18371,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		volatileStatus: 'torment',
 		condition: {
 			noCopy: true,
-			onStart(pokemon) {
+			onStart(pokemon, source, effect) {
 				if (pokemon.volatiles['dynamax']) {
 					delete pokemon.volatiles['torment'];
 					return false;
 				}
+				if (effect?.id === 'gmaxmeltdown') this.effectState.duration = 3;
 				this.add('-start', pokemon, 'Torment');
 			},
 			onEnd(pokemon) {
@@ -19439,13 +19496,21 @@ export const Moves: {[moveid: string]: MoveData} = {
 				}
 				return 5;
 			},
+			onModifyMove(move, source, target) {
+				// This code is for moves that use defensive stats as the attacking stat; see below for most of the implementation
+				if (!move.overrideOffensiveStat) return;
+				const statAndBoosts = move.overrideOffensiveStat;
+				if (!['def', 'spd'].includes(statAndBoosts)) return;
+				move.overrideOffensiveStat = statAndBoosts === 'def' ? 'spd' : 'def';
+				this.hint(`${move.name} uses ${statAndBoosts === 'def' ? '' : 'Sp. '}Def boosts when Wonder Room is active.`);
+			},
 			onFieldStart(field, source) {
 				this.add('-fieldstart', 'move: Wonder Room', '[of] ' + source);
 			},
 			onFieldRestart(target, source) {
 				this.field.removePseudoWeather('wonderroom');
 			},
-			// Swapping defenses implemented in sim/pokemon.js:Pokemon#calculateStat and Pokemon#getStat
+			// Swapping defenses partially implemented in sim/pokemon.js:Pokemon#calculateStat and Pokemon#getStat
 			onFieldResidualOrder: 27,
 			onFieldResidualSubOrder: 5,
 			onFieldEnd() {

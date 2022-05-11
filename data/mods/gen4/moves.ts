@@ -27,8 +27,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		onHit(target, source) {
 			this.add('-cureteam', source, '[from] move: Aromatherapy');
-			for (const pokemon of source.side.pokemon) {
-				pokemon.clearStatus();
+			const allies = [...target.side.pokemon, ...target.side.allySide?.pokemon || []];
+			for (const ally of allies) {
+				ally.clearStatus();
 			}
 		},
 	},
@@ -87,7 +88,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			duration: 1,
 			onModifyAtkPriority: -101,
 			onModifyAtk(atk, pokemon, defender, move) {
-				this.add('-activate', pokemon, 'move: Beat Up', '[of] ' + move.allies![0].name);
+				// https://www.smogon.com/forums/posts/8992145/
+				// this.add('-activate', pokemon, 'move: Beat Up', '[of] ' + move.allies![0].name);
 				this.event.modifier = 1;
 				return move.allies!.shift()!.species.baseStats.atk;
 			},
@@ -446,9 +448,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				}
 				this.effectState.move = target.lastMove.id;
 				this.add('-start', target, 'Encore');
-				if (!this.queue.willMove(target)) {
-					this.effectState.duration++;
-				}
 			},
 			onOverrideAction(pokemon) {
 				return this.effectState.move;
@@ -539,12 +538,16 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	focuspunch: {
 		inherit: true,
-		beforeMoveCallback() { },
+		priorityChargeCallback() {},
+		beforeTurnCallback(pokemon) {
+			pokemon.addVolatile('focuspunch');
+		},
+		beforeMoveCallback() {},
 		onTry(pokemon) {
-			if (pokemon.volatiles['focuspunch'] && pokemon.volatiles['focuspunch'].lostFocus) {
+			if (pokemon.volatiles['focuspunch']?.lostFocus) {
 				this.attrLastMove('[still]');
 				this.add('cant', pokemon, 'Focus Punch', 'Focus Punch');
-				return false;
+				return null;
 			}
 		},
 	},
@@ -697,8 +700,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		onHit(target, source) {
 			this.add('-activate', source, 'move: Heal Bell');
-			for (const pokemon of source.side.pokemon) {
-				if (!pokemon.hasAbility('soundproof')) pokemon.cureStatus(true);
+			const allies = [...target.side.pokemon, ...target.side.allySide?.pokemon || []];
+			for (const ally of allies) {
+				if (!ally.hasAbility('soundproof')) ally.cureStatus(true);
 			}
 		},
 	},
@@ -826,10 +830,14 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	knockoff: {
 		inherit: true,
-		onAfterHit(target, source) {
-			const item = target.takeItem();
-			if (item) {
-				this.add('-enditem', target, item.name, '[from] move: Knock Off', '[of] ' + source);
+		onAfterHit(target, source, move) {
+			if (!target.item || target.itemState.knockedOff) return;
+			if (target.ability === 'multitype') return;
+			const item = target.getItem();
+			if (this.runEvent('TakeItem', target, source, move, item)) {
+				target.itemState.knockedOff = true;
+				this.add('-enditem', target, item.name, '[from] move: Knock Off');
+				this.hint("In Gens 3-4, Knock Off only makes the target's item unusable; it cannot obtain a new item.", true);
 			}
 		},
 	},
@@ -1430,6 +1438,27 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		onTryHit(pokemon) {
 			return !pokemon.volatiles['choicelock'] && !pokemon.volatiles['encore'];
+		},
+	},
+	snatch: {
+		inherit: true,
+		condition: {
+			duration: 1,
+			onStart(pokemon) {
+				this.add('-singleturn', pokemon, 'Snatch');
+			},
+			onAnyPrepareHitPriority: -1,
+			onAnyPrepareHit(source, target, move) {
+				const snatchUser = this.effectState.source;
+				if (snatchUser.isSkyDropped()) return;
+				if (!move || move.isZ || move.isMax || !move.flags['snatch']) {
+					return;
+				}
+				snatchUser.removeVolatile('snatch');
+				this.add('-activate', snatchUser, 'move: Snatch', '[of] ' + source);
+				this.actions.useMove(move.id, snatchUser);
+				return null;
+			},
 		},
 	},
 	spikes: {
