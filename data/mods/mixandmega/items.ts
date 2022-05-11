@@ -509,7 +509,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
-    "pachirisunite": {
+	"pachirisunite": {
 		inherit: true,
 		isNonstandard: null,
 	},
