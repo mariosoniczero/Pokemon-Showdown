@@ -7281,7 +7281,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 6,
 		desc: "If held by a Roserade, this item allows it to Mega Evolve in battle.",
 	},
-	/*"tyrantrumite": {
+	/*
+	"tyrantrumite": {
 		id: "tyrantrumite",
 		name: "Tyrantrumite",
 		spritenum: 575,
@@ -7294,7 +7295,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1030,
 		gen: 6,
 		desc: "If held by a Tyrantrum, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	/*
 	"chipinite": {
 		id: "chipinite",
@@ -7614,7 +7616,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 6,
 		desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.",
 	},
-	/*"flygonite": {
+	/*
+	"flygonite": {
 		id: "flygonite",
 		name: "Flygonite",
 		spritenum: 575,
@@ -7627,7 +7630,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1008,
 		gen: 6,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	"froslassite": {
 		id: "froslassite",
 		name: "Froslassite",

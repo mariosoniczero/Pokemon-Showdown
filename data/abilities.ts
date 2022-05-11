@@ -4901,9 +4901,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	"soulsiphon": {
 		onDamagingHit(damage, target, source, move) {
-			let type1 = source.getTypes()[0];
-			let type2 = source.getTypes()[1];
-			if (type1 === move.getType() || type2 === move.getType()) this.heal(damage / 2);			
+			const type1 = source.getTypes()[0];
+			const type2 = source.getTypes()[1];
+			if (type1 === move.getType() || type2 === move.getType()) this.heal(damage / 2);
 		},
 		name: "Soul Siphon",
 		rating: 4,
@@ -4981,7 +4981,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	/*
 	"tantalize": {
-		
 		name: "Tantalize",
 		rating: 4,
 		num: 1028,

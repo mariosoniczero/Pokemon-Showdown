@@ -207,7 +207,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	/*"ariadosite": {
+	/*
+	"ariadosite": {
 		id: "ariadosite",
 		name: "Ariadosite",
 		spritenum: 575,
@@ -220,7 +221,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: 1036,
 		gen: 6,
 		desc: "If held by an Ariados, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	"bellossomite": {
 		inherit: true,
 		isNonstandard: null,
@@ -257,7 +259,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	/*"tyrantrumite": {
+	/*
+	"tyrantrumite": {
 		id: "tyrantrumite",
 		name: "Tyrantrumite",
 		spritenum: 575,
@@ -270,7 +273,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: 1030,
 		gen: 6,
 		desc: "If held by a Tyrantrum, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	/*
 	"chipinite": {
 		id: "chipinite",
@@ -433,7 +437,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	/*"xatunite": {
+	/*
+	"xatunite": {
 		id: "xatunite",
 		name: "Xatunite",
 		spritenum: 575,
@@ -446,7 +451,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: 1011,
 		gen: 6,
 		desc: "If held by a Xatu, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	"granbullite": {
 		inherit: true,
 		isNonstandard: null,
@@ -459,7 +465,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	/*"flygonite": {
+	/*
+	"flygonite": {
 		id: "flygonite",
 		name: "Flygonite",
 		spritenum: 575,
@@ -472,7 +479,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: 1008,
 		gen: 6,
 		desc: "If held by a Flygon, this item allows it to Mega Evolve in battle.",
-	},*/
+	},
+	*/
 	"froslassite": {
 		inherit: true,
 		isNonstandard: null,
