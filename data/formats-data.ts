@@ -6651,5 +6651,5 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	mega: {
 		isNonstandard: "GPL",
 	},
-	/*
+	*/
 };
