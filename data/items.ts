@@ -8079,7 +8079,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1067,
 		gen: 6,
 	},
-	"Lunatonite": {
+	"lunatonite": {
 		name: "Lunatonite",
 		spritenum: 575,
 		megaStone: "Lunatone-Mega",
@@ -8105,7 +8105,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1069,
 		gen: 6,
 	},
-	"Heatmorite": {
+	"heatmorite": {
 		name: "Heatmorite",
 		spritenum: 575,
 		megaStone: "Heatmor-Mega",
