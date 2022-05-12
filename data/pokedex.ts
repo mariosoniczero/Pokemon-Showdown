@@ -18642,7 +18642,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Heatmor-Mega",
 		baseSpecies: "Heatmor",
 		types: ["Fire"],
-		baseStats: {hp: 85, atk: 132, def: 82, spa: 94, spd: 82, spe: 109},
+		baseStats: {hp: 85, atk: 137, def: 76, spa: 101, spd: 76, spe: 109},
 		abilities: {0: "Arsonist"},
 		heightm: 1.4,
 		weightkg: 58,
