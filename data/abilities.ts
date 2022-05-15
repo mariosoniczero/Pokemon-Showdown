@@ -4930,6 +4930,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 1022,
 	},
+	/*
 	"clearskies": {
 		onStart(source) {
 			this.field.clearWeather();
@@ -4942,6 +4943,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 1023,
 	},
+	*/
 	"arsonist": {
 		onModifyCritRatio(critRatio, source, target) {
 			if (target && ['brn'].includes(target.status)) return 5;

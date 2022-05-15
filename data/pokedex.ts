@@ -18618,7 +18618,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		types: ["Rock", "Fairy"],
 		gender: "N",
 		baseStats: {hp: 90, atk: 45, def: 110, spa: 105, spd: 120, spe: 90},
-		abilities: {0: "Clear Skies"},
+		abilities: {0: "Lunar Power"},
 		heightm: 1,
 		weightkg: 168,
 		color: "Yellow",
