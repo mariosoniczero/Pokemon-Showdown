@@ -6766,7 +6766,13 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	lunatonemega: {
 		isNonstandard: "GPL",
 	},
+	lunatonemegabluemoon: {
+		isNonstandard: "GPL",
+	},
 	solrockmega: {
+		isNonstandard: "GPL",
+	},
+	solrockmegasupernova: {
 		isNonstandard: "GPL",
 	},
 	heatmormega: {

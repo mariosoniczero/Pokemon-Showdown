@@ -3818,8 +3818,14 @@ export const PokedexText: {[k: string]: PokedexText} = {
 	lunatonemega: {
 		name: "Lunatone-Mega",
 	},
+	lunatonemegabluemoon: {
+		name: "Lunatone-Mega-Blue-Moon",
+	},
 	solrockmega: {
 		name: "Solrock-Mega",
+	},
+	solrockmegasupernova: {
+		name: "Solrock-Mega-Supernova",
 	},
 	heatmormega: {
 		name: "Heatmor-Mega",

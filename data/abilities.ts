@@ -4621,6 +4621,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.addMove('-anim', pokemon, move.name, target);
 			return false; // skip charge turn
 		},
+		onBasePowerPriority: 21,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.flags['charge']) return this.chainModify([5325, 4096]);
+		},
 		id: "spectralbattery",
 		name: "Spectral Battery",
 		rating: 3,
@@ -4736,7 +4740,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					pokemon.removeVolatile('crescendo');
 					return;
 				}
-				if (this.effectData.lastMove === move.id && pokemon.moveLastTurnResult) {
+				if (this.effectData.lastMove === move.id) {
 					this.effectData.numConsecutive++;
 				} else if (pokemon.volatiles['twoturnmove'] && this.effectData.lastMove !== move.id) {
 					this.effectData.numConsecutive = 1;
@@ -4959,7 +4963,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	"mindreboot": {
 		onStart(pokemon) {
-			for (const target of pokemon.adjacentFoees()) {
+			for (const target of pokemon.adjacentFoes()) {
 				target.clearBoosts();
 				this.add('-clearboost', target, '[from] ability: Mind Reboot', '[of] ' + pokemon);
 			}
@@ -4982,6 +4986,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Dark Warp",
 		rating: 4,
 		num: 1027,
+	},
+	"supernova": {
+		name: "Supernova",
+		rating: 3,
+		num: 1028
+	},
+	"lunarpower": {
+		name: "Lunar Power",
+		rating: 3,
+		num: 1028,
 	},
 	/*
 	"tantalize": {

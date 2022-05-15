@@ -1845,6 +1845,14 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Dark Warp",
 		shortDesc: "When this Pokemon attacks, it will automatically switch (except if the move has priority).",
 	},
+	supernova: {
+		name: "Supernova",
+		shortDesc: "Causes Explosion and Self-Destruct to half the defense of its targets.",
+	},
+	lunarpower: {
+		name: "Lunar Power",
+		shortDesc: "Moonlight heals 75%, Moonblast 1.1x power, Meteor Beam no charge turn; removed after using Meteor Beam.",
+	},
 	/*
 	tantalize: {
 		name: "Tantalize",

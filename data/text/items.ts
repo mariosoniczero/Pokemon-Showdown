@@ -2567,8 +2567,16 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Lunatonite",
 		desc: "If held by a Lunatone, this item allows it to Mega Evolve in battle.",
 	},
+	lunatonitebluemoon: {
+		name: "Lunatonite (Blue Moon)",
+		desc: "If held by a Lunatone, this item allows it to Mega Evolve in battle.",
+	},
 	solrockite: {
-		name: "ite",
+		name: "Solrockite",
+		desc: "If held by a Solrock, this item allows it to Mega Evolve in battle.",
+	},
+	solrockitesupernova: {
+		name: "Solrockite (Supernova)",
 		desc: "If held by a Solrock, this item allows it to Mega Evolve in battle.",
 	},
 	heatmorite: {

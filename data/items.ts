@@ -8092,7 +8092,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1068,
 		gen: 6,
 	},
-	"Solrockite": {
+	"solrockite": {
 		name: "Solrockite",
 		spritenum: 575,
 		megaStone: "Solrock-Mega",
@@ -8185,6 +8185,32 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 6,
 	},
 	*/
+	"lunatonitebluemoon": {
+		name: "Lunatonite (Blue Moon)",
+		spritenum: 575,
+		megaStone: "Lunatone-Mega-Blue-Moon",
+		megaEvolves: "Lunatone",
+		itemUser: ["Lunatone"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1075,
+		gen: 6,
+	},
+	"solrockitesupernova": {
+		name: "Solrockite (Supernova)",
+		spritenum: 575,
+		megaStone: "Solrock-Mega-Supernova",
+		megaEvolves: "Solrock",
+		itemUser: ["Solrock"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1076,
+		gen: 6,
+	},
 	/*
 	"ite": {
 		name: "ite",
