@@ -18735,7 +18735,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		forme: "Mega",
 		types: ["Dark", "Fairy"],
 		gender: "M",
-		baseStats: {hp: 95, atk: 135, def: 68, spa: 125, spd: 78, spe: 109},
+		baseStats: {hp: 95, atk: 145, def: 68, spa: 115, spd: 78, spe: 109},
 		abilities: {0: "Dark Warp"},
 		heightm: 1.5,
 		weightkg: 61,
