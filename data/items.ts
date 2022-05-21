@@ -8170,7 +8170,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1073,
 		gen: 6,
 	},
-	/*
 	"aromatissite": {
 		name: "Aromatissite",
 		spritenum: 575,
@@ -8184,7 +8183,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1074,
 		gen: 6,
 	},
-	*/
 	"lunatonitebluemoon": {
 		name: "Lunatonite (Blue Moon)",
 		spritenum: 575,

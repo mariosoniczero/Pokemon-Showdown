@@ -18743,7 +18743,6 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Fairy", "Human-Like"],
 		requiredItem: "Grimmsnarlite",
 	},
-	/*
 	aromatissemega: {
 		num: 683,
 		name: "Aromatisse-Mega",
@@ -18758,5 +18757,4 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Fairy"],
 		requiredItem: "Aromatissite",
 	},
-	*/
 };

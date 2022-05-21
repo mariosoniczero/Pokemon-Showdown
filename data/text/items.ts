@@ -2599,12 +2599,10 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Grimmsnarlite",
 		desc: "If held by a Grimmsnarl, this item allows it to Mega Evolve in battle.",
 	},
-	/*
 	aromatissite: {
 		name: "Aromatissite",
 		desc: "If held by an Aromatisse, this item allows it to Mega Evolve in battle.",
 	},
-	*/
 	/*
 	ite: {
 		name: "ite",

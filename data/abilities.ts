@@ -4990,20 +4990,21 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1027,
 	},
 	"supernova": {
+		
 		name: "Supernova",
 		rating: 3,
 		num: 1028
 	},
 	"lunarpower": {
+		
 		name: "Lunar Power",
 		rating: 3,
 		num: 1028,
 	},
-	/*
 	"tantalize": {
+		
 		name: "Tantalize",
 		rating: 4,
 		num: 1028,
 	},
-	*/
 };

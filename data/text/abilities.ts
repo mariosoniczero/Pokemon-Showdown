@@ -1853,12 +1853,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Lunar Power",
 		shortDesc: "Moonlight heals 75%, Moonblast 1.1x power, Meteor Beam no charge turn; removed after using Meteor Beam.",
 	},
-	/*
 	tantalize: {
 		name: "Tantalize",
-		shortDesc: "",
+		shortDesc: "Inflicts status on switch in which applies Torment and damages 1/8 of max HP on switch out.",
 	},
-	*/
 	/*
 	: {
 		name: "",

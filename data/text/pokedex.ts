@@ -3842,11 +3842,9 @@ export const PokedexText: {[k: string]: PokedexText} = {
 	grimmsnarlmega: {
 		name: "Grimmsnarl-Mega",
 	},
-	/*
 	aromatissemega: {
 		name: "Aromatisse-Mega",
 	},
-	*/
 	/*
 	mega: {
 		name: "-Mega",

@@ -6790,11 +6790,9 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	grimmsnarlmega: {
 		isNonstandard: "GPL",
 	},
-	/*
 	aromatissemega: {
 		isNonstandard: "GPL",
 	},
-	*/
 	/*
 	mega: {
 		isNonstandard: "GPL",
