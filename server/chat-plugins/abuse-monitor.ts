@@ -13,7 +13,6 @@ import {Config} from '../config-loader';
 import {toID} from '../../sim/dex-data';
 import {getBattleLog, getBattleLinks, HelpTicket} from './helptickets';
 import type {GlobalPermission} from '../user-groups';
-import * as pathModule from 'path';
 
 const WHITELIST = ["mia"];
 const MUTE_DURATION = 7 * 60 * 1000;
@@ -269,10 +268,15 @@ export async function runActions(user: User, room: GameRoom, message: string, re
 					`SELECT * FROM perspective_flags WHERE userid = ? AND type = ? AND certainty >= ?`,
 					[user.id, type, num]
 				);
-				// filtering out old hits by request of admins.
-				// don't wanna make this easily configured bc we should never need to do it again
-				// don't wanna delete it bc data is good
-				hits = hits.filter(f => new Date(f.time).getFullYear() > 2021);
+				// filtering out old hits. 5-17-2022 perspective did an update that seriously changed scoring
+				// so old hits are unreliable.
+				// yes i know this is horrible but i'm not writing a framework for this because
+				// i should never need to do it again
+				hits = hits.filter(f => {
+					const date = new Date(f.time);
+					if (date.getFullYear() < 2022) return false;
+					return !(date.getFullYear() === 2022 && date.getMonth() <= 4 && date.getDate() <= 17);
+				});
 				if (hits.length < punishment.count) continue;
 			}
 			recommended.push([punishment.punishment, type]);
@@ -622,9 +626,8 @@ export function writeStats(type: string, entry: AnyObject) {
 }
 
 function saveSettings(path?: string) {
-	let full = `config/chat-plugins/`;
-	if (path) full = pathModule.join(full, path);
-	FS(`${full}.json`).writeUpdate(() => JSON.stringify(settings));
+	if (!path) path = 'nf';
+	FS(`config/chat-plugins/${path}.json`).writeUpdate(() => JSON.stringify(settings));
 }
 
 function saveReviews() {
