@@ -593,4 +593,60 @@ export const Items: {[k: string]: ModdedItemData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
+	quagsirite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	gogoatite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	spiritombite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	chatotite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	lunatonite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	lunatonitebluemoon: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	solrockite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	solrockitesupernova: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	heatmorite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	drampite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	probopassite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	beheeyite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	grimmsnarlite: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	aromatissite: {
+		inherit: true,
+		isNonstandard: null,
+	},
 };
