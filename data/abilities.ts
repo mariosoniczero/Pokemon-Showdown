@@ -4990,19 +4990,77 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1027,
 	},
 	"supernova": {
-		
+		//Coded in sim/battle-actions.ts
 		name: "Supernova",
 		rating: 3,
 		num: 1028
 	},
 	"lunarpower": {
-		
+		//Moonlight is coded in the move code
+		onStart() {
+			pokemon.addVolatile('lunarpower');
+		},
+		onBasePowerPriority: 16,
+		onBasePower(basePower, user, target, move) {
+			if (move.id === 'moonblast') {
+				return this.chainModify([4505, 4096]);
+			}
+		},
+		onEnd(pokemon) {
+			pokemon.removeVolatile('lunarpower');
+		},
+		condition: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onChargeMove(pokemon, target, move) {
+				this.add('-activate', pokemon, 'ability: Spectral Battery');
+				this.debug('lunar power - remove charge turn for ' + move.id);
+				this.attrLastMove('[still]');
+				this.addMove('-anim', pokemon, move.name, target);
+				pokemon.removeVolatile('lunarpower');
+				return false; // skip charge turn
+			},
+		},
 		name: "Lunar Power",
 		rating: 3,
 		num: 1028,
 	},
 	"tantalize": {
-		
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Tantalize');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					target.addVolatile('tantalize');
+				}
+			}
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (pokemon.volatiles['dynamax']) {
+					delete pokemon.volatiles['tantalize'];
+					return false;
+				}
+				if (effect?.id === 'gmaxmeltdown') this.effectState.duration = 3;
+				this.add('-start', pokemon, 'Tantalize');
+			},
+			onEnd(pokemon) {
+				if (pokemon.beingCalledBack || pokemon.switchFlag) {
+					this.debug('Tantalize damage');
+					pokemon.damage(pokemon.baseMaxhp / 8, pokemon, pokemon)
+				}
+				this.add('-end', pokemon, 'Tantalize');
+			},
+			onDisableMove(pokemon) {
+				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
+			},
+		},
 		name: "Tantalize",
 		rating: 4,
 		num: 1028,
