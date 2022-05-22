@@ -4990,13 +4990,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1027,
 	},
 	"supernova": {
-		//Coded in sim/battle-actions.ts
+		// Coded in sim/battle-actions.ts
 		name: "Supernova",
 		rating: 3,
-		num: 1028
+		num: 1028,
 	},
 	"lunarpower": {
-		//Moonlight is coded in the move code
+		// Moonlight is coded in the move code
 		onStart() {
 			pokemon.addVolatile('lunarpower');
 		},
@@ -5053,7 +5053,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			onEnd(pokemon) {
 				if (pokemon.beingCalledBack || pokemon.switchFlag) {
 					this.debug('Tantalize damage');
-					pokemon.damage(pokemon.baseMaxhp / 8, pokemon, pokemon)
+					pokemon.damage(pokemon.baseMaxhp / 8, pokemon, pokemon);
 				}
 				this.add('-end', pokemon, 'Tantalize');
 			},
