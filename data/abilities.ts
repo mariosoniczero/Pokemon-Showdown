@@ -165,7 +165,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	aromaveil: {
 		onAllyTryAddVolatile(status, target, source, effect) {
-			if (['attract', 'disable', 'encore', 'healblock', 'taunt', 'torment', 'packtactics'].includes(status.id)) {
+			if (['attract', 'disable', 'encore', 'healblock', 'taunt', 'torment', 'packtactics', 'tantalize'].includes(status.id)) {
 				if (effect.effectType === 'Move') {
 					const effectHolder = this.effectState.target;
 					this.add('-block', target, 'ability: Aroma Veil', '[of] ' + effectHolder);
@@ -4731,8 +4731,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		condition: {
 			onStart(pokemon) {
-				this.effectData.lastMove = '';
-				this.effectData.numConsecutive = 0;
+				this.effectState.lastMove = '';
+				this.effectState.numConsecutive = 0;
 			},
 			onTryMovePriority: -2,
 			onTryMove(pokemon, target, move) {
@@ -4740,18 +4740,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					pokemon.removeVolatile('crescendo');
 					return;
 				}
-				if (this.effectData.lastMove === move.id) {
-					this.effectData.numConsecutive++;
-				} else if (pokemon.volatiles['twoturnmove'] && this.effectData.lastMove !== move.id) {
-					this.effectData.numConsecutive = 1;
+				if (this.effectState.lastMove === move.id) {
+					this.effectState.numConsecutive++;
+				} else if (pokemon.volatiles['twoturnmove']) {
+					if (this.effectState.lastMove !== move.id) {
+						this.effectState.numConsecutive = 1;
+					} else {
+						this.effectState.numConsecutive++;
+					}
 				} else {
-					this.effectData.numConsecutive = 0;
+					this.effectState.numConsecutive = 0;
 				}
-				this.effectData.lastMove = move.id;
+				this.effectState.lastMove = move.id;
 			},
 			onModifyDamage(damage, source, target, move) {
 				const dmgMod = [0x1000, 0x1333, 0x1666, 0x1999, 0x1CCC, 0x2000];
-				const numConsecutive = this.effectData.numConsecutive > 5 ? 5 : this.effectData.numConsecutive;
+				const numConsecutive = this.effectState.numConsecutive > 5 ? 5 : this.effectState.numConsecutive;
 				return this.chainModify([dmgMod[numConsecutive], 0x1000]);
 			},
 		},
@@ -4760,11 +4764,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1011,
 	},
 	"vigorcharge": {
-		onUpdate(pokemon) {
-			if (pokemon.volatiles['mustrecharge']) {
-				this.add('-activate', pokemon, "ability: Vigor Charge");
-				pokemon.removeVolatile('mustrecharge');
-			}
+		onTryAddVolatile(status, pokemon) {
+			this.add('-activate', pokemon, "ability: Vigor Charge");
+			if (status.id === 'mustrecharge') return null;
 		},
 		name: "Vigor Charge",
 		rating: 3,
@@ -4894,7 +4896,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		onAllyTryAddVolatile(status, target, source, effect) {
-			if (['attract', 'disable', 'encore', 'healblock', 'taunt', 'torment', 'packtactics'].includes(status.id)) {
+			if (['attract', 'disable', 'encore', 'healblock', 'taunt', 'torment', 'packtactics', 'tantalize'].includes(status.id)) {
 				if (effect.effectType === 'Move') {
 					const effectHolder = this.effectState.target;
 					this.add('-block', target, 'ability: Brainless', '[of] ' + effectHolder);
@@ -4908,24 +4910,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1020,
 	},
 	"soulsiphon": {
-		onDamagingHit(damage, target, source, move) {
-			const type1 = source.getTypes()[0];
-			const type2 = source.getTypes()[1];
-			if (type1 === move.getType() || type2 === move.getType()) this.heal(damage / 2);
+		onModifyMove(move, pokemon) {
+			const type1 = pokemon.getTypes()[0];
+			const type2 = pokemon.getTypes()[1];
+			if (type1 === move.type || type2 === move.type) move.drain = [1, 2];
 		},
 		name: "Soul Siphon",
 		rating: 4,
 		num: 1021,
 	},
 	"bootyplunderer": {
-		onHit(target, source) {
-			const item = target.takeItem(source);
-			if (item) {
-				this.add('-enditem', target, item.name, '[from] ability: Booty Plunderer', '[of] ' + source);
-			} else {
-				this.add('-fail', target, 'ability: Booty Plunderer');
-			}
-		},
+		// Coded under Chatter
 		name: "Booty Plunderer",
 		rating: 4,
 		num: 1022,
@@ -4953,10 +4948,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1024,
 	},
 	"ancientwisdom": {
-		onUpdate(pokemon) {
-			if (pokemon.volatiles['mustrecharge']) {
+		onTryAddVolatile(status, pokemon) {
+			if (status.id === 'mustrecharge') {
 				this.add('-activate', pokemon, "ability: Ancient Wisdom");
-				pokemon.removeVolatile('mustrecharge');
+				return null;
 			}
 		},
 		name: "Ancient Wisdom",
@@ -4975,30 +4970,33 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1026,
 	},
 	"darkwarp": {
-		onHit(target, source) {
-			if (!this.canSwitch(source.side) || source.forceSwitchFlag || source.switchFlag) return;
-			for (const side of this.sides) {
-				for (const active of side.active) {
-					active.switchFlag = false;
-				}
+		onModifyMove(move, pokemon) {
+			if (move.category !== 'Status') {
+				move.selfSwitch = 'true';
 			}
-			source.switchFlag = true;
-			this.add('-activate', source, 'ability: Dark Warp');
 		},
 		name: "Dark Warp",
 		rating: 4,
 		num: 1027,
 	},
 	"supernova": {
-		// Coded in sim/battle-actions.ts
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (['explosion', 'selfdestruct'].includes(move.id)) {
+				this.add('-activate', pokemon, 'ability: Supernova');
+				this.debug('Supernova boost');
+				return this.chainModify(2);
+			}
+		},
 		name: "Supernova",
 		rating: 3,
 		num: 1028,
 	},
 	"lunarpower": {
 		// Moonlight is coded in the move code
-		onStart() {
+		onStart(pokemon) {
 			pokemon.addVolatile('lunarpower');
+			this.add('-ability', pokemon, 'ability: Lunar Power');
 		},
 		onBasePowerPriority: 16,
 		onBasePower(basePower, user, target, move) {
@@ -5012,7 +5010,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		condition: {
 			noCopy: true, // doesn't get copied by Baton Pass
 			onChargeMove(pokemon, target, move) {
-				this.add('-activate', pokemon, 'ability: Spectral Battery');
+				this.add('-activate', pokemon, 'ability: Lunar Power');
 				this.debug('lunar power - remove charge turn for ' + move.id);
 				this.attrLastMove('[still]');
 				this.addMove('-anim', pokemon, move.name, target);
@@ -5027,8 +5025,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	"tantalize": {
 		onStart(pokemon) {
 			let activated = false;
-			for (const target of pokemon.side.foe.active) {
-				if (!target || !this.isAdjacent(target, pokemon)) continue;
+			for (const target of pokemon.adjacentFoes()) {
 				if (!activated) {
 					this.add('-ability', pokemon, 'Tantalize');
 					activated = true;
@@ -5047,14 +5044,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					delete pokemon.volatiles['tantalize'];
 					return false;
 				}
-				if (effect?.id === 'gmaxmeltdown') this.effectState.duration = 3;
 				this.add('-start', pokemon, 'Tantalize');
 			},
+			onBeforeSwitchOut(pokemon) {
+				this.debug('Tantalize damage');
+				this.add('-activate', pokemon, 'Tantalize');
+				this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon);
+			},
 			onEnd(pokemon) {
-				if (pokemon.beingCalledBack || pokemon.switchFlag) {
-					this.debug('Tantalize damage');
-					pokemon.damage(pokemon.baseMaxhp / 8, pokemon, pokemon);
-				}
 				this.add('-end', pokemon, 'Tantalize');
 			},
 			onDisableMove(pokemon) {

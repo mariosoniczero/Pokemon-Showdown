@@ -2112,6 +2112,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, sound: 1, distance: 1, bypasssub: 1},
+		onAfterHit(target, source) {
+			if (target.volatiles['confusion'] && source.ability === 'bootyplunderer') {
+				const item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] ability: Booty Plunderer', '[of] ' + source);
+				}
+			}
+		},
 		noSketch: true,
 		secondary: {
 			chance: 100,

@@ -19,6 +19,44 @@ The column value will be ignored for repeat sections.
 
 export const Formats: FormatList = [
 
+	// Custom Mega Formats
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "Custom Mega",
+	},
+	{
+		name: "[Gen 8] Custom Mega Draft League",
+		mod: 'gen8',
+		searchShow: false,
+		timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 
+				  'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', '+GPL',
+				  'Z-Move Clause', 'Swagger Clause', 'Evasion Abilities Clause',
+		],
+		banlist: ['Power Construct', 'Battle Bond', 'Kangaskhanite + Seismic Toss',
+				  'Glalitite + Moody', 'Greninja + Protean', 'Blaziken + Speed Boost', 
+				  'Brightpowder', 'Lax Incense', 'Blastoisinite + Shell Smash',
+		],
+		onValidateSet(set) {
+			const species = this.dex.species.get(set.species);
+			if (species.isNonstandard === 'GPL') return;
+		}
+	},
+	{
+		name: "[Gen 8] Custom Mega OU",
+		mod: 'gen8',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause',
+				  'Dynamax Clause', 'Sleep Clause Mod', '+GPL', 'Z-Move Clause',
+		],
+		banlist: [
+			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Attack', 'Deoxys-Base', 'Deoxys-Speed', 'Dialga', 'Eternatus', 'Genesect', 'Gengar-Mega',
+			'Giratina', 'Groudon', 'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega',
+			'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
+			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom', 'Zygarde-Base',
+			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass', 'Darmanitan-Galar', 'Metagross-Mega', 'Blastoise-Mega',
+		],
+	},
+
 	// Sw/Sh Singles
 	///////////////////////////////////////////////////////////////////
 
