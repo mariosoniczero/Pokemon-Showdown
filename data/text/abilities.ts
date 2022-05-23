@@ -1754,6 +1754,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	spectralbattery: {
 		name: "Spectral Battery",
 		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
+		activate: "[POKEMON] doesn't need to recharge!"
 	},
 	infectate: {
 		name: "Infectate",
@@ -1815,6 +1816,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	brainless: {
 		name: "Brainless",
 		shortDesc: "Ignores stat changes; protects from Attract, Disable, Encore, Heal Block, Taunt, Torment.",
+		block: "  [POKEMON] is unaffected due to its brainlessness!",
 	},
 	soulsiphon: {
 		name: "Soul Siphon",
@@ -1822,13 +1824,15 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	bootyplunderer: {
 		name: "Booty Plunderer",
-		shortDesc: "When damage is dealt, the opponent's held item is removed.",
+		shortDesc: "When the opponent's Pokemon is confused by Chatter, their held item is removed.",
 	},
+	/*
 	clearskies: {
 		name: "Clear Skies",
 		shortDesc: "On switch-in, any active weather ",
 		start: "  [POKEMON] cleared the weather!",
 	},
+	*/
 	arsonist: {
 		name: "Arsonist",
 		shortDesc: "This Pokemon's attacks are critical hits if the target is burned.",
@@ -1836,6 +1840,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	ancientwisdom: {
 		name: "Ancient Wisdom",
 		shortDesc: "Negates the recharge turn for moves which require recharging.",
+		activate: "[POKEMON] doesn't need to recharge!",
 	},
 	mindreboot: {
 		name: "Mind Reboot",
@@ -1847,7 +1852,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	supernova: {
 		name: "Supernova",
-		shortDesc: "Causes Explosion and Self-Destruct to half the defense of its targets.",
+		shortDesc: "This Pokemon's Attack is doubled when using Explosion or Self-Destruct.",
 	},
 	lunarpower: {
 		name: "Lunar Power",
@@ -1856,6 +1861,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	tantalize: {
 		name: "Tantalize",
 		shortDesc: "Inflicts status on switch in which applies Torment and damages 1/8 of max HP on switch out.",
+		start: "[POKEMON] was tantalized by the aroma!",
+		activate: "[POKEMON] was hurt by the aroma!",
 	},
 	/*
 	: {
