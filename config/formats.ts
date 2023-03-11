@@ -35,7 +35,7 @@ export const Formats: FormatList = [
 		],
 		banlist: ['Power Construct', 'Battle Bond', 'Kangaskhanite + Seismic Toss',
 				  'Glalitite + Moody', 'Greninja + Protean', 'Blaziken + Speed Boost', 
-				  'Brightpowder', 'Lax Incense', 'Blastoisinite + Shell Smash',
+				  'Brightpowder', 'Lax Incense', 'Blastoisinite + Shell Smash', 'Hidden Power',
 		],
 		onValidateSet(set) {
 			const species = this.dex.species.get(set.species);
@@ -53,7 +53,7 @@ export const Formats: FormatList = [
 			'Giratina', 'Groudon', 'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega',
 			'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
 			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom', 'Zygarde-Base',
-			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass', 'Darmanitan-Galar', 'Metagross-Mega', 'Blastoise-Mega',
+			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass', 'Darmanitan-Galar', 'Metagross-Mega', 'Blastoise-Mega', 'Hidden Power',
 		],
 	},
 

@@ -4971,7 +4971,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	"darkwarp": {
 		onModifyMove(move, pokemon) {
-			if (move.category !== 'Status') {
+			if (move.category !== 'Status' && move.priority <= 0) {
 				move.selfSwitch = 'true';
 			}
 		},
@@ -4983,7 +4983,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
 			if (['explosion', 'selfdestruct'].includes(move.id)) {
-				this.add('-activate', pokemon, 'ability: Supernova');
+				this.add('-activate', attacker, 'ability: Supernova');
 				this.debug('Supernova boost');
 				return this.chainModify(2);
 			}
@@ -5030,11 +5030,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					this.add('-ability', pokemon, 'Tantalize');
 					activated = true;
 				}
-				if (target.volatiles['substitute']) {
-					this.add('-immune', target);
-				} else {
-					target.addVolatile('tantalize');
-				}
+				target.addVolatile('tantalize');
 			}
 		},
 		condition: {
