@@ -467,6 +467,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (source?.hasItem('damprock')) {
 				return 8;
 			}
+			if (source?.hasAbility('thunderstorm')) {
+				return 8;
+			}
 			return 5;
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {

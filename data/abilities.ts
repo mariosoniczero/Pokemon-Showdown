@@ -5586,7 +5586,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onBasePower(basePower, attacker, defender, move) {
 			const basePowerAfterMultiplier = this.modify(basePower, this.event.modifier);
 			this.debug('Base Power: ' + basePowerAfterMultiplier);
-			this.debug('Technician boost');
+			this.debug('Dragon Style boost');
 			return this.chainModify(1.5);
 		},
 		name: "Dragon Style",
@@ -5781,5 +5781,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Tantalize",
 		rating: 4,
 		num: 1028,
+	},
+	"terachromaticism": {
+		onStart(pokemon) {
+			pokemon.setType(pokemon.teraType);
+		},
+		onModifyMove(move, pokemon) {
+			if (move.type === pokemon.teraType) {
+				move.stab = 1.75;
+			}
+		},
+		name: "Terachromaticism",
+		rating: 3.5,
+		num: 1051,
 	},
 };

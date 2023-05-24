@@ -4530,6 +4530,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (source?.hasItem('terrainextender')) {
 					return 8;
 				}
+				else if (source?.hasAbility('thunderstorm')) {
+					return 8;
+				}
 				return 5;
 			},
 			onSetStatus(status, target, source, effect) {
