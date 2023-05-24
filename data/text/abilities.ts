@@ -2166,7 +2166,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	// GPL
 	thunderstorm: {
 		name: "Thunderstorm",
-		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain.",
+		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain for 8 turns each.",
 	},
 	terrify: {
 		name: "Terrify",
@@ -2180,8 +2180,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	spectralbattery: {
 		name: "Spectral Battery",
-		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
-		activate: "[POKEMON] doesn't need to recharge!"
+		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop), also boosts their power by 1.3x.",
+		end: "  [POKEMON] became fully charged due to its Spectral Battery!",
 	},
 	infectate: {
 		name: "Infectate",
@@ -2215,6 +2215,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	vigorcharge: {
 		name: "Vigor Charge",
 		shortDesc: "Negates the recharge turn for moves which require recharging.",
+		activate: "[POKEMON] doesn't need to recharge!"
 	},
 	determination: {
 		name: "Determination",
@@ -2290,6 +2291,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		shortDesc: "Inflicts status on switch in which applies Torment and damages 1/8 of max HP on switch out.",
 		start: "[POKEMON] was tantalized by the aroma!",
 		activate: "[POKEMON] was hurt by the aroma!",
+	},
+	terachromaticism: {
+		name: "Terachromaticism",
+		shortDesc: "Changes type to match Pokemon's Tera type, and increases STAB bonus to 1.75x.",
 	},
 	/*
 	: {
