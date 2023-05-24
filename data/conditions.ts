@@ -893,6 +893,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('cant', attacker, 'move: Taunt', move);
 				return false;
 			}
+		},
+	},
 	rolloutstorage: {
 		name: 'rolloutstorage',
 		duration: 2,
