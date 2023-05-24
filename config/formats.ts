@@ -25,17 +25,17 @@ export const Formats: FormatList = [
 		section: "Custom Mega",
 	},
 	{
-		name: "[Gen 8] Custom Mega Draft League",
-		mod: 'gen8',
+		name: "[Gen 9] Custom Mega Draft League",
+		mod: 'gen9',
 		searchShow: false,
 		timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Clause', 
 				  'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', '+GPL',
-				  'Z-Move Clause', 'Swagger Clause', 'Evasion Abilities Clause',
+				  'Z-Move Clause', 'Swagger Clause', 'Moody Clause', '+Unreleased',
 		],
-		banlist: ['Power Construct', 'Battle Bond', 'Kangaskhanite + Seismic Toss',
-				  'Glalitite + Moody', 'Greninja + Protean', 'Blaziken + Speed Boost', 
-				  'Brightpowder', 'Lax Incense', 'Blastoisinite + Shell Smash', 'Hidden Power',
+		banlist: ['Power Construct', 'Kangaskhanite + Seismic Toss',  'Blaziken + Speed Boost',  
+				  'Blastoisinite + Shell Smash', 'Hidden Power', 'Revival Blessing', 'Shed Tail', 
+				  'Last Respects',
 		],
 		onValidateSet(set) {
 			const species = this.dex.species.get(set.species);
@@ -43,18 +43,16 @@ export const Formats: FormatList = [
 		}
 	},
 	{
-		name: "[Gen 8] Custom Mega OU",
-		mod: 'gen8',
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause',
-				  'Dynamax Clause', 'Sleep Clause Mod', '+GPL', 'Z-Move Clause',
+		name: "[Gen 9] Custom Mega OU",
+		mod: 'gen9',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Clause', 'Species Clause',
+				  'Dynamax Clause', 'Sleep Clause Mod', '+GPL', 'Z-Move Clause', '+Unreleased',
 		],
-		banlist: [
-			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Attack', 'Deoxys-Base', 'Deoxys-Speed', 'Dialga', 'Eternatus', 'Genesect', 'Gengar-Mega',
-			'Giratina', 'Groudon', 'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega',
-			'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
-			'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom', 'Zygarde-Base',
-			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass', 'Darmanitan-Galar', 'Metagross-Mega', 'Blastoise-Mega', 'Hidden Power',
-		],
+		banlist: ['ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'King\'s Rock', 'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 'Shed Tail', 'Hidden Power'],
+		onValidateSet(set) {
+			const species = this.dex.species.get(set.species);
+			if (species.isNonstandard === 'GPL') return;
+		}
 	},
 
 	// S/V Singles
