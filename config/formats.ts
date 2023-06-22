@@ -29,9 +29,8 @@ export const Formats: FormatList = [
 		mod: 'gen9',
 		searchShow: false,
 		timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Clause', 
-				  'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', '+GPL',
-				  'Z-Move Clause', 'Swagger Clause', 'Moody Clause', '+Unreleased',
+		ruleset: ['Draft', '+Unobtainable', '+Past', '+GPL', 'Dynamax Clause', 'Z-Move Clause', 
+				  'Swagger Clause', 'Moody Clause',
 		],
 		banlist: ['Power Construct', 'Kangaskhanite + Seismic Toss',  'Blaziken + Speed Boost',  
 				  'Blastoisinite + Shell Smash', 'Hidden Power', 'Revival Blessing', 'Shed Tail', 
@@ -46,9 +45,12 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Custom Mega OU",
 		mod: 'gen9',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Clause', 'Species Clause',
-				  'Dynamax Clause', 'Sleep Clause Mod', '+GPL', 'Z-Move Clause', '+Unreleased',
+				  'Dynamax Clause', 'Sleep Clause Mod', '+GPL', 'Z-Move Clause',
 		],
-		banlist: ['ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'King\'s Rock', 'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 'Shed Tail', 'Hidden Power'],
+		banlist: ['ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 
+				  'King\'s Rock', 'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 
+				  'Shed Tail', 'Hidden Power',
+		],
 		onValidateSet(set) {
 			const species = this.dex.species.get(set.species);
 			if (species.isNonstandard === 'GPL') return;

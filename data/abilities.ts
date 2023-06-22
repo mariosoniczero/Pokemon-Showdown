@@ -5378,7 +5378,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	"weatherrush": {
 		onModifySpe(spe, pokemon) {
-			if (['hail', 'raindance', 'primordialsea', 'sandstorm'].includes(pokemon.effectiveWeather())) {
+			if (['snow', 'hail', 'raindance', 'primordialsea', 'sandstorm'].includes(pokemon.effectiveWeather())) {
 				return this.chainModify(2);
 			}
 		},
