@@ -2292,9 +2292,106 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		start: "[POKEMON] was tantalized by the aroma!",
 		activate: "[POKEMON] was hurt by the aroma!",
 	},
+	sushiscraps: {
+		name: "Sushi Scraps",
+		shortDesc: "Sets Spikes after landing Draco Meteor.",
+	},
+	perfectmimicry: {
+		name: "Perfect Mimicry",
+		shortDesc: "Changes primary typing to match current terrain.",
+		activate: "  [POKEMON] returned to its original type!",
+	},
+	greenhouse: {
+		name: "Greenhouse",
+		shortDesc: "On switch-in, this Pokemon summons Sun and Grassy Terrain.",
+	},
+	terahammer: {
+		name: "Tera Hammer",
+		shortDesc: "Changes Gigaton Hammer's typing to match user's Tera Type.",
+		start: "  [POKEMON]'s Gigaton Hammer Terastallized into the [TYPE] type!",
+	},
+	megaiceface: {
+		name: "Mega Ice Face",
+		shortDesc: "Changes form at half health; regular form takes no recoil; at 25% +1 speed",
+	},
+	anemochory: {
+		name: "Anemochory",
+		shortDesc: "Grants STAB to Flying moves; Grassy Terrain set after landing Grass attacks",
+	},
+	deadlyprecision: {
+		name: "Deadly Precision",
+		shortDesc: "Reduces opponent's Def and SpDef by 20%.",
+	},
+	magneticfists: {
+		name: "Magnetic Fists",
+		shortDesc: "The power of punching moves are boosted by 50%.",
+	},
+	heavyartillery: {
+		name: "Heavy Artillery",
+		desc: "This Pokemon's SpA is multiplied by 1.5, but it can only select the first move it executes. These effects are prevented while this Pokemon is Dynamaxed.",
+		shortDesc: "This Pokemon's SpA is 1.5x, but it can only select the first move it executes.",
+	},
+	machibuse: {
+		name: "Machibuse",
+		shortDesc: "Illusion + 1.3x to moves' base power while Illusion is active.",
+		end: "  [POKEMON]'s illusion wore off!",
+	},
+	assassinate: {
+		name: "Assassinate",
+		shortDesc: "Guaranteed critical hit for first attack on each switch in.",
+	},
+	surgingsteel: {
+		name: "Surging Steel",
+		shortDesc: "Sets Steelspike after landing a Steel attack.",
+	},
+	elementalmastery: {
+		name: "Elemental Mastery",
+		shortDesc: "User gains STAB on Electric, Ice, and Fire type moves.",
+	},
+	divineinspiration: {
+		name: "Divine Inspiration",
+		shortDesc: "This Pokemon's Wishes give the recipient 1.2x Atk and SpA; wears off on switch out.",
+	},
+	pristinearmor: {
+		name: "Pristine Armor",
+		shortDesc: "This Pokemon's Def and SpDef are boosted by 25%; wears off if hit by water move or in rain.",
+		start: "  [POKEMON] fortified itself with armor!",
+		end: "  [POKEMON]'s armor rusted!",
+	},
+	puremindset: {
+		name: "Pure Mindset",
+		shortDesc: "Every physical attack used by this Pokemon uses its SpA instead.",
+	},
+	weatherrod: {
+		name: "Weather Rod",
+		desc: "Adds additional type on top of regular type based on weather; Fire type in Sun, Water type in Rain, Ice type in Snow, Rock type in Sandstorm.",
+		shortDesc: "Adds an additional type to this Pokemon based on the weather.",
+	},
+	fearless: {
+		name: "Fearless",
+		shortDesc: "Moves that can miss gain 1.2x base power.",
+	},
+	spectralflames: {
+		name: "Spectral Flames",
+		shortDesc: "User's status moves cannot miss the target.",
+	},
+	entrance: {
+		name: "Entrance",
+		shortDesc: "1.3x SpA if opponent is statused or has lowered stats; 1.5x if both.",
+	},
+	offensivefiring: {
+		name: "Offensive Firing",
+		shortDesc: "After landing attack, fires missile which causes opponent to lose 1/4 of its health.",
+		damage: "[POKEMON] was hurt by the missile!"
+	},
 	terachromaticism: {
 		name: "Terachromaticism",
-		shortDesc: "Changes type to match Pokemon's Tera type, and increases STAB bonus to 1.75x.",
+		shortDesc: "Changes type to match Pokemon's Tera type.",
+	},
+	packtactics: {
+		name: "Pack Tactics",
+		shortDesc: "All opponents become taunted while this Pokemon is active.",
+		start: "  [POKEMON]'s pack began taunting the opponent!",
 	},
 	/*
 	: {

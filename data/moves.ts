@@ -7793,6 +7793,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (source?.hasItem('terrainextender')) {
 					return 8;
 				}
+				else if (source?.hasAbility('greenhouse')) {
+					return 8;
+				}
 				return 5;
 			},
 			onBasePowerPriority: 6,
@@ -21295,6 +21298,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			duration: 2,
 			onStart(pokemon, source) {
 				this.effectState.hp = source.maxhp / 2;
+				if (source.ability === 'divineinspiration') {
+					this.effectState.divineInspiration = true;
+				}
 			},
 			onResidualOrder: 4,
 			onEnd(target) {
@@ -21302,6 +21308,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 					const damage = this.heal(this.effectState.hp, target, target);
 					if (damage) {
 						this.add('-heal', target, target.getHealth, '[from] move: Wish', '[wisher] ' + this.effectState.source.name);
+					}
+					if (this.effectState.divineInspiration) {
+						target.addVolatile('divineinspiration');
 					}
 				}
 			},

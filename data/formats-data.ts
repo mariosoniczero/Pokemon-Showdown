@@ -6458,6 +6458,90 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	aromatissemega: {
 		isNonstandard: "GPL",
 	},
+	tatsugirimega: {
+		isNonstandard: "GPL",
+	},
+	stunfiskgalarmega: {
+		isNonstandard: "GPL",
+	},
+	victreebelmega: {
+		isNonstandard: "GPL",
+	},
+	tinkatonmega: {
+		isNonstandard: "GPL",
+	},
+	eiscuemega: {
+		isNonstandard: "GPL",
+	},
+	whimsicottmega: {
+		isNonstandard: "GPL",
+	},
+	clawitzermega: {
+		isNonstandard: "GPL",
+	},
+	octillerymega: {
+		isNonstandard: "GPL",
+	},
+	bombirdiermega: {
+		isNonstandard: "GPL",
+	},
+	electiviremega: {
+		isNonstandard: "GPL",
+	},
+	magmortarmega: {
+		isNonstandard: "GPL",
+	},
+	swalotmega: {
+		isNonstandard: "GPL",
+	},
+	zoroarkmega: {
+		isNonstandard: "GPL",
+	},
+	accelgormega: {
+		isNonstandard: "GPL",
+	},
+	escavaliermega: {
+		isNonstandard: "GPL",
+	},
+	belliboltmega: {
+		isNonstandard: "GPL",
+	},
+	dudunsparcemega: {
+		isNonstandard: "GPL",
+	},
+	hydreigonmega: {
+		isNonstandard: "GPL",
+	},
+	xatumega: {
+		isNonstandard: "GPL",
+	},
+	skarmorymega: {
+		isNonstandard: "GPL",
+	},
+	donphanmega: {
+		isNonstandard: "GPL",
+	},
+	shiftrymega: {
+		isNonstandard: "GPL",
+	},
+	reuniclusmega: {
+		isNonstandard: "GPL",
+	},
+	helioliskmega: {
+		isNonstandard: "GPL",
+	},
+	hawluchamega: {
+		isNonstandard: "GPL",
+	},
+	ninetalesmega: {
+		isNonstandard: "GPL",
+	},
+	jynxmega: {
+		isNonstandard: "GPL",
+	},
+	cramorantmega: {
+		isNonstandard: "GPL",
+	},
 	/*
 	mega: {
 		isNonstandard: "GPL",

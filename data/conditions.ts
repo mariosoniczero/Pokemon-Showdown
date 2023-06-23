@@ -540,6 +540,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (source?.hasItem('heatrock')) {
 				return 8;
 			}
+			else if (source?.hasAbility('greenhouse')) {
+				return 8;
+			}
 			return 5;
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {

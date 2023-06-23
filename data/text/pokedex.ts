@@ -3935,6 +3935,93 @@ export const PokedexText: {[k: string]: PokedexText} = {
 	aromatissemega: {
 		name: "Aromatisse-Mega",
 	},
+	tatsugirimega: {
+		name: "Tatsugiri-Mega",
+	},
+	stunfiskgalarmega: {
+		name: "Stunfisk-Galar-Mega",
+	},
+	victreebelmega: {
+		name: "Victreebel-Mega",
+	},
+	tinkatonmega: {
+		name: "Tinkaton-Mega",
+	},
+	eiscuemega: {
+		name: "Eiscue-Mega",
+	},
+	eiscuemeganoice: {
+		name: "Eiscue-Mega-Noice",
+	},
+	whimsicottmega: {
+		name: "Whimsicott-Mega",
+	},
+	clawitzermega: {
+		name: "Clawitzer-Mega",
+	},
+	octillerymega: {
+		name: "Octillery-Mega",
+	},
+	bombirdiermega: {
+		name: "Bombirdier-Mega",
+	},
+	electiviremega: {
+		name: "Electivire-Mega",
+	},
+	magmortarmega: {
+		name: "Magmortar-Mega",
+	},
+	swalotmega: {
+		name: "Swalot-Mega",
+	},
+	zoroarkmega: {
+		name: "Zoroark-Mega",
+	},
+	accelgormega: {
+		name: "Accelgor-Mega",
+	},
+	escavaliermega: {
+		name: "Escavalier-Mega",
+	},
+	belliboltmega: {
+		name: "Bellibolt-Mega",
+	},
+	dudunsparcemega: {
+		name: "Dudunsparce-Mega",
+	},
+	hydreigonmega: {
+		name: "Hydreigon-Mega",
+	},
+	xatumega: {
+		name: "Xatu-Mega",
+	},
+	skarmorymega: {
+		name: "Skarmory-Mega",
+	},
+	donphanmega: {
+		name: "Donphan-Mega",
+	},
+	shiftrymega: {
+		name: "Shiftry-Mega",
+	},
+	reuniclusmega: {
+		name: "Reuniclus-Mega",
+	},
+	helioliskmega: {
+		name: "Heliolisk-Mega",
+	},
+	hawluchamega: {
+		name: "Hawlucha-Mega",
+	},
+	ninetalesmega: {
+		name: "Ninetales-Mega",
+	},
+	jynxmega: {
+		name: "Jynx-Mega",
+	},
+	cramorantmega: {
+		name: "Cramorant-Mega",
+	},
 	/*
 	mega: {
 		name: "-Mega",

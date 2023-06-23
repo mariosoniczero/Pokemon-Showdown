@@ -5720,7 +5720,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		// Moonlight is coded in the move code
 		onStart(pokemon) {
 			pokemon.addVolatile('lunarpower');
-			this.add('-ability', pokemon, 'ability: Lunar Power');
+			this.add('-ability', pokemon, 'Lunar Power');
 		},
 		onBasePowerPriority: 16,
 		onBasePower(basePower, user, target, move) {
@@ -5781,6 +5781,585 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Tantalize",
 		rating: 4,
 		num: 1028,
+	},
+	"sushiscraps": {
+		onModifyMovePriority: -1,
+		onModifyMove(move) {
+			if (move.id === "dracometeor") {
+				this.debug('Adding Sushi Scraps');
+				move.self = {
+					boosts: {
+						spa: -2,
+					},
+					onHit(source) {
+						for (const side of source.side.foeSidesWithConditions()) {
+							this.add('-activate', source, 'ability: Sushi Scraps');
+							side.addSideCondition('spikes');
+						}
+					},
+				};
+			}
+		},
+		name: "Sushi Scraps",
+		rating: 3.5,
+		num: 1029,
+	},
+	"perfectmimicry": {
+		onStart(pokemon) {
+			this.singleEvent('TerrainChange', this.effect, this.effectState, pokemon);
+		},
+		onTerrainChange(pokemon) {
+			let type = pokemon.getTypes()[1];
+			let types;
+			switch (this.field.terrain) {
+			case 'electricterrain':
+				types = ['Electric', type];
+				break;
+			case 'grassyterrain':
+				types = ['Grass', type];
+				break;
+			case 'mistyterrain':
+				types = ['Fairy', type];
+				break;
+			case 'psychicterrain':
+				types = ['Psychic', type];
+				break;
+			default:
+				types = pokemon.baseSpecies.types;
+			}
+			const oldTypes = pokemon.getTypes();
+			if (oldTypes.join() === types.join() || !pokemon.setType(types)) return;
+			if (this.field.terrain || pokemon.transformed) {
+				this.add('-start', pokemon, 'typechange', types.join('/'), '[from] ability: Perfect Mimicry');
+				if (!this.field.terrain) this.hint("Transform Mimicry changes you to your original un-transformed types.");
+			} else {
+				this.add('-activate', pokemon, 'ability: Perfect Mimicry');
+				this.add('-end', pokemon, 'typechange', '[silent]');
+			}
+		},
+		name: "Perfect Mimicry",
+		rating: 3,
+		num: 1030,
+	},
+	"greenhouse": {
+		onStart(source) {
+			for (const action of this.queue) {
+				if (action.choice === 'runPrimal' && action.pokemon === source && source.species.id === 'groudon') return;
+				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
+			}
+			this.field.setWeather('sunnyday');
+			this.field.setTerrain('grassyterrain');
+		},
+		name: "Greenhouse",
+		rating: 4,
+		num: 1031,
+	},
+	"terahammer": {
+		onStart(pokemon) {
+			this.add('-ability', pokemon, pokemon.teraType, 'Tera Hammer');
+		},
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			if (move.id === 'gigatonhammer') {
+				move.type = pokemon.teraType;
+			}
+		},
+		onModifyWeightPriority: 1,
+		onModifyWeight(weighthg) {
+			return weighthg * 2;
+		},
+		name: "Tera Hammer",
+		rating: 4,
+		num: 1032,
+	},
+	"megaiceface": {
+		onStart(pokemon) {
+			if (pokemon.hp <= pokemon.maxhp / 2 && !['Noice'].includes(pokemon.species.forme)) {
+				this.add('-activate', pokemon, 'ability: Mega Ice Face');
+				pokemon.addVolatile('megaiceface');
+			} 
+		},
+		onDamage(damage, target, source, effect) {
+			if (effect.id === 'recoil' && source.species.id === 'eiscuemega') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				if (this.activeMove.id !== 'struggle') return null;
+			}
+		},
+		onResidualOrder: 29,
+		onResidual(pokemon) {
+			if (pokemon.baseSpecies.baseSpecies !== 'Eiscue' || pokemon.transformed) {
+				return;
+			}
+			if (pokemon.hp <= pokemon.maxhp / 2 && !['Noice'].includes(pokemon.species.forme)) {
+				this.add('-activate', pokemon, 'ability: Mega Ice Face');
+				pokemon.addVolatile('megaiceface');
+			} 
+			/*
+			else if (pokemon.hp > pokemon.maxhp / 2 && ['Noice'].includes(pokemon.species.forme)) {
+				pokemon.addVolatile('megaiceface'); // in case of base Darmanitan-Zen
+				pokemon.removeVolatile('megaiceface');
+			}
+			*/
+		},
+		/*
+		onEnd(pokemon) {
+			if (!pokemon.volatiles['megaiceface'] || !pokemon.hp) return;
+			pokemon.transformed = false;
+			delete pokemon.volatiles['megaiceface'];
+			if (pokemon.species.baseSpecies === 'Eiscue-Mega' && pokemon.species.battleOnly) {
+				pokemon.formeChange(pokemon.species.battleOnly as string, this.effect, false, '[silent]');
+			}
+		},
+		*/
+		condition: {
+			onStart(pokemon) {
+				if (pokemon.species.id !== 'eiscuemeganoice') pokemon.formeChange('Eiscue-Mega-Noice');
+				this.effectState.checkedBerserk = false;
+			},
+			onUpdate(pokemon) {
+				if (pokemon.hp <= pokemon.maxhp / 4 && !this.effectState.checkedBerserk) {
+					this.boost({spe: 1});
+					this.effectState.checkedBerserk = true;
+				}
+			},
+			/*
+			onEnd(pokemon) {
+				if (['Noice'].includes(pokemon.species.forme)) {
+					pokemon.formeChange(pokemon.species.battleOnly as string);
+				}
+			},
+			*/
+		},
+		isPermanent: true,
+		name: "Mega Ice Face",
+		rating: 3,
+		num: 1033,
+	},
+	"anemochory": {
+		onModifyMovePriority: -1,
+		onModifyMove(move) {
+			if (move.type === 'Flying') {
+				move.basePower *= 1.5;
+			}
+			if (move.type === "Grass" && move.category !== "Status" && !move.self) {
+				this.debug('Adding Anemochory');
+				move.self = {
+					onHit(source) {
+						this.add('-activate', source, 'ability: Anemochory');
+						this.field.setTerrain('grassyterrain');
+					},
+				};
+			}
+		},
+		name: "Anemochory",
+		rating: 2.5,
+		num: 1034,
+	},
+	"deadlyprecision": {
+		onAnyModifyDef(def, target, source, move) {
+			const abilityHolder = this.effectState.target;
+			if (target.hasAbility('Deadly Precision')) return;
+			if (!move.ruinedDef?.hasAbility('Deadly Precision')) move.ruinedDef = abilityHolder;
+			if (move.ruinedDef !== abilityHolder) return;
+			this.debug('Deadly Precision Def drop');
+			return this.chainModify([3276, 4096]);
+		},
+		onAnyModifySpD(spd, target, source, move) {
+			const abilityHolder = this.effectState.target;
+			if (target.hasAbility('Deadly Precision')) return;
+			if (!move.ruinedSpD?.hasAbility('Deadly Precision')) move.ruinedSpD = abilityHolder;
+			if (move.ruinedSpD !== abilityHolder) return;
+			this.debug('Deadly Precision SpD drop');
+			return this.chainModify([3276, 4096]);
+		},
+		name: "Deadly Precision",
+		rating: 3.5,
+		num: 1035,
+	},
+	magneticfists: {
+		onBasePowerPriority: 23,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['punch']) {
+				this.debug('Magnetic Fists boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Magnetic Fists",
+		rating: 3.5,
+		num: 1036,
+	},
+	"heavyartillery": {
+		onStart(pokemon) {
+			pokemon.abilityState.choiceLock = "";
+		},
+		onBeforeMove(pokemon, target, move) {
+			if (move.isZOrMaxPowered || move.id === 'struggle') return;
+			if (pokemon.abilityState.choiceLock && pokemon.abilityState.choiceLock !== move.id) {
+				// Fails unless ability is being ignored (these events will not run), no PP lost.
+				this.addMove('move', pokemon, move.name);
+				this.attrLastMove('[still]');
+				this.debug("Disabled by Heavy Artillery");
+				this.add('-fail', pokemon);
+				return false;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			if (pokemon.abilityState.choiceLock || move.isZOrMaxPowered || move.id === 'struggle') return;
+			pokemon.abilityState.choiceLock = move.id;
+		},
+		onModifySpAPriority: 1,
+		onModifySpA(spa, pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
+			// PLACEHOLDER
+			this.debug('Heavy Artillery SpA Boost');
+			return this.chainModify(1.5);
+		},
+		onDisableMove(pokemon) {
+			if (!pokemon.abilityState.choiceLock) return;
+			if (pokemon.volatiles['dynamax']) return;
+			for (const moveSlot of pokemon.moveSlots) {
+				if (moveSlot.id !== pokemon.abilityState.choiceLock) {
+					pokemon.disableMove(moveSlot.id, false, this.effectState.sourceEffect);
+				}
+			}
+		},
+		onEnd(pokemon) {
+			pokemon.abilityState.choiceLock = "";
+		},
+		name: "Heavy Artillery",
+		rating: 3,
+		num: 1037,
+	},
+	"corrosiveooze": {
+		onModifyMove(move) {
+			if (move.target === 'self') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			move.secondaries.push({
+				chance: 100,
+				volatileStatus: 'healblock',
+				ability: this.dex.abilities.get('corrosiveooze'),
+			});
+		},		
+		/*
+		onDamagingHit(damage, target, source, move) {
+			if (source.volatiles['corrosiveooze']) return;
+			if (!move.isMax && !move.isFutureMove && move.id !== 'struggle') {
+				this.add('-activate', target, 'ability: Corrosive Ooze');
+				this.debug(source);
+				this.debug(target);
+				source.addVolatile('healblock');
+			}
+		},
+		/*
+		condition: {
+			onTryHeal(damage, target, source, effect) {
+				this.debug("heal occurring");
+				this.damage(damage);
+				return 0;
+			},
+		},
+		*/
+		name: "Corrosive Ooze",
+		rating: 4,
+		num: 1038,
+	},
+	machibuse: {
+		onBeforeSwitchIn(pokemon) {
+			pokemon.illusion = null;
+			// yes, you can Illusion an active pokemon but only if it's to your right
+			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
+				const possibleTarget = pokemon.side.pokemon[i];
+				if (!possibleTarget.fainted) {
+					pokemon.illusion = possibleTarget;
+					break;
+				}
+			}
+		},
+		onDamagingHit(damage, target, source, move) {
+			if (target.illusion) {
+				this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, source, move);
+			}
+		},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (pokemon.illusion) return this.chainModify([5324, 4096]);
+		},
+		onEnd(pokemon) {
+			if (pokemon.illusion) {
+				this.debug('illusion cleared');
+				pokemon.illusion = null;
+				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
+					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				this.add('replace', pokemon, details);
+				this.add('-end', pokemon, 'Illusion');
+			}
+		},
+		onFaint(pokemon) {
+			pokemon.illusion = null;
+		},
+		name: "Machibuse",
+		rating: 4.5,
+		num: 1039,
+	},
+	"assassinate": {
+		onStart(pokemon) {
+			pokemon.addVolatile('assassinate');
+			this.add('-start', pokemon, 'assassinate');
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['assassinate'];
+		},
+		condition: {
+			onModifyCritRatio(critRatio, source, target) {
+				delete source.volatiles['assassinate'];
+				return 5;
+			},
+		},
+		name: "Assassinate",
+		rating: 3.5,
+		num: 1040,
+	},
+	"surgingsteel": {
+		onModifyMovePriority: -1,
+		onModifyMove(move) {
+			this.debug(move.type);
+			this.debug(move.category);
+			this.debug(move.self);
+			if (move.type === "Steel" && move.category !== "Status" && !move.self) {
+				this.debug('Adding Surging Steel');
+				move.self = {
+					onHit(source) {
+						for (const side of source.side.foeSidesWithConditions()) {
+							this.add('-activate', source, 'ability: Surging Steel');
+							side.addSideCondition('gmaxsteelsurge');
+						}
+					},
+				};
+			}
+		},
+		name: "Surging Steel",
+		rating: 4.5,
+		num: 1041,
+	},
+	"elementalmastery": {
+		onModifyMove(move) {
+			const types = ['Fire', 'Electric', 'Ice'];
+			if (types.includes(move.type)) {
+				move.basePower *= 1.5;
+			}
+		},
+		name: "Elemental Mastery",
+		rating: 3.5,
+		num: 1042,
+	},
+	"divineinspiration": {
+		//Coded as part of Wish in moves.ts
+		condition: {
+			onStart(target) {
+				this.add('-start', target, 'ability: Divine Inspiration');
+			},
+			onModifyAtk(atk, target, source, move) {
+				return this.chainModify([4915, 4096]);
+			},
+			onModifySpA(def, target, source, move) {
+				return this.chainModify([4915, 4096]);
+			},
+			onEnd(target) {
+				delete target.volatiles['divineinspiration'];
+			},
+		},
+		name: "Divine Inspiration",
+		rating: 4,
+		num: 1043,
+	},
+	"pristinearmor": {
+		onStart(pokemon) {
+			pokemon.addVolatile['pristinearmor'];
+			this.add('-start', pokemon, 'pristinearmor');
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['pristinearmor'];
+			this.add('-end', pokemon, 'Pristine Armor');
+		},
+		condition: {
+			onModifyDef(def, target, source, move) {
+				return this.chainModify([5120, 4096]);
+			},
+			onModifySpD(spd, target, source, move) {
+				return this.chainModify([5120, 4096]);
+			},
+			onDamagingHit(damage, target, source, move) {
+				if (move.type === 'Water' && target !== source && move.category !== 'Status') {
+					delete pokemon.volatiles['pristinearmor'];
+					this.add('-end', pokemon, 'pristinearmor');
+				}
+			},
+			onWeatherChange(pokemon) {
+				let rain = ['raindance', 'primordialsea']
+				if (rain.includes(pokemon.effectiveWeather())) {
+					delete pokemon.volatiles['pristinearmor'];
+					this.add('-end', pokemon, 'pristinearmor');
+				}
+			},
+		},
+		isBreakable: true,
+		name: "Pristine Armor",
+		rating: 4,
+		num: 1044,
+	},
+	"puremindset": {
+		onModifyMove(move) {
+			if (move.category === 'Physical') {
+				move.category = 'Special';
+			}
+		},
+		name: "Pure Mindset",
+		rating: 4,
+		num: 1045,
+	},
+	"weatherrod": {
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
+		},
+		onWeatherChange(pokemon) {
+			//if (pokemon.baseSpecies.baseSpecies !== 'Heliolisk' || pokemon.transformed) return;
+			let type = null;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				type = 'Fire';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				type = 'Water';
+				break;
+			case 'hail':
+			case 'snow':
+				type = 'Ice';
+				break;
+			case 'sandstorm':
+				type = 'Rock';
+				break;
+			default:
+				break;
+			}
+			pokemon.setType(pokemon.baseSpecies.types);
+			if (!type) return;
+			else {
+				if (!pokemon.addType(type)) return;
+				this.add('-start', pokemon, 'typeadd', type, '[from] ability: Weather Rod');
+			}
+		},
+		name: "Weather Rod",
+		rating: 3,
+		num: 1046,
+	},
+	"fearless": {
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.accuracy === 'true') return;
+			if (move.accuracy < 100) return this.chainModify([4915, 4096]);
+		},
+		onTryBoost(boost, target, source, effect) {
+			if (effect.name === 'Intimidate' && boost.atk) {
+				delete boost.atk;
+				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Scrappy', '[of] ' + target);
+			}
+		},
+		name: "Fearless",
+		rating: 3,
+		num: 1047,
+	},
+	"spectralflames": {
+		/*
+		onSourceInvulnerabilityPriority: 1,
+		onSourceInvulnerability(target, source, move) {
+			if (move.category !== 'Status') return;
+			if (move && source === this.effectState.target && target === this.effectState.source) return 0;
+		},
+		*/
+		onSourceAccuracy(accuracy, target, source, move) {
+			if (move.category !== 'Status') return accuracy;
+			if (move && source === this.effectState.target && target) return true;
+		},
+		name: "Spectral Flames",
+		rating: 3.5,
+		num: 1048,
+	},
+	"entrance": {
+		/*
+		onBasePower(pokemon, target, move) {
+			let statused = false;
+			let statLowered = false;
+			if (target.status || target.hasAbility('comatose')) {
+				this.debug('BP boost from status condition');
+				statused = true;
+			}
+			if (target.volatiles['confusion'] || target.volatiles['attract']) {
+				this.debug('BP boost from volatile status condition');
+				statused = true;
+			}
+			const boosts: SparseBoostsTable = {};
+			let i: BoostID;
+			for (i in target.boosts) {
+				if (target.boosts[i] < 0) {
+					this.debug('BP boost from lowered stat stage');
+					statLowered = true;
+				}
+			}
+			if (statused && statLowered) {
+				return this.chainModify(1.5);
+			}
+			else if (statused || statLowered) {
+				return this.chainModify([5324, 4096]);
+			}
+		},
+		*/
+		onModifySpA(atk, attacker, defender, move) {
+			let statused = false;
+			let statLowered = false;
+			if (defender.status || defender.hasAbility('comatose')) {
+				this.debug('Boost from status condition');
+				statused = true;
+			}
+			if (defender.volatiles['confusion'] || defender.volatiles['attract']) {
+				this.debug('Boost from volatile status condition');
+				statused = true;
+			}
+			const boosts: SparseBoostsTable = {};
+			let i: BoostID;
+			for (i in defender.boosts) {
+				if (defender.boosts[i] < 0) {
+					this.debug('Boost from lowered stat stage');
+					statLowered = true;
+				}
+			}
+			if (statused && statLowered) {
+				return this.chainModify(1.5);
+			}
+			else if (statused || statLowered) {
+				return this.chainModify([5324, 4096]);
+			}
+		},
+		name: "Entrance",
+		rating: 2.5,
+		num: 1049,
+	},
+	"offensivefiring": {
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (target !== source && move.category !== 'Status') {
+				if (!target.hp || !target.isActive || source.transformed || source.isSemiInvulnerable()) return;
+				this.damage(target.baseMaxhp / 4, target, source);
+				//this.boost({def: -1, spd: -1}, target, source, null, true);	
+			}
+		},
+		isPermanent: true,
+		name: "Offensive Firing",
+		rating: 2.5,
+		num: 1050,
 	},
 	"terachromaticism": {
 		onStart(pokemon) {
