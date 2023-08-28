@@ -5387,7 +5387,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 1006,
 	},
 	"momentum": {
-		onBoost(boost, target, source, effect) {
+		onTryBoost(boost, target, source, effect) {
 			if (boost.spe && boost.spe < 0) {
 				delete boost.spe;
 			}
@@ -6111,6 +6111,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		condition: {
 			onModifyCritRatio(critRatio, source, target) {
 				delete source.volatiles['assassinate'];
+				this.add('-end', source, 'assassinate');
 				return 5;
 			},
 		},
@@ -6173,14 +6174,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	"pristinearmor": {
 		onStart(pokemon) {
-			pokemon.addVolatile['pristinearmor'];
-			this.add('-start', pokemon, 'pristinearmor');
+			pokemon.addVolatile('pristinearmor');
 		},
 		onEnd(pokemon) {
 			delete pokemon.volatiles['pristinearmor'];
-			this.add('-end', pokemon, 'Pristine Armor');
+			this.add('-end', pokemon, 'Pristine Armor', '[silent]');
 		},
 		condition: {
+			noCopy: true,
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'ability: Pristine Armor');
+			},
 			onModifyDef(def, target, source, move) {
 				return this.chainModify([5120, 4096]);
 			},
@@ -6189,15 +6193,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			},
 			onDamagingHit(damage, target, source, move) {
 				if (move.type === 'Water' && target !== source && move.category !== 'Status') {
-					delete pokemon.volatiles['pristinearmor'];
-					this.add('-end', pokemon, 'pristinearmor');
+					delete target.volatiles['pristinearmor'];
+					this.add('-end', target, 'ability: Pristine Armor');
 				}
 			},
 			onWeatherChange(pokemon) {
 				let rain = ['raindance', 'primordialsea']
 				if (rain.includes(pokemon.effectiveWeather())) {
 					delete pokemon.volatiles['pristinearmor'];
-					this.add('-end', pokemon, 'pristinearmor');
+					this.add('-end', pokemon, 'ability: Pristine Armor');
 				}
 			},
 		},
@@ -6344,7 +6348,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: 1049,
 	},
-	"offensivefiring": {
+	"crammander": {
 		onAfterMoveSecondarySelf(source, target, move) {
 			if (!move || !target) return;
 			if (target !== source && move.category !== 'Status') {
@@ -6353,14 +6357,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				//this.boost({def: -1, spd: -1}, target, source, null, true);	
 			}
 		},
-		isPermanent: true,
-		name: "Offensive Firing",
-		rating: 2.5,
+		name: "Crammander",
+		rating: 4.5,
 		num: 1050,
 	},
 	"terachromaticism": {
 		onStart(pokemon) {
 			pokemon.setType(pokemon.teraType);
+			this.add('-start', pokemon, 'typechange', pokemon.teraType, '[from] ability: Terachromaticism');
 		},
 		onModifyMove(move, pokemon) {
 			if (move.type === pokemon.teraType) {
