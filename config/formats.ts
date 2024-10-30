@@ -57,6 +57,15 @@ export const Formats: FormatList = [
 			if (species.isNonstandard === 'GPL') return;
 		}
 	},
+	{
+		name: "[Gen 9] Custom Mega Doubles Draft",
+
+		mod: 'gen9',
+		gameType: 'doubles',
+		searchShow: false,
+		ruleset: ['Draft', 'Item Clause', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 'Picked Team Size = 4', 'Min Team Size = 4', 'Best Of = 3', '+Past', '+GPL'],
+		banlist: ['Hidden Power'],
+	},
 
 	// S/V Singles
 	///////////////////////////////////////////////////////////////////
