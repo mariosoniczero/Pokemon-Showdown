@@ -2441,6 +2441,13 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 			protect: 1, mirror: 1, sound: 1, distance: 1, bypasssub: 1,
 			nosleeptalk: 1, noassist: 1, failcopycat: 1, failmimic: 1, failinstruct: 1,
 		},
+		onBasePower(basePower, source, target, move) {
+			const item = target.getItem();
+			if (!this.singleEvent('TakeItem', item, target.itemState, target, target, move, item)) return;
+			if (item.id) {
+				return this.chainModify(1.5);
+			}
+		},
 		onAfterHit(target, source) {
 			if (target.volatiles['confusion'] && source.ability === 'bootyplunderer') {
 				const item = target.takeItem();

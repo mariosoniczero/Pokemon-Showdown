@@ -5723,7 +5723,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			this.field.setWeather('raindance');
 			this.field.setTerrain('electricterrain');
 		},
-		id: "thunderstorm",
+		flags: {},
 		name: "Thunderstorm",
 		rating: 4,
 		num: 1001,
@@ -5745,7 +5745,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				}
 			}
 		},
-		id: "terrify",
+		flags: {},
 		name: "Terrify",
 		rating: 3.5,
 		num: 1002,
@@ -5767,7 +5767,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
-		id: "conflagrate",
+		flags: {},
 		name: "Conflagrate",
 		rating: 4,
 		num: 1003,
@@ -5785,7 +5785,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.flags['charge']) return this.chainModify([5325, 4096]);
 		},
-		id: "spectralbattery",
+		flags: {},
 		name: "Spectral Battery",
 		rating: 3,
 		num: 1004,
@@ -5807,7 +5807,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
-		id: "infectate",
+		flags: {},
 		name: "Infectate",
 		rating: 4,
 		num: 1005,
@@ -5821,6 +5821,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onImmunity(type, pokemon) {
 			if (type === 'sandstorm') return false;
 		},
+		flags: {},
 		name: "Weather Rush",
 		rating: 3,
 		num: 1006,
@@ -5831,12 +5832,14 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				delete boost.spe;
 			}
 		},
+		flags: {},
 		name: "Momentum",
 		rating: 2,
 		num: 1007,
 	},
 	"sharpenedfangs": {
 		// Implemented in moves.ts
+		flags: {},
 		name: "Sharpened Fangs",
 		rating: 2,
 		num: 1008,
@@ -5862,6 +5865,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				}
 			}
 		},
+		flags: {},
 		name: "Starstruck",
 		rating: 3,
 		num: 1009,
@@ -5881,6 +5885,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return this.chainModify(1.5);
 			}
 		},
+		flags: {},
 		name: "Heel Tactics",
 		rating: 3.5,
 		num: 1010,
@@ -5919,6 +5924,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return this.chainModify([dmgMod[numConsecutive], 0x1000]);
 			},
 		},
+		flags: {},
 		name: "Crescendo",
 		rating: 3,
 		num: 1011,
@@ -5928,6 +5934,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			this.add('-activate', pokemon, "ability: Vigor Charge");
 			if (status.id === 'mustrecharge') return null;
 		},
+		flags: {},
 		name: "Vigor Charge",
 		rating: 3,
 		num: 1013,
@@ -5939,6 +5946,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return this.chainModify(1.5);
 			}
 		},
+		flags: {},
 		name: "Determination",
 		rating: 3,
 		num: 1013,
@@ -5960,6 +5968,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				target.removeVolatile('packtactics');
 			}
 		},
+		flags: {},
 		name: "Pack Tactics",
 		rating: 4,
 		num: 1014,
@@ -5976,6 +5985,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onResidual(pokemon) {
 			pokemon.trySetStatus('brn', pokemon);
 		},
+		flags: {},
 		name: "Hindenburg",
 		rating: 3,
 		num: 1015,
@@ -5996,6 +6006,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return this.chainModify([5325, 4096]);
 			}
 		},
+		flags: {},
 		name: "Opportunistic",
 		rating: 2.5,
 		num: 1016,
@@ -6009,7 +6020,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return null;
 			}
 		},
-		isBreakable: true,
+		flags: {breakable: 1},
 		name: "Fly Trap",
 		rating: 3.5,
 		num: 1017,
@@ -6025,6 +6036,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			this.debug('Dragon Style boost');
 			return this.chainModify(1.5);
 		},
+		flags: {},
 		name: "Dragon Style",
 		rating: 4,
 		num: 1018,
@@ -6033,8 +6045,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onResidualOrder: 5,
 		onResidualSubOrder: 4,
 		onResidual(pokemon) {
-			this.heal(pokemon.baseMaxhp / 16);
+			this.heal(pokemon.baseMaxhp / 8);
 		},
+		flags: {},
 		name: "Restore Order",
 		rating: 4,
 		num: 1019,
@@ -6064,7 +6077,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return null;
 			}
 		},
-		isBreakable: true,
+		flags: {breakable: 1},
 		name: "Brainless",
 		rating: 4,
 		num: 1020,
@@ -6075,12 +6088,14 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			const type2 = pokemon.getTypes()[1];
 			if (type1 === move.type || type2 === move.type) move.drain = [1, 2];
 		},
+		flags: {},
 		name: "Soul Siphon",
 		rating: 4,
 		num: 1021,
 	},
 	"bootyplunderer": {
 		// Coded under Chatter
+		flags: {},
 		name: "Booty Plunderer",
 		rating: 4,
 		num: 1022,
@@ -6103,6 +6118,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onModifyCritRatio(critRatio, source, target) {
 			if (target && ['brn'].includes(target.status)) return 5;
 		},
+		flags: {},
 		name: "Arsonist",
 		rating: 3,
 		num: 1024,
@@ -6114,6 +6130,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return null;
 			}
 		},
+		flags: {},
 		name: "Ancient Wisdom",
 		rating: 3,
 		num: 1025,
@@ -6125,6 +6142,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				this.add('-clearboost', target, '[from] ability: Mind Reboot', '[of] ' + pokemon);
 			}
 		},
+		flags: {},
 		name: "Mind Reboot",
 		rating: 3,
 		num: 1026,
@@ -6135,6 +6153,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				move.selfSwitch = 'true';
 			}
 		},
+		flags: {},
 		name: "Dark Warp",
 		rating: 4,
 		num: 1027,
@@ -6148,6 +6167,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return this.chainModify(2);
 			}
 		},
+		flags: {},
 		name: "Supernova",
 		rating: 3,
 		num: 1028,
@@ -6178,6 +6198,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return false; // skip charge turn
 			},
 		},
+		flags: {},
 		name: "Lunar Power",
 		rating: 3,
 		num: 1028,
@@ -6214,6 +6235,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
 			},
 		},
+		flags: {},
 		name: "Tantalize",
 		rating: 4,
 		num: 1028,
@@ -6236,6 +6258,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				};
 			}
 		},
+		flags: {},
 		name: "Sushi Scraps",
 		rating: 3.5,
 		num: 1029,
@@ -6273,6 +6296,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				this.add('-end', pokemon, 'typechange', '[silent]');
 			}
 		},
+		flags: {},
 		name: "Perfect Mimicry",
 		rating: 3,
 		num: 1030,
@@ -6286,6 +6310,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			this.field.setWeather('sunnyday');
 			this.field.setTerrain('grassyterrain');
 		},
+		flags: {},
 		name: "Greenhouse",
 		rating: 4,
 		num: 1031,
@@ -6304,6 +6329,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onModifyWeight(weighthg) {
 			return weighthg * 2;
 		},
+		flags: {},
 		name: "Tera Hammer",
 		rating: 4,
 		num: 1032,
@@ -6366,7 +6392,10 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			},
 			*/
 		},
-		isPermanent: true,
+		flags: {
+			failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, cantsuppress: 1,
+			notransform: 1,
+		},
 		name: "Mega Ice Face",
 		rating: 3,
 		num: 1033,
@@ -6387,6 +6416,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				};
 			}
 		},
+		flags: {},
 		name: "Anemochory",
 		rating: 2.5,
 		num: 1034,
@@ -6408,6 +6438,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			this.debug('Deadly Precision SpD drop');
 			return this.chainModify([3276, 4096]);
 		},
+		flags: {},
 		name: "Deadly Precision",
 		rating: 3.5,
 		num: 1035,
@@ -6420,6 +6451,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return this.chainModify(1.5);
 			}
 		},
+		flags: {},
 		name: "Magnetic Fists",
 		rating: 3.5,
 		num: 1036,
@@ -6462,6 +6494,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onEnd(pokemon) {
 			pokemon.abilityState.choiceLock = "";
 		},
+		flags: {},
 		name: "Heavy Artillery",
 		rating: 3,
 		num: 1037,
@@ -6497,6 +6530,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			},
 		},
 		*/
+		flags: {},
 		name: "Corrosive Ooze",
 		rating: 4,
 		num: 1038,
@@ -6535,6 +6569,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onFaint(pokemon) {
 			pokemon.illusion = null;
 		},
+		flags: {},
 		name: "Machibuse",
 		rating: 4.5,
 		num: 1039,
@@ -6554,6 +6589,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return 5;
 			},
 		},
+		flags: {},
 		name: "Assassinate",
 		rating: 3.5,
 		num: 1040,
@@ -6576,6 +6612,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				};
 			}
 		},
+		flags: {},
 		name: "Surging Steel",
 		rating: 4.5,
 		num: 1041,
@@ -6587,6 +6624,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				move.basePower *= 1.5;
 			}
 		},
+		flags: {},
 		name: "Elemental Mastery",
 		rating: 3.5,
 		num: 1042,
@@ -6607,6 +6645,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				delete target.volatiles['divineinspiration'];
 			},
 		},
+		flags: {},
 		name: "Divine Inspiration",
 		rating: 4,
 		num: 1043,
@@ -6644,7 +6683,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				}
 			},
 		},
-		isBreakable: true,
+		flags: {breakable: 1},
 		name: "Pristine Armor",
 		rating: 4,
 		num: 1044,
@@ -6655,6 +6694,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				move.category = 'Special';
 			}
 		},
+		flags: {},
 		name: "Pure Mindset",
 		rating: 4,
 		num: 1045,
@@ -6692,6 +6732,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				this.add('-start', pokemon, 'typeadd', type, '[from] ability: Weather Rod');
 			}
 		},
+		flags: {},
 		name: "Weather Rod",
 		rating: 3,
 		num: 1046,
@@ -6708,6 +6749,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Scrappy', '[of] ' + target);
 			}
 		},
+		flags: {},
 		name: "Fearless",
 		rating: 3,
 		num: 1047,
@@ -6724,6 +6766,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			if (move.category !== 'Status') return accuracy;
 			if (move && source === this.effectState.target && target) return true;
 		},
+		flags: {},
 		name: "Spectral Flames",
 		rating: 3.5,
 		num: 1048,
@@ -6783,6 +6826,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return this.chainModify([5324, 4096]);
 			}
 		},
+		flags: {},
 		name: "Entrance",
 		rating: 2.5,
 		num: 1049,
@@ -6796,6 +6840,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				//this.boost({def: -1, spd: -1}, target, source, null, true);	
 			}
 		},
+		flags: {},
 		name: "Crammander",
 		rating: 4.5,
 		num: 1050,
@@ -6810,8 +6855,235 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				move.stab = 1.75;
 			}
 		},
+		flags: {},
 		name: "Terachromaticism",
 		rating: 3.5,
 		num: 1051,
 	},
+	arachnophobia: {
+		onFoeSwitchIn(pokemon) {
+			this.boost({spe: -1}, pokemon, pokemon.side.foe.active[0], this.dex.abilities.get('arachnophobia'));
+		},
+		flags: {},
+		name: "Arachnophobia",
+		rating: 2.5,
+		num: 1052,
+	},
+	dragonhunter: {
+		onBasePowerPriority: 23,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.type === 'Dragon') {
+				this.debug('Dragonhunter boost');
+				return this.chainModify([5325, 4096]
+			}
+		},
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Dragon') {
+				this.add('-immune', target, '[from] ability: Dragonhunter');
+				return null;
+			}
+		},
+		flags: {},
+		name: "Dragonhunter",
+		rating: 3.5,
+		num: 1053,
+	},
+	lifestream: {
+		onStart(source) {
+			this.field.setWeather('sandstorm');
+			this.field.setTerrain('mistyterrain');
+		},
+		flags: {},
+		name: "Lifestream",
+		rating: 4,
+		num: 1054,
+	},
+	decay: {
+		onSourceDamagingHit(damage, target, source, move) {
+			this.boost({spd: -1}, target, target);
+		},
+		flags: {},
+		name: "Decay",
+		rating: 3.5,
+		num: 1055,
+	},
+	sunkensky: {
+		// airborneness implemented in sim/pokemon.js:Pokemon#isGrounded		
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Sunken Sky');
+				}
+				return null;
+			}
+		},
+		flags: {breakable: 1},
+		name: "Sunken Sky",
+		rating: 3.5,
+		num: 1056,
+	},
+	mindjail: {
+		onStart(pokemon) {
+			pokemon.addVolatile('imprison');
+		},
+		flags: {breakable: 1},
+		name: "Mind Jail",
+		rating: 4,
+		num: 1057,
+	},
+	hyperdrillsuperseed: {
+		onStart(source) {
+			this.field.setTerrain('grassyterrain');
+		},
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if (!this.field.isTerrain('grassyterrain')) {
+				this.field.setTerrain('grassyterrain');
+			}
+		},
+		onEnd() {
+			this.field.clearTerrain();
+		},
+		flags: {},
+		name: "Hyperdrill Superseed",
+		rating: 4,
+		num: 1058,
+	},
+	frostyresurgence: {
+		onSourceDamagingHit(damage, target, source, move) {
+			this.heal(damage / 4);
+		},
+		flags: {},
+		name: "Frosty Resurgence",
+		rating: 3.5,
+		num: 1059,
+	},
+	analyzer: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
+				!(move.isZ && move.category !== 'Status') && 
+				!(move.name === 'Tera Blast' && pokemon.terastallized) &&
+				!(pokemon.teraType === ['Fire', 'Electric', 'Ice'])) {
+				move.type = pokemon.teraType;
+				move.typeChangerBoosted = this.effect;
+			}
+		},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.typeChangerBoosted === this.effect) return this.chainModify([4915, 4096]);
+		},
+		flags: {},
+		name: "Analyzer",
+		rating: 4,
+		num: 1060,
+	},
+	bizarreblizzard: {
+		onStart(source) {
+			this.field.setWeather('snow');
+			this.field.setTerrain('psychicterrain');
+		},
+		flags: {},
+		name: "Bizarre Blizzard",
+		rating: 4,
+		num: 1061,
+	},
+	torquetunegear: {
+		onTryMovePriority: -2,
+		onTryMove(pokemon, target, move) {
+			if (move.id === 'spinout') {
+				switch (pokemon.teraType) {
+				case 'dark':
+					this.actions.useMove('wickedtorque', pokemon, target);
+					return null;
+				case 'fairy':
+					this.actions.useMove('magicaltorque', pokemon, target);
+					return null;
+				case 'fighting':
+					this.actions.useMove('combattorque', pokemon, target);
+					return null;
+				case 'fire':
+					this.actions.useMove('blazingtorque', pokemon, target);
+					return null;
+				case 'poison':
+					this.actions.useMove('noxioustorque', pokemon, target);
+					return null;
+				default:
+					break;
+				}				
+			}
+		},
+		flags: {},
+		name: "Torque Tune Gear",
+		rating: 4,
+		num: 1062,
+	},
+	flickerfusion: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.type === 'Flying') return priority + 1;
+		},
+		onModifyAccuracyPriority: 10,
+		onModifyAccuracy(accuracy, target, source, move) {
+			if (!(move.category === 'Status') && typeof accuracy === 'number') {
+				this.debug('Flicker Fusion - guaranteed hit');
+				return true;
+			}
+		},
+		flags: {},
+		name: "Flicker Fusion",
+		rating: 4,
+		num: 1063,
+	},
+	hyperion: {
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
+		},
+		onWeatherChange(pokemon) {
+			// Protosynthesis is not affected by Utility Umbrella
+			if (this.field.isWeather('sunnyday')) {
+				pokemon.addVolatile('hyperion');
+			} else if (!pokemon.volatiles['hyperion'] && source.abilityState.battleBondTriggered === false) {
+				// Protosynthesis will not deactivite if Sun is suppressed, hence the direct ID check (isWeather respects supression)
+				pokemon.removeVolatile('hyperion');
+				source.abilityState.battleBondTriggered = true;
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['hyperion'];
+			this.add('-end', pokemon, 'Hyperion', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				this.add('-activate', pokemon, 'ability: Hyperion');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, pokemon) {
+				if (pokemon.ignoringAbility()) return;
+				this.debug('Hyperion atk boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Hyperion');
+			},
+		},
+		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, notransform: 1},
+		name: "Hyperion",
+		rating: 4,
+		num: 1064,
+	},
+	/*
+	Template:
+	: {
+		
+		flags: {},
+		name: "",
+		rating: ,
+		num: ,
+	},
+	*/
 };

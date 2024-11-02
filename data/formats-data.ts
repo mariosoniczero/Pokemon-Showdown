@@ -6289,6 +6289,54 @@ export const FormatsData: import('../sim/dex-species').SpeciesFormatsDataTable =
 	cramorantmega: {
 		isNonstandard: "GPL",
 	},
+	arcaninemega: {
+		isNonstandard: "GPL",
+	},
+	ariadosmega: {
+		isNonstandard: "GPL",
+	},
+	bewearmega: {
+		isNonstandard: "GPL",
+	},
+	carbinkmega: {
+		isNonstandard: "GPL",
+	},
+	centiskorchmega: {
+		isNonstandard: "GPL",
+	},
+	dragalgemega: {
+		isNonstandard: "GPL",
+	},
+	eelektrossmega: {
+		isNonstandard: "GPL",
+	},
+	farigirafmega: {
+		isNonstandard: "GPL",
+	},
+	ferrothornmega: {
+		isNonstandard: "GPL",
+	},
+	laprasmega: {
+		isNonstandard: "GPL",
+	},
+	magnezonemega: {
+		isNonstandard: "GPL",
+	},
+	mrrimemega: {
+		isNonstandard: "GPL",
+	},
+	raichumega: {
+		isNonstandard: "GPL",
+	},
+	revavroommega: {
+		isNonstandard: "GPL",
+	},
+	talonflamemega: {
+		isNonstandard: "GPL",
+	},
+	tropiusmega: {
+		isNonstandard: "GPL",
+	},
 	/*
 	mega: {
 		isNonstandard: "GPL",

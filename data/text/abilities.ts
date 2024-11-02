@@ -2498,6 +2498,58 @@ export const AbilitiesText: {[id: IDEntry]: AbilityText} = {
 		shortDesc: "All opponents become taunted while this Pokemon is active.",
 		start: "  [POKEMON]'s pack began taunting the opponent!",
 	},
+	arachnophobia: {
+		name: "Arachnophobia",
+		shortDesc: "Any Pokemon that switches in on this Pokemon receives -1 Speed.",
+	},
+	dragonhunter: {
+		name: "Dragonhunter",
+		shortDesc: "Dragon moves boosted 30%; Dragon immunity.",
+	},
+	lifestream: {
+		name: "Lifestream",
+		shortDesc: "On switch-in, this Pokemon summons Sandstorm and Misty Terrain for 8 turns each.",
+	},
+	decay: {
+		name: "Decay",
+		shortDesc: "Opponents receives -1 SpA when hit by this Pokemon's attacks.",
+	},
+	sunkensky: {
+		name: "Sunken Sky",
+		shortDesc: "Heals 25% when hit by Water moves; Levitating.",
+	},
+	mindjail: {
+		name: "Mind Jail",
+		shortDesc: "Sets Imprison.",
+	},
+	hyperdrillsuperseed: {
+		name: "Hyperdrill Superseed",
+		shortDesc: "Sets Grassy Terrain that returns at end of turn if removed.",
+	},
+	frostyresurgence: {
+		name: "Frosty Resurgence",
+		shortDesc: "Heals 25% of damage dealt to opponents.",
+	},
+	analyzer: {
+		name: "Analyzer",
+		shortDesc: "Tri-Attack boosted by 20% and changes to Electric/Fire/Ice type if Tera type matches.",
+	},
+	bizarreblizzard: {
+		name: "Bizarre Blizzard",
+		shortDesc: "On switch-in, this Pokemon summons Snow and Psychic Terrain for 8 turns each.",
+	},
+	torquetunegear: {
+		name: "Torque Tune Gear",
+		shortDesc: "Turns Spin Out into Torque moves matching its Tera type.",
+	},
+	flickerfusion: {
+		name: "Flicker Fusion",
+		shortDesc: "All Flying moves +1 accuracy; all attacks cannot miss.",
+	},
+	hyperion: {
+		name: "Hyperion",
+		shortDesc: "Sunny Day active or on switch-in: Attack boosted 1.5x.",
+	},
 	/*
 	: {
 		name: "",
