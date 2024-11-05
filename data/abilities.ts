@@ -6874,7 +6874,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onBasePower(basePower, attacker, defender, move) {
 			if (move.type === 'Dragon') {
 				this.debug('Dragonhunter boost');
-				return this.chainModify([5325, 4096]
+				return this.chainModify([5325, 4096]);
 			}
 		},
 		onTryHit(target, source, move) {
@@ -6965,10 +6965,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			const noModifyType = [
 				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
+			const types = ['Fire', 'Electric', 'Ice'];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && 
 				!(move.name === 'Tera Blast' && pokemon.terastallized) &&
-				!(pokemon.teraType === ['Fire', 'Electric', 'Ice'])) {
+				!(types.includes(pokemon.teraType))) {
 				move.type = pokemon.teraType;
 				move.typeChangerBoosted = this.effect;
 			}

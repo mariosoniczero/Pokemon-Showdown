@@ -33,9 +33,8 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		ruleset: ['Draft', '+Unobtainable', '+Past', '+GPL', 'Dynamax Clause', 'Z-Move Clause', 
 				  'Swagger Clause', 'Moody Clause',
 		],
-		banlist: ['Power Construct', 'Kangaskhanite + Seismic Toss',  'Blaziken + Speed Boost',  
-				  'Blastoisinite + Shell Smash', 'Hidden Power', 'Revival Blessing', 'Shed Tail', 
-				  'Last Respects',
+		banlist: [
+			'Power Construct','Torterrite + Shell Smash', 'Shed Tail', 'Last Respects',
 		],
 		onValidateSet(set) {
 			const species = this.dex.species.get(set.species);
@@ -63,7 +62,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		mod: 'gen9',
 		gameType: 'doubles',
 		searchShow: false,
-		ruleset: ['Draft', 'Item Clause', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 'Picked Team Size = 4', 'Min Team Size = 4', 'Best Of = 3', '+Past', '+GPL'],
+		ruleset: ['Draft', 'Item Clause = 1', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 'Picked Team Size = 4', 'Min Team Size = 4', 'Best Of = 3', '+Past', '+GPL'],
 		banlist: ['Hidden Power'],
 	},
 
