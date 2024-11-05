@@ -21302,7 +21302,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		baseSpecies: "Bewear",
 		forme: "Mega",
 		types: ["Dragon", "Fighting"],
-		baseStats: {hp: 70, atk: 105, def: 75, spa: 115, spd: 95, spe: 115},
+		baseStats: {hp: 120, atk: 150, def: 100, spa: 50, spd: 90, spe: 90},
 		abilities: {0: "Dragonhunter"},
 		heightm: 2.1,
 		weightkg: 135,

@@ -25,14 +25,14 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		section: "Custom Mega",
 	},
 	{
-		name: "[Gen 9] Custom Mega Draft League",
+		name: "[Gen 9] NatDex Custom Mega Draft League",
 		mod: 'gen9',
 		searchShow: false,
 		timer: {timeoutAutoChoose: true},
 		//timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
 		teraPreviewDefault: true,
 		ruleset: [
-			'Standard Draft', '+Unobtainable', '+Past', '+GPL', 'Dynamax Clause', 'Z-Move Clause', 
+			'[Gen 9] NatDex Draft', '+GPL', 'Dynamax Clause', 'Z-Move Clause', 
 			'Swagger Clause', 'Moody Clause', 'Sleep Moves Clause',
 		],
 		banlist: [
@@ -44,7 +44,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		}
 	},
 	{
-		name: "[Gen 9] Custom Mega OU",
+		name: "[Gen 9] NatDex Custom Mega OU",
 		mod: 'gen9',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Clause', 'Species Clause',
 				  'Dynamax Clause', 'Sleep Clause Mod', '+GPL', 'Z-Move Clause',
@@ -59,7 +59,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		}
 	},
 	{
-		name: "[Gen 9] Custom Mega Doubles Draft",
+		name: "[Gen 9] NatDex Custom Mega Doubles Draft",
 
 		mod: 'gen9',
 		gameType: 'doubles',
