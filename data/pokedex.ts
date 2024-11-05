@@ -21431,7 +21431,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		forme: "Mega",
 		types: ["Ice", "Psychic"],
 		baseStats: {hp: 80, atk: 85, def: 105, spa: 135, spd: 135, spe: 80},
-		abilities: {0: "Bizzare Blizzard"},
+		abilities: {0: "Bizarre Blizzard"},
 		heightm: 1.5,
 		weightkg: 58.2,
 		color: "Purple",

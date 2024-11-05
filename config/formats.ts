@@ -30,11 +30,13 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		searchShow: false,
 		timer: {timeoutAutoChoose: true},
 		//timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
-		ruleset: ['Draft', '+Unobtainable', '+Past', '+GPL', 'Dynamax Clause', 'Z-Move Clause', 
-				  'Swagger Clause', 'Moody Clause',
+		teraPreviewDefault: true,
+		ruleset: [
+			'Standard Draft', '+Unobtainable', '+Past', '+GPL', 'Dynamax Clause', 'Z-Move Clause', 
+			'Swagger Clause', 'Moody Clause', 'Sleep Moves Clause',
 		],
 		banlist: [
-			'Power Construct','Torterrite + Shell Smash', 'Shed Tail', 'Last Respects',
+			'Power Construct', 'Torterrite + Shell Smash', 'Shed Tail', 'Last Respects',
 		],
 		onValidateSet(set) {
 			const species = this.dex.species.get(set.species);
