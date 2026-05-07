@@ -2544,7 +2544,7 @@ export const AbilitiesText: {[id: IDEntry]: AbilityText} = {
 	},
 	flickerfusion: {
 		name: "Flicker Fusion",
-		shortDesc: "All Flying moves +1 accuracy; all attacks cannot miss.",
+		shortDesc: "All Flying moves +1 priority; all attacks cannot miss.",
 	},
 	hyperion: {
 		name: "Hyperion",

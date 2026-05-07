@@ -28,7 +28,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: "[Gen 9] NatDex Custom Mega Draft League",
 		mod: 'gen9',
 		searchShow: false,
-		timer: {timeoutAutoChoose: true},
+		//timer: {timeoutAutoChoose: true},
 		//timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
 		teraPreviewDefault: true,
 		ruleset: [
@@ -36,10 +36,18 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			'Swagger Clause', 'Moody Clause', 'Sleep Moves Clause',
 		],
 		banlist: [
-			'Power Construct', 'Torterrite + Shell Smash', 'Shed Tail', 'Last Respects',
+			'Power Construct', 'Torterrite + Shell Smash', 'Cramorantite + Endeavor', 
+			'Skarmorite + Weak Armor', 'Shed Tail', 'Last Respects', 'Dire Claw',
 		],
 		onValidateSet(set) {
 			const species = this.dex.species.get(set.species);
+			const item = this.dex.items.get(set.item);
+			if (set.item && item.megaStone) {
+				const megaSpecies = this.dex.species.get(item.megaStone);
+				if (species.baseSpecies === item.megaEvolves && megaSpecies.name === 'Tinkaton-Mega' && set.teraType === 'Stellar') {
+					return [`${species.name} has Stellar as its Tera type, which is banned with Tera Hammer.`];
+				}
+			}
 			if (species.isNonstandard === 'GPL') return;
 		}
 	},

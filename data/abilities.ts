@@ -6026,16 +6026,27 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		num: 1017,
 	},
 	"dragonstyle": {
+		/*
 		onModifyMove(move) {
 			move.stab = 1;
 		},
+		*/
+		onModifySTAB(stab, source, target, move) {
+			return 1.5;
+		},
+		/*
 		onBasePowerPriority: 30,
 		onBasePower(basePower, attacker, defender, move) {
+			/*
 			const basePowerAfterMultiplier = this.modify(basePower, this.event.modifier);
 			this.debug('Base Power: ' + basePowerAfterMultiplier);
+			console.log('Base Power: ' + basePowerAfterMultiplier);
+			/
+			
 			this.debug('Dragon Style boost');
 			return this.chainModify(1.5);
 		},
+		*/
 		flags: {},
 		name: "Dragon Style",
 		rating: 4,
@@ -6569,7 +6580,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onFaint(pokemon) {
 			pokemon.illusion = null;
 		},
-		flags: {},
+		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1},
 		name: "Machibuse",
 		rating: 4.5,
 		num: 1039,
@@ -6676,10 +6687,16 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				}
 			},
 			onWeatherChange(pokemon) {
-				let rain = ['raindance', 'primordialsea']
+				let rain = ['raindance', 'primordialsea'];
 				if (rain.includes(pokemon.effectiveWeather())) {
 					delete pokemon.volatiles['pristinearmor'];
 					this.add('-end', pokemon, 'ability: Pristine Armor');
+				}
+			},
+			onModifyMove(move) {
+				if (move.id === 'bodypress') {
+					move.basePower *= 1.2;
+					console.log("Body Press boost");
 				}
 			},
 		},
@@ -6862,7 +6879,8 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	arachnophobia: {
 		onFoeSwitchIn(pokemon) {
-			this.boost({spe: -1}, this.effectState.target, pokemon, this.dex.abilities.get('arachnophobia'));
+			this.add('-ability', this.effectState.target, 'Arachnophobia');
+			this.boost({spe: -1}, pokemon, pokemon.side.foe.active[0], null, true);
 		},
 		flags: {},
 		name: "Arachnophobia",
@@ -6900,7 +6918,19 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	decay: {
 		onSourceDamagingHit(damage, target, source, move) {
-			this.boost({spd: -1}, target, target);
+			//this.boost({spd: -1}, target, source);
+			let activated = false;
+			this.debug(target);
+			this.debug(source);
+			for (const pokemon of this.getAllActive()) {
+				this.debug(pokemon);
+				if (pokemon === target || pokemon.fainted) continue;
+				if (!activated) {
+					this.add('-ability', source, 'Decay');
+					activated = true;
+				}
+				this.boost({spd: -1}, target, target, null, true);
+			}
 		},
 		flags: {},
 		name: "Decay",
@@ -6924,6 +6954,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	mindjail: {
 		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Mind Jail');
 			pokemon.addVolatile('imprison');
 		},
 		flags: {breakable: 1},
@@ -6952,7 +6983,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	frostyresurgence: {
 		onSourceDamagingHit(damage, target, source, move) {
-			this.heal(damage / 4);
+			this.heal(damage / 4, source);
 		},
 		flags: {},
 		name: "Frosty Resurgence",
@@ -6969,7 +7000,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && 
 				!(move.name === 'Tera Blast' && pokemon.terastallized) &&
-				!(types.includes(pokemon.teraType))) {
+				types.includes(pokemon.teraType)) {
 				move.type = pokemon.teraType;
 				move.typeChangerBoosted = this.effect;
 			}
@@ -6994,6 +7025,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		num: 1061,
 	},
 	torquetunegear: {
+		/*
 		onTryMovePriority: -2,
 		onTryMove(pokemon, target, move) {
 			if (move.id === 'spinout') {
@@ -7018,6 +7050,65 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				}				
 			}
 		},
+		*/
+		/*
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			if (move.id === 'spinout') {
+				switch (source.teraType) {
+				case 'dark':
+					this.actions.useMove('wickedtorque', target, source);
+					return null;
+				case 'fairy':
+					this.actions.useMove('magicaltorque', target, source);
+					return null;
+				case 'fighting':
+					this.actions.useMove('combattorque', target, source);
+					return null;
+				case 'fire':
+					this.actions.useMove('blazingtorque', target, source);
+					return null;
+				case 'poison':
+					this.actions.useMove('noxioustorque', target, source);
+					return null;
+				default:
+					break;
+				}				
+			}
+		},
+		*/
+		/*
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			Console.log("test");
+			let newMove = this.dex.moves.get('noxioustorque');
+			this.actions.useMove(newMove, target, source);
+		},
+		*/
+		onTryMovePriority: -2,
+		onTryMove(pokemon, target, move) {
+			if (move.id !== 'spinout') return;
+			switch (pokemon.teraType) {
+				case 'Dark':
+					this.actions.useMove(this.dex.moves.get('wickedtorque'), pokemon, target);
+					break;
+				case 'Fairy':
+					this.actions.useMove(this.dex.moves.get('magicaltorque'), pokemon, target);
+					break;
+				case 'Fighting':
+					this.actions.useMove(this.dex.moves.get('combattorque'), pokemon, target);
+					break;
+				case 'Fire':
+					this.actions.useMove(this.dex.moves.get('blazingtorque'), pokemon, target);
+					break;
+				case 'Poison':
+					this.actions.useMove(this.dex.moves.get('noxioustorque'), pokemon, target);
+					break;
+				default:
+					return;
+				}
+			return null;
+		},
 		flags: {},
 		name: "Torque Tune Gear",
 		rating: 4,
@@ -7027,10 +7118,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onModifyPriority(priority, pokemon, target, move) {
 			if (move?.type === 'Flying') return priority + 1;
 		},
-		onModifyAccuracyPriority: 10,
-		onModifyAccuracy(accuracy, target, source, move) {
+		onSourceModifyAccuracyPriority: 10,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
 			if (!(move.category === 'Status') && typeof accuracy === 'number') {
 				this.debug('Flicker Fusion - guaranteed hit');
+				//console.log("test");
 				return true;
 			}
 		},
@@ -7044,13 +7136,18 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
 		},
 		onWeatherChange(pokemon) {
+			//console.log(pokemon.abilityState.battleBondTriggered);
 			// Protosynthesis is not affected by Utility Umbrella
 			if (this.field.isWeather('sunnyday')) {
 				pokemon.addVolatile('hyperion');
-			} else if (!pokemon.volatiles['hyperion'] && source.abilityState.battleBondTriggered === false) {
-				// Protosynthesis will not deactivite if Sun is suppressed, hence the direct ID check (isWeather respects supression)
+			} 
+			else if (pokemon.abilityState.battleBondTriggered !== true) {
+				pokemon.addVolatile('hyperion');
+				pokemon.abilityState.battleBondTriggered = true;
+			}
+			else {
+				// Protosynthesis will not deactivate if Sun is suppressed, hence the direct ID check (isWeather respects supression)
 				pokemon.removeVolatile('hyperion');
-				source.abilityState.battleBondTriggered = true;
 			}
 		},
 		onEnd(pokemon) {

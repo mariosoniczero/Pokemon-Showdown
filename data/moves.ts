@@ -12606,7 +12606,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		condition: {
 			duration: 5,
 			durationCallback(source, effect) {
-				if (source?.hasItem('terrainextender')) {
+				if (source?.hasItem('terrainextender') || source?.hasAbility('lifestream')) {
 					return 8;
 				}
 				return 5;
@@ -14653,7 +14653,7 @@ export const Moves: import('../sim/dex-moves').MoveDataTable = {
 		condition: {
 			duration: 5,
 			durationCallback(source, effect) {
-				if (source?.hasItem('terrainextender')) {
+				if (source?.hasItem('terrainextender') || source?.hasAbility('bizarreblizzard')) {
 					return 8;
 				}
 				return 5;
