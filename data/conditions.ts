@@ -622,7 +622,7 @@ export const Conditions: import('../sim/dex-conditions').ConditionDataTable = {
 		effectType: 'Weather',
 		duration: 5,
 		durationCallback(source, effect) {
-			if (source?.hasItem('smoothrock')) {
+			if (source?.hasItem('smoothrock') || source?.hasAbility('lifestream')) {
 				return 8;
 			}
 			return 5;
@@ -690,7 +690,7 @@ export const Conditions: import('../sim/dex-conditions').ConditionDataTable = {
 		effectType: 'Weather',
 		duration: 5,
 		durationCallback(source, effect) {
-			if (source?.hasItem('icyrock')) {
+			if (source?.hasItem('icyrock') || source?.hasAbility('bizarreblizzard')) {
 				return 8;
 			}
 			return 5;

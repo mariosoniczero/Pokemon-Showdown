@@ -2800,6 +2800,66 @@ export const ItemsText: {[id: IDEntry]: ItemText} = {
 		name: "Cramorantite",
 		desc: "If held by a Cramorant, this item allows it to Mega Evolve in battle.",
 	},
+	arcaninite: {
+		name: "Arcaninite",
+		desc: "If held by an Arcanine, this item allows it to Mega Evolve in battle.",
+	},
+	ariadosite: {
+		name: "Ariadosite",
+		desc: "If held by an Ariados, this item allows it to Mega Evolve in battle.",
+	},
+	bewearite: {
+		name: "Bewearite",
+		desc: "If held by a Bewear, this item allows it to Mega Evolve in battle.",
+	},
+	carbinkite: {
+		name: "Carbinkite",
+		desc: "If held by a Carbink, this item allows it to Mega Evolve in battle.",
+	},
+	centiskorchite: {
+		name: "Centiskorchite",
+		desc: "If held by a Centiskorch, this item allows it to Mega Evolve in battle.",
+	},
+	dragalgite: {
+		name: "Dragalgite",
+		desc: "If held by a Dragalge, this item allows it to Mega Evolve in battle.",
+	},
+	eelektrossite: {
+		name: "Eelektrossite",
+		desc: "If held by an Eelektross, this item allows it to Mega Evolve in battle.",
+	},
+	farigirafite: {
+		name: "Farigirafite",
+		desc: "If held by a Farigiraf, this item allows it to Mega Evolve in battle.",
+	},
+	laprasite: {
+		name: "Laprasite",
+		desc: "If held by a Lapras, this item allows it to Mega Evolve in battle.",
+	},
+	magnezonite: {
+		name: "Magnezonite",
+		desc: "If held by a Magnezone, this item allows it to Mega Evolve in battle.",
+	},
+	mrrimite: {
+		name: "Mr. Rimite",
+		desc: "If held by a Mr. Rime, this item allows it to Mega Evolve in battle.",
+	},
+	raichuite: {
+		name: "Raichuite",
+		desc: "If held by a Raichu, this item allows it to Mega Evolve in battle.",
+	},
+	revavroomite: {
+		name: "Revavroomite",
+		desc: "If held by a Revavroom, this item allows it to Mega Evolve in battle.",
+	},
+	talonflamite: {
+		name: "Talonflamite",
+		desc: "If held by a Talonflame, this item allows it to Mega Evolve in battle.",
+	},
+	tropiusite: {
+		name: "Tropiusite",
+		desc: "If held by a Tropius, this item allows it to Mega Evolve in battle.",
+	},
 	/*
 	ite: {
 		name: "ite",

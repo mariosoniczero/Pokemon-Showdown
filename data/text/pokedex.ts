@@ -4025,6 +4025,54 @@ export const PokedexText: {[id: IDEntry]: PokedexText} = {
 	cramorantmega: {
 		name: "Cramorant-Mega",
 	},
+	arcaninemega: {
+		name: "Arcanine-Mega",
+	},
+	ariadosmega: {
+		name: "Ariados-Mega",
+	},
+	bewearmega: {
+		name: "Bewear-Mega",
+	},
+	carbinkmega: {
+		name: "Carbink-Mega",
+	},
+	centiskorchmega: {
+		name: "Centiskorch-Mega",
+	},
+	dragalgemega: {
+		name: "Dragalge-Mega",
+	},
+	eelektrossmega: {
+		name: "Eelektross-Mega",
+	},
+	farigirafmega: {
+		name: "Farigiraf-Mega",
+	},
+	ferrothornmega: {
+		name: "Ferrothorn-Mega",
+	},
+	laprasmega: {
+		name: "Lapras-Mega",
+	},
+	magnezonemega: {
+		name: "Magnezone-Mega",
+	},
+	mrrimemega: {
+		name: "Mr. Rime-Mega",
+	},
+	raichumega: {
+		name: "Raichu-Mega",
+	},
+	revavroommega: {
+		name: "Revavroom-Mega",
+	},
+	talonflamemega: {
+		name: "Talonflame-Mega",
+	},
+	tropiusmega: {
+		name: "Tropius-Mega",
+	},
 	/*
 	mega: {
 		name: "-Mega",

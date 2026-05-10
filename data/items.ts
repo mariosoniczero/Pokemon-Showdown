@@ -9066,8 +9066,216 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		num: 1104,
 		gen: 6,
 	},
+	arcaninite: {
+		name: "Arcaninite",
+		spritenum: 575,
+		megaStone: "Arcanine-Mega",
+		megaEvolves: "Arcanine",
+		itemUser: ["Arcanine"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1105,
+		gen: 6,
+	},
+	ariadosite: {
+		name: "Ariadosite",
+		spritenum: 575,
+		megaStone: "Ariados-Mega",
+		megaEvolves: "Ariados",
+		itemUser: ["Ariados"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1106,
+		gen: 6,
+	},
+	bewearite: {
+		name: "Bewearite",
+		spritenum: 575,
+		megaStone: "Bewear-Mega",
+		megaEvolves: "Bewear",
+		itemUser: ["Bewear"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1107,
+		gen: 6,
+	},
+	carbinkite: {
+		name: "Carbinkite",
+		spritenum: 575,
+		megaStone: "Carbink-Mega",
+		megaEvolves: "Carbink",
+		itemUser: ["Carbink"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1108,
+		gen: 6,
+	},
+	centiskorchite: {
+		name: "Centiskorchite",
+		spritenum: 575,
+		megaStone: "Centiskorch-Mega",
+		megaEvolves: "Centiskorch",
+		itemUser: ["Centiskorch"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1109,
+		gen: 6,
+	},
+	dragalgite: {
+		name: "Dragalgite",
+		spritenum: 575,
+		megaStone: "Dragalge-Mega",
+		megaEvolves: "Dragalge",
+		itemUser: ["Dragalge"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1110,
+		gen: 6,
+	},
+	eelektrossite: {
+		name: "Eelektrossite",
+		spritenum: 575,
+		megaStone: "Eelektross-Mega",
+		megaEvolves: "Eelektross",
+		itemUser: ["Eelektross"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1111,
+		gen: 6,
+	},
+	farigirafite: {
+		name: "Farigirafite",
+		spritenum: 575,
+		megaStone: "Farigiraf-Mega",
+		megaEvolves: "Farigiraf",
+		itemUser: ["Farigiraf"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1112,
+		gen: 6,
+	},
+	ferrothornite: {
+		name: "Ferrothornite",
+		spritenum: 575,
+		megaStone: "Ferrothorn-Mega",
+		megaEvolves: "Ferrothorn",
+		itemUser: ["Ferrothorn"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1113,
+		gen: 6,
+	},
+	laprasite: {
+		name: "Laprasite",
+		spritenum: 575,
+		megaStone: "Lapras-Mega",
+		megaEvolves: "Lapras",
+		itemUser: ["Lapras"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1114,
+		gen: 6,
+	},
+	magnezonite: {
+		name: "Magnezonite",
+		spritenum: 575,
+		megaStone: "Magnezone-Mega",
+		megaEvolves: "Magnezone",
+		itemUser: ["Magnezone"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1115,
+		gen: 6,
+	},
+	mrrimite: {
+		name: "Mr. Rimite",
+		spritenum: 575,
+		megaStone: "Mr. Rime-Mega",
+		megaEvolves: "Mr. Rime",
+		itemUser: ["Mr. Rime"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1116,
+		gen: 6,
+	},
+	raichuite: {
+		name: "Raichuite",
+		spritenum: 575,
+		megaStone: "Raichu-Mega",
+		megaEvolves: "Raichu",
+		itemUser: ["Raichu"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1117,
+		gen: 6,
+	},
+	revavroomite: {
+		name: "Revavroomite",
+		spritenum: 575,
+		megaStone: "Revavroom-Mega",
+		megaEvolves: "Revavroom",
+		itemUser: ["Revavroom"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1118,
+		gen: 6,
+	},
+	talonflamite: {
+		name: "Talonflamite",
+		spritenum: 575,
+		megaStone: "Talonflame-Mega",
+		megaEvolves: "Talonflame",
+		itemUser: ["Talonflame"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1119,
+		gen: 6,
+	},
+	tropiusite: {
+		name: "Tropiusite",
+		spritenum: 575,
+		megaStone: "Tropius-Mega",
+		megaEvolves: "Tropius",
+		itemUser: ["Tropius"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 1120,
+		gen: 6,
+	},
 	/*
-	"ite": {
+	ite: {
 		name: "ite",
 		spritenum: 575,
 		megaStone: "-Mega",
@@ -9077,7 +9285,7 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: 10,
+		num: 11,
 		gen: 6,
 	},
 	*/
