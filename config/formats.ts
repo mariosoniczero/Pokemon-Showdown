@@ -19,6 +19,65 @@ The column value will be ignored for repeat sections.
 
 export const Formats: import('../sim/dex-formats').FormatList = [
 
+	// Custom Mega Formats
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "Custom Mega",
+	},
+	{
+		name: "[Gen 9] NatDex Custom Mega Draft League",
+		mod: 'gpl',
+		searchShow: false,
+		//timer: {timeoutAutoChoose: true},
+		//timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
+		teraPreviewDefault: true,
+		ruleset: [
+			'[Gen 9] NatDex Draft', 'Dynamax Clause', 'Z-Move Clause', 'Sleep Moves Clause',
+		],
+		banlist: [
+			'Power Construct', 'Torterrite + Shell Smash', 'Cramorantite + Endeavor', 
+			'Skarmorite + Weak Armor', 'Shed Tail', 'Last Respects', 'Dire Claw', 'Moody',
+		],
+		onValidateSet(set) {
+			const species = this.dex.species.get(set.species);
+			const item = this.dex.items.get(set.item);
+			if (set.item && item.megaStone) {
+				const megaSpecies = this.dex.species.get(item.megaStone);
+				if (species.baseSpecies === item.megaEvolves && megaSpecies.name === 'Tinkaton-Mega' && set.teraType === 'Stellar') {
+					return [`${species.name} has Stellar as its Tera type, which is banned with Tera Hammer.`];
+				}
+			}
+			if (species.isNonstandard === 'GPL') return;
+		}
+	},
+	{
+		name: "[Gen 9] NatDex Custom Mega Doubles Draft",
+
+		mod: 'gpl',
+		gameType: 'doubles',
+		searchShow: false,
+		ruleset: [
+			'Draft', 'Item Clause = 1', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 
+			'Picked Team Size = 4', 'Min Team Size = 4', 'Best Of = 3', '+Past'
+		],
+	},
+	{
+		name: "[Gen 9] NatDex Custom Mega OU",
+		mod: 'gpl',
+		ruleset: [
+			'Standard NatDex', 'Dynamax Clause', 'Z-Move Clause',
+		],
+		banlist: ['ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 
+				  'King\'s Rock', 'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 
+				  'Shed Tail',
+		],
+		onValidateSet(set) {
+			const species = this.dex.species.get(set.species);
+			if (species.isNonstandard === 'GPL') return;
+		}
+	},
+	
+
 	// S/V Singles
 	///////////////////////////////////////////////////////////////////
 
