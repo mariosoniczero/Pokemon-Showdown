@@ -9514,7 +9514,7 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 	chimechiteg: {
 		name: "Chimechite",
 		spritenum: 575,
-		megaStone: { "Chimecho": "Chimecho-Mega" },
+		megaStone: { "Chimecho": "Chimecho-Mega-G" },
 		itemUser: ["Chimecho"],
 		onTakeItem(item, source) {
 			return !item.megaStone?.[source.baseSpecies.baseSpecies];

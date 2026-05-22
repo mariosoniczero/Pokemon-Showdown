@@ -6323,7 +6323,7 @@ export const FormatsData: import('../sim/dex-species').SpeciesFormatsDataTable =
 		isNonstandard: "Custom",
 		tier: "GPL",
 	},
-	staraptormega: {
+	staraptormegag: {
 		isNonstandard: "Custom",
 		tier: "GPL",
 	},
