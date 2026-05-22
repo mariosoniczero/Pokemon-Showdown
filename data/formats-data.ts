@@ -6250,4 +6250,477 @@ export const FormatsData: import('../sim/dex-species').SpeciesFormatsDataTable =
 		isNonstandard: "Custom",
 		tier: "Illegal",
 	},
+	//GPL Megas
+	butterfreemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	arbokmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	rapidashmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	weezingmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	meganiummegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	typhlosionmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	feraligatrmegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	lanturnmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	bellossommega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	granbullmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	miltankmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	delcattymega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	flygonmegax: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	flygonmegay: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	kecleonmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	torterramega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	infernapemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	empoleonmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	staraptormega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	luxraymega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	roserademega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	bronzongmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	froslassmegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	krookodilemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	druddigonmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	golurkmegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	avaluggmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	pachirisumega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	vespiquenmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	goodramega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	honchkrowmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	sudowoodomega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	bearticmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	crobatmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	decidueyemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	incineroarmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	primarinamega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	crustlemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	girafarigmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	primeapemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	mightyenamega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	boltundmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	pangoromega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	drifblimmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	golisopodmegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	carnivinemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	copperajahmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	wigglytuffmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	quagsiremega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	gogoatmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	spiritombmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	chatotmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	lunatonemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	lunatonemegabluemoon: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	solrockmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	solrockmegasupernova: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	heatmormega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	drampamegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	beheeyemmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	probopassmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	grimmsnarlmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	aromatissemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	tatsugirimegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	stunfiskgalarmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	victreebelmegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	tinkatonmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	eiscuemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	whimsicottmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	clawitzermega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	octillerymega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	bombirdiermega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	electiviremega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	magmortarmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	swalotmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	zoroarkmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	accelgormega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	escavaliermega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	belliboltmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	dudunsparcemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	hydreigonmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	xatumega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	skarmorymegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	donphanmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	shiftrymega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	reuniclusmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	helioliskmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	hawluchamegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	ninetalesmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	jynxmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	cramorantmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	arcaninemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	ariadosmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	bewearmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	carbinkmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	centiskorchmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	dragalgemegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	eelektrossmegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	farigirafmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	ferrothornmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	laprasmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	magnezonemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	mrrimemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	raichumegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	revavroommega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	talonflamemega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	tropiusmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	rampardosmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	bastiodonmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	serperiormega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	emboarmegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	samurottmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	armaldomega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	chimechomegag: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	galvantulamega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	kingambitmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	sigilyphmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	tentacruelmega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
+	kingdramega: {
+		isNonstandard: "Custom",
+		tier: "GPL",
+	},
 };

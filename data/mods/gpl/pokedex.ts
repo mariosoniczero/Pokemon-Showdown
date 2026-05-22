@@ -1859,14 +1859,14 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	eelektross: {
 		inherit: true,
-		otherFormes: ["Eelektross-Mega"],
-		formeOrder: ["Eelektross", "Eelektross-Mega"],
+		otherFormes: ["Eelektross-Mega, Eelektross-Mega-G"],
+		formeOrder: ["Eelektross", "Eelektross-Mega", "Eelektross-Mega-G"],
 	},
-	eelektrossmega: {
+	eelektrossmegag: {
 		num: 604,
-		name: "Eelektross-Mega",
+		name: "Eelektross-Mega-G",
 		baseSpecies: "Eelektross",
-		forme: "Mega",
+		forme: "Mega-G",
 		types: ["Electric", "Water"],
 		baseStats: {hp: 85, atk: 135, def: 100, spa: 115, spd: 120, spe: 60},
 		abilities: {0: "Sunken Sky"},
@@ -1874,7 +1874,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		weightkg: 80.5,
 		color: "Blue",
 		eggGroups: ["Amorphous"],
-		requiredItem: "Eelektrossite",
+		requiredItem: "Eelektrossite G",
 	},
 	farigiraf: {
 		inherit: true,

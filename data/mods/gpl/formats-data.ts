@@ -1,361 +1,361 @@
 export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormatsDataTable = {
 	butterfreemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	arbokmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	rapidashmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	weezingmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	meganiummegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	typhlosionmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	feraligatrmegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	lanturnmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	bellossommega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	granbullmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	miltankmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	delcattymega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	flygonmegax: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	flygonmegay: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	kecleonmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	torterramega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	infernapemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	empoleonmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	staraptormega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	luxraymega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	roserademega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	bronzongmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	froslassmegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	krookodilemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	druddigonmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	golurkmegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	avaluggmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	pachirisumega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	vespiquenmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	goodramega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	honchkrowmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	sudowoodomega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	bearticmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	crobatmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	decidueyemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	incineroarmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	primarinamega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	crustlemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	girafarigmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	primeapemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	mightyenamega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	boltundmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	pangoromega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	drifblimmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	golisopodmegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	carnivinemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	copperajahmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	wigglytuffmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	quagsiremega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	gogoatmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	spiritombmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	chatotmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	lunatonemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	lunatonemegabluemoon: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	solrockmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	solrockmegasupernova: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	heatmormega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	drampamegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	beheeyemmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	probopassmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	grimmsnarlmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	aromatissemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	tatsugirimegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	stunfiskgalarmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	victreebelmegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	tinkatonmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	eiscuemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	whimsicottmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	clawitzermega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	octillerymega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	bombirdiermega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	electiviremega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	magmortarmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	swalotmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	zoroarkmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	accelgormega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	escavaliermega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	belliboltmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	dudunsparcemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	hydreigonmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	xatumega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	skarmorymegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	donphanmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	shiftrymega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	reuniclusmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	helioliskmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	hawluchamegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	ninetalesmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	jynxmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	cramorantmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	arcaninemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	ariadosmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	bewearmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	carbinkmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	centiskorchmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	dragalgemegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
-	eelektrossmega: {
-		isNonstandard: "GPL",
+	eelektrossmegag: {
+		tier: "GPL",
 	},
 	farigirafmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	ferrothornmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	laprasmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	magnezonemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	mrrimemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	raichumegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	revavroommega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	talonflamemega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	tropiusmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	rampardosmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	bastiodonmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	serperiormega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	emboarmegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	samurottmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	armaldomega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	chimechomegag: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	galvantulamega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	kingambitmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	sigilyphmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	tentacruelmega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	kingdramega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	/*
 	mega: {
-		isNonstandard: "GPL",
+		tier: "GPL",
 	},
 	*/
 };
