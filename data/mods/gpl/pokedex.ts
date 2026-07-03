@@ -508,7 +508,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		weightkg: 330,
 		color: "Green",
 		eggGroups: ["Mineral"],
-		requiredItem: "Golurkite-G",
+		requiredItem: "Golurkite G",
 	},
 	avalugg: {
 		inherit: true,
@@ -873,7 +873,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		weightkg: 108,
 		color: "Gray",
 		eggGroups: ["Bug", "Water 3"],
-		requiredItem: "Golisopodite G",
+		requiredItem: "Golisopite G",
 	},
 	carnivine: {
 		inherit: true,
