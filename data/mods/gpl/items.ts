@@ -175,7 +175,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	golisopodite: {
+	golisopiteg: {
 		inherit: true,
 		isNonstandard: null,
 	},

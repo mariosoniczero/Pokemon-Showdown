@@ -53,7 +53,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	empoleonmega: {
 		tier: "GPL",
 	},
-	staraptormega: {
+	staraptormegag: {
 		tier: "GPL",
 	},
 	luxraymega: {
