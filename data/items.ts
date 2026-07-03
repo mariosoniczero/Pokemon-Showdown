@@ -8254,8 +8254,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 	kecleonite: {
 		name: "Kecleonite",
 		spritenum: 575,
-		megaStone: { "Bellossom": "Bellossom-Mega" },
-		itemUser: ["Bellossom"],
+		megaStone: { "Kecleon": "Kecleon-Mega" },
+		itemUser: ["Kecleon"],
 		onTakeItem(item, source) {
 			return !item.megaStone?.[source.baseSpecies.baseSpecies];
 		},
@@ -8266,8 +8266,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 	delcattite: {
 		name: "Delcattite",
 		spritenum: 575,
-		megaStone: { "Bellossom": "Bellossom-Mega" },
-		itemUser: ["Bellossom"],
+		megaStone: { "Delcatty": "Delcatty-Mega" },
+		itemUser: ["Delcatty"],
 		onTakeItem(item, source) {
 			return !item.megaStone?.[source.baseSpecies.baseSpecies];
 		},
@@ -8695,10 +8695,10 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 6,
 		isNonstandard: "Custom",
 	},
-	golisopodite: {
-		name: "Golisopodite",
+	golisopiteg: {
+		name: "Golisopite G",
 		spritenum: 575,
-		megaStone: { "Golisopod": "Golisopod-Mega" },
+		megaStone: { "Golisopod": "Golisopod-Mega-G" },
 		itemUser: ["Golisopod"],
 		onTakeItem(item, source) {
 			return !item.megaStone?.[source.baseSpecies.baseSpecies];
@@ -9512,7 +9512,7 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		isNonstandard: "Custom",
 	},
 	chimechiteg: {
-		name: "Chimechite",
+		name: "Chimechite G",
 		spritenum: 575,
 		megaStone: { "Chimecho": "Chimecho-Mega-G" },
 		itemUser: ["Chimecho"],

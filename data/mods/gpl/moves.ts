@@ -54,7 +54,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			case 'primordialsea':
 			case 'sandstorm':
 			case 'hail':
-			case 'snow':
+			case 'snowscape':
 				factor = 0.25;
 				break;
 			}
@@ -65,6 +65,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				return this.NOT_FAIL;
 			}
 			return success;
+		},
+	},
+	superfang: {
+		inherit: true,
+		damageCallback(pokemon, target) {
+			if (pokemon.hasAbility('sharpenedfangs')) {
+				const hp75 = Math.floor(target.getUndynamaxedHP() * 3 / 4);
+				return this.clampIntRange(hp75, 1);
+			}
+			return this.clampIntRange(target.getUndynamaxedHP() / 2, 1);
 		},
 	},
 	wish: {

@@ -11134,11 +11134,11 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		otherFormes: ["Eelektross-Mega"],
 		formeOrder: ["Eelektross", "Eelektross-Mega"],
 	},
-	eelektrossmegag: {
+	eelektrossmega: {
 		num: 604,
-		name: "Eelektross-Mega-G",
+		name: "Eelektross-Mega",
 		baseSpecies: "Eelektross",
-		forme: "Mega-G",
+		forme: "Mega",
 		types: ["Electric"],
 		baseStats: { hp: 85, atk: 145, def: 80, spa: 135, spd: 90, spe: 80 },
 		abilities: { 0: "Levitate" },
@@ -11146,7 +11146,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 180,
 		color: "Blue",
 		eggGroups: ["Amorphous"],
-		requiredItem: "Eelektrossite G",
+		requiredItem: "Eelektrossite",
 		gen: 9,
 	},
 	elgyem: {
@@ -21358,7 +21358,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 330,
 		color: "Green",
 		eggGroups: ["Mineral"],
-		requiredItem: "Golurkite-G",
+		requiredItem: "Golurkite G",
 	},
 	avaluggmega: {
 		num: 713,
@@ -21628,7 +21628,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 108,
 		color: "Gray",
 		eggGroups: ["Bug", "Water 3"],
-		requiredItem: "Golisopodite G",
+		requiredItem: "Golisopite G",
 	},
 	carnivinemega: {
 		num: 455,
@@ -22367,11 +22367,11 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		eggGroups: ["Water 1", "Dragon"],
 		requiredItem: "Dragalgite G",
 	},
-	eelektrossmega: {
+	eelektrossmegag: {
 		num: 604,
-		name: "Eelektross-Mega",
+		name: "Eelektross-Mega-G",
 		baseSpecies: "Eelektross",
-		forme: "Mega",
+		forme: "Mega-G",
 		types: ["Electric", "Water"],
 		baseStats: {hp: 85, atk: 135, def: 100, spa: 115, spd: 120, spe: 60},
 		abilities: {0: "Sunken Sky"},
@@ -22379,7 +22379,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 80.5,
 		color: "Blue",
 		eggGroups: ["Amorphous"],
-		requiredItem: "Eelektrossite",
+		requiredItem: "Eelektrossite G",
 	},
 	farigirafmega: {
 		num: 981,

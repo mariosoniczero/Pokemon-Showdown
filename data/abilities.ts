@@ -5761,7 +5761,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	"weatherrush": {
 		onModifySpe(spe, pokemon) {
-			if (['snow', 'hail', 'raindance', 'primordialsea', 'sandstorm'].includes(pokemon.effectiveWeather())) {
+			if (['snowscape', 'hail', 'raindance', 'primordialsea', 'sandstorm'].includes(pokemon.effectiveWeather())) {
 				return this.chainModify(2);
 			}
 		},
@@ -5777,9 +5777,10 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onTryBoost(boost, target, source, effect) {
 			if (boost.spe && boost.spe < 0) {
 				delete boost.spe;
+				this.add("-fail", target, "unboost", "[from] ability: Momentum", "[of] " + target);
 			}
 		},
-		flags: {},
+		flags: {breakable: 1},
 		name: "Momentum",
 		rating: 2,
 		num: 1007,
@@ -6679,6 +6680,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onModifyMove(move) {
 			if (move.category === 'Physical') {
 				move.category = 'Special';
+				delete move.flags['contact'];
 			}
 		},
 		flags: {},
@@ -6703,7 +6705,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				type = 'Water';
 				break;
 			case 'hail':
-			case 'snow':
+			case 'snowscape':
 				type = 'Ice';
 				break;
 			case 'sandstorm':
@@ -6871,7 +6873,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				return null;
 			}
 		},
-		flags: {},
+		flags: {breakable: 1},
 		name: "Dragonhunter",
 		rating: 3.5,
 		num: 1053,
@@ -6986,7 +6988,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	},
 	bizarreblizzard: {
 		onStart(source) {
-			this.field.setWeather('snow');
+			this.field.setWeather('snowscape');
 			this.field.setTerrain('psychicterrain');
 		},
 		flags: {},
@@ -7102,6 +7104,47 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		num: 1063,
 	},
 	hyperion: {
+		onSwitchInPriority: -2,
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
+		},
+		onWeatherChange(pokemon) {
+			// Hyperion is not affected by Utility Umbrella
+			if (this.field.isWeather('sunnyday')) {
+				pokemon.addVolatile('hyperion');
+			} else if (!pokemon.volatiles['hyperion']?.fromBooster && !this.field.isWeather('sunnyday')) {
+				pokemon.removeVolatile('hyperion');
+			} else {
+				this.effectState.fromBooster = true;
+				pokemon.addVolatile('hyperion');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['hyperion'];
+			this.add('-end', pokemon, 'Hyperion', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				this.add('-activate', pokemon, 'ability: Hyperion');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, pokemon) {
+				if (pokemon.ignoringAbility()) return;
+				this.debug('Hyperion atk boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Hyperion');
+			},
+		},
+		flags: { failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, notransform: 1 },
+		name: "Hyperion",
+		rating: 3,
+		num: 1064,
+	},
+	/*
+	hyperion: {
 		onStart(pokemon) {
 			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
 		},
@@ -7144,6 +7187,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		rating: 4,
 		num: 1064,
 	},
+	*/
 	livingcitadel: {
 		onSourceModifyDamage(damage, source, target, move) {
 			if (move.category === 'Special') {
@@ -7264,7 +7308,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	divinity: {
 		onModifyMovePriority: -5,
 		onModifyMove(move, pokemon) {
-			if (move?.type === 'Psychic' || pokemon.hp !== pokemon.maxhp) return;
+			if (move?.type !== 'Psychic' || pokemon.hp !== pokemon.maxhp) return;
 			if (!move.ignoreImmunity) move.ignoreImmunity = {};
 			if (move.ignoreImmunity !== true) {
 				move.ignoreImmunity['Dark'] = true;

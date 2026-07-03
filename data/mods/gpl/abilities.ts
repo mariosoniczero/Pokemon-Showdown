@@ -16,7 +16,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onSourceAfterFaint(length, target, source, effect) {
 			if (source.bondTriggered) return;
 			if (effect?.effectType !== 'Move') return;
-			if ((source.species.id === 'greninjabond' || source.species.id === 'raichumega') && source.hp && !source.transformed && source.side.foePokemonLeft()) {
+			if ((source.species.id === 'greninjabond' || source.species.id === 'raichumegag') && source.hp && !source.transformed && source.side.foePokemonLeft()) {
 				this.boost({ atk: 1, spa: 1, spe: 1 }, source, source, this.effect);
 				this.add('-activate', source, 'ability: Battle Bond');
 				source.bondTriggered = true;
