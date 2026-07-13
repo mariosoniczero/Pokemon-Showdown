@@ -3767,4 +3767,351 @@ export const PokedexText: { [id: IDEntry]: PokedexText } = {
 	pokestarufopropu2: {
 		name: "Pokestar UFO-PropU2",
 	},
+	butterfreemega: {
+		name: "Butterfree-Mega",
+	},
+	arbokmega: {
+		name: "Arbok-Mega",
+	},
+	rapidashmega: {
+		name: "Rapidash-Mega",
+	},
+	weezingmega: {
+		name: "Weezing-Mega",
+	},
+	meganiummegag: {
+		name: "Meganium-Mega-G",
+	},
+	typhlosionmega: {
+		name: "Typhlosion-Mega",
+	},
+	feraligatrmegag: {
+		name: "Feraligatr-Mega-G",
+	},
+	lanturnmega: {
+		name: "Lanturn-Mega",
+	},
+	bellossommega: {
+		name: "Bellossom-Mega",
+	},
+	granbullmega: {
+		name: "Granbull-Mega",
+	},
+	miltankmega: {
+		name: "Miltank-Mega",
+	},
+	delcattymega: {
+		name: "Delcatty-Mega",
+	},
+	flygonmegax: {
+		name: "Flygon-Mega-X",
+	},
+	flygonmegay: {
+		name: "Flygon-Mega-Y",
+	},
+	kecleonmega: {
+		name: "Kecleon-Mega",
+	},
+	torterramega: {
+		name: "Torterra-Mega",
+	},
+	infernapemega: {
+		name: "Infernape-Mega",
+	},
+	empoleonmega: {
+		name: "Empoleon-Mega",
+	},
+	staraptormegag: {
+		name: "Staraptor-Mega-G",
+	},
+	luxraymega: {
+		name: "Luxray-Mega",
+	},
+	roserademega: {
+		name: "Roserade-Mega",
+	},
+	bronzongmega: {
+		name: "Bronzong-Mega",
+	},
+	froslassmegag: {
+		name: "Froslass-Mega-G",
+	},
+	krookodilemega: {
+		name: "Krookodile-Mega",
+	},
+	druddigonmega: {
+		name: "Druddigon-Mega",
+	},
+	golurkmegag: {
+		name: "Golurk-Mega-G",
+	},
+	avaluggmega: {
+		name: "Avalugg-Mega",
+	},
+	pachirisumega: {
+		name: "Pachirisu-Mega",
+	},
+	vespiquenmega: {
+		name: "Vespiquen-Mega",
+	},
+	goodramega: {
+		name: "Goodra-Mega",
+	},
+	honchkrowmega: {
+		name: "Honchkrow-Mega",
+	},
+	crobatmega: {
+		name: "Crobat-Mega",
+	},
+	sudowoodomega: {
+		name: "Sudowoodo-Mega",
+	},
+	bearticmega: {
+		name: "Beartic-Mega",
+	},
+	decidueyemega: {
+		name: "Decidueye-Mega",
+	},
+	incineroarmega: {
+		name: "Incineroar-Mega",
+	},
+	primarinamega: {
+		name: "Primarina-Mega",
+	},
+	crustlemega: {
+		name: "Crustle-Mega",
+	},
+	girafarigmega: {
+		name: "Girafarig-Mega",
+	},
+	primeapemega: {
+		name: "Primeape-Mega",
+	},
+	mightyenamega: {
+		name: "Mightyena-Mega",
+	},
+	boltundmega: {
+		name: "Boltund-Mega",
+	},
+	pangoromega: {
+		name: "Pangoro-Mega",
+	},
+	quagsiremega: {
+		name: "Quagsire-Mega",
+	},
+	gogoatmega: {
+		name: "Gogoat-Mega",
+	},
+	spiritombmega: {
+		name: "Spiritomb-Mega",
+	},
+	chatotmega: {
+		name: "Chatot-Mega",
+	},
+	lunatonemega: {
+		name: "Lunatone-Mega",
+	},
+	lunatonemegabluemoon: {
+		name: "Lunatone-Mega-Blue-Moon",
+	},
+	solrockmega: {
+		name: "Solrock-Mega",
+	},
+	solrockmegasupernova: {
+		name: "Solrock-Mega-Supernova",
+	},
+	heatmormega: {
+		name: "Heatmor-Mega",
+	},
+	drampamegag: {
+		name: "Drampa-Mega-G",
+	},
+	beheeyemmega: {
+		name: "Beheeyem-Mega",
+	},
+	probopassmega: {
+		name: "Probopass-Mega",
+	},
+	grimmsnarlmega: {
+		name: "Grimmsnarl-Mega",
+	},
+	aromatissemega: {
+		name: "Aromatisse-Mega",
+	},
+	tatsugirimegag: {
+		name: "Tatsugiri-Mega-G",
+	},
+	stunfiskgalarmega: {
+		name: "Stunfisk-Galar-Mega",
+	},
+	victreebelmegag: {
+		name: "Victreebel-Mega-G",
+	},
+	tinkatonmega: {
+		name: "Tinkaton-Mega",
+	},
+	eiscuemega: {
+		name: "Eiscue-Mega",
+	},
+	eiscuemeganoice: {
+		name: "Eiscue-Mega-Noice",
+	},
+	whimsicottmega: {
+		name: "Whimsicott-Mega",
+	},
+	clawitzermega: {
+		name: "Clawitzer-Mega",
+	},
+	octillerymega: {
+		name: "Octillery-Mega",
+	},
+	bombirdiermega: {
+		name: "Bombirdier-Mega",
+	},
+	electiviremega: {
+		name: "Electivire-Mega",
+	},
+	magmortarmega: {
+		name: "Magmortar-Mega",
+	},
+	swalotmega: {
+		name: "Swalot-Mega",
+	},
+	zoroarkmega: {
+		name: "Zoroark-Mega",
+	},
+	accelgormega: {
+		name: "Accelgor-Mega",
+	},
+	escavaliermega: {
+		name: "Escavalier-Mega",
+	},
+	belliboltmega: {
+		name: "Bellibolt-Mega",
+	},
+	dudunsparcemega: {
+		name: "Dudunsparce-Mega",
+	},
+	hydreigonmega: {
+		name: "Hydreigon-Mega",
+	},
+	xatumega: {
+		name: "Xatu-Mega",
+	},
+	skarmorymegag: {
+		name: "Skarmory-Mega-G",
+	},
+	donphanmega: {
+		name: "Donphan-Mega",
+	},
+	shiftrymega: {
+		name: "Shiftry-Mega",
+	},
+	reuniclusmega: {
+		name: "Reuniclus-Mega",
+	},
+	helioliskmega: {
+		name: "Heliolisk-Mega",
+	},
+	hawluchamegag: {
+		name: "Hawlucha-Mega-G",
+	},
+	ninetalesmega: {
+		name: "Ninetales-Mega",
+	},
+	jynxmega: {
+		name: "Jynx-Mega",
+	},
+	cramorantmega: {
+		name: "Cramorant-Mega",
+	},
+	arcaninemega: {
+		name: "Arcanine-Mega",
+	},
+	ariadosmega: {
+		name: "Ariados-Mega",
+	},
+	bewearmega: {
+		name: "Bewear-Mega",
+	},
+	carbinkmega: {
+		name: "Carbink-Mega",
+	},
+	centiskorchmega: {
+		name: "Centiskorch-Mega",
+	},
+	dragalgemegag: {
+		name: "Dragalge-Mega-G",
+	},
+	eelektrossmegag: {
+		name: "Eelektross-Mega-G",
+	},
+	farigirafmega: {
+		name: "Farigiraf-Mega",
+	},
+	ferrothornmega: {
+		name: "Ferrothorn-Mega",
+	},
+	laprasmega: {
+		name: "Lapras-Mega",
+	},
+	magnezonemega: {
+		name: "Magnezone-Mega",
+	},
+	mrrimemega: {
+		name: "Mr. Rime-Mega",
+	},
+	raichumegag: {
+		name: "Raichu-Mega-G",
+	},
+	revavroommega: {
+		name: "Revavroom-Mega",
+	},
+	talonflamemega: {
+		name: "Talonflame-Mega",
+	},
+	tropiusmega: {
+		name: "Tropius-Mega",
+	},
+	rampardosmega: {
+		name: "Rampardos-Mega",
+	},
+	bastiodonmega: {
+		name: "Bastiodon-Mega",
+	},
+	serperiormega: {
+		name: "Serperior-Mega",
+	},
+	emboarmegag: {
+		name: "Emboar-Mega-G",
+	},
+	samurottmega: {
+		name: "Samurott-Mega",
+	},
+	armaldomega: {
+		name: "Armaldo-Mega",
+	},
+	chimechomega: {
+		name: "Chimecho-Mega",
+	},
+	galvantulamega: {
+		name: "Galvantula-Mega",
+	},
+	kingambitmega: {
+		name: "Kingambit-Mega",
+	},
+	sigilyphmega: {
+		name: "Sigilyph-Mega",
+	},
+	tentacruelmega: {
+		name: "Tentacruel-Mega",
+	},
+	kingdramega: {
+		name: "Kingdra-Mega",
+	},
+	/*
+	mega: {
+		name: "-Mega",
+	},
+	*/
 };

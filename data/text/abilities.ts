@@ -2298,4 +2298,324 @@ export const AbilitiesText: { [id: IDEntry]: AbilityText } = {
 
 		activate: "  [POKEMON] extends [MOVE] by 2 turns!",
 	},
+	
+	// GPL
+	thunderstorm: {
+		name: "Thunderstorm",
+		shortDesc: "On switch-in, this Pokemon summons Rain and Electric Terrain for 8 turns each.",
+	},
+	terrify: {
+		name: "Terrify",
+		desc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+		shortDesc: "On switch-in, this Pokemon lowers the Special Attack of adjacent opponents by 1 stage.",
+	},
+	conflagrate: {
+		name: "Conflagrate",
+		desc: "This Pokemon's Normal-type moves become Fire-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Fire type and have 1.2x power.",
+	},
+	spectralbattery: {
+		name: "Spectral Battery",
+		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop), also boosts their power by 1.3x.",
+		end: "  [POKEMON] became fully charged due to its Spectral Battery!",
+	},
+	infectate: {
+		name: "Infectate",
+		desc: "This Pokemon's Normal-type moves become Bug-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Bug type and have 1.2x power.",
+	},
+	weatherrush: {
+		name: "Weather Rush",
+		shortDesc: "If Rain Dance, Sandstorm, or Hail is active, Speed is doubled; immunity to Sandstorm.",
+	},
+	momentum: {
+		name: "Momentum",
+		shortDesc: "This Pokemon's Speed cannot be reduced, including by paralysis.",
+	},
+	sharpenedfangs: {
+		name: "Sharpened Fangs",
+		shortDesc: "Super Fang does damage equal to 3/4 target's current HP.",
+	},
+	starstruck: {
+		name: "Starstruck",
+		shortDesc: "Does 1/8 damage to Dark types each turn and upon switch-in.",
+	},
+	heeltactics: {
+		name: "Heel Tactics",
+		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Fighting-type attack.",
+	},
+	crescendo: {
+		name: "Crescendo",
+		shortDesc: "Damage of moves used on consecutive turns is increased. Max 2x after 5 turns.",
+	},
+	vigorcharge: {
+		name: "Vigor Charge",
+		shortDesc: "Negates the recharge turn for moves which require recharging.",
+		activate: "[POKEMON] doesn't need to recharge!"
+	},
+	determination: {
+		name: "Determination",
+		shortDesc: "Move's power is multiplied by 1.5 if the user's last move failed.",
+	},
+	hindenburg: {
+		name: "Hindenburg",
+		shortDesc: "Attempts to burn at end of turn; special attacks 1.5x power while burned.",
+	},
+	opportunistic: {
+		name: "Opportunistic",
+		shortDesc: "This Pokemon's attacks have 1.3x power if it is the first to move in a turn.",
+	},
+	flytrap: {
+		name: "Fly Trap",
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Bug moves; Bug immunity.",
+	},
+	dragonstyle: {
+		name: "Dragon Style",
+		shortDesc: "All of this Pokemon's attacks gain the STAB attack boost.",
+	},
+	restoreorder: {
+		name: "Restore Order",
+		shortDesc: "At the end of every turn, this Pokemon restores 1/16 of its max HP.",
+	},
+	brainless: {
+		name: "Brainless",
+		shortDesc: "Ignores stat changes; protects from Attract, Disable, Encore, Heal Block, Taunt, Torment.",
+		block: "  [POKEMON] is unaffected due to its brainlessness!",
+	},
+	soulsiphon: {
+		name: "Soul Siphon",
+		shortDesc: "User recovers 50% of the damage dealt by STAB moves.",
+	},
+	bootyplunderer: {
+		name: "Booty Plunderer",
+		shortDesc: "When the opponent's Pokemon is confused by Chatter, their held item is removed.",
+	},
+	/*
+	clearskies: {
+		name: "Clear Skies",
+		shortDesc: "On switch-in, any active weather ",
+		start: "  [POKEMON] cleared the weather!",
+	},
+	*/
+	arsonist: {
+		name: "Arsonist",
+		shortDesc: "This Pokemon's attacks are critical hits if the target is burned.",
+	},
+	ancientwisdom: {
+		name: "Ancient Wisdom",
+		shortDesc: "Negates the recharge turn for moves which require recharging.",
+		activate: "[POKEMON] doesn't need to recharge!",
+	},
+	mindreboot: {
+		name: "Mind Reboot",
+		shortDesc: "On switch-in, the opponent's Pokemon have their stat stages reset to 0.",
+	},
+	darkwarp: {
+		name: "Dark Warp",
+		shortDesc: "When this Pokemon attacks, it will automatically switch (except if the move has priority).",
+	},
+	supernova: {
+		name: "Supernova",
+		shortDesc: "This Pokemon's Attack is doubled when using Explosion or Self-Destruct.",
+	},
+	lunarpower: {
+		name: "Lunar Power",
+		shortDesc: "Moonlight heals 75%, Moonblast 1.1x power, Meteor Beam no charge turn; removed after using Meteor Beam.",
+	},
+	tantalize: {
+		name: "Tantalize",
+		shortDesc: "Inflicts status on switch in which applies Torment and damages 1/8 of max HP on switch out.",
+		start: "[POKEMON] was tantalized by the aroma!",
+		activate: "[POKEMON] was hurt by the aroma!",
+	},
+	sushiscraps: {
+		name: "Sushi Scraps",
+		shortDesc: "Sets Spikes after landing Draco Meteor.",
+	},
+	perfectmimicry: {
+		name: "Perfect Mimicry",
+		shortDesc: "Changes primary typing to match current terrain.",
+		activate: "  [POKEMON] returned to its original type!",
+	},
+	greenhouse: {
+		name: "Greenhouse",
+		shortDesc: "On switch-in, this Pokemon summons Sun and Grassy Terrain.",
+	},
+	terahammer: {
+		name: "Tera Hammer",
+		shortDesc: "Changes Gigaton Hammer's typing to match user's Tera Type.",
+		start: "  [POKEMON]'s Gigaton Hammer Terastallized into the [TYPE] type!",
+	},
+	megaiceface: {
+		name: "Mega Ice Face",
+		shortDesc: "Changes form at half health; regular form takes no recoil; at 25% +1 speed",
+	},
+	anemochory: {
+		name: "Anemochory",
+		shortDesc: "Grants STAB to Flying moves; Grassy Terrain set after landing Grass attacks",
+	},
+	deadlyprecision: {
+		name: "Deadly Precision",
+		shortDesc: "Reduces opponent's Def and SpDef by 20%.",
+	},
+	magneticfists: {
+		name: "Magnetic Fists",
+		shortDesc: "The power of punching moves are boosted by 50%.",
+	},
+	heavyartillery: {
+		name: "Heavy Artillery",
+		desc: "This Pokemon's SpA is multiplied by 1.5, but it can only select the first move it executes. These effects are prevented while this Pokemon is Dynamaxed.",
+		shortDesc: "This Pokemon's SpA is 1.5x, but it can only select the first move it executes.",
+	},
+	machibuse: {
+		name: "Machibuse",
+		shortDesc: "Illusion + 1.3x to moves' base power while Illusion is active.",
+		end: "  [POKEMON]'s illusion wore off!",
+	},
+	assassinate: {
+		name: "Assassinate",
+		shortDesc: "Guaranteed critical hit for first attack on each switch in.",
+	},
+	surgingsteel: {
+		name: "Surging Steel",
+		shortDesc: "Sets Steelspike after landing a Steel attack.",
+	},
+	elementalmastery: {
+		name: "Elemental Mastery",
+		shortDesc: "User gains STAB on Electric, Ice, and Fire type moves.",
+	},
+	divineinspiration: {
+		name: "Divine Inspiration",
+		shortDesc: "This Pokemon's Wishes give the recipient 1.2x Atk and SpA; wears off on switch out.",
+	},
+	pristinearmor: {
+		name: "Pristine Armor",
+		shortDesc: "This Pokemon's Def and SpDef are boosted by 25%; wears off if hit by water move or in rain.",
+		start: "  [POKEMON] fortified itself with armor!",
+		end: "  [POKEMON]'s armor rusted!",
+	},
+	puremindset: {
+		name: "Pure Mindset",
+		shortDesc: "Every physical attack used by this Pokemon uses its SpA instead.",
+	},
+	weatherrod: {
+		name: "Weather Rod",
+		desc: "Adds additional type on top of regular type based on weather; Fire type in Sun, Water type in Rain, Ice type in Snow, Rock type in Sandstorm.",
+		shortDesc: "Adds an additional type to this Pokemon based on the weather.",
+	},
+	fearless: {
+		name: "Fearless",
+		shortDesc: "Moves that can miss gain 1.2x base power.",
+	},
+	spectralflames: {
+		name: "Spectral Flames",
+		shortDesc: "User's status moves cannot miss the target.",
+	},
+	entrance: {
+		name: "Entrance",
+		shortDesc: "1.3x SpA if opponent is statused or has lowered stats; 1.5x if both.",
+	},
+	offensivefiring: {
+		name: "Offensive Firing",
+		shortDesc: "After landing attack, fires missile which causes opponent to lose 1/4 of its health.",
+		damage: "[POKEMON] was hurt by the missile!"
+	},
+	terachromaticism: {
+		name: "Terachromaticism",
+		shortDesc: "Changes type to match Pokemon's Tera type.",
+	},
+	packtactics: {
+		name: "Pack Tactics",
+		shortDesc: "All opponents become taunted while this Pokemon is active.",
+		start: "  [POKEMON]'s pack began taunting the opponent!",
+	},
+	arachnophobia: {
+		name: "Arachnophobia",
+		shortDesc: "Any Pokemon that switches in on this Pokemon receives -1 Speed.",
+	},
+	dragonhunter: {
+		name: "Dragonhunter",
+		shortDesc: "Dragon moves boosted 30%; Dragon immunity.",
+	},
+	lifestream: {
+		name: "Lifestream",
+		shortDesc: "On switch-in, this Pokemon summons Sandstorm and Misty Terrain for 8 turns each.",
+	},
+	decay: {
+		name: "Decay",
+		shortDesc: "Opponents receives -1 SpA when hit by this Pokemon's attacks.",
+	},
+	sunkensky: {
+		name: "Sunken Sky",
+		shortDesc: "Heals 25% when hit by Water moves; Levitating.",
+	},
+	mindjail: {
+		name: "Mind Jail",
+		shortDesc: "Sets Imprison.",
+	},
+	hyperdrillsuperseed: {
+		name: "Hyperdrill Superseed",
+		shortDesc: "Sets Grassy Terrain that returns at end of turn if removed.",
+	},
+	frostyresurgence: {
+		name: "Frosty Resurgence",
+		shortDesc: "Heals 25% of damage dealt to opponents.",
+	},
+	analyzer: {
+		name: "Analyzer",
+		shortDesc: "Tri-Attack boosted by 20% and changes to Electric/Fire/Ice type if Tera type matches.",
+	},
+	bizarreblizzard: {
+		name: "Bizarre Blizzard",
+		shortDesc: "On switch-in, this Pokemon summons Snow and Psychic Terrain for 8 turns each.",
+	},
+	torquetunegear: {
+		name: "Torque Tune Gear",
+		shortDesc: "Turns Spin Out into Torque moves matching its Tera type.",
+	},
+	flickerfusion: {
+		name: "Flicker Fusion",
+		shortDesc: "All Flying moves +1 priority; all attacks cannot miss.",
+	},
+	hyperion: {
+		name: "Hyperion",
+		shortDesc: "Sunny Day active or on switch-in: Attack boosted 1.5x.",
+	},
+	livingcitadel: {
+		name: "Living Citadel",
+		shortDesc: "This Pokemon receives 1/2 damage from special attacks.",
+	},
+	jadeemperor: {
+		name: "Jade Emperor",
+		desc: "This Pokemon's defenses are multiplied by 1+(X*0.1), where X is the total number of times any Pokemon has fainted on the user's side when this Ability became active, and X cannot be greater than 5.",
+		shortDesc: "This Pokemon's defenses increase by 10% for each fainted ally, up to 5 allies.",
+
+		activate: "  [POKEMON] gained resilience from the fallen!",
+	},
+	warlord: {
+		name: "Warlord",
+		shortDesc: "This Pokemon's moves with variable power will always deal the maximum amount of damage.",
+	},
+	lastrights: {
+		name: "Last Rights",
+		shortDesc: "When this Pokemon uses Healing Wish, the recipient's Atk and SpA rise by 1 stage.",
+	},
+	broodlingbond: {
+		name: "Broodling Bond",
+		shortDesc: "This Pokemon's damaging moves hit twice. The second hit has its damage halved. Secondary effects on both hits are removed.",
+	},
+	bushido: {
+		name: "Bushido",
+		shortDesc: "If this Pokemon has no status moves, its Atk increases by 1.5x.",
+	},
+	divinity: {
+		name: "Divinity",
+		shortDesc: "While at full HP, this Pokemon's Psychic-type attacks are super effective on Dark-types.",
+	},
+	/*
+	: {
+		name: "",
+		shortDesc: "",
+	},
+	*/
 };

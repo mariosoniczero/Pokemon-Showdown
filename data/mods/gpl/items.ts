@@ -23,7 +23,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	staraptoriteg: {
+	staraptiteg: {
 		inherit: true,
 		isNonstandard: null,
 	},
@@ -91,7 +91,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	feraligatiteg: {
+	feraligiteg: {
 		inherit: true,
 		isNonstandard: null,
 	},
@@ -219,7 +219,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	drampiteg: {
+	drampaniteg: {
 		inherit: true,
 		isNonstandard: null,
 	},
@@ -247,7 +247,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	tatsugiriteg: {
+	tatsugiriniteg: {
 		inherit: true,
 		isNonstandard: null,
 	},
@@ -343,7 +343,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	hawluchiteg: {
+	hawluchaniteg: {
 		inherit: true,
 		isNonstandard: null,
 	},
@@ -407,7 +407,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	raichuiteg: {
+	raichuniteg: {
 		inherit: true,
 		isNonstandard: null,
 	},

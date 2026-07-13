@@ -8239,8 +8239,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 6,
 		isNonstandard: "Custom",
 	},
-	staraptoriteg: {
-		name: "Staraptorite G",
+	staraptiteg: {
+		name: "Staraptite G",
 		spritenum: 575,
 		megaStone: { "Staraptor": "Staraptor-Mega-G" },
 		itemUser: ["Staraptor"],
@@ -8443,8 +8443,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 6,
 		isNonstandard: "Custom",
 	},
-	feraligatiteg: {
-		name: "Feraligatite G",
+	feraligiteg: {
+		name: "Feraligite G",
 		spritenum: 575,
 		megaStone: { "Feraligatr": "Feraligatr-Mega-G" },
 		itemUser: ["Feraligatr"],
@@ -8827,8 +8827,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 6,
 		isNonstandard: "Custom",
 	},
-	drampiteg: {
-		name: "Drampite G",
+	drampaniteg: {
+		name: "Drampanite G",
 		spritenum: 575,
 		megaStone: { "Drampa": "Drampa-Mega-G" },
 		itemUser: ["Drampa"],
@@ -8911,8 +8911,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 6,
 		isNonstandard: "Custom",
 	},
-	tatsugiriteg: {
-		name: "Tatsugirite G",
+	tatsugiriinteg: {
+		name: "Tatsugiriinte G",
 		spritenum: 575,
 		megaStone: { "Tatsugiri": "Tatsugiri-Mega-G" },
 		itemUser: ["Tatsugiri"],
@@ -9199,8 +9199,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 6,
 		isNonstandard: "Custom",
 	},
-	hawluchiteg: {
-		name: "Hawluchite G",
+	hawluchaniteg: {
+		name: "Hawluchanite G",
 		spritenum: 575,
 		megaStone: { "Hawlucha": "Hawlucha-Mega-G" },
 		itemUser: ["Hawlucha"],
@@ -9391,8 +9391,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 6,
 		isNonstandard: "Custom",
 	},
-	raichuiteg: {
-		name: "Raichuite G",
+	raichuniteg: {
+		name: "Raichunite G",
 		spritenum: 575,
 		megaStone: { "Raichu": "Raichu-Mega-G" },
 		itemUser: ["Raichu"],

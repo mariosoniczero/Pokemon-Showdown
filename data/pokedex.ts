@@ -21079,7 +21079,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		prevo: "croconaw",
 		evoLevel: 30,
 		eggGroups: ["Monster", "Water 1"],
-		requiredItem: "Feraligatite G",
+		requiredItem: "Feraligite G",
 	},
 	lanturnmega: {
 		num: 171,
@@ -21257,7 +21257,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 24.9,
 		color: "Brown",
 		eggGroups: ["Flying"],
-		requiredItem: "Staraptorite G",
+		requiredItem: "Staraptite G",
 	},
 	luxraymega: {
 		num: 405,
@@ -21814,7 +21814,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 185,
 		color: "White",
 		eggGroups: ["Monster", "Dragon"],
-		requiredItem: "Drampite G",
+		requiredItem: "Drampanite G",
 	},
 	beheeyemmega: {
 		num: 606,
@@ -21887,7 +21887,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 8,
 		color: "Orange",
 		eggGroups: ["Water 2"],
-		requiredItem: "Tatsugirite G",
+		requiredItem: "Tatsugirinite G",
 	},
 	stunfiskgalarmega: {
 		num: 618,
@@ -22238,7 +22238,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 21.5,
 		color: "Green",
 		eggGroups: ["Flying", "Human-Like"],
-		requiredItem: "Hawluchite G",
+		requiredItem: "Hawluchanite G",
 	},
 	ninetalesmega: {
 		num: 38,
@@ -22464,7 +22464,7 @@ export const Pokedex: import('../sim/dex-species').SpeciesDataTable = {
 		weightkg: 30,
 		color: "Yellow",
 		eggGroups: ["Field", "Fairy"],
-		requiredItem: "Raichuite G",
+		requiredItem: "Raichunite G",
 	},
 	revavroommega: {
 		num: 966,
