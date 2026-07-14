@@ -8911,8 +8911,8 @@ export const Items: import('../sim/dex-items').ItemDataTable = {
 		gen: 6,
 		isNonstandard: "Custom",
 	},
-	tatsugiriinteg: {
-		name: "Tatsugiriinte G",
+	tatsugiriniteg: {
+		name: "Tatsugirinite G",
 		spritenum: 575,
 		megaStone: { "Tatsugiri": "Tatsugiri-Mega-G" },
 		itemUser: ["Tatsugiri"],
