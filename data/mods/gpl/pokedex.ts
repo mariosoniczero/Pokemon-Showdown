@@ -1114,7 +1114,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		weightkg: 185,
 		color: "White",
 		eggGroups: ["Monster", "Dragon"],
-		requiredItem: "Drampite G",
+		requiredItem: "Drampanite G",
 	},
 	beheeyem: {
 		inherit: true,

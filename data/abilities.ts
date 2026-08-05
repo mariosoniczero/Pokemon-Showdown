@@ -5720,7 +5720,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		num: 1003,
 	},
 	"spectralbattery": {
-		shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
+		//shortDesc: "User's two-turn moves complete in one turn (except Sky Drop).",
 		onChargeMove(pokemon, target, move) {
 			this.add('-activate', pokemon, 'ability: Spectral Battery');
 			this.debug('spectral battery - remove charge turn for ' + move.id);
@@ -6358,12 +6358,13 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		condition: {
 			onStart(pokemon) {
 				if (pokemon.species.id !== 'eiscuemeganoice') pokemon.formeChange('Eiscue-Mega-Noice');
-				this.effectState.checkedBerserk = false;
+				this.effectState.bustedMega = false;
 			},
 			onUpdate(pokemon) {
-				if (pokemon.hp <= pokemon.maxhp / 4 && !this.effectState.checkedBerserk) {
+				if (pokemon.hp <= pokemon.maxhp / 4 && !this.effectState.bustedMega) {
+					this.add('-activate', pokemon, 'ability: Mega Ice Face');
 					this.boost({spe: 1});
-					this.effectState.checkedBerserk = true;
+					this.effectState.bustedMega = true;
 				}
 			},
 			/*
@@ -6615,7 +6616,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		//Coded as part of Wish in moves.ts
 		condition: {
 			onStart(target) {
-				this.add('-start', target, 'ability: Divine Inspiration');
+				this.add('-start', target, 'Divine Inspiration');
 			},
 			onModifyAtk(atk, target, source, move) {
 				return this.chainModify([4915, 4096]);
@@ -6839,20 +6840,35 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			pokemon.setType(pokemon.teraType);
 			this.add('-start', pokemon, 'typechange', pokemon.teraType, '[from] ability: Terachromaticism');
 		},
+		onModifySTAB(stab, source, target, move) {
+			if (move.forceSTAB || source.hasType(move.type)) {
+				if (stab === 2) {
+					return 2.25;
+				}
+				return 1.75;
+			}
+		},
+		/*
 		onModifyMove(move, pokemon) {
 			if (move.type === pokemon.teraType) {
 				move.stab = 1.75;
+				console.log("Move: ", move);
 			}
 		},
+		*/
 		flags: {},
 		name: "Terachromaticism",
 		rating: 3.5,
 		num: 1051,
 	},
 	arachnophobia: {
-		onFoeSwitchIn(pokemon) {
-			this.add('-ability', this.effectState.target, 'Arachnophobia');
-			this.boost({spe: -1}, pokemon, pokemon.side.foe.active[0], null, true);
+		onResidual(pokemon) {
+			for (const target of pokemon.adjacentFoes()) {
+				if (target.newlySwitched) {
+					this.add('-ability', pokemon, 'Arachnophobia', 'boost');
+					this.boost({ spe: -1 }, target, pokemon, null, true);
+				}
+			}
 		},
 		flags: {},
 		name: "Arachnophobia",
@@ -7106,7 +7122,14 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	hyperion: {
 		onSwitchInPriority: -2,
 		onStart(pokemon) {
-			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
+			if (!pokemon.hyperionActivated && !this.field.isWeather('sunnyday')) {
+				pokemon.hyperionActivated = true;
+				pokemon.addVolatile('hyperion');
+				pokemon.volatiles['hyperion'].fromBooster = true;
+			}
+			else {
+				this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
+			}
 		},
 		onWeatherChange(pokemon) {
 			// Hyperion is not affected by Utility Umbrella
@@ -7114,9 +7137,6 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 				pokemon.addVolatile('hyperion');
 			} else if (!pokemon.volatiles['hyperion']?.fromBooster && !this.field.isWeather('sunnyday')) {
 				pokemon.removeVolatile('hyperion');
-			} else {
-				this.effectState.fromBooster = true;
-				pokemon.addVolatile('hyperion');
 			}
 		},
 		onEnd(pokemon) {
@@ -7126,12 +7146,13 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		condition: {
 			noCopy: true,
 			onStart(pokemon, source, effect) {
-				this.add('-activate', pokemon, 'ability: Hyperion');
+				this.add('-start', pokemon, 'ability: Hyperion');
 			},
 			onModifyAtkPriority: 5,
 			onModifyAtk(atk, pokemon) {
 				if (pokemon.ignoringAbility()) return;
 				this.debug('Hyperion atk boost');
+				console.log("Hyperion atk boost");
 				return this.chainModify(1.5);
 			},
 			onEnd(pokemon) {
@@ -7281,7 +7302,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		condition: {
 			onStart(target) {
 				this.add('-start', target, 'ability: Last Rights');
-				this.boost({ atk: 1, spa: 1 }, pokemon);
+				this.boost({ atk: 1, spa: 1 }, target);
 			},
 		},
 		flags: {},
@@ -7311,11 +7332,11 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 			if (move?.type !== 'Psychic' || pokemon.hp !== pokemon.maxhp) return;
 			if (!move.ignoreImmunity) move.ignoreImmunity = {};
 			if (move.ignoreImmunity !== true) {
-				move.ignoreImmunity['Dark'] = true;
+				move.ignoreImmunity['Psychic'] = true;
 			}
 		},
 		onModifyDamage(damage, source, target, move) {
-			if (move.ignoreImmunity['Dark']) {
+			if (move.ignoreImmunity['Psychic'] && target.types.includes('Dark')) {
 				this.debug('Divinity boost');
 				return this.chainModify(2);
 			}

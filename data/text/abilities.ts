@@ -2543,7 +2543,7 @@ export const AbilitiesText: { [id: IDEntry]: AbilityText } = {
 	},
 	decay: {
 		name: "Decay",
-		shortDesc: "Opponents receives -1 SpA when hit by this Pokemon's attacks.",
+		shortDesc: "Opponents receives -1 SpD when hit by this Pokemon's attacks.",
 	},
 	sunkensky: {
 		name: "Sunken Sky",
